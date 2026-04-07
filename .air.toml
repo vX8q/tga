@@ -1,0 +1,16 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./tmp/server.exe ./cmd/server"
+  bin = "./tmp/server.exe"
+  full_bin = "./tmp/server.exe"
+  include_ext = ["go"]
+  exclude_dir = ["tmp", "data", "web", "scripts"]
+  delay = 500
+  kill_delay = "500ms"
+  rerun = false
+  log = "build-errors.log"
+
+[screen]
+  clear_on_rebuild = false

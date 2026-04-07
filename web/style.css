@@ -1,0 +1,3860 @@
+:root {
+  --header-height: 5.5rem;
+  --detail-header-height: 10.5rem;
+  --event-header-height: 8rem;
+  --bg: #08080a;
+  --bg-2: #0c0c0e;
+  --bg-3: #0f0f12;
+  --card: #121214;
+  --card-2: #16161a;
+  --card-3: #1a1a20;
+  --border: #1e1e22;
+  --border-2: #25252a;
+  --border-3: #2a2a32;
+  --text: #e8e8ec;
+  --muted: #888;
+  --accent: #e10600;
+  --row-alt: #0e0e10;
+  --link: #6ea8fe;
+  --link-hover: #9ec5fe;
+  --font-heading: "Inter", system-ui, sans-serif;
+  --surface-2: #262628;
+  --surface-3: #dcdcde;
+  --table-col-hover: rgba(255,255,255,0.08);
+  --text-2: #c8c8d0;
+  --text-3: #a0a0ac;
+  --table-row-bg: #121214;
+}
+
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-2: #ffffff;
+  --bg-3: #f3f3f5;
+  --card: #ffffff;
+  --card-2: #f3f3f5;
+  --card-3: #e9e9ed;
+  --border: #d0d0d5;
+  --border-2: #c3c3ca;
+  --border-3: #b5b5bf;
+  --text: #111118;
+  --muted: #6f6f78;
+  --row-alt: #f2f2f6;
+  --link: #0b63ce;
+  --link-hover: #084c9b;
+  --surface-2: #e4e4ea;
+  --surface-3: #18181b;
+  --table-col-hover: rgba(0,0,0,0.06);
+  --text-2: #3a3a44;
+  --text-3: #6a6a76;
+  --table-row-bg: #ffffff;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  /* iOS Safari: prevent elastic bounce on body, keep scroll on content */
+  -webkit-text-size-adjust: 100%;
+}
+/* Тонкий скроллбар — резервирует место, без горизонтальных прыжков */
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: transparent; }
+html::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+html::-webkit-scrollbar-thumb:hover { background: #555; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding-top: var(--header-height);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "ss03", "cv05", "cv08";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container { max-width: 1600px; margin: 0 auto; padding: 0 1.25rem; }
+/* Только для страницы события с pre-season блоком
+   прижимаем к левому краю ТОЛЬКО основной контентный контейнер (<main class="container main">) */
+body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) main.container.main {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hidden { display: none !important; }
+
+
+/* Header — всегда закреплён, не смещается. Фон: едва заметная сетка (grid = стартовая решётка). */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  opacity: 0.92;
+  pointer-events: none;
+}
+.header-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+/* Language toggle */
+.lang-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: none;
+  border-radius: 999px;
+  padding: 3px;
+  gap: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.lang-opt {
+  display: inline-block;
+  padding: 0.18rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  line-height: 1.5;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+.lang-opt.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(225,6,0,0.45);
+}
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.25em;
+}
+.logo:hover { color: var(--text); }
+.logo:hover .logo-grid { color: var(--accent); }
+
+/* «The» — второстепенный, иерархия */
+.logo-the {
+  font-size: 0.58em;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+.logo:hover .logo-the { color: var(--muted); }
+
+/* «Grid» — акцент, разрядка только в анимации появления, в статике плотно */
+.logo-grid {
+  display: inline-block;
+  letter-spacing: 0;
+  margin-right: -0.02em;
+  position: relative;
+  color: var(--accent);
+  animation: logo-grid-appear 0.75s ease-out forwards;
+}
+.logo-grid::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--border-2) 15%, var(--border-2) 85%, transparent);
+  opacity: 0.5;
+}
+.logo:hover .logo-grid::before {
+  background: linear-gradient(to right, transparent, var(--accent) 15%, var(--accent) 85%, transparent);
+  opacity: 0.6;
+}
+
+@keyframes logo-grid-appear {
+  from { letter-spacing: 0.22em; opacity: 0.7; }
+  to   { letter-spacing: 0; opacity: 1; }
+}
+
+/* «Archive» — основной вес, чуть меньше и легче чем Grid */
+.logo-archive {
+  font-size: 0.92em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.logo:hover .logo-archive { color: var(--text); }
+.tagline { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+.main { flex: 1; padding: 2rem 0; }
+
+/* Theme toggle */
+.theme-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: none;
+  border-radius: 999px;
+  padding: 3px;
+  gap: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.theme-opt {
+  display: inline-block;
+  padding: 0.18rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  line-height: 1.5;
+  color: var(--muted);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+.theme-opt.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(225,6,0,0.45);
+}
+
+/* List view — category blocks in a row */
+.series-list-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  max-height: none;
+  overflow: visible;
+}
+.series-list-wrap .category-block {
+  flex: 1 1 240px;
+  min-width: 240px;
+  max-width: 320px;
+  max-height: none;
+  overflow: visible;
+}
+.series-list-wrap .series-grid {
+  max-height: none;
+  overflow: visible;
+}
+
+.category-block {
+  position: relative;
+  margin-bottom: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: visible;
+  transition: border-color 0.3s ease;
+}
+.category-block:hover {
+  border-color: var(--border-2);
+}
+.category-block.expanded {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 12px 2px rgba(225, 6, 0, 0.25);
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(90deg, var(--card), var(--card-2));
+  border: none;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 14px 14px 0 0;
+}
+.category-block:not(.expanded) .category-btn { border-radius: 14px; }
+.category-btn:hover { background: linear-gradient(90deg, var(--card-2), var(--card-3)); }
+.category-btn:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+.category-block.expanded .category-btn,
+.category-btn[aria-expanded="true"] {
+  background: linear-gradient(90deg, var(--card-2), var(--card-3));
+}
+.category-btn-icon { display: none; }
+.category-btn::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 24 24%27 stroke=%27%23888%27><path stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272.25%27 d=%27M19 9l-7 7-7-7%27 /></svg>') no-repeat center;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  flex-shrink: 0;
+}
+.category-block.expanded .category-btn::after { transform: rotate(180deg); }
+
+.category-content {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: height 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.25s ease 0.05s;
+  background: linear-gradient(to bottom, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--border);
+  border-radius: 0 0 14px 14px;
+  box-sizing: border-box;
+}
+.category-block.expanded .category-content {
+  opacity: 1;
+}
+.category-content > .series-grid {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 1.25rem;
+  scrollbar-gutter: stable;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.category-block.expanded .category-content > .series-grid {
+  padding: 1.25rem;
+}
+.category-content > .series-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+.series-card {
+  display: block;
+  position: relative;
+  overflow: visible;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  text-align: left;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  min-width: 0;
+}
+.series-card:hover {
+  border-color: var(--border-2);
+  background: var(--card-2);
+}
+.series-card:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.series-card h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.series-card .meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.loading { color: var(--muted); }
+
+/* Detail view — блок навигации закреплён по всей ширине, контент центрируется как контейнер */
+.detail-sticky-header {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  transform: none;
+  z-index: 99;
+  /* padding имитирует .container: минимум 1.25rem, на широких экранах центрирует контент в 1600px */
+  padding: 1rem max(1.25rem, calc((100vw - 1600px) / 2)) 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.breadcrumb { margin-bottom: 1rem; }
+.breadcrumb a {
+  color: var(--link);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.breadcrumb a:hover { color: var(--link-hover); text-decoration: underline; }
+
+.detail-header { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.detail-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  min-height: 2rem;
+}
+.detail-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  min-height: 1.25rem;
+}
+
+/* Driver detail: список мета-данных */
+#driver-meta {
+  color: var(--text);
+  line-height: 1.35;
+}
+.citizenship-flag {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 0.25rem;
+}
+
+/* Driver detail header (Transfermarkt-like: photo + basic info) */
+.driver-header-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.9rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.driver-header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.driver-photo-wrap {
+  width: 260px; /* уменьшили по сравнению с "очень большим" */
+  height: 195px; /* ~4:3 */
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  overflow: hidden; /* обрезаем пустые поля по бокам */
+  background: rgba(125, 125, 125, 0.12);
+  flex: 0 0 auto;
+}
+
+.driver-photo {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 25%;
+  background: transparent;
+  /* дополнительный "зум" для сильнее обрезки боковых прозрачных полей */
+  transform: scale(1.18);
+  transform-origin: center;
+}
+
+.series-live-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(229, 57, 53, 0.08);
+  color: #ff867c;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.series-live-banner.hidden {
+  display: none;
+}
+.series-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ff5252;
+  box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.8);
+  animation: series-live-pulse 1.4s ease-in-out infinite;
+}
+.series-live-text {
+  white-space: nowrap;
+}
+@keyframes series-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+.series-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.75rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.5rem;
+  min-height: 2.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+body.series-indycar .series-nav {
+  border-bottom: none;
+}
+.nav-link {
+  padding: 0.75rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  background: var(--card-2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.nav-link.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.detail-panels-wrap {
+  position: relative;
+  /* без min-height: 60vh — иначе под контентом остаётся огромный пустой тёмный блок */
+  padding-top: calc(var(--detail-header-height) + 0.75rem);
+  transition: opacity 0.2s ease;
+}
+.detail-panels-wrap.detail-panels-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Series/season header: breadcrumb + title + meta (unified design) */
+#detail-title {
+  display: block;
+}
+
+.series-panel {
+  margin-bottom: 0;
+}
+.series-panel.hidden {
+  display: none !important;
+}
+.info-section,
+.schedule-section {
+  margin-bottom: 2rem;
+}
+.info-section h3,
+.schedule-section h3,
+.standings-section h3,
+.teams-section h3,
+.specs-section h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.info-section { display: none; }
+
+.schedule-section .table-wrap { position: relative; overflow-x: visible; width: 100%; }
+.schedule-section .data-table { width: 100%; }
+.schedule-section .table-wrap.schedule-wrap--stockcar {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.schedule-section .data-table { font-size: 0.9rem; }
+.schedule-section .data-table td {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+.schedule-section .data-table td { font-size: 0.875rem; }
+.schedule-section .data-table th:nth-child(1),
+.schedule-section .data-table td:nth-child(1) { white-space: nowrap; }
+.schedule-section .data-table th:nth-child(2),
+.schedule-section .data-table td:nth-child(2) { white-space: nowrap; }
+.schedule-section .data-table th:nth-child(5),
+.schedule-section .data-table td:nth-child(5) { white-space: nowrap; }
+.schedule-section .data-table th:nth-child(6),
+.schedule-section .data-table td:nth-child(6) { white-space: nowrap; }
+.schedule-section .col-location,
+.schedule-section .data-table td:nth-child(4) {
+  line-height: 1.35;
+}
+.schedule-section .schedule-section-banner td {
+  background: var(--border-2);
+  color: var(--text);
+  text-align: center;
+  font-weight: 500;
+  padding: 0.45em 0.5em;
+  border-bottom: 1px solid var(--border);
+}
+.schedule-section .schedule-track-bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.25em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.75em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.schedule-section .col-date-span,
+.schedule-section .col-location-span {
+  vertical-align: middle;
+}
+.schedule-section .schedule-row-continuation .col-date-empty,
+.schedule-section .schedule-row-continuation .col-location-empty {
+  border-left: 1px solid var(--border);
+}
+
+/* Supercars schedule: более явные границы ячеек */
+.schedule-section .data-table.schedule-table--supercars {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.schedule-section .data-table.schedule-table--supercars th,
+.schedule-section .data-table.schedule-table--supercars td {
+  border-right: 1px solid var(--border);
+}
+.schedule-section .data-table.schedule-table--supercars th:last-child,
+.schedule-section .data-table.schedule-table--supercars td:last-child {
+  border-right: none;
+}
+
+/* Stock car schedule: 6 cols — #, Race, Circuit, Location, Date, Local */
+.schedule-section .data-table.schedule-table--stockcar th:nth-child(5),
+.schedule-section .data-table.schedule-table--stockcar td:nth-child(5) {
+  white-space: nowrap;
+  min-width: 6.5rem;
+}
+.schedule-section .data-table.schedule-table--stockcar th:nth-child(6),
+.schedule-section .data-table.schedule-table--stockcar td:nth-child(6),
+.schedule-section .data-table.schedule-table--stockcar th:nth-child(7),
+.schedule-section .data-table.schedule-table--stockcar td:nth-child(7) {
+  white-space: nowrap;
+}
+
+/* Stats dashboard */
+.stats-dashboard {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card-2);
+}
+.stats-dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.stats-dashboard-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.stats-dashboard-subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.stats-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.stats-card {
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: var(--card-3);
+  border: 1px solid var(--border-2);
+  min-height: 170px;
+}
+.stats-card-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.stats-card canvas {
+  width: 100% !important;
+  height: 160px !important;
+}
+.stats-card-summary {
+  grid-column: span 1;
+}
+.stats-summary-body {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.stats-summary-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.stats-summary-list li {
+  margin: 0.1rem 0;
+}
+
+.data-table#stats-table tbody tr.stats-row-selected {
+  background: rgba(225,6,0,0.16);
+}
+
+/* Tables — racing-reference style. Каждая таблица по ширине контента (auto), не зависят друг от друга. */
+.table-wrap {
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  box-sizing: border-box;
+  display: block;
+  flex-shrink: 0;
+  margin-bottom: 1.5rem;
+}
+/* IndyCar Car Specs: убираем рамку вокруг единственной таблицы,
+   чтобы не было лишней полосы под заголовком. */
+body.series-indycar #technical-spec-table-wrap,
+body.series-f1 #technical-spec-table-wrap {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+/* IndyCar Car Specs: полностью скрываем пустой контейнер моделей. */
+body.series-indycar #car-models-table-wrap {
+  display: none;
+}
+/* F2/F3 Car Specs: убираем обёртку (рамку, фон) у контейнера с текстом Chassis. */
+body.series-f2 #car-models-table-wrap:has(.specs-chassis-line),
+body.series-f3 #car-models-table-wrap:has(.specs-chassis-line) {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+.data-table {
+  width: max-content;
+  max-width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 0;
+}
+.data-table col { width: auto !important; }
+.data-table th,
+.data-table td {
+  width: auto;
+  box-sizing: border-box;
+}
+.data-table thead,
+.data-table tbody,
+.data-table tr {
+  vertical-align: middle;
+}
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+/* Pos и No. — не переносить цифры (48, 43 и т.д. в одну строку) */
+.data-table td:nth-child(1),
+.data-table td:nth-child(2) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  min-width: 2rem;
+}
+/* Race results: колонка TEAM не должна рвать слово по буквам */
+.race-results-table th:nth-child(4),
+.race-results-table td:nth-child(4) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* Time и Speed (последние две колонки) — не разрывать числа, одна строка */
+.data-table th:nth-last-child(1),
+.data-table th:nth-last-child(2),
+.data-table td:nth-last-child(1),
+.data-table td:nth-last-child(2) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  font-variant-numeric: tabular-nums;
+  min-width: 4rem;
+}
+.data-table th {
+  background: var(--border);
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+.data-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.data-table th.sortable:hover {
+  background: var(--border-2);
+}
+.data-table th.sort-asc::after,
+.data-table th.sort-desc::after {
+  content: ' ↑';
+  color: var(--accent);
+  font-size: 0.75em;
+  margin-left: 0.2em;
+}
+.data-table th.sort-desc::after { content: ' ↓'; }
+/* Зебра по ячейкам (td), чтобы полоса была ровной при border-collapse: collapse */
+.data-table tbody tr:nth-child(odd) td { background: transparent; }
+.data-table tbody tr:nth-child(even) td { background: var(--row-alt); }
+/* Сток-кары Teams: полосатость по группам команд (каждый <tbody> — одна команда) */
+.data-table.stockcar-teams-table tbody.group-odd tr td { background: transparent; }
+.data-table.stockcar-teams-table tbody.group-even tr td { background: var(--row-alt); }
+/* IMSA teams: зебра по командами (Team+Chassis), а не по # */
+.imsa-teams-table tbody tr td { background: transparent; }
+.imsa-teams-table tbody tr.imsa-band-alt td { background: var(--row-alt); }
+#schedule-table tbody tr { background: var(--table-row-bg); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table .col-field { color: var(--text); font-weight: 500; white-space: nowrap; }
+.data-table tr.spec-section-header td { font-weight: 600; background: var(--border); padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-2); }
+/* F1 tech spec: отдельная таблица на категорию, перенос длинных строк без горизонтального скролла */
+.tech-spec-by-section .table-section-title { margin-top: 1rem; margin-bottom: 0.5rem; }
+.tech-spec-by-section.table-wrap { overflow-x: visible; }
+.tech-spec-by-section .table-section-title:first-child { margin-top: 0; }
+.tech-spec-by-section .table-wrap.tech-spec-section-table { overflow-x: visible; width: fit-content; max-width: 100%; }
+.tech-spec-by-section .tech-spec-section-table .data-table { width: max-content; max-width: 100%; table-layout: auto; }
+.tech-spec-by-section .tech-spec-section-table .data-table td:first-child { white-space: nowrap; min-width: 8rem; }
+.tech-spec-by-section .tech-spec-section-table .data-table td.col-spec-value,
+.tech-spec-by-section .tech-spec-section-table .data-table td:last-child { white-space: normal; word-break: break-word; overflow-wrap: anywhere; max-width: 28rem; }
+.tech-spec-by-section .tech-spec-section-table .data-table th,
+.tech-spec-by-section .tech-spec-section-table .data-table td { padding: 0.4rem 0.6rem; }
+/* Таблицы FIELD / VALUE (laps, race statistics) — контейнер и таблица по ширине контента */
+.table-wrap:has(.data-table.table-field-value) { width: fit-content; max-width: 100%; }
+.table-wrap .data-table.table-field-value { width: max-content; max-width: 100%; min-width: 0; }
+.data-table.table-field-value th { text-align: left; }
+.data-table.table-field-value td:first-child { width: 1%; white-space: nowrap; }
+.qualifying-table {
+  width: auto;
+  table-layout: auto;
+}
+#view-event .table-wrap:has(.qualifying-table) {
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: visible;
+}
+.data-table .col-num { color: var(--text); white-space: nowrap; text-align: center; }
+/* F1 teams: ширина таблицы и ячеек по содержимому */
+.data-table.f1-teams-table { width: auto; table-layout: auto; }
+.data-table.f1-teams-table th,
+.data-table.f1-teams-table td { width: auto; }
+.data-table .rookie-tag { font-size: 0.75em; font-weight: 600; color: var(--text); margin-left: 0.15em; }
+.data-table .col-time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Penalties / VSC — не ломаем общую сетку, но запрещаем
+   агрессивный перенос текста внутри ячеек */
+.data-table.penalties-table th,
+.data-table.penalties-table td,
+.data-table.vsc-table th,
+.data-table.vsc-table td {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* Stats (Driver / Team / Manufacturer): числа по центру ячейки */
+.stats-section .data-table#stats-table th:nth-child(1),
+.stats-section .data-table#stats-table th:nth-child(2),
+.stats-section .data-table#stats-table th:nth-child(6),
+.stats-section .data-table#stats-table th:nth-child(7),
+.stats-section .data-table#stats-table th:nth-child(8),
+.stats-section .data-table#stats-table th:nth-child(9),
+.stats-section .data-table#stats-table th:nth-child(10),
+.stats-section .data-table#stats-table th:nth-child(11),
+.stats-section .data-table#stats-table th:nth-child(12),
+.stats-section .data-table#stats-table th:nth-child(13),
+.stats-section .data-table#stats-table th:nth-child(14),
+.stats-section .data-table#stats-table th:nth-child(15),
+.stats-section .data-table#stats-table th:nth-child(16),
+.stats-section .data-table#stats-table th:nth-child(17),
+.stats-section .data-table#stats-table th:nth-child(18),
+.stats-section .data-table#stats-table th:nth-child(19),
+.stats-section .data-table#stats-table th:nth-child(20),
+.stats-section .data-table#stats-table td:nth-child(1),
+.stats-section .data-table#stats-table td:nth-child(2),
+.stats-section .data-table#stats-table td:nth-child(6),
+.stats-section .data-table#stats-table td:nth-child(7),
+.stats-section .data-table#stats-table td:nth-child(8),
+.stats-section .data-table#stats-table td:nth-child(9),
+.stats-section .data-table#stats-table td:nth-child(10),
+.stats-section .data-table#stats-table td:nth-child(11),
+.stats-section .data-table#stats-table td:nth-child(12),
+.stats-section .data-table#stats-table td:nth-child(13),
+.stats-section .data-table#stats-table td:nth-child(14),
+.stats-section .data-table#stats-table td:nth-child(15),
+.stats-section .data-table#stats-table td:nth-child(16),
+.stats-section .data-table#stats-table td:nth-child(17),
+.stats-section .data-table#stats-table td:nth-child(18),
+.stats-section .data-table#stats-table td:nth-child(19),
+.stats-section .data-table#stats-table td:nth-child(20) { text-align: center; }
+.stats-section .data-table#team-stats-table th:nth-child(1),
+.stats-section .data-table#team-stats-table th:nth-child(n+3),
+.stats-section .data-table#team-stats-table td:nth-child(1),
+.stats-section .data-table#team-stats-table td:nth-child(n+3) { text-align: center; }
+.stats-section .data-table#manufacturer-stats-table th:nth-child(1),
+.stats-section .data-table#manufacturer-stats-table th:nth-child(n+3),
+.stats-section .data-table#manufacturer-stats-table td:nth-child(1),
+.stats-section .data-table#manufacturer-stats-table td:nth-child(n+3) { text-align: center; }
+
+/* Supercars stats: hide Top 20 and advanced columns we don't track (Stage Wins, Stage Points, Led, Laps %, Pos. Diff) */
+.series-supercars .stats-section .data-table#stats-table th:nth-child(12),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(15),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(16),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(17),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(18),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(19),
+.series-supercars .stats-section .data-table#stats-table th:nth-child(20),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(12),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(15),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(16),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(17),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(18),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(19),
+.series-supercars .stats-section .data-table#stats-table td:nth-child(20) { display: none; }
+
+/* ARCA & NASCAR Modified: hide stage points columns (no stages in series) */
+.series-arca .stats-section .data-table#stats-table th:nth-child(16),
+.series-arca .stats-section .data-table#stats-table th:nth-child(17),
+.series-arca .stats-section .data-table#stats-table td:nth-child(16),
+.series-arca .stats-section .data-table#stats-table td:nth-child(17),
+.series-nascar_modified .stats-section .data-table#stats-table th:nth-child(16),
+.series-nascar_modified .stats-section .data-table#stats-table th:nth-child(17),
+.series-nascar_modified .stats-section .data-table#stats-table td:nth-child(16),
+.series-nascar_modified .stats-section .data-table#stats-table td:nth-child(17),
+.series-arca .stats-section .data-table#team-stats-table th:nth-child(13),
+.series-arca .stats-section .data-table#team-stats-table th:nth-child(14),
+.series-arca .stats-section .data-table#team-stats-table td:nth-child(13),
+.series-arca .stats-section .data-table#team-stats-table td:nth-child(14),
+.series-nascar_modified .stats-section .data-table#team-stats-table th:nth-child(13),
+.series-nascar_modified .stats-section .data-table#team-stats-table th:nth-child(14),
+.series-nascar_modified .stats-section .data-table#team-stats-table td:nth-child(13),
+.series-nascar_modified .stats-section .data-table#team-stats-table td:nth-child(14),
+.series-arca .stats-section .data-table#manufacturer-stats-table th:nth-child(13),
+.series-arca .stats-section .data-table#manufacturer-stats-table th:nth-child(14),
+.series-arca .stats-section .data-table#manufacturer-stats-table td:nth-child(13),
+.series-arca .stats-section .data-table#manufacturer-stats-table td:nth-child(14),
+.series-nascar_modified .stats-section .data-table#manufacturer-stats-table th:nth-child(13),
+.series-nascar_modified .stats-section .data-table#manufacturer-stats-table th:nth-child(14),
+.series-nascar_modified .stats-section .data-table#manufacturer-stats-table td:nth-child(13),
+.series-nascar_modified .stats-section .data-table#manufacturer-stats-table td:nth-child(14) { display: none; }
+
+/* Supercars team/manufacturer stats: hide Top 20 (col 9) and stage/led/laps/pos diff columns */
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(9),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(12),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(13),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(14),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(15),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(16),
+.series-supercars .stats-section .data-table#team-stats-table th:nth-child(17),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(9),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(12),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(13),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(14),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(15),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(16),
+.series-supercars .stats-section .data-table#team-stats-table td:nth-child(17) { display: none; }
+
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(9),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(12),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(13),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(14),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(15),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(16),
+.series-supercars .stats-section .data-table#manufacturer-stats-table th:nth-child(17),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(9),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(12),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(13),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(14),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(15),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(16),
+.series-supercars .stats-section .data-table#manufacturer-stats-table td:nth-child(17) { display: none; }
+
+/* Stats filters (driver / team / manufacturer, min starts) */
+.stats-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.stats-controls-left,
+.stats-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.stats-controls label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.stats-controls select,
+.stats-controls input[type="search"] {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  color: var(--text);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  min-width: 140px;
+}
+.stats-controls input[type="search"] {
+  min-width: 200px;
+}
+.stats-controls select:focus,
+.stats-controls input[type="search"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+/* Formula series: hide "Min starts" filter in stats */
+body.cat-openwheel #stats-panel .stats-controls-left {
+  display: none;
+}
+
+/* Сделать таблицы Stats визуально компактнее */
+.stats-section .data-table {
+  font-size: 0.85rem;
+}
+.stats-section .data-table th,
+.stats-section .data-table td {
+  padding: 0.25rem 0.4rem;
+}
+
+.event-link { color: var(--link); text-decoration: none; font-weight: 500; }
+.event-link:hover { color: var(--link-hover); text-decoration: underline; }
+.season-link { color: var(--link); text-decoration: none; font-weight: 500; }
+.season-link:hover { color: var(--link-hover); text-decoration: underline; }
+.track-link { color: var(--text); text-decoration: none; }
+.track-link:hover { color: var(--link); text-decoration: underline; }
+.track-content { padding-top: 1rem; }
+
+.track-page-photo-wrap {
+  margin: 0 0 1.25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-2);
+  background: var(--card-2);
+}
+.track-page-photo {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.breadcrumb-sep { color: var(--muted); margin: 0 0.35rem; font-size: 0.85rem; }
+
+.teams-section,
+.standings-section { margin-bottom: 2rem; }
+
+/* Supercars Teams: единая таблица Championship / Endurance / Wildcard */
+.supercars-table .supercars-group-header {
+  text-align: center;
+  background: var(--border-2);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.supercars-table .supercars-group-header-divider,
+.supercars-table .supercars-col-divider {
+  width: 1px;
+  padding: 0;
+  background: var(--border-2);
+  border-left: 2px solid var(--border-3);
+}
+.supercars-table .manufacturer-cell {
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--link);
+}
+.supercars-table .table-separator-row td {
+  background: var(--bg);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ─── Table layout system ───────────────────────────────────────────────────
+   Все таблицы на сайте оборачиваются в .table-wrap.
+   Заголовок над таблицей — .table-section-title (h4, снаружи .table-wrap).
+   Отступ между соседними таблицами — margin-bottom у .table-wrap.
+   Новые таблицы строить по той же схеме:
+     <h4 class="table-section-title">Заголовок</h4>
+     <div class="table-wrap"> <table class="data-table"> … </table> </div>
+   ─────────────────────────────────────────────────────────────────────────── */
+.table-section-title {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.table-section-title:first-child {
+  margin-top: 0;
+}
+.table-section-subtitle {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* BoP (Balance of Performance) block */
+.bop-content {
+  max-width: 100%;
+}
+.bop-main-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.bop-subtitle {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.bop-divider {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+.bop-class-title {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.bop-content .table-section-title {
+  margin: 1rem 0 0.5rem;
+}
+.bop-table {
+  width: max-content;
+  table-layout: auto;
+  font-size: 0.875rem;
+}
+.bop-table thead th,
+.bop-table td {
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.bop-table thead th {
+  background: var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-2, var(--border));
+  white-space: nowrap;
+}
+.bop-table td {
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.bop-table--wide thead th,
+.bop-table--wide td {
+  white-space: nowrap;
+}
+.bop-content .table-wrap:has(.bop-table) {
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.bop-notes {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.bop-notes-list {
+  margin: 0 0 1rem;
+  padding-left: 1.35rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Pre-Season Tests block */
+.event-pre-season-block {
+  margin-bottom: 2rem;
+}
+.event-pre-season-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+/* Чтобы заголовок сессии не «терялся» под фиксированной шапкой при прокрутке/переключении */
+#view-event #event-content .event-pre-season-title {
+  scroll-margin-top: calc(var(--header-height, 56px) + 7rem);
+}
+.event-pre-season-subtitle {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.event-pre-season-block .table-section-title:first-of-type {
+  margin-top: 0;
+}
+.event-pre-season-meta-wrap {
+  margin-bottom: 1.25rem;
+}
+.event-pre-season-block .event-pre-season-meta-wrap {
+  margin-left: 0;
+  margin-right: 0;
+}
+.event-pre-season-meta-wrap .table-field-value tbody tr:first-child td { padding-top: 0.35rem; }
+.event-pre-season-meta-wrap .table-field-value tbody tr:last-child td { padding-bottom: 0.35rem; }
+.event-pre-season-meta-wrap .table-field-value .col-field {
+  font-weight: 500;
+  color: var(--muted);
+  padding-right: 1rem;
+}
+/* Session info: заголовки (DATE, LENGTH, SESSION, START) всегда видны */
+.event-pre-season-meta-wrap .session-meta-table thead,
+.event-pre-season-meta-wrap .session-meta-table thead tr,
+.event-pre-season-meta-wrap .session-meta-table thead th {
+  display: table-header-group !important;
+  visibility: visible !important;
+}
+.event-pre-season-meta-wrap .session-meta-table thead tr { display: table-row !important; }
+.event-pre-season-meta-wrap .session-meta-table thead th {
+  display: table-cell !important;
+  background: var(--border) !important;
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid var(--border-2, var(--border));
+}
+/* Горизонтальная Session info: одна строка заголовков, одна строка значений */
+.event-pre-season-meta-wrap .session-meta-table--horizontal {
+  width: max-content;
+  table-layout: auto;
+}
+.event-pre-season-meta-wrap .session-meta-table--horizontal tbody td {
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid var(--border-2, var(--border));
+  vertical-align: middle;
+}
+.event-pre-season-caption {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.event-pre-season-divider {
+  margin: 2.5rem 0 2rem;
+  border: none;
+  border-top: 1px solid var(--border-2);
+}
+.data-table.pre-season-results-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.9rem;
+}
+/* Заголовки всегда видны; внешний вид как у обычных .data-table (Entry List и др.) */
+.data-table.pre-season-results-table thead { display: table-header-group !important; visibility: visible !important; }
+.data-table.pre-season-results-table thead tr { display: table-row !important; visibility: visible !important; }
+#view-event .data-table.pre-season-results-table thead {
+  display: table-header-group !important;
+  visibility: visible !important;
+}
+#view-event .data-table.pre-season-results-table thead tr {
+  display: table-row !important;
+  visibility: visible !important;
+}
+.data-table.pre-season-results-table thead th {
+  background: var(--border) !important;
+  color: var(--text) !important;
+  visibility: visible !important;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table .track-link {
+  color: var(--link, #7eb8da);
+  text-decoration: none;
+}
+.data-table.pre-season-results-table .track-link:hover {
+  text-decoration: underline;
+}
+.data-table.pre-season-results-table th,
+.data-table.pre-season-results-table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+/* Страница события: компактные ячейки в таблицах Practice / Qualifying / Pre-season */
+#view-event .data-table.pre-season-results-table th,
+#view-event .data-table.pre-season-results-table td {
+  padding: 0.45rem 0.6rem;
+}
+#view-event .data-table.pre-season-results-table thead th {
+  padding: 0.45rem 0.6rem;
+}
+/* Practice: таблица по ширине контента, не на всю ширину */
+#view-event .table-wrap:has(.practice-results-table) {
+  width: fit-content;
+  max-width: 100%;
+}
+.data-table.practice-results-table {
+  width: max-content;
+  table-layout: auto;
+}
+/* Qualifying: таблица по ширине контента, компактные ячейки */
+#view-event .table-wrap:has(.qualifying-results-table) {
+  width: fit-content;
+  max-width: 100%;
+}
+.data-table.qualifying-results-table {
+  width: max-content;
+  table-layout: auto;
+}
+/* IMSA 2026 Round 2 qualifying: fit table into viewport without horizontal slider */
+#view-event .table-wrap:has(.data-table.qualifying-results-table.imsa-qual-fit) {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: visible;
+}
+#view-event .data-table.qualifying-results-table.imsa-qual-fit {
+  width: 100%;
+  table-layout: fixed;
+}
+#view-event .data-table.qualifying-results-table.imsa-qual-fit th,
+#view-event .data-table.qualifying-results-table.imsa-qual-fit td {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 0.78rem;
+  padding: 0.32rem 0.35rem;
+}
+/* Qualifying / Practice: ячейки по контенту (auto), без фиксированных % */
+#view-event .data-table.qualifying-results-table th,
+#view-event .data-table.qualifying-results-table td,
+#view-event .data-table.practice-results-table th,
+#view-event .data-table.practice-results-table td {
+  width: auto !important;
+  min-width: 0;
+}
+.data-table.pre-season-results-table th:nth-child(1),
+.data-table.pre-season-results-table td:nth-child(1) {
+  width: 5%;
+  text-align: center;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(2),
+.data-table.pre-season-results-table td:nth-child(2) {
+  width: 5%;
+  text-align: center;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(3),
+.data-table.pre-season-results-table td:nth-child(3) {
+  width: 15%;
+  text-align: left;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(4),
+.data-table.pre-season-results-table td:nth-child(4) {
+  width: 22%;
+  text-align: left;
+}
+.data-table.pre-season-results-table th:nth-child(5),
+.data-table.pre-season-results-table td:nth-child(5) {
+  width: 13%;
+  text-align: right;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(6),
+.data-table.pre-season-results-table td:nth-child(6) {
+  width: 10%;
+  text-align: right;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(7),
+.data-table.pre-season-results-table td:nth-child(7) {
+  width: 8%;
+  text-align: center;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(8),
+.data-table.pre-season-results-table td:nth-child(8) {
+  width: 8%;
+  text-align: center;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(9),
+.data-table.pre-season-results-table td:nth-child(9) {
+  width: 6%;
+  min-width: 4.5rem;
+  text-align: right;
+  white-space: nowrap;
+}
+.data-table.pre-season-results-table th:nth-child(10),
+.data-table.pre-season-results-table td:nth-child(10) {
+  width: 4%;
+  min-width: 2.5rem;
+  text-align: right;
+  white-space: nowrap;
+}
+/* Sprint race sessions (F1 2025): ячейки авто-подбор ширины */
+#view-event .data-table.pre-season-results-table.race-session-results-table th,
+#view-event .data-table.pre-season-results-table.race-session-results-table td {
+  width: auto !important;
+  min-width: 0;
+}
+/* F1 Pre-Season: ячейки занимают только нужное место, без наложения */
+.data-table.pre-season-results-table--fit {
+  width: max-content;
+  table-layout: auto;
+}
+.data-table.pre-season-results-table--fit th,
+.data-table.pre-season-results-table--fit td {
+  width: auto !important;
+  box-sizing: border-box;
+}
+.data-table.pre-season-results-table--fit th:nth-child(1),
+.data-table.pre-season-results-table--fit td:nth-child(1) { width: 3rem; min-width: 3rem; text-align: center; white-space: nowrap; }
+.data-table.pre-season-results-table--fit th:nth-child(2),
+.data-table.pre-season-results-table--fit td:nth-child(2) { min-width: 7rem; max-width: 12rem; white-space: normal; word-break: break-word; }
+.data-table.pre-season-results-table--fit th:nth-child(3),
+.data-table.pre-season-results-table--fit td:nth-child(3) { min-width: 8rem; max-width: 18rem; white-space: normal; word-break: break-word; }
+.data-table.pre-season-results-table--fit th:nth-child(4),
+.data-table.pre-season-results-table--fit td:nth-child(4) { min-width: 5rem; white-space: nowrap; }
+.data-table.pre-season-results-table--fit th:nth-child(5),
+.data-table.pre-season-results-table--fit td:nth-child(5) { width: 4rem; min-width: 4rem; text-align: right; white-space: nowrap; }
+
+/* Подсветка только ячейки при наведении (не всего столбца) */
+.data-table.pre-season-results-table th:hover,
+.data-table.pre-season-results-table td:hover { background: var(--table-col-hover) !important; }
+
+/* Merged qualifying table (Qualifying + Top Ten Shoot Out, Wikipedia F1 style) */
+.qual-merged-table .qual-group-header-row th {
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+.col-group-header {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface2, rgba(255,255,255,0.05));
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+.qual-so-empty {
+  color: var(--text-muted, #666);
+  opacity: 0.4;
+}
+.qual-so-pos {
+  font-weight: 800;
+  color: #fff;
+  border-left: none;
+}
+/* Чёткая граница между Qualifying и Shoot Out */
+.qual-merged-table th:nth-child(9) {
+  border-left: 2px solid #000;
+}
+/* Вертикальная граница только для топ-10 (Shoot Out) */
+.qual-merged-table tbody tr.qual-row-in-shootout td:nth-child(9) {
+  border-left: 2px solid #000;
+}
+.qual-merged-table tbody tr:not(.qual-row-in-shootout) td:nth-child(9) {
+  border-left: none;
+}
+/* Нижняя граница под блоком Shoot Out (под 10-й позицией, по всей строке) */
+.qual-merged-table tbody tr.qual-row-in-shootout:last-of-type td {
+  border-bottom: 2px solid #000;
+}
+/* Убрать дублирующий border на 6-й колонке если был */
+.qual-merged-table td:nth-child(6),
+.qual-merged-table th:nth-child(6) {
+  border-left: none;
+}
+/* Топ-10 строки (участвовали в шутауте) — лёгкий фон */
+.qual-merged-table tr.qual-row-in-shootout td {
+  background: rgba(255, 255, 255, 0.04);
+}
+/* Строки не попавших в шутаут — приглушить */
+.qual-merged-table tr:not(.qual-row-in-shootout) td.qual-so-empty {
+  opacity: 0.25;
+}
+/* Чередование строк */
+.qual-merged-table tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,0.02);
+}
+.qual-merged-table tbody tr.qual-row-in-shootout:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Цвет шрифта в объединённой таблице */
+.qual-merged-table th,
+.qual-merged-table td {
+  color: var(--text);
+}
+.qual-merged-table .qual-so-empty {
+  color: #fff;
+}
+
+.table-section-title--main {
+  font-size: 1.05rem;
+}
+.table-section-title--starting-grid {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.event-note-text {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--border-2);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #fff;
+}
+/* Pit stops — F1-style horizontal bar chart (Melbourne style) */
+.pit-stops-chart-wrap {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1rem;
+  background: var(--card);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+}
+.pit-stops-chart-title {
+  margin: 0 0 0.75rem;
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+  text-transform: uppercase;
+}
+.pit-stops-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.pit-stops-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pit-stops-chart-row:last-child {
+  border-bottom: none;
+}
+.pit-stops-chart-driver {
+  flex: 0 0 100px;
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #e8e8e8;
+}
+.pit-stops-chart-bar-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+.pit-stops-chart-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  height: 20px;
+  border-radius: 0;
+  overflow: visible;
+  position: relative;
+}
+.pit-stops-seg {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  min-width: 4px;
+  height: 20px;
+}
+.pit-stops-divider {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.pit-stops-divider--overlay {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  z-index: 2;
+  pointer-events: none;
+}
+.pit-stops-divider--overlay .pit-stops-divider-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.pit-stops-divider--overlay .pit-stops-divider-lap {
+  position: relative;
+  z-index: 1;
+}
+.pit-stops-divider-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.pit-stops-divider-lap {
+  position: relative;
+  z-index: 1;
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+/* F1 Pirelli: Hard C3 = white, Medium C4 = yellow, Soft C5 = red */
+.pit-stops-seg-hard {
+  background: #ffffff;
+}
+.pit-stops-seg-hard .pit-stops-seg-lap { color: #212121; }
+.pit-stops-seg-medium {
+  background: #ffc800;
+}
+.pit-stops-seg-medium .pit-stops-seg-lap { color: #1a1a1a; font-weight: 800; }
+.pit-stops-seg-soft {
+  background: #e60000;
+}
+.pit-stops-seg-soft .pit-stops-seg-lap { color: #fff; font-weight: 800; text-shadow: 0 0 1px #000; }
+.pit-stops-seg-intermediate {
+  background: #008b3b;
+}
+.pit-stops-seg-intermediate .pit-stops-seg-lap { color: #ffffff; font-weight: 800; text-shadow: 0 0 1px #000; }
+.pit-stops-seg-wet {
+  background: #2196f3;
+}
+.pit-stops-seg-wet .pit-stops-seg-lap { color: #fff; font-weight: 800; text-shadow: 0 0 1px #000; }
+.pit-stops-seg-dns {
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+}
+/* Пустой сегмент выравнивания: фон как у графика, без min-width, чтобы не «откусывал» полосу */
+.pit-stops-seg-empty {
+  background: var(--card);
+  min-width: 0 !important;
+}
+.pit-stops-chart-laps {
+  flex: 0 0 40px;
+  margin-left: 0.5rem;
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: right;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.pit-stops-chart-legend {
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-family: "Barlow Condensed", "Inter", system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.pit-stops-legend-text {
+  color: #d0d0d0;
+  font-weight: 500;
+}
+.pit-stops-chart-total {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--text);
+}
+/* F1 Technical Regulations: добавить отступ между секциями внутри блока tech-spec. */
+#technical-spec-table-wrap .table-wrap {
+  margin-bottom: 1rem;
+}
+/* Общий модификатор: убираем горизонтальный скролл */
+.table-wrap.table-wrap--no-scroll {
+  overflow-x: visible;
+}
+.table-wrap:has(.pre-season-results-table) {
+  width: 100%;
+}
+/* Race session (Sprint/Feature): компактная таблица в пределах контента, без обрезания слева */
+#view-event .table-wrap:has(.race-session-results-table) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+#view-event .data-table.race-session-results-table {
+  table-layout: auto;
+  width: 100%;
+  min-width: min(100%, 58rem);
+}
+#view-event .data-table.race-session-results-table th,
+#view-event .data-table.race-session-results-table td {
+  padding: 0.35rem 0.4rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+/* Минимальные ширины, чтобы заголовки не наезжали */
+#view-event .data-table.race-session-results-table th:nth-child(1),
+#view-event .data-table.race-session-results-table td:nth-child(1) { min-width: 2.5rem; text-align: center; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(2),
+#view-event .data-table.race-session-results-table td:nth-child(2) { min-width: 3.5rem; text-align: center; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(3),
+#view-event .data-table.race-session-results-table td:nth-child(3) { min-width: 6rem; text-align: left; white-space: normal; word-break: break-word; }
+#view-event .data-table.race-session-results-table th:nth-child(4),
+#view-event .data-table.race-session-results-table td:nth-child(4) { min-width: 5rem; text-align: left; white-space: normal; word-break: break-word; }
+#view-event .data-table.race-session-results-table th:nth-child(5),
+#view-event .data-table.race-session-results-table td:nth-child(5) {
+  min-width: 3rem;
+  text-align: center;
+  white-space: nowrap;
+}
+#view-event .data-table.race-session-results-table th:nth-child(6),
+#view-event .data-table.race-session-results-table td:nth-child(6) { min-width: 4rem; text-align: right; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(7),
+#view-event .data-table.race-session-results-table td:nth-child(7) { min-width: 5.5rem; text-align: right; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(8),
+#view-event .data-table.race-session-results-table td:nth-child(8) { min-width: 4rem; text-align: center; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(9),
+#view-event .data-table.race-session-results-table td:nth-child(9) { min-width: 4.5rem; text-align: center; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(10),
+#view-event .data-table.race-session-results-table td:nth-child(10) { min-width: 5rem; text-align: right; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(11),
+#view-event .data-table.race-session-results-table td:nth-child(11) { min-width: 4.5rem; text-align: right; white-space: nowrap; }
+#view-event .data-table.race-session-results-table th:nth-child(12),
+#view-event .data-table.race-session-results-table td:nth-child(12) { min-width: 6.5rem; text-align: right; white-space: nowrap; }
+#view-event .table-wrap:has(.pre-season-results-table--fit) {
+  width: fit-content;
+  max-width: 100%;
+}
+/* Pre-season tests: внешний вид как Qualifying — крупный заголовок, дата, Results, таблица с горизонтальными линиями */
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block {
+  margin-bottom: 2rem;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-title {
+  margin: 0 0 0.15rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-subtitle {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .table-section-title {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session {
+  width: max-content;
+  table-layout: auto;
+  font-size: 0.9rem;
+  background: transparent;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session thead th,
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session td {
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session thead th {
+  background: var(--border) !important;
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.65rem 0.9rem;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session tbody td {
+  background: var(--bg, #1a1a1a);
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session th,
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session td {
+  padding: 0.55rem 0.9rem;
+  vertical-align: middle;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .event-pre-season-block .data-table.pre-season-results-table--session tbody tr:hover td {
+  background: var(--table-col-hover, rgba(255, 255, 255, 0.05));
+}
+#view-event #event-content[data-event-section="pre_season_tests"] .table-wrap:has(.pre-season-results-table--session) {
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+#view-event .table-wrap:has(.race-results-table),
+#view-event .table-wrap:has(.race-stage-table) {
+  width: fit-content;
+  max-width: 100%;
+}
+
+#view-event .data-table .entry-list-team-cell,
+#view-event .data-table .entry-list-class-cell,
+#view-event .data-table .entry-list-car-cell {
+  vertical-align: middle;
+}
+/* Подсветка только ячейки при наведении — Entry List */
+.data-table.entry-list-table th:hover,
+.data-table.entry-list-table td:hover { background: var(--table-col-hover) !important; }
+.table-wrap:last-of-type {
+  margin-bottom: 0;
+}
+.table-wrap .data-table {
+  min-width: min-content;
+}
+
+/* Стрелочки изменения позиции в гонках (Supercars) */
+.arrow-up {
+  color: #4caf50;
+  font-weight: 600;
+}
+.arrow-down {
+  color: #f44336;
+  font-weight: 600;
+}
+
+.standings-scroll-container { display: block; }
+.standings-section .standings-scroll-bottom {
+  /* Горизонтальный скролл под таблицей standings (ползунок снизу) */
+  overflow-x: auto;
+  max-width: 100%;
+  display: block;
+  /* Тёмный фон и тонкий ползунок для всех браузеров */
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--bg); /* thumb, track */
+}
+.standings-section .standings-scroll-bottom::-webkit-scrollbar {
+  height: 8px;
+}
+.standings-section .standings-scroll-bottom::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+.standings-section .standings-scroll-bottom::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 999px;
+}
+.standings-section .standings-scroll-bottom::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* IMSA standings: тёмный горизонтальный скролл */
+#standings-imsa-wrap .table-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) var(--bg); /* thumb, track */
+}
+#standings-imsa-wrap .table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+#standings-imsa-wrap .table-wrap::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+#standings-imsa-wrap .table-wrap::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 999px;
+}
+#standings-imsa-wrap .table-wrap::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+.standings-section .data-table {
+  table-layout: auto;
+  min-width: max-content;
+}
+.standings-section .data-table th,
+.standings-section .data-table td {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+.standings-section .data-table thead th {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.standings-section .data-table th:nth-child(3),
+.standings-section .data-table td:nth-child(3),
+.standings-section .data-table th:nth-child(4),
+.standings-section .data-table td:nth-child(4) {
+  /* Driver и Team могут переноситься, чтобы таблица не расползалась по ширине */
+  white-space: normal;
+}
+.standings-section .data-table .col-num { min-width: 2.5rem; width: 2.5rem; }
+.standings-section .data-table .col-pts { min-width: 2.5rem; }
+.standings-section .data-table .col-race { min-width: 2rem; text-align: center; }
+/* В standings делаем стиль чисел (этапы и очки) одинаковым */
+.standings-section .data-table .col-race,
+.standings-section .data-table .col-pts {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+/* Переопределяем общие min-width последних колонок только для standings */
+.standings-section .data-table th:nth-last-child(1),
+.standings-section .data-table th:nth-last-child(2),
+.standings-section .data-table td:nth-last-child(1),
+.standings-section .data-table td:nth-last-child(2) {
+  min-width: unset;
+}
+
+/* Event detail view */
+.event-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.event-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.event-meta { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.event-info-section { margin-bottom: 2rem; }
+
+/* Full schedule: заголовок живёт в том же контейнере, что и таблица */
+.schedule-section > h3 {
+  margin-bottom: 1rem;
+}
+/* Laps/Distance + блоки рядом: левая таблица по контенту, правая сетка 2x2 как есть */
+.event-overview-laps-and-blocks {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: stretch;
+  margin-bottom: 1rem;
+}
+.event-overview-laps-and-blocks .table-wrap { margin-bottom: 0; }
+.event-blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.event-overview-laps-and-blocks .event-blocks {
+  margin-top: 0;
+  min-width: 0;
+}
+
+/* Узкая таблица для Starting Grid перед гонками */
+.race-starting-grid-table {
+  width: auto;
+  min-width: 22rem;
+  max-width: 28rem;
+}
+.table-wrap:has(.race-starting-grid-table) {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* Starting Grid (race-starting-lineup-table): колонки по содержимому */
+.race-starting-lineup-table {
+  width: auto;
+  table-layout: auto;
+}
+.table-wrap:has(.race-starting-lineup-table) {
+  width: fit-content;
+  max-width: 100%;
+}
+.race-starting-lineup-table th,
+.race-starting-lineup-table td {
+  width: auto;
+  white-space: nowrap;
+}
+.race-starting-lineup-table td:last-child {
+  /* Team — может быть длинным, разрешаем перенос в последней колонке при нехватке места */
+  white-space: normal;
+  max-width: 20em;
+}
+.event-blocks--2x2 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+.event-overview-laps-and-blocks .event-blocks--2x2 {
+  max-width: 240px;
+  width: max-content;
+}
+/* Для IMSA делаем блоки (Tests / Entry List / Practice / Qualifying / Race) в одну горизонтальную линию */
+body.series-imsa .event-overview-laps-and-blocks .event-blocks--2x2 {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: none;
+  width: 100%;
+}
+body.series-imsa .event-overview-laps-and-blocks .event-blocks--2x2 .event-block {
+  flex: 0 0 auto;
+}
+.event-blocks--row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  grid-template-columns: unset;
+  gap: 0.5rem;
+}
+.event-overview-laps-and-blocks .event-blocks--row {
+  max-width: none;
+  width: 100%;
+  min-width: 0;
+}
+/* когда только блоки в ряд (Supercars) — контейнер в одну колонку на всю ширину */
+.event-overview-laps-and-blocks:has(.event-blocks--row) {
+  grid-template-columns: 1fr;
+}
+.event-blocks--row .event-block {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.event-overview-laps-and-blocks .event-block {
+  min-height: 2.75rem;
+}
+.event-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+  gap: 0.15rem;
+  min-width: 0;
+  text-align: center;
+}
+.event-block:hover {
+  border-color: var(--border-3);
+  background: var(--card-3);
+}
+.event-block-event {
+  font-size: 0.8rem;
+  line-height: 1.15;
+  color: var(--text-2);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.event-block-meta {
+  font-size: 0.72rem;
+  line-height: 1.1;
+  color: var(--text-3);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.event-block.event-block--has-sublabel {
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.event-block-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.event-block-sublabel {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.2;
+  text-align: center;
+}
+.event-overview-laps-and-blocks .event-block-label {
+  font-size: 0.95rem;
+}
+#event-content { padding-top: 0.5rem; }
+.event-data-section { margin-bottom: 2rem; }
+.event-data-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  min-height: 1.75rem;
+  line-height: 1.4;
+}
+.event-tabs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+.event-tab-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  cursor: pointer;
+}
+.event-tab-btn:hover { border-color: var(--accent); background: var(--card-3); }
+.event-tab-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+.event-tab-content {
+  margin-bottom: 2rem;
+  width: 100%;
+  min-height: 200px;
+}
+.track-info-text { color: var(--text); line-height: 1.5; max-width: 60em; margin-bottom: 1.5rem; }
+
+/* Starting Grid: надпись-разделитель (например "Qualified by owner's points") — вне таблицы */
+.race-starting-lineup-separator {
+  margin: 0.75rem 0;
+  padding: 0.5rem 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* YouTube highlights — facade (thumbnail + play, iframe only on click) */
+.video-embed-wrap {
+  margin-bottom: 1.5rem;
+}
+.video-embed-wrap:has(.video-facade-wrap) {
+  display: grid;
+  /* Превью по размеру близки к карточкам YouTube (~380px при 16:9) */
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.5rem;
+}
+.series-supercars .video-embed-wrap:has(.video-facade-wrap) {
+  /* Более компактные превью только для Supercars */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.video-embed-wrap--single {
+  display: block;
+}
+.video-embed-wrap--single .video-facade-wrap {
+  /* Одиночное превью — обычный размер плеера (~960px при 16:9) */
+  max-width: min(960px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+.video-embed-wrap--single .video-facade {
+  max-width: none;
+}
+.video-embed-wrap > .table-section-title {
+  grid-column: 1 / -1;
+  margin: 0 0 0.25rem;
+}
+.video-facade-wrap {
+  max-width: 100%;
+}
+.video-facade-label {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.video-facade {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+  cursor: pointer;
+}
+.video-facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+.video-facade:hover img { opacity: 0.75; }
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  background: rgba(225, 6, 0, 0.88);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.video-play-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 13px 0 13px 22px;
+  border-color: transparent transparent transparent #fff;
+}
+.video-facade:hover .video-play-btn {
+  background: var(--accent);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.video-facade iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Внешние хайлайты (не YouTube) — показываем как карточку‑заглушку с иконкой play */
+.video-external-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 55%), #000;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+.video-external-link::before {
+  content: '';
+  position: absolute;
+  width: 68px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.video-external-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 13px 0 13px 22px;
+  border-color: transparent transparent transparent #fff;
+  transform: translateX(4px);
+}
+.video-external-label {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.video-external-link:hover::before {
+  background: rgba(226, 6, 0, 0.95);
+}
+.car-spec { margin-top: 1.5rem; }
+.data-table .col-race { min-width: 2rem; text-align: center; font-size: 0.85rem; }
+.stage-pts { font-size: 0.6em; color: var(--muted); font-weight: 400; vertical-align: super; }
+.data-table .col-pts { font-weight: 600; }
+/* Чуть увеличиваем PTS в шапке standings, не трогая остальные заголовки */
+.standings-section .data-table th.col-pts {
+  font-size: 0.8rem;
+}
+
+/* Race / Stage: Pos, #, Driver, Team, Manufacturer, Notes или Points */
+.race-stage-table { table-layout: fixed; width: 100%; }
+.race-stage-table th:nth-child(1),
+.race-stage-table td:nth-child(1) { width: 4%; min-width: 2rem; }
+.race-stage-table th:nth-child(2),
+.race-stage-table td:nth-child(2) { width: 4%; min-width: 2rem; }
+.race-stage-table th:nth-child(3),
+.race-stage-table td:nth-child(3) { width: 22%; }
+.race-stage-table th:nth-child(4),
+.race-stage-table td:nth-child(4) { width: 34%; }
+.race-stage-table th:nth-child(5),
+.race-stage-table td:nth-child(5) { width: 14%; }
+.race-stage-table th:nth-child(6),
+.race-stage-table td:nth-child(6) { width: 22%; min-width: 6rem; white-space: normal; word-break: break-word; overflow-wrap: break-word; text-align: left; }
+.race-stage-table th:nth-child(6) { white-space: normal; }
+/* Stage — заголовки и данные колонок 1-5 по левому краю */
+.race-stage-table th:nth-child(1), .race-stage-table td:nth-child(1),
+.race-stage-table th:nth-child(2), .race-stage-table td:nth-child(2),
+.race-stage-table th:nth-child(3), .race-stage-table td:nth-child(3),
+.race-stage-table th:nth-child(4), .race-stage-table td:nth-child(4),
+.race-stage-table th:nth-child(5), .race-stage-table td:nth-child(5) { text-align: left; }
+/* Stage 1/2/3: последняя колонка — Points (числа), узкая и по правому краю */
+.race-stage-table--points th:nth-child(5),
+.race-stage-table--points td:nth-child(5) { width: 16%; }
+.race-stage-table--points th:nth-child(6),
+.race-stage-table--points td:nth-child(6) { width: 10%; min-width: 3rem; text-align: right; white-space: nowrap; }
+
+/* Race results: 8 колонок (Cup) или 10 (Xfinity: + Led, Status) */
+.race-results-table { table-layout: fixed; width: 100%; }
+.race-results-table th:nth-child(1),
+.race-results-table td:nth-child(1) { width: 6%; min-width: 5rem; text-align: right; white-space: nowrap; }
+.race-results-table th:nth-child(2),
+.race-results-table td:nth-child(2) { width: 6%; min-width: 5rem; text-align: right; white-space: nowrap; }
+.race-results-table th:nth-child(3),
+.race-results-table td:nth-child(3) { width: 4%; min-width: 2rem; text-align: right; white-space: nowrap; }
+.race-results-table th:nth-child(4),
+.race-results-table td:nth-child(4) { width: 20%; }
+.race-results-table th:nth-child(5),
+.race-results-table td:nth-child(5) { width: 26%; }
+.race-results-table th:nth-child(6),
+.race-results-table td:nth-child(6) { width: 12%; min-width: 4rem; }
+.race-results-table th:nth-child(7),
+.race-results-table td:nth-child(7) { width: 6%; min-width: 2.5rem; text-align: right; white-space: nowrap; }
+.race-results-table th:nth-child(8),
+.race-results-table td:nth-child(8) { width: 6%; min-width: 2.5rem; text-align: right; white-space: nowrap; }
+.race-results-table th:nth-child(9),
+.race-results-table td:nth-child(9) {
+  width: 12%;
+  min-width: 7.5rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.race-results-table th:nth-child(10),
+.race-results-table td:nth-child(10) { width: 6%; min-width: 2.5rem; text-align: right; white-space: nowrap; }
+
+/* IMSA Daytona race table: сделать таблицу компактной и без горизонтального скролла */
+.table-wrap:has(.imsa-race-table),
+.event-pre-season-meta-wrap:has(.imsa-race-table) {
+  overflow-x: visible;
+}
+
+.imsa-race-table {
+  width: 100%;
+  table-layout: auto;
+  font-size: 0.82em;
+}
+
+.imsa-race-table th,
+.imsa-race-table td {
+  white-space: nowrap;
+  padding: 3px 5px;
+}
+/* IMSA race table: зебра по экипажам (все строки экипажа с одинаковым фоном) */
+.imsa-race-table tbody tr:nth-child(odd) td,
+.imsa-race-table tbody tr:nth-child(even) td {
+  background: transparent;
+}
+.imsa-race-table tbody tr.imsa-crew-alt td {
+  background: var(--row-alt);
+}
+
+/* Для IMSA Daytona позволяем перенос в колонках DRIVERS и TEAM,
+   чтобы длинные имена не ломали ширину таблицы. */
+.imsa-race-table th:nth-child(3),
+.imsa-race-table td:nth-child(3),
+.imsa-race-table th:nth-child(4),
+.imsa-race-table td:nth-child(4) {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* IMSA 2026 Daytona qualifying: компактная таблица как в гонке */
+.table-wrap:has(.imsa-qual-table) {
+  overflow-x: visible;
+}
+.imsa-qual-table {
+  width: 100%;
+  table-layout: auto;
+  font-size: 0.82em;
+}
+.imsa-qual-table th,
+.imsa-qual-table td {
+  white-space: nowrap;
+  padding: 3px 5px;
+}
+
+/* Standings: Supercars SMP group header */
+.col-race-group {
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+.standings-race-link {
+  color: inherit;
+  text-decoration: none;
+}
+.standings-race-link:hover {
+  text-decoration: underline;
+}
+
+/* Разделитель этапов Supercars: Sydney | Melbourne */
+.supercars-stage-divider {
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Race tab: таблицы гонок и pre-season блоки прижаты к левому краю внутри контента. */
+#view-event #event-content .event-pre-season-block {
+  max-width: 1100px;
+  margin-left: 0;
+  margin-right: auto;
+}
+.event-pre-season-block .table-wrap,
+.event-race-block .table-wrap,
+.event-stage-block .table-wrap {
+  max-width: 1100px;
+  margin-left: 0;
+  margin-right: auto;
+}
+.event-pre-season-block .event-pre-season-meta-wrap {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Для сток-кар серий — ещё более компактные таблицы гонок */
+.cat-stockcar .event-pre-season-block .table-wrap,
+.cat-stockcar .event-race-block .table-wrap,
+.cat-stockcar .event-stage-block .table-wrap {
+  max-width: 820px;
+}
+.cat-stockcar .event-pre-season-block .data-table {
+  font-size: 0.8rem;
+}
+.cat-stockcar .event-pre-season-block .data-table th,
+.cat-stockcar .event-pre-season-block .data-table td {
+  padding: 0.45rem 0.55rem;
+}
+
+/* IMSA 2026 Pre Season Test: таблица результатов прижата к левому краю и на всю ширину */
+body #view-event #event-content .event-pre-season-block .table-wrap.table-wrap--no-scroll {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+}
+/* Для F1: на странице события ширина колонок таблиц результатов подбирается автоматически (AutoFit).
+   pre-season-results-table не включаем: у неё свои nth-child ширины колонок. */
+#view-event .data-table.race-results-table,
+#view-event .data-table.race-stage-table {
+  table-layout: auto;
+  width: auto;
+  min-width: 0;
+}
+#view-event .data-table.race-results-table th,
+#view-event .data-table.race-results-table td,
+#view-event .data-table.race-stage-table th,
+#view-event .data-table.race-stage-table td {
+  width: auto !important;
+  min-width: 0;
+}
+.pre-season-results-table {
+  table-layout: auto;
+}
+
+.cat-stockcar .event-race-block .table-wrap,
+.cat-stockcar .event-stage-block .table-wrap {
+  overflow-x: auto;
+}
+
+
+/* Caution breakdown — цвет только в колонке Condition */
+.caution-breakdown-table tbody tr.caution-row-green td:first-child {
+  background: #008000;
+  color: #fff;
+  font-weight: 600;
+}
+.caution-breakdown-table tbody tr.caution-row-caution td:first-child {
+  background: #FFC618;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Event sticky header — full-bleed, контент по центру */
+.event-sticky-header {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  padding: 1rem max(1.25rem, calc((100vw - 1600px) / 2)) 0;
+  background: var(--bg);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.event-sticky-header > .breadcrumb,
+.event-sticky-header > .event-header,
+.event-sticky-header > .event-section-nav {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+/* Для страницы события с pre-season блоком — шапка по тем же левым отступам, что и таблица */
+body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) .event-sticky-header {
+  padding: 1rem 1.25rem 0;
+}
+.event-sticky-header > .breadcrumb,
+.event-sticky-header > .event-header,
+.event-sticky-header > .event-section-nav {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+.event-panels-wrap {
+  position: relative;
+  min-height: 60vh;
+  padding-top: var(--event-header-height);
+}
+#view-event #event-content {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+#view-event #event-content[data-event-section="bop"] {
+  max-width: 1600px;
+}
+.event-section-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: nowrap;
+  align-items: center;
+  min-height: 0;
+  overflow-x: auto;
+}
+.event-section-nav:empty { display: none; }
+
+.event-no-data { color: var(--text); }
+
+.empty-msg { color: var(--muted); font-size: 0.9rem; margin: 0.5rem 0 0; }
+td.empty-row { color: var(--muted); font-style: italic; text-align: center; padding: 1rem; }
+
+/* Строка-разделитель в таблицах (Eliminated in Round 1 и т.п.) */
+tr.table-separator-row td {
+  background: var(--border);
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.6rem 0.75rem;
+  border-top: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Next race cards (per series) ─────────────────────────────────────────── */
+.next-races-row {
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+/* Fade on the right to hint at scroll */
+.next-races-row::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 1.6rem;
+  bottom: 14px;
+  width: 3rem;
+  background: linear-gradient(to right, transparent, var(--bg));
+  pointer-events: none;
+  opacity: 0.85;
+}
+.nrc-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.nrc-cards {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+  padding-bottom: 6px;
+  min-width: 0;
+}
+.nrc-cards::-webkit-scrollbar {
+  height: 6px;
+}
+.nrc-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nrc-cards::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 3px;
+}
+.nrc-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ── Last results cards (weekend winners) ─────────────────────────────────── */
+.last-results-row {
+  margin-bottom: 1.75rem;
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+}
+.last-results-row::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 1.6rem;
+  bottom: 14px;
+  width: 3rem;
+  background: linear-gradient(to right, transparent, var(--bg));
+  pointer-events: none;
+  opacity: 0.85;
+}
+.lrc-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.lrc-empty {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.lrc-cards {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+  padding-bottom: 6px;
+  min-width: 0;
+}
+.lrc-cards::-webkit-scrollbar {
+  height: 6px;
+}
+.lrc-cards::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lrc-cards::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border-radius: 3px;
+}
+.lrc-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+@keyframes lrc-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.lrc-card.lrc-card-enter {
+  opacity: 0;
+  animation: lrc-appear 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.lrc-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.3rem 1.8rem;
+  background: var(--card-2);
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  min-width: 14.5rem;
+  max-width: 20rem;
+  min-height: 8.4rem;
+  height: auto;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.lrc-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-3);
+  background-color: var(--card-2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-2);
+}
+.lrc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.lrc-date {
+  font-size: 0.8rem;
+  color: #f8f8f8;
+  font-weight: 550;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+}
+.lrc-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: "Barlow Condensed", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  line-height: 1.18;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+.lrc-winner {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.45rem;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.lrc-card--f2 .lrc-winner,
+.lrc-card--f3 .lrc-winner,
+.lrc-card--supercars .lrc-winner {
+  font-size: 0.78rem;
+}
+
+/* IMSA: 4 строки победителей по классам должны помещаться */
+.lrc-card--imsa .lrc-winner {
+  font-size: 0.72rem;
+  line-height: 1.12;
+  margin-top: 0.35rem;
+}
+
+.lrc-card--supercars .lrc-winner {
+  font-size: 0.68rem;
+  line-height: 1.15;
+  margin-top: 0.4rem;
+}
+
+.lrc-winner--pending {
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.7;
+}
+.lrc-card--pending {
+  opacity: 0.85;
+}
+
+/* Placeholders for track-specific backgrounds (images to be wired later). */
+.lrc-card--f1-2026-2 {
+  background-image: url('/web/shanghai-circuit-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--cup-2026-3 {
+  background-image: url('/web/las-vegas-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--indycar-2026-3 {
+  background-image: url('/web/indycar-arlington-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lrc-card--albert-park {
+  background-image: url('/web/albert-park-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lrc-card--phoenix,
+.lrc-card--cup-phoenix,
+.lrc-card--noaps-phoenix {
+  background-image: url('/web/phoenix-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Darlington Raceway background (used for Cup / NOAPS / others on Darlington) */
+.lrc-card--darlington {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/darlington-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lrc-card--darlington::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--darlington > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Rockingham Speedway (NOAPS / Truck / others) */
+.lrc-card--rockingham {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/rockingham-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lrc-card--rockingham::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--rockingham > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Sebring International Raceway background (used for IMSA / others on Sebring) */
+.lrc-card--sebring {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/sebring-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lrc-card--sebring::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--sebring > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Martinsville Speedway background */
+.lrc-card--martinsville {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/martinsville-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--martinsville::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--martinsville > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--suzuka {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/suzuka-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--suzuka::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--suzuka > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--barber {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/barber-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--barber::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--barber > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Next-race card background for Darlington */
+.nrc-card--darlington {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--darlington::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/darlington-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--darlington::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--darlington > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--darlington:hover::before {
+  transform: none;
+}
+
+/* Next-race card background for Rockingham Speedway */
+.nrc-card--rockingham {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--rockingham::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/rockingham-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--rockingham::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--rockingham > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--rockingham:hover::before {
+  transform: none;
+}
+
+/* Next-race card background for Sebring */
+.nrc-card--sebring {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--sebring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/sebring-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--sebring::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--sebring > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--sebring:hover::before {
+  transform: none;
+}
+
+.nrc-card--martinsville {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--martinsville::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/martinsville-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--martinsville::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--martinsville > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.nrc-card--suzuka {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--suzuka::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/suzuka-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--suzuka::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--suzuka > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.nrc-card--barber {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--barber::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/barber-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--barber::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--barber > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Тёмный градиент поверх фоновых фото (как в Next Events) */
+.lrc-card--f1-2026-2,
+.lrc-card--cup-2026-3,
+.lrc-card--indycar-2026-3,
+.lrc-card--albert-park,
+.lrc-card--phoenix,
+.lrc-card--cup-phoenix,
+.lrc-card--noaps-phoenix {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.lrc-card--f1-2026-2::after,
+.lrc-card--cup-2026-3::after,
+.lrc-card--indycar-2026-3::after,
+.lrc-card--albert-park::after,
+.lrc-card--phoenix::after,
+.lrc-card--cup-phoenix::after,
+.lrc-card--noaps-phoenix::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--f1-2026-2 > *,
+.lrc-card--cup-2026-3 > *,
+.lrc-card--indycar-2026-3 > *,
+.lrc-card--albert-park > *,
+.lrc-card--phoenix > *,
+.lrc-card--cup-phoenix > *,
+.lrc-card--noaps-phoenix > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--cup-phoenix {
+  background-image: url('/web/cup-phoenix-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Stagger appear animation for next-race cards */
+@keyframes nrc-appear {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.nrc-card.nrc-card-enter {
+  opacity: 0;
+  animation: nrc-appear 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.nrc-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.3rem 1.8rem;
+  background: var(--card-2);
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  min-width: 14.5rem;
+  max-width: 20rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.nrc-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-3);
+  background-color: var(--card-2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-2);
+}
+.nrc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.nrc-date {
+  font-size: 0.8rem;
+  color: #f8f8f8;
+  font-weight: 550;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+}
+.nrc-live {
+  display: none;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #e53935;
+  white-space: nowrap;
+}
+.nrc-live.nrc-live-visible {
+  display: inline-block;
+  animation: nrc-blink 1s ease-in-out infinite;
+}
+@keyframes nrc-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.nrc-name {
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: #f8f8f8;
+  line-height: 1.2;
+  min-width: 0;
+  max-height: 2.4em; /* максимум две строки, чуть компактнее */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* разрешаем перенос по словам */
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-timer {
+  font-size: 0.8rem;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  color: #f8f8f8;
+  letter-spacing: 0.025em;
+  margin-top: 0.12rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Специальный фон для Chinese GP (F1_2026_2) */
+.nrc-card--f1-2026-2 {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--f1-2026-2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/shanghai-circuit-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--f1-2026-2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--f1-2026-2 > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--f1-2026-2:hover::before {
+  transform: none;
+}
+
+/* Специальный фон для Pennzoil 400 (NASCAR_CUP_2026_3, Las Vegas) */
+.nrc-card--cup-2026-3 {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--cup-2026-3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/las-vegas-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--cup-2026-3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--cup-2026-3 > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--cup-2026-3:hover::before {
+  transform: none;
+}
+
+/* Специальный фон для IndyCar Arlington (INDYCAR_2026_3) */
+.nrc-card--indycar-2026-3 {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--indycar-2026-3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/indycar-arlington-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--indycar-2026-3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--indycar-2026-3 > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--indycar-2026-3:hover::before {
+  transform: none;
+}
+
+/* Специальный фон для Cup Phoenix (NASCAR_CUP, Phoenix Raceway) */
+.nrc-card--phoenix,
+.nrc-card--cup-phoenix {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--phoenix::before,
+.nrc-card--cup-phoenix::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/phoenix-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--phoenix::after,
+.nrc-card--cup-phoenix::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--phoenix > *,
+.nrc-card--cup-phoenix > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--phoenix:hover::before,
+.nrc-card--cup-phoenix:hover::before {
+  transform: none;
+}
+
+/* Специальный фон для NOAPS Phoenix */
+.nrc-card--noaps-phoenix {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--noaps-phoenix::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/phoenix-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--noaps-phoenix::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--noaps-phoenix > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--noaps-phoenix:hover::before {
+  transform: none;
+}
+
+/* Специальный фон для Albert Park (F1/F2/F3/Supercars Melbourne) */
+.nrc-card--albert-park {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--albert-park::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/albert-park-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--albert-park::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--albert-park > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--albert-park:hover::before {
+  transform: none;
+}
+
+/* Улучшенная читаемость бейджей серий на фото */
+.nrc-card .series-badge {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Дополнительный контраст для F2/F3 на светлых фонах */
+.series-badge[data-series='F2'],
+.series-badge[data-series='F3'] {
+  filter: saturate(1.2) brightness(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Ещё более контрастный бейдж для F3 поверх фото (особенно Melbourne) */
+.nrc-card .series-badge[data-series='F3'],
+.lrc-card .series-badge[data-series='F3'] {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  filter: none;
+}
+
+/* ── Series badge ─────────────────────────────────────────────────────────── */
+.series-badge {
+  display: inline-block;
+  padding: 0.1rem 0.38rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* ── Full Schedule button ─────────────────────────────────────────────────── */
+.full-sched-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 1.75rem;
+  padding: 0.7rem 1.4rem;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.full-sched-btn:hover {
+  transform: scale(1.02);
+  border-color: var(--accent);
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 10px 28px rgba(225, 6, 0, 0.4);
+}
+.full-sched-btn:active {
+  transform: scale(0.98);
+}
+.full-sched-btn svg { flex-shrink: 0; opacity: 0.75; transition: opacity 0.2s ease; }
+.full-sched-btn:hover svg { opacity: 1; }
+
+/* ── Schedule page / compact table ───────────────────────────────────────── */
+/* Компактная таблица */
+.sched-compact.data-table th,
+.sched-compact.data-table td {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+.sched-compact.data-table th { font-size: 0.62rem; }
+
+.schedule-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.schedule-time-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.schedule-time-settings select {
+  background: var(--bg-2);
+  color: var(--text);
+  border: 1px solid var(--border-2);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+}
+.schedule-time-settings select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.schedule-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.schedule-toggle input {
+  accent-color: var(--accent);
+  transition: transform 0.15s ease-out;
+}
+.schedule-toggle span {
+  transition: color 0.2s ease-out;
+}
+.schedule-toggle input:active {
+  transform: scale(0.9);
+}
+.schedule-toggle input:checked + span {
+  color: var(--text);
+}
+
+/* Строка-разделитель уикенда */
+.weekend-hdr td {
+  background: var(--bg-2) !important;
+  border-bottom: 1px solid var(--border-2) !important;
+  padding: 0.2rem 0.6rem !important;
+}
+.wknd-date {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.weekend-hdr.sched-past .wknd-date { opacity: 0.5; }
+
+.sched-past  { opacity: 0.42; }
+.sched-series { width: 1px; white-space: nowrap; }
+.sched-race   { min-width: 8rem; }
+.sched-location { color: var(--muted); font-size: 0.78rem; }
+.sched-time   { white-space: nowrap; font-size: 0.78rem; color: var(--muted); }
+
+.footer {
+  padding: 1.5rem 0;
+  background: linear-gradient(to top, var(--bg-2), transparent);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ─── Desktop-only: mobile-specific rules removed ─────────────────────────── */

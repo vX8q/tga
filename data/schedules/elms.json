@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ELMS_2026_PROLOGUE",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "ELMS Prologue",
+    "location": "Montmeló",
+    "circuit_name": "Circuit de Barcelona-Catalunya",
+    "start_date": "2026-04-06",
+    "end_date": "2026-04-07",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_1",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "4 Hours of Barcelona",
+    "location": "Montmeló",
+    "circuit_name": "Circuit de Barcelona-Catalunya",
+    "start_date": "2026-04-12",
+    "end_date": "2026-04-12",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_2",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "4 Hours of Le Castellet",
+    "location": "Le Castellet",
+    "circuit_name": "Circuit Paul Ricard",
+    "start_date": "2026-05-03",
+    "end_date": "2026-05-03",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_3",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "4 Hours of Imola",
+    "location": "Imola",
+    "circuit_name": "Imola Circuit",
+    "start_date": "2026-07-05",
+    "end_date": "2026-07-05",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_4",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "4 Hours of Spa-Francorchamps",
+    "location": "Stavelot",
+    "circuit_name": "Circuit de Spa-Francorchamps",
+    "start_date": "2026-08-23",
+    "end_date": "2026-08-23",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_5",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "Goodyear 4 Hours of Silverstone",
+    "location": "Silverstone",
+    "circuit_name": "Silverstone Circuit",
+    "start_date": "2026-09-13",
+    "end_date": "2026-09-13",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "ELMS_2026_6",
+    "series_id": "ELMS",
+    "season": "2026",
+    "name": "4 Hours of Portimão",
+    "location": "Portimão",
+    "circuit_name": "Algarve International Circuit",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-10",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  }
+]

@@ -1,0 +1,573 @@
+{
+  "race_order": [
+    "DAY",
+    "ATL",
+    "COA",
+    "PHO",
+    "LVS",
+    "DAR",
+    "MAR",
+    "BRI",
+    "KAN",
+    "TAL",
+    "TEX",
+    "GLN",
+    "CLT",
+    "NSS",
+    "MCH",
+    "POC",
+    "COR",
+    "SON",
+    "CHI",
+    "ATL2",
+    "NWS",
+    "IND",
+    "IOW",
+    "RCH",
+    "NHA",
+    "DAY2",
+    "DAR2",
+    "GTW",
+    "BRI2",
+    "KAN2",
+    "LVS2",
+    "CLT2",
+    "PHO2",
+    "TAL2",
+    "MAR2",
+    "HOM"
+  ],
+  "rows": [
+    {
+      "pos": 1,
+      "driver": "Tyler Reddick",
+      "team": "23XI Racing",
+      "manufacturer": "Toyota",
+      "points": "58",
+      "stages": "3",
+      "races": {
+        "DAY": "1"
+      }
+    },
+    {
+      "pos": 2,
+      "driver": "Joey Logano",
+      "team": "Team Penske",
+      "manufacturer": "Ford",
+      "points": "46",
+      "stages": "12",
+      "races": {
+        "DAY": "3"
+      }
+    },
+    {
+      "pos": 3,
+      "driver": "Chase Elliott",
+      "team": "Hendrick Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "43",
+      "stages": "10",
+      "races": {
+        "DAY": "4"
+      }
+    },
+    {
+      "pos": 4,
+      "driver": "Zane Smith",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "41",
+      "stages": "10",
+      "races": {
+        "DAY": "61"
+      }
+    },
+    {
+      "pos": 5,
+      "driver": "Ricky Stenhouse Jr.",
+      "team": "Hyak Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "39",
+      "stages": "4",
+      "races": {
+        "DAY": "2"
+      }
+    },
+    {
+      "pos": 6,
+      "driver": "Brad Keselowski",
+      "team": "RFK Racing",
+      "manufacturer": "Ford",
+      "points": "39",
+      "stages": "7",
+      "races": {
+        "DAY": "5"
+      }
+    },
+    {
+      "pos": 7,
+      "driver": "Chris Buescher",
+      "team": "RFK Racing",
+      "manufacturer": "Ford",
+      "points": "39",
+      "stages": "9",
+      "races": {
+        "DAY": "7"
+      }
+    },
+    {
+      "pos": 8,
+      "driver": "Bubba Wallace",
+      "team": "23XI Racing",
+      "manufacturer": "Toyota",
+      "points": "37",
+      "stages": "10",
+      "races": {
+        "DAY": "10*2"
+      }
+    },
+    {
+      "pos": 9,
+      "driver": "Carson Hocevar",
+      "team": "Spire Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "36",
+      "stages": "16",
+      "races": {
+        "DAY": "18F"
+      }
+    },
+    {
+      "pos": 10,
+      "driver": "Ryan Blaney",
+      "team": "Team Penske",
+      "manufacturer": "Ford",
+      "points": "36",
+      "stages": "26",
+      "races": {
+        "DAY": "27"
+      }
+    },
+    {
+      "pos": 11,
+      "driver": "Riley Herbst",
+      "team": "23XI Racing",
+      "manufacturer": "Toyota",
+      "points": "35",
+      "stages": "6",
+      "races": {
+        "DAY": "8"
+      }
+    },
+    {
+      "pos": 12,
+      "driver": "Daniel Suárez",
+      "team": "Spire Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "35",
+      "stages": "11",
+      "races": {
+        "DAY": "13"
+      }
+    },
+    {
+      "pos": 13,
+      "driver": "Josh Berry",
+      "team": "Wood Brothers Racing",
+      "manufacturer": "Ford",
+      "points": "33",
+      "stages": "5",
+      "races": {
+        "DAY": "9"
+      }
+    },
+    {
+      "pos": 14,
+      "driver": "Kyle Busch",
+      "team": "Richard Childress Racing",
+      "manufacturer": "Chevrolet",
+      "points": "29",
+      "stages": "7",
+      "races": {
+        "DAY": "15"
+      }
+    },
+    {
+      "pos": 15,
+      "driver": "Kyle Larson",
+      "team": "Hendrick Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "29",
+      "stages": "8",
+      "races": {
+        "DAY": "16"
+      }
+    },
+    {
+      "pos": 16,
+      "driver": "Noah Gragson",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "27",
+      "stages": "1",
+      "races": {
+        "DAY": "11"
+      }
+    },
+    {
+      "pos": 17,
+      "driver": "Michael McDowell",
+      "team": "Spire Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "26",
+      "stages": "11",
+      "races": {
+        "DAY": "22"
+      }
+    },
+    {
+      "pos": 18,
+      "driver": "William Byron",
+      "team": "Hendrick Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "25",
+      "stages": "–",
+      "races": {
+        "DAY": "12"
+      }
+    },
+    {
+      "pos": 19,
+      "driver": "John Hunter Nemechek",
+      "team": "Legacy Motor Club",
+      "manufacturer": "Toyota",
+      "points": "25",
+      "stages": "14",
+      "races": {
+        "DAY": "26"
+      }
+    },
+    {
+      "pos": 20,
+      "driver": "Ty Dillon",
+      "team": "Kaulig Racing",
+      "manufacturer": "Chevrolet",
+      "points": "23",
+      "stages": "–",
+      "races": {
+        "DAY": "14"
+      }
+    },
+    {
+      "pos": 21,
+      "driver": "Cody Ware",
+      "team": "Rick Ware Racing",
+      "manufacturer": "Chevrolet",
+      "points": "20",
+      "stages": "–",
+      "races": {
+        "DAY": "17"
+      }
+    },
+    {
+      "pos": 22,
+      "driver": "A. J. Allmendinger",
+      "team": "Kaulig Racing",
+      "manufacturer": "Chevrolet",
+      "points": "18",
+      "stages": "–",
+      "races": {
+        "DAY": "19"
+      }
+    },
+    {
+      "pos": 23,
+      "driver": "Ross Chastain",
+      "team": "Trackhouse Racing",
+      "manufacturer": "Chevrolet",
+      "points": "17",
+      "stages": "–",
+      "races": {
+        "DAY": "20"
+      }
+    },
+    {
+      "pos": 24,
+      "driver": "Ryan Preece",
+      "team": "RFK Racing",
+      "manufacturer": "Ford",
+      "points": "17",
+      "stages": "5",
+      "races": {
+        "DAY": "25"
+      }
+    },
+    {
+      "pos": 25,
+      "driver": "Erik Jones",
+      "team": "Legacy Motor Club",
+      "manufacturer": "Toyota",
+      "points": "16",
+      "stages": "–",
+      "races": {
+        "DAY": "21"
+      }
+    },
+    {
+      "pos": 26,
+      "driver": "Ty Gibbs",
+      "team": "Joe Gibbs Racing",
+      "manufacturer": "Toyota",
+      "points": "16",
+      "stages": "2",
+      "races": {
+        "DAY": "23"
+      }
+    },
+    {
+      "pos": 27,
+      "driver": "Cole Custer",
+      "team": "Haas Factory Team",
+      "manufacturer": "Chevrolet",
+      "points": "13",
+      "stages": "–",
+      "races": {
+        "DAY": "24"
+      }
+    },
+    {
+      "pos": 28,
+      "driver": "Shane van Gisbergen",
+      "team": "Trackhouse Racing",
+      "manufacturer": "Chevrolet",
+      "points": "13",
+      "stages": "5",
+      "races": {
+        "DAY": "30"
+      }
+    },
+    {
+      "pos": 29,
+      "driver": "Austin Cindric",
+      "team": "Team Penske",
+      "manufacturer": "Ford",
+      "points": "13",
+      "stages": "9",
+      "races": {
+        "DAY": "34"
+      }
+    },
+    {
+      "pos": 30,
+      "driver": "Casey Mears",
+      "team": "Garage 66",
+      "manufacturer": "Ford",
+      "points": "9",
+      "stages": "3",
+      "races": {
+        "ATL": "Wth",
+        "DAY": "32"
+      }
+    },
+    {
+      "pos": 31,
+      "driver": "Christopher Bell",
+      "team": "Joe Gibbs Racing",
+      "manufacturer": "Toyota",
+      "points": "9",
+      "stages": "6",
+      "races": {
+        "DAY": "35"
+      }
+    },
+    {
+      "pos": 32,
+      "driver": "Austin Dillon",
+      "team": "Richard Childress Racing",
+      "manufacturer": "Chevrolet",
+      "points": "9",
+      "stages": "8",
+      "races": {
+        "DAY": "37"
+      }
+    },
+    {
+      "pos": 33,
+      "driver": "Denny Hamlin",
+      "team": "Joe Gibbs Racing",
+      "manufacturer": "Toyota",
+      "points": "8",
+      "stages": "1",
+      "races": {
+        "DAY": "31"
+      }
+    },
+    {
+      "pos": 34,
+      "driver": "Connor Zilisch (R)",
+      "team": "Trackhouse Racing",
+      "manufacturer": "Chevrolet",
+      "points": "5",
+      "stages": "–",
+      "races": {
+        "DAY": "33"
+      }
+    },
+    {
+      "pos": 35,
+      "driver": "Todd Gilliland",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "4",
+      "stages": "3",
+      "races": {
+        "DAY": "39"
+      }
+    },
+    {
+      "pos": 36,
+      "driver": "Alex Bowman",
+      "team": "Hendrick Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "4",
+      "stages": "3",
+      "races": {
+        "DAY": "40"
+      }
+    },
+    {
+      "pos": 37,
+      "driver": "Chase Briscoe",
+      "team": "Joe Gibbs Racing",
+      "manufacturer": "Toyota",
+      "points": "2",
+      "stages": "–",
+      "races": {
+        "DAY": "36"
+      }
+    },
+    {
+      "pos": 38,
+      "driver": "B. J. McLeod",
+      "team": "Live Fast Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "1",
+      "stages": "–",
+      "races": {
+        "DAY": "41"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "RFK Racing",
+      "team": "Ford",
+      "manufacturer": "DNQ",
+      "points": "–",
+      "races": {
+        "HOM": "–"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Driver",
+      "team": "Team",
+      "manufacturer": "Manufacturer",
+      "points": "Pts.",
+      "stages": "Stages",
+      "races": {
+        "ATL": "ATL",
+        "BRI": "BRI",
+        "CHI": "CHI",
+        "CLT": "CLT",
+        "COA": "COA",
+        "COR": "COR",
+        "DAR": "DAR",
+        "DAY": "DAY",
+        "GLN": "GLN",
+        "GTW": "GTW",
+        "HOM": "HOM",
+        "IND": "IND",
+        "IOW": "IOW",
+        "KAN": "KAN",
+        "LVS": "LVS",
+        "MAR": "MAR",
+        "MCH": "MCH",
+        "NHA": "NHA",
+        "NSS": "NSS",
+        "NWS": "NWS",
+        "PHO": "PHO",
+        "POC": "POC",
+        "RCH": "RCH",
+        "SON": "SON",
+        "TAL": "TAL",
+        "TEX": "TEX"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Corey Heim",
+      "team": "23XI Racing",
+      "manufacturer": "Toyota",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "28"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Jimmie Johnson",
+      "team": "Legacy Motor Club",
+      "manufacturer": "Toyota",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "29"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Justin Allgaier",
+      "team": "JR Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "38"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Anthony Alfredo",
+      "team": "Beard Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "DNQ"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Chandler Smith",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "DNQ"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "J. J. Yeley",
+      "team": "NY Racing Team",
+      "manufacturer": "Chevrolet",
+      "points": "–",
+      "stages": "–",
+      "races": {
+        "DAY": "DNQ"
+      }
+    }
+  ]
+}

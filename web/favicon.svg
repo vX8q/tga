@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="core" cx="0.33" cy="0.54" r="0.62">
+      <stop offset="0%"   stop-color="#ff2800" stop-opacity="1"/>
+      <stop offset="30%"  stop-color="#e01000" stop-opacity="0.88"/>
+      <stop offset="65%"  stop-color="#7a0000" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bloom" cx="0.24" cy="0.62" r="0.42">
+      <stop offset="0%"   stop-color="#ff3300" stop-opacity="0.55"/>
+      <stop offset="55%"  stop-color="#990000" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="edge" cx="0.72" cy="0.25" r="0.48">
+      <stop offset="0%"   stop-color="#3a0000" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="shape">
+      <rect width="32" height="32" rx="7"/>
+    </clipPath>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#07020a"/>
+  <g clip-path="url(#shape)">
+    <rect width="32" height="32" fill="url(#edge)"/>
+    <rect width="32" height="32" fill="url(#core)"/>
+    <rect width="32" height="32" fill="url(#bloom)"/>
+  </g>
+</svg>

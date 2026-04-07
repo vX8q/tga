@@ -1,0 +1,110 @@
+[
+  {
+    "id": "WEC_2026_PROLOGUE",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "WEC Prologue",
+    "location": "Imola",
+    "circuit_name": "Imola Circuit",
+    "start_date": "2026-04-14",
+    "end_date": "2026-04-14",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_1",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "6 Hours of Imola",
+    "location": "Imola",
+    "circuit_name": "Imola Circuit",
+    "start_date": "2026-04-19",
+    "end_date": "2026-04-19",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_2",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "6 Hours of Spa-Francorchamps",
+    "location": "Stavelot",
+    "circuit_name": "Circuit de Spa-Francorchamps",
+    "start_date": "2026-05-09",
+    "end_date": "2026-05-09",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_3",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "24 Hours of Le Mans",
+    "location": "Le Mans",
+    "circuit_name": "Circuit de la Sarthe",
+    "start_date": "2026-06-13",
+    "end_date": "2026-06-14",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_4",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "6 Hours of São Paulo",
+    "location": "São Paulo",
+    "circuit_name": "Interlagos Circuit",
+    "start_date": "2026-07-12",
+    "end_date": "2026-07-12",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_5",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "Lone Star Le Mans",
+    "location": "Austin, Texas",
+    "circuit_name": "Circuit of the Americas",
+    "start_date": "2026-09-06",
+    "end_date": "2026-09-06",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_6",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "6 Hours of Fuji",
+    "location": "Oyama, Shizuoka",
+    "circuit_name": "Fuji Speedway",
+    "start_date": "2026-09-27",
+    "end_date": "2026-09-27",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_7",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "Qatar 1812 km",
+    "location": "Qatar Lusail",
+    "circuit_name": "Losail International Circuit",
+    "start_date": "2026-10-24",
+    "end_date": "2026-10-24",
+    "time_est": "",
+    "time_msk": ""
+  },
+  {
+    "id": "WEC_2026_8",
+    "series_id": "WEC",
+    "season": "2026",
+    "name": "8 Hours of Bahrain",
+    "location": "Bahrain Sakhir",
+    "circuit_name": "Bahrain International Circuit",
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-07",
+    "time_est": "",
+    "time_msk": ""
+  }
+]

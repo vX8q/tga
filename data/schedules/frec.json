@@ -1,0 +1,98 @@
+[
+  {
+    "id": "FREC_2026_1",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Red Bull Ring",
+    "location": "Spielberg",
+    "circuit_name": "Red Bull Ring",
+    "start_date": "2026-04-24",
+    "end_date": "2026-04-26",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_2",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Zandvoort",
+    "location": "Zandvoort",
+    "circuit_name": "Circuit Zandvoort",
+    "start_date": "2026-05-22",
+    "end_date": "2026-05-24",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_3",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Spa-Francorchamps",
+    "location": "Stavelot",
+    "circuit_name": "Circuit de Spa-Francorchamps",
+    "start_date": "2026-05-29",
+    "end_date": "2026-05-31",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_4",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Monza",
+    "location": "Monza",
+    "circuit_name": "Monza Circuit",
+    "start_date": "2026-06-19",
+    "end_date": "2026-06-21",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_5",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Hungaroring",
+    "location": "Mogyoród",
+    "circuit_name": "Hungaroring",
+    "start_date": "2026-07-03",
+    "end_date": "2026-07-05",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_6",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Paul Ricard",
+    "location": "Le Castellet",
+    "circuit_name": "Circuit Paul Ricard",
+    "start_date": "2026-07-17",
+    "end_date": "2026-07-19",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_7",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Imola",
+    "location": "Imola",
+    "circuit_name": "Imola Circuit",
+    "start_date": "2026-09-04",
+    "end_date": "2026-09-06",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "FREC_2026_8",
+    "series_id": "FREC",
+    "season": "2026",
+    "name": "FREC — Hockenheimring",
+    "location": "Hockenheim",
+    "circuit_name": "Hockenheimring",
+    "start_date": "2026-09-11",
+    "end_date": "2026-09-13",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  }
+]

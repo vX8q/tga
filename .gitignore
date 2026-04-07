@@ -1,0 +1,52 @@
+# Binaries
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go
+*.test
+*.out
+vendor/
+coverage.out
+coverage.html
+*.coverprofile
+*.prof
+*.pprof
+__debug_bin*
+__debug_bin.exe*
+
+# Air (live reload)
+tmp/
+build-errors.log
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Local spreadsheets (not test fixtures)
+*.xlsx
+!**/testdata/*.xlsx
+
+# App data: DB is local / rebuilt; live.json is overwritten by sync jobs
+data/tga.sqlite
+data/**/*.sqlite
+data/live.json
+
+# Backup copies and extracts (not the canonical tree)
+backups/
+
+# Secrets and local overrides (keep .env.example in repo)
+.env
+.env.local
+.env.*.local
+
+# Optional: Node if you add tooling under the repo
+node_modules/

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>{{.Event.Race}} — The Grid Archive (TGA)</title>
+  <link rel="icon" type="image/svg+xml" href="/web/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/web/style.css">
+  <script>
+    (function(){var t=localStorage.getItem('tga-theme');if(t)document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><span class="logo-the">The</span> <span class="logo-grid">Grid</span> <span class="logo-archive">Archive</span></a>
+    </div>
+  </header>
+  <main class="container main">
+    <nav class="breadcrumb">
+      <a href="/">← All series</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="/series/{{.SeriesID}}">{{.SeriesID}}</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>{{.Event.Race}}</span>
+    </nav>
+    <header class="event-header">
+      <h1>{{.Event.Race}}</h1>
+      <p class="event-meta">{{.Event.Date}}{{if .Event.Track}} · {{.Event.Track}}{{end}}{{if .Event.Location}}, {{.Event.Location}}{{end}}</p>
+    </header>
+
+    {{if .Event.TrackInfo}}
+    <section class="event-data-section">
+      <h2>Track info</h2>
+      <p class="track-info-text">{{.Event.TrackInfo}}</p>
+      {{if .Event.TyreCompounds}}
+      <p class="track-info-text tyre-compounds-text">{{.Event.TyreCompounds}}</p>
+      {{end}}
+    </section>
+    {{end}}
+
+    <section class="event-info-section">
+      <div class="table-wrap">
+        <table class="data-table" id="event-info-table">
+          <thead><tr><th>Field</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td class="col-field">Laps</td><td>{{if .Event.Laps}}{{.Event.Laps}}{{else}}—{{end}}</td></tr>
+            <tr><td class="col-field">Distance</td><td>{{if .Event.Distance}}{{.Event.Distance}}{{else}}—{{end}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {{range .Sections}}
+      {{if eq .Type "entry_list"}}
+    <section class="event-data-section">
+      <h2>{{.Title}}</h2>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>No.</th><th>Driver</th><th>Team</th><th>Manufacturer</th>{{if or (eq $.SeriesID "NASCAR_CUP") (eq $.SeriesID "NOAPS") (eq $.SeriesID "NASCAR_TRUCK") (eq $.SeriesID "ARCA") (eq $.SeriesID "NASCAR_MODIFIED")}}<th>Crew Chief</th>{{end}}</tr></thead>
+          <tbody>
+            {{range .EntryList}}
+            <tr><td>{{.Number}}</td><td>{{.Driver}}</td><td>{{.Team}}</td><td>{{.Manufacturer}}</td>{{if or (eq $.SeriesID "NASCAR_CUP") (eq $.SeriesID "NOAPS") (eq $.SeriesID "NASCAR_TRUCK") (eq $.SeriesID "ARCA") (eq $.SeriesID "NASCAR_MODIFIED")}}<td>{{.CrewChief}}</td>{{end}}</tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+      {{else if eq .Type "table"}}
+    <section class="event-data-section">
+      <h2>{{.Title}}</h2>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr>{{range .Headers}}<th>{{.}}</th>{{end}}</tr></thead>
+          <tbody>
+            {{range .Rows}}
+            <tr>{{range .}}<td>{{.}}</td>{{end}}</tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+      {{else if eq .Type "race_statistics"}}
+    <section class="event-data-section">
+      <h2>{{.Title}}</h2>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Field</th><th>Value</th></tr></thead>
+          <tbody>
+            {{range $k, $v := .Stats}}
+            <tr><td class="col-field">{{$k}}</td><td>{{$v}}</td></tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+      {{else if eq .Type "caution_breakdown"}}
+    <section class="event-data-section">
+      <h2>{{.Title}}</h2>
+      <div class="table-wrap">
+        <table class="data-table caution-breakdown-table">
+          <thead><tr><th>Condition</th><th>From Lap</th><th>To Lap</th><th># Of Laps</th><th>Reason</th>{{if ne $.SeriesID "INDYCAR"}}<th>Free Pass</th>{{end}}</tr></thead>
+          <tbody>
+            {{range .CautionRows}}
+            <tr class="caution-row caution-row-{{.Condition}}">
+              <td></td>
+              <td>{{.FromLap}}</td>
+              <td>{{.ToLap}}</td>
+              <td>{{.NumLaps}}</td>
+              <td>{{.Reason}}</td>
+              {{if ne $.SeriesID "INDYCAR"}}<td>{{.FreePass}}</td>{{end}}
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+      {{else if eq .Type "track_info"}}
+    <section class="event-data-section">
+      <h2>{{.Title}}</h2>
+      <p class="track-info-text">{{.TrackInfo}}</p>
+    </section>
+      {{end}}
+    {{end}}
+
+  </main>
+  <footer class="footer">
+    <div class="container"><p>Season {{.Season}}</p></div>
+  </footer>
+</body>
+</html>

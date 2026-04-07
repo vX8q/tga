@@ -1,0 +1,378 @@
+{
+  "teams": [
+    {
+      "manufacturer": "Boehler Racing",
+      "team": "Boehler Racing Enterprises",
+      "number": "3",
+      "driver": "Tyler Rypkema",
+      "crew_chief": "Greg Fournier",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Goodie Racing",
+      "number": "46",
+      "driver": "Craig Lutz",
+      "crew_chief": "Douglas Ogiejko",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Goodie Racing",
+      "number": "58",
+      "driver": "Eric Goodale",
+      "crew_chief": "Rob Hyer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Hartwig Racing",
+      "number": "73",
+      "driver": "Carson Loftin",
+      "crew_chief": "Paul Hartwig Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Hartwig Racing",
+      "number": "73",
+      "driver": "Paulie Hartwig III",
+      "crew_chief": "Paul Hartwig Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Haydt Yannone Racing",
+      "number": "16",
+      "driver": "Ron Silk",
+      "crew_chief": "Phil Moran",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Heagy Motorsports",
+      "number": "18",
+      "driver": "Ken Heagy",
+      "crew_chief": "Greg Gorman",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Jon McKennedy Racing",
+      "number": "79",
+      "driver": "Jon McKennedy",
+      "crew_chief": "Patrick Walsh",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Kenneth Massa Motorsports",
+      "number": "51",
+      "driver": "Justin Bonsignore",
+      "crew_chief": "Ryan Stone",
+      "full_time": true
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Kyle Bonsignore",
+      "number": "22",
+      "driver": "Kyle Bonsignore",
+      "crew_chief": "Cam McDermott",
+      "full_time": true
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Eighty-Two Autosport",
+      "number": "8",
+      "driver": "John-Michael Shenette",
+      "crew_chief": "Scott Morin",
+      "full_time": true
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Elite Racing",
+      "number": "31",
+      "driver": "Mike Christopher Jr.",
+      "crew_chief": "Eugene Orlando",
+      "full_time": true
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Teddy Hodgdon Racing",
+      "number": "55",
+      "driver": "Teddy Hodgdon",
+      "crew_chief": "Ted Hodgdon",
+      "full_time": true
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "USNEPower Motorsports",
+      "number": "1",
+      "driver": "Patrick Emerling",
+      "crew_chief": "Dale Hedquist",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "Catalano Motorsports",
+      "number": "54",
+      "driver": "Tommy Catalano",
+      "crew_chief": "Rick Kluth",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "Catalano Motorsports",
+      "number": "56",
+      "driver": "Trevor Catalano",
+      "crew_chief": "David Catalano",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "John Morgan",
+      "number": "20",
+      "driver": "Max Zachem (TBA)",
+      "crew_chief": "Ryan Morgan",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "John Morgan",
+      "number": "20",
+      "driver": "Ryan Morgan (TBA)",
+      "crew_chief": "Ryan Morgan",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "KLM Motorsports",
+      "number": "64",
+      "driver": "Austin Beers",
+      "crew_chief": "Ron Yuhas Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "PeeDee Motorsports",
+      "number": "60",
+      "driver": "Matt Hirschman",
+      "crew_chief": "Mike Stein",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "Wanick Motorsports",
+      "number": "21",
+      "driver": "Stephen Kopcik",
+      "crew_chief": "Nick Kopcik",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Apex Race Cars",
+      "team": "Apex Racing",
+      "number": "95",
+      "driver": "Cory Plummer",
+      "crew_chief": "Bill Barnett Jr.",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Connolly Racing",
+      "number": "4",
+      "driver": "Ryan Newman",
+      "crew_chief": "Tim Connolly",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Coulter Motorsports",
+      "number": "02",
+      "driver": "Joey Coulter",
+      "crew_chief": "Harold Holly Jr",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Ryan Preece Racing",
+      "number": "40",
+      "driver": "Ryan Preece",
+      "crew_chief": "Jeff Preece",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Sapienza Racing",
+      "number": "36",
+      "driver": "Dave Sapienza",
+      "crew_chief": "Greg Kleila",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "FURY",
+      "team": "Turbush Racing",
+      "number": "81",
+      "driver": "Mark Stewart",
+      "crew_chief": "Chris Turbush",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Gershow Motorsports",
+      "number": "2",
+      "driver": "Jimmy Blewett",
+      "crew_chief": "Mike Bologna",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Jerry Solomito Sr.",
+      "number": "66",
+      "driver": "Timmy Solomito",
+      "crew_chief": "Jerry Solomito Sr.",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Newman Motorsports",
+      "number": "11",
+      "driver": "Norman Newman",
+      "crew_chief": "Norman Newman",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Supreme Racing",
+      "number": "24",
+      "driver": "Andrew Krause",
+      "crew_chief": "Steven Reed",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "LFR",
+      "team": "Zacharias Motorsports",
+      "number": "71",
+      "driver": "Jimmy Zacharias",
+      "crew_chief": "Austin Kochenash",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "PSR Products",
+      "team": "Frank Fleming Motorsports",
+      "number": "48",
+      "driver": "Luke Fleming",
+      "crew_chief": "Chris Fleming",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "PSR Products",
+      "team": "PSR Racing",
+      "number": "38",
+      "driver": "Bobby Labonte",
+      "crew_chief": "Phil Stefanelli",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "PSR Products",
+      "team": "PSR Racing",
+      "number": "39",
+      "driver": "Conner Jones",
+      "crew_chief": "Eddie Harvey",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "PSR Products",
+      "team": "Tommy Baldwin Racing",
+      "number": "7",
+      "driver": "Luke Baldwin",
+      "crew_chief": "Tommy Baldwin Jr.",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "GSR Motorsports",
+      "number": "55",
+      "driver": "Jeremy Gerstner",
+      "crew_chief": "Keith Wheeler",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "Jody Lauzon",
+      "number": "59",
+      "driver": "Andy Jankowiak",
+      "crew_chief": "Steve Mendoza",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "JT Motorsports",
+      "number": "99",
+      "driver": "Sam Rameau",
+      "crew_chief": "Charlie Barham",
+      "full_time": false,
+      "races": "1"
+    },
+    {
+      "manufacturer": "Troyer",
+      "team": "TLC Performance",
+      "number": "29",
+      "driver": "Mike Marshall",
+      "crew_chief": "Doug Tisdell",
+      "full_time": false,
+      "races": "1"
+    }
+  ],
+  "technical_spec": [
+    { "key": "Series", "value": "NASCAR Whelen Modified Tour" },
+    { "key": "Season", "value": "2026" },
+    { "key": "Vehicle Type", "value": "Open‑wheel modified stock car" },
+    { "key": "Generation / Chassis", "value": "Fabricator‑built tubular steel chassis" },
+    { "key": "Approved Chassis Builders", "value": "Troyer Engineering · Chassis Dynamics · Spafco · Raceworks · Fury Race Cars / LFR Chassis" },
+    { "key": "Body Construction", "value": "Hand‑fabricated sheetmetal panels" },
+    { "key": "Body Type", "value": "Open front wheels, exposed front suspension" },
+    { "key": "Manufacturer Involvement", "value": "Branding decals only (no OEM chassis/body)" },
+    { "key": "Overall Length", "value": "Not fixed by rule (estimated ~190–195 in / ~4830–4950 mm)" },
+    { "key": "Overall Width", "value": "~101–103 in (≈ 2565–2615 mm), over 23 in wider than Cup car" },
+    { "key": "Overall Height", "value": "~49–50 in (≈ 1245–1270 mm), approx. 11 in lower than Cup car" },
+    { "key": "Wheelbase", "value": "107 in (≈ 2718 mm)" },
+    { "key": "Minimum Weight", "value": "2,610 lb (≈ 1,180 kg), additional ballast for ≥358 cu in engines" },
+    { "key": "Engine Configuration", "value": "Small‑block pushrod V8" },
+    { "key": "Engine Displacement", "value": "Typically 355–368 cu in (5.8–6.0 L)" },
+    { "key": "Induction", "value": "4‑barrel carburetor" },
+    { "key": "Carburetor Flow Limit", "value": "390 cfm (≈ 11 m³/min)" },
+    { "key": "Aspiration", "value": "Naturally aspirated" },
+    { "key": "Power Output", "value": "~625–700 hp (466–522 kW)" },
+    { "key": "Power Limiting", "value": "Restrictor plate required at select large tracks" },
+    { "key": "Fuel System", "value": "Carbureted (EFI not permitted)" },
+    { "key": "Fuel Type", "value": "Sunoco Green E15" },
+    { "key": "Drivetrain", "value": "Rear‑wheel drive (RWD)" },
+    { "key": "Transmission", "value": "4‑speed manual racing gearbox" },
+    { "key": "Suspension (Front)", "value": "Independent, exposed, modified‑specific geometry" },
+    { "key": "Suspension (Rear)", "value": "Solid rear axle (live axle)" },
+    { "key": "Brakes", "value": "Steel disc brakes, multi‑piston calipers" },
+    { "key": "Wheels", "value": "Wide steel racing wheels (series‑approved)" },
+    { "key": "Tires", "value": "Hoosier Racing Tire (Modified‑spec slicks)" },
+    { "key": "Aerodynamics", "value": "Minimal body aero; no splitter, no diffuser" },
+    { "key": "Underbody", "value": "Open / flat floor, no ground‑effect devices" },
+    { "key": "Safety Equipment", "value": "Full roll cage, HANS, 6‑point harness, fire suppression (NASCAR mandated)" },
+    { "key": "Key Features", "value": "Ultra‑wide track, very low ride height, open wheels, carbureted V8, fabricator chassis" }
+  ]
+}

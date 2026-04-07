@@ -1,0 +1,23 @@
+{
+  "event_id": "F1_2025_21",
+  "series": "FIA Formula 1 World Championship",
+  "race": "2025 São Paulo Grand Prix",
+  "date": "2025-11-09",
+  "track": "Interlagos Circuit",
+  "location": "São Paulo",
+  "laps": "",
+  "distance": "",
+  "track_info": "",
+  "entry_list": [],
+  "tables": {
+    "practice": {
+      "sessions": []
+    },
+    "qualifying": {
+      "sessions": []
+    },
+    "race": {
+      "sessions": []
+    }
+  }
+}

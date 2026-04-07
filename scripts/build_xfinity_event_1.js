@@ -1,0 +1,294 @@
+const fs = require('fs');
+
+const entryList = [
+  ['0', 'Garrett Smithley', 'SS-Green Light Racing', 'Chevrolet'],
+  ['0', 'Sheldon Creed', 'Haas Factory Team', 'Chevrolet'],
+  ['2', 'Ryan Ellis', "Young's Motorsports", 'Chevrolet'],
+  ['2', 'Jesse Love', 'Richard Childress Racing', 'Chevrolet'],
+  ['4', 'Caesar Bacarella', 'Alpha Prime Racing', 'Chevrolet'],
+  ['5', 'Luke Fenhaus (R)', 'Hettinger Racing', 'Ford'],
+  ['7', 'Josh Bilicki', 'SS-Green Light Racing', 'Chevrolet'],
+  ['7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet'],
+  ['8', 'Sammy Smith', 'JR Motorsports', 'Chevrolet'],
+  ['17', 'Corey Day', 'Hendrick Motorsports', 'Chevrolet'],
+  ['18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota'],
+  ['19', 'Giovanni Ruggiero (i)', 'Joe Gibbs Racing', 'Toyota'],
+  ['20', 'Brandon Jones', 'Joe Gibbs Racing', 'Toyota'],
+  ['21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet'],
+  ['24', 'Harrison Burton', 'Sam Hunt Racing', 'Toyota'],
+  ['25', 'Nick Sanchez', 'AM Racing', 'Ford'],
+  ['26', 'Dean Thompson', 'Sam Hunt Racing', 'Toyota'],
+  ['27', 'Jeb Burton', 'Jordan Anderson Racing', 'Chevrolet'],
+  ['28', 'Kyle Sieg', 'RSS Racing', 'Chevrolet'],
+  ['30', 'Carson Ware', 'Barrett–Cope Racing', 'Chevrolet'],
+  ['31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet'],
+  ['32', 'Jordan Anderson', 'Jordan Anderson Racing', 'Chevrolet'],
+  ['35', 'Natalie Decker', 'Joey Gase Motorsports', 'Chevrolet'],
+  ['38', 'Patrick Emerling (i)', 'RSS Racing', 'Chevrolet'],
+  ['39', 'Ryan Sieg', 'RSS Racing', 'Chevrolet'],
+  ['41', 'Sam Mayer', 'Haas Factory Team', 'Chevrolet'],
+  ['42', 'Carson Hocevar (i)', "Young's Motorsports", 'Chevrolet'],
+  ['44', 'Brennan Poole', 'Alpha Prime Racing', 'Chevrolet'],
+  ['45', 'Lavar Scott (R)', 'Alpha Prime Racing', 'Chevrolet'],
+  ['48', 'Patrick Staropoli (R)', 'Big Machine Racing', 'Chevrolet'],
+  ['51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet'],
+  ['52', 'Daniel Dye (i)', 'AM Racing', 'Ford'],
+  ['53', 'David Starr', 'Joey Gase Motorsports', 'Chevrolet'],
+  ['54', 'Taylor Gray', 'Joe Gibbs Racing', 'Toyota'],
+  ['55', 'Joey Gase', 'Joey Gase Motorsports', 'Chevrolet'],
+  ['87', 'Austin Green', 'Peterson Racing', 'Chevrolet'],
+  ['88', 'Rajah Caruth', 'JR Motorsports', 'Chevrolet'],
+  ['91', 'Mason Maggio', 'DGM Racing', 'Chevrolet'],
+  ['92', 'Josh Williams', 'DGM Racing', 'Chevrolet'],
+  ['96', 'Anthony Alfredo', 'Viking Motorsports', 'Chevrolet'],
+  ['99', 'Parker Retzlaff', 'Viking Motorsports', 'Chevrolet']
+];
+
+const practice = [
+  [1, '27', 'Jeb Burton', 'Jordan Anderson Racing', 'Chevrolet', '48.735', '184.672', '4', '4', '---.---', '---.---'],
+  [2, '26', 'Dean Thompson', 'Sam Hunt Racing', 'Toyota', '48.853', '184.226', '7', '7', '-0.118', '-0.118'],
+  [3, '17', 'Corey Day', 'Hendrick Motorsports', 'Chevrolet', '48.856', '184.215', '9', '12', '-0.121', '-0.003'],
+  [4, '8', 'Sammy Smith', 'JR Motorsports', 'Chevrolet', '48.894', '184.072', '1', '7', '-0.159', '-0.038'],
+  [5, '19', 'Giovanni Ruggiero(i)', 'Joe Gibbs Racing', 'Toyota', '48.894', '184.072', '7', '10', '-0.159', '-0.000'],
+  [6, '32', 'Jordan Anderson', 'Jordan Anderson Racing', 'Chevrolet', '48.901', '184.045', '10', '10', '-0.166', '-0.007'],
+  [7, '31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet', '48.913', '184.000', '11', '11', '-0.178', '-0.012'],
+  [8, '42', 'Carson Hocevar(i)', "Young's Motorsports", 'Chevrolet', '48.948', '183.869', '13', '13', '-0.213', '-0.035'],
+  [9, '51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet', '48.949', '183.865', '4', '5', '-0.214', '-0.001'],
+  [10, '1', 'Carson Kvapil', 'JR Motorsports', 'Chevrolet', '49.129', '183.191', '2', '10', '-0.394', '-0.180'],
+  [11, '2', 'Jesse Love', 'Richard Childress Racing', 'Chevrolet', '49.219', '182.856', '2', '11', '-0.484', '-0.090'],
+  [12, '54', 'Taylor Gray', 'Joe Gibbs Racing', 'Toyota', '49.277', '182.641', '8', '11', '-0.542', '-0.058'],
+  [13, '48', 'Patrick Staropoli', 'Big Machine Racing', 'Chevrolet', '49.420', '182.113', '1', '15', '-0.685', '-0.143'],
+  [14, '2', 'Ryan Ellis', "Young's Motorsports", 'Chevrolet', '49.437', '182.050', '10', '13', '-0.702', '-0.017'],
+  [15, '39', 'Ryan Sieg', 'RSS Racing', 'Chevrolet', '49.439', '182.043', '3', '3', '-0.704', '-0.002'],
+  [16, '41', 'Sam Mayer', 'Haas Factory Team', 'Chevrolet', '49.493', '181.844', '3', '5', '-0.758', '-0.054'],
+  [17, '55', 'Joey Gase', 'Joey Gase Motorsports', 'Chevrolet', '49.546', '181.649', '3', '14', '-0.811', '-0.053'],
+  [18, '21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet', '49.581', '181.521', '5', '5', '-0.846', '-0.035'],
+  [19, '88', 'Rajah Caruth', 'JR Motorsports', 'Chevrolet', '49.596', '181.466', '1', '2', '-0.861', '-0.015'],
+  [20, '99', 'Parker Retzlaff', 'Viking Motorsports', 'Chevrolet', '49.606', '181.430', '2', '10', '-0.871', '-0.010'],
+  [21, '91', 'Mason Maggio', 'DGM Racing', 'Chevrolet', '49.626', '181.357', '2', '22', '-0.891', '-0.020'],
+  [22, '20', 'Brandon Jones', 'Joe Gibbs Racing', 'Toyota', '49.638', '181.313', '7', '9', '-0.903', '-0.012'],
+  [23, '30', 'Carson Ware', 'Barrett–Cope Racing', 'Chevrolet', '49.650', '181.269', '3', '6', '-0.915', '-0.012'],
+  [24, '0', 'Sheldon Creed', 'Haas Factory Team', 'Chevrolet', '49.667', '181.207', '3', '3', '-0.932', '-0.017'],
+  [25, '92', 'Josh Williams', 'DGM Racing', 'Chevrolet', '49.739', '180.945', '8', '10', '-1.004', '-0.072'],
+  [26, '18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota', '49.752', '180.897', '1', '1', '-1.017', '-0.013'],
+  [27, '53', 'David Starr', 'Joey Gase Motorsports', 'Chevrolet', '49.754', '180.890', '5', '5', '-1.019', '-0.002'],
+  [28, '7', 'Josh Bilicki', 'SS-Green Light Racing', 'Chevrolet', '49.802', '180.716', '3', '8', '-1.067', '-0.048'],
+  [29, '0', 'Garrett Smithley', 'SS-Green Light Racing', 'Chevrolet', '49.843', '180.567', '7', '7', '-1.108', '-0.041'],
+  [30, '5', 'Luke Fenhaus', 'Hettinger Racing', 'Ford', '49.856', '180.520', '5', '7', '-1.121', '-0.013'],
+  [31, '87', 'Austin Green', 'Peterson Racing', 'Chevrolet', '49.910', '180.325', '8', '9', '-1.175', '-0.054'],
+  [32, '35', 'Natalie Decker', 'Joey Gase Motorsports', 'Chevrolet', '49.967', '180.119', '12', '12', '-1.232', '-0.057'],
+  [33, '7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet', '49.982', '180.065', '1', '1', '-1.247', '-0.015'],
+  [34, '38', 'Patrick Emerling(i)', 'RSS Racing', 'Chevrolet', '49.989', '180.040', '3', '5', '-1.254', '-0.007'],
+  [35, '28', 'Kyle Sieg', 'RSS Racing', 'Chevrolet', '50.022', '179.921', '1', '6', '-1.287', '-0.033'],
+  [36, '25', 'Nick Sanchez', 'AM Racing', 'Ford', '50.025', '179.910', '6', '8', '-1.290', '-0.003'],
+  [37, '4', 'Caesar Bacarella', 'Alpha Prime Racing', 'Chevrolet', '50.060', '179.784', '5', '5', '-1.325', '-0.035'],
+  [38, '96', 'Anthony Alfredo', 'Viking Motorsports', 'Chevrolet', '50.143', '179.487', '2', '4', '-1.408', '-0.083'],
+  [39, '52', 'Daniel Dye(i)', 'AM Racing', 'Ford', '50.180', '179.354', '9', '9', '-1.445', '-0.037'],
+  [40, '24', 'Harrison Burton', 'Sam Hunt Racing', 'Toyota', '50.490', '178.253', '6', '6', '-1.755', '-0.310'],
+  [41, '44', 'Brennan Poole', 'Alpha Prime Racing', 'Chevrolet', '50.557', '178.017', '5', '5', '-1.822', '-0.067'],
+  [42, '45', 'Lavar Scott', 'Alpha Prime Racing', 'Chevrolet', '50.605', '177.848', '4', '8', '-1.870', '-0.048']
+];
+
+const qualifying = [
+  ['1', '21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet', '49.433', '182.065', '49.390', '182.223'],
+  ['2', '2', 'Jesse Love', 'Richard Childress Racing', 'Chevrolet', '49.411', '182.146', '49.391', '182.219'],
+  ['3', '41', 'Sam Mayer', 'Haas Factory Team', 'Chevrolet', '49.493', '181.844', '49.399', '182.190'],
+  ['4', '18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota', '49.408', '182.157', '49.429', '182.079'],
+  ['5', '0', 'Sheldon Creed', 'Haas Factory Team', 'Chevrolet', '49.508', '181.789', '49.430', '182.076'],
+  ['6', '17', 'Corey Day', 'Hendrick Motorsports', 'Chevrolet', '49.553', '181.624', '49.430', '182.076'],
+  ['7', '88', 'Rajah Caruth', 'JR Motorsports', 'Chevrolet', '49.542', '181.664', '49.472', '181.921'],
+  ['8', '48', 'Patrick Staropoli', 'Big Machine Racing', 'Chevrolet', '49.551', '181.631', '49.508', '181.789'],
+  ['9', '54', 'Taylor Gray', 'Joe Gibbs Racing', 'Toyota', '49.591', '181.485', '49.557', '181.609'],
+  ['10', '39', 'Ryan Sieg', 'RSS Racing', 'Chevrolet', '49.595', '181.470', '49.608', '181.422'],
+  ['11', '1', 'Carson Kvapil', 'JR Motorsports', 'Chevrolet', '49.633', '181.331', '—', '—'],
+  ['12', '8', 'Sammy Smith', 'JR Motorsports', 'Chevrolet', '49.683', '181.148', '—', '—'],
+  ['13', '7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet', '49.701', '181.083', '—', '—'],
+  ['14', '31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet', '49.708', '181.057', '—', '—'],
+  ['15', '20', 'Brandon Jones', 'Joe Gibbs Racing', 'Toyota', '49.733', '180.966', '—', '—'],
+  ['16', '19', 'Gio Ruggiero', 'Joe Gibbs Racing', 'Toyota', '49.739', '180.945', '—', '—'],
+  ['17', '32', 'Jordan Anderson', 'Jordan Anderson Racing', 'Chevrolet', '49.739', '180.945', '—', '—'],
+  ['18', '26', 'Dean Thompson', 'Sam Hunt Racing', 'Toyota', '49.800', '180.723', '—', '—'],
+  ['19', '38', 'Patrick Emerling', 'RSS Racing', 'Chevrolet', '49.807', '180.697', '—', '—'],
+  ['20', '42', 'Carson Hocevar', "Young's Motorsports", 'Chevrolet', '49.832', '180.607', '—', '—'],
+  ['21', '91', 'Mason Maggio', 'DGM Racing', 'Chevrolet', '49.838', '180.585', '—', '—'],
+  ['22', '27', 'Jeb Burton', 'Jordan Anderson Racing', 'Chevrolet', '49.852', '180.534', '—', '—'],
+  ['23', '5', 'Luke Fenhaus', 'Hettinger Racing', 'Ford', '49.894', '180.382', '—', '—'],
+  ['24', '24', 'Harrison Burton', 'Sam Hunt Racing', 'Toyota', '49.908', '180.332', '—', '—'],
+  ['25', '44', 'Brennan Poole', 'Alpha Prime Racing', 'Chevrolet', '49.923', '180.278', '—', '—'],
+  ['26', '4', 'Caesar Bacarella', 'Alpha Prime Racing', 'Chevrolet', '49.928', '180.260', '—', '—'],
+  ['27', '99', 'Parker Retzlaff', 'Viking Motorsports', 'Chevrolet', '49.941', '180.213', '—', '—'],
+  ['28', '25', 'Nick Sanchez', 'AM Racing', 'Ford', '49.968', '180.115', '—', '—'],
+  ['29', '51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet', '50.016', '179.942', '—', '—'],
+  ['30', '87', 'Austin Green', 'Peterson Racing', 'Chevrolet', '50.061', '179.781', '—', '—'],
+  ['31', '92', 'Josh Williams', 'DGM Racing', 'Chevrolet', '50.074', '179.734', '—', '—'],
+  ['32', '2', 'Ryan Ellis', "Young's Motorsports", 'Chevrolet', '50.083', '179.702', '—', '—'],
+  ['33', '52', 'Daniel Dye', 'AM Racing', 'Ford', '50.103', '179.630', '—', '—'],
+  ['34', '7', 'Josh Bilicki', 'SS-Green Light Racing', 'Chevrolet', '50.111', '179.601', '—', '—'],
+  ['35', '35', 'Natalie Decker', 'Joey Gase Motorsports', 'Chevrolet', '50.236', '179.154', '—', '—'],
+  ['36', '28', 'Kyle Sieg', 'RSS Racing', 'Chevrolet', '50.250', '179.104', '—', '—'],
+  ['37', '45', 'Lavar Scott', 'Alpha Prime Racing', 'Chevrolet', '50.460', '178.359', '—', '—'],
+  ['38', '30', 'Carson Ware', 'Barrett–Cope Racing', 'Chevrolet', '—', '—', '—', '—'],
+  ['39', '0', 'Garrett Smithley', 'SS-Green Light Racing', 'Chevrolet', '50.131', '179.530', '—', '—'],
+  ['40', '53', 'David Starr', 'Joey Gase Motorsports', 'Chevrolet', '50.192', '179.311', '—', '—'],
+  ['41', '96', 'Anthony Alfredo', 'Viking Motorsports', 'Chevrolet', '50.237', '179.151', '—', '—'],
+  ['42', '55', 'Joey Gase', 'Joey Gase Motorsports', 'Chevrolet', '50.633', '177.750', '—', '—']
+];
+
+const didNotQualify = [
+  ['39', '0', 'Garrett Smithley', 'SS-Green Light Racing', 'Chevrolet'],
+  ['40', '53', 'David Starr', 'Joey Gase Motorsports', 'Chevrolet'],
+  ['41', '96', 'Anthony Alfredo', 'Viking Motorsports', 'Chevrolet'],
+  ['42', '55', 'Joey Gase', 'Joey Gase Motorsports', 'Chevrolet']
+];
+
+const stage1 = [
+  ['1', '21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet', '10'],
+  ['2', '2', 'Jesse Love', 'Richard Childress Racing', 'Chevrolet', '9'],
+  ['3', '1', 'Carson Kvapil', 'JR Motorsports', 'Chevrolet', '8'],
+  ['4', '7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet', '7'],
+  ['5', '31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet', '6'],
+  ['6', '0', 'Sheldon Creed', 'Haas Factory Team', 'Chevrolet', '5'],
+  ['7', '18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota', '4'],
+  ['8', '25', 'Nick Sanchez', 'AM Racing', 'Ford', '3'],
+  ['9', '51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet', '2'],
+  ['10', '20', 'Brandon Jones', 'Joe Gibbs Racing', 'Toyota', '1']
+];
+
+const stage2 = [
+  ['1', '21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet', '10'],
+  ['2', '1', 'Carson Kvapil', 'JR Motorsports', 'Chevrolet', '9'],
+  ['3', '7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet', '8'],
+  ['4', '18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota', '7'],
+  ['5', '88', 'Rajah Caruth', 'JR Motorsports', 'Chevrolet', '6'],
+  ['6', '99', 'Parker Retzlaff', 'Viking Motorsports', 'Chevrolet', '5'],
+  ['7', '8', 'Sammy Smith', 'JR Motorsports', 'Chevrolet', '4'],
+  ['8', '51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet', '3'],
+  ['9', '27', 'Jeb Burton', 'Jordan Anderson Racing', 'Chevrolet', '2'],
+  ['10', '31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet', '1']
+];
+
+const raceResults = [
+  ['1', '1', '21', 'Austin Hill', 'Richard Childress Racing', 'Chevrolet', '120', '78', 'Running', '75'],
+  ['2', '13', '7', 'Justin Allgaier', 'JR Motorsports', 'Chevrolet', '120', '0', 'Running', '50'],
+  ['3', '10', '39', 'Ryan Sieg', 'RSS Racing', 'Chevrolet', '120', '0', 'Running', '34'],
+  ['4', '17', '32', 'Jordan Anderson', 'Jordan Anderson Racing', 'Chevrolet', '120', '4', 'Running', '33'],
+  ['5', '12', '8', 'Sammy Smith', 'JR Motorsports', 'Chevrolet', '120', '1', 'Running', '36'],
+  ['6', '32', '2', 'Ryan Ellis', "Young's Motorsports", 'Chevrolet', '120', '1', 'Running', '31'],
+  ['7', '11', '1', 'Carson Kvapil', 'JR Motorsports', 'Chevrolet', '120', '0', 'Running', '47'],
+  ['8', '14', '31', 'Blaine Perkins', 'Jordan Anderson Racing', 'Chevrolet', '120', '0', 'Running', '36'],
+  ['9', '2', '2', 'Jesse Love', 'Richard Childress Racing', 'Chevrolet', '120', '27', 'Running', '37'],
+  ['10', '7', '88', 'Rajah Caruth', 'JR Motorsports', 'Chevrolet', '120', '1', 'Running', '34'],
+  ['11', '26', '96', 'Anthony Alfredo', 'Viking Motorsports', 'Chevrolet', '120', '0', 'Running', '26'],
+  ['12', '25', '44', 'Brennan Poole', 'Alpha Prime Racing', 'Chevrolet', '120', '0', 'Running', '25'],
+  ['13', '19', '38', 'Patrick Emerling (i)', 'RSS Racing', 'Chevrolet', '120', '0', 'Running', '0'],
+  ['14', '27', '99', 'Parker Retzlaff', 'Viking Motorsports', 'Chevrolet', '120', '0', 'Running', '28'],
+  ['15', '36', '28', 'Kyle Sieg', 'RSS Racing', 'Chevrolet', '120', '0', 'Running', '22'],
+  ['16', '37', '45', 'Lavar Scott (R)', 'Alpha Prime Racing', 'Chevrolet', '120', '0', 'Running', '21'],
+  ['17', '34', '7', 'Josh Bilicki', 'SS-Green Light Racing', 'Chevrolet', '120', '0', 'Running', '20'],
+  ['18', '8', '48', 'Patrick Staropoli (R)', 'Big Machine Racing', 'Chevrolet', '120', '0', 'Running', '19'],
+  ['19', '38', '30', 'Carson Ware', 'Barrett–Cope Racing', 'Chevrolet', '120', '0', 'Running', '18'],
+  ['20', '20', '42', 'Carson Hocevar (i)', "Young's Motorsports", 'Chevrolet', '120', '0', 'Running', '0'],
+  ['21', '33', '52', 'Daniel Dye (i)', 'AM Racing', 'Ford', '120', '0', 'Running', '0'],
+  ['22', '30', '87', 'Austin Green', 'Peterson Racing', 'Chevrolet', '118', '0', 'Running', '15'],
+  ['23', '23', '5', 'Luke Fenhaus (R)', 'Hettinger Racing', 'Ford', '117', '0', 'Running', '14'],
+  ['24', '5', '0', 'Sheldon Creed', 'Haas Factory Team', 'Chevrolet', '116', '0', 'Running', '18'],
+  ['25', '22', '27', 'Jeb Burton', 'Jordan Anderson Racing', 'Chevrolet', '107', '0', 'DVP', '14'],
+  ['26', '4', '18', 'William Sawalich', 'Joe Gibbs Racing', 'Toyota', '99', '2', 'DVP', '22'],
+  ['27', '6', '17', 'Corey Day', 'Hendrick Motorsports', 'Chevrolet', '99', '0', 'Accident', '10'],
+  ['28', '9', '54', 'Taylor Gray', 'Joe Gibbs Racing', 'Toyota', '99', '0', 'Accident', '9'],
+  ['29', '24', '24', 'Harrison Burton', 'Sam Hunt Racing', 'Toyota', '98', '0', 'Accident', '8'],
+  ['30', '15', '20', 'Brandon Jones', 'Joe Gibbs Racing', 'Toyota', '92', '0', 'DVP', '8'],
+  ['31', '3', '41', 'Sam Mayer', 'Haas Factory Team', 'Chevrolet', '91', '6', 'Accident', '6'],
+  ['32', '29', '51', 'Jeremy Clements', 'Jeremy Clements Racing', 'Chevrolet', '91', '0', 'Accident', '10'],
+  ['33', '35', '35', 'Natalie Decker', 'Joey Gase Motorsports', 'Chevrolet', '91', '0', 'Accident', '4'],
+  ['34', '31', '92', 'Josh Williams', 'DGM Racing', 'Chevrolet', '77', '0', 'Engine', '3'],
+  ['35', '18', '26', 'Dean Thompson', 'Sam Hunt Racing', 'Toyota', '68', '0', 'Suspension', '2'],
+  ['36', '28', '25', 'Nick Sanchez', 'AM Racing', 'Ford', '32', '0', 'Accident', '4'],
+  ['37', '16', '19', 'Gio Ruggiero (i)', 'Joe Gibbs Racing', 'Toyota', '29', '0', 'Accident', '0'],
+  ['38', '21', '91', 'Mason Maggio', 'DGM Racing', 'Chevrolet', '0', '0', 'Accident', '1']
+];
+
+const cautionBreakdown = [
+  ['', '1', '1', '1', '', ''],
+  ['', '2', '6', '5', '#4,38,44,51,91 accident', 'none'],
+  ['', '7', '30', '24', '', ''],
+  ['', '31', '38', '8', '#8,19,25,41 accident frontstretch', '#17'],
+  ['', '39', '61', '23', '', ''],
+  ['', '62', '67', '6', 'end of stage 2', '#42'],
+  ['', '68', '92', '25', '', ''],
+  ['', '93', '96', '4', '#4,7,20,35,39,41,51,54 accident 2 [red flag 00:13:07]', 'none'],
+  ['', '97', '100', '4', '', ''],
+  ['', '101', '107', '7', '#17,18,24,27,28,42,45,48,52,54,88 accident turn 3', '#39'],
+  ['', '108', '109', '2', '', ''],
+  ['', '110', '112', '3', 'debris', '#48'],
+  ['', '113', '115', '3', '', ''],
+  ['', '116', '118', '3', '#42,88 accident backstretch', '#87'],
+  ['', '119', '120', '2', '', '']
+];
+
+const out = {
+  event_id: 'NOAPS_2026_1',
+  series: "NASCAR O'Reilly Auto Parts Series",
+  race: '1 of 33',
+  date: 'Saturday, February 14, 2026',
+  track: 'Daytona International Speedway',
+  location: 'Daytona Beach, FL',
+  laps: '120',
+  distance: '2.500 mile paved track (300.000 miles)',
+  entry_list: entryList.map((e) => ({
+    number: e[0],
+    driver: e[1],
+    team: e[2],
+    manufacturer: e[3]
+  })),
+  tables: {
+    practice: {
+      headers: ['Pos', 'Car', 'Driver', 'Team', 'Manufacturer', 'Time', 'Speed', 'Lap #', '# Laps', 'Fastest', 'Next'],
+      rows: practice.map(r => [String(r[0]), r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10]])
+    },
+    qualifying: {
+      headers: ['Pos.', '#', 'Driver', 'Team', 'Manufacturer', 'Time (R1)', 'Speed (R1)', 'Time (R2)', 'Speed (R2)'],
+      rows: qualifying
+    },
+    did_not_qualify: {
+      headers: ['Pos', 'No.', 'Driver', 'Team', 'Manufacturer'],
+      rows: didNotQualify
+    },
+    stage1: {
+      headers: ['Pos.', '#', 'Driver', 'Team', 'Make', 'Pts'],
+      rows: stage1
+    },
+    stage2: {
+      headers: ['Pos.', '#', 'Driver', 'Team', 'Make', 'Pts'],
+      rows: stage2
+    },
+    race_results: {
+      headers: ['Finished', 'Started', '#', 'Driver', 'Team', 'Make', 'Laps', 'Led', 'Status', 'Pts'],
+      rows: raceResults
+    },
+    race_statistics: {
+      headers: ['Lead changes: 15 among 8 different drivers'],
+      rows: [
+        ['Cautions/Laps: 7 for 36 laps'],
+        ['Red flags: 1'],
+        ['Time of race: 2 hours, 34 minutes and 21 seconds'],
+        ['Average speed: 116.618 miles per hour (187.678 km/h)']
+      ]
+    },
+    caution_breakdown: {
+      headers: ['Condition', 'From Lap', 'To Lap', '# Of Laps', 'Reason', 'Free Pass'],
+      rows: cautionBreakdown
+    },
+    track_info: {
+      headers: ['Field', 'Value'],
+      rows: [
+        ['Track', '2.500 mi · Paved'],
+        ['Laps', '120'],
+        ['Distance', '300.000 miles']
+      ]
+    }
+  }
+};
+
+fs.writeFileSync('data/events/NOAPS_2026_1.json', JSON.stringify(out, null, 2));
+console.log('Wrote data/events/NOAPS_2026_1.json');

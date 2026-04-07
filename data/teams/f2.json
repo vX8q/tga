@@ -1,0 +1,180 @@
+{
+  "teams": [
+    {
+      "team": "Invicta Racing",
+      "team_country": "United Kingdom",
+      "number": "1",
+      "driver": "Rafael Câmara",
+      "driver_country": "Brazil",
+      "rounds": "1"
+    },
+    {
+      "team": "Invicta Racing",
+      "team_country": "United Kingdom",
+      "number": "2",
+      "driver": "Joshua Dürksen",
+      "driver_country": "Paraguay",
+      "rounds": "1"
+    },
+    {
+      "team": "Hitech",
+      "team_country": "United Kingdom",
+      "number": "3",
+      "driver": "Ritomo Miyata",
+      "driver_country": "Japan",
+      "rounds": "1"
+    },
+    {
+      "team": "Hitech",
+      "team_country": "United Kingdom",
+      "number": "4",
+      "driver": "Colton Herta",
+      "driver_country": "United States",
+      "rounds": "1"
+    },
+    {
+      "team": "Campos Racing",
+      "team_country": "Spain",
+      "number": "5",
+      "driver": "Noel León",
+      "driver_country": "Mexico",
+      "rounds": "1"
+    },
+    {
+      "team": "Campos Racing",
+      "team_country": "Spain",
+      "number": "6",
+      "driver": "Nikola Tsolov",
+      "driver_country": "Bulgaria",
+      "rounds": "1"
+    },
+    {
+      "team": "DAMS Lucas Oil",
+      "team_country": "France",
+      "number": "7",
+      "driver": "Dino Beganovic",
+      "driver_country": "Sweden",
+      "rounds": "1"
+    },
+    {
+      "team": "DAMS Lucas Oil",
+      "team_country": "France",
+      "number": "8",
+      "driver": "Roman Bilinski",
+      "driver_country": "Poland",
+      "rounds": "1"
+    },
+    {
+      "team": "MP Motorsport",
+      "team_country": "Netherlands",
+      "number": "9",
+      "driver": "Gabriele Minì",
+      "driver_country": "Italy",
+      "rounds": "1"
+    },
+    {
+      "team": "MP Motorsport",
+      "team_country": "Netherlands",
+      "number": "10",
+      "driver": "Oliver Goethe",
+      "driver_country": "Germany",
+      "rounds": "1"
+    },
+    {
+      "team": "Prema Racing",
+      "team_country": "Italy",
+      "number": "11",
+      "driver": "Sebastián Montoya",
+      "driver_country": "Colombia",
+      "rounds": "1"
+    },
+    {
+      "team": "Prema Racing",
+      "team_country": "Italy",
+      "number": "12",
+      "driver": "Mari Boya",
+      "driver_country": "Spain",
+      "rounds": "1"
+    },
+    {
+      "team": "Rodin Motorsport",
+      "team_country": "New Zealand",
+      "number": "14",
+      "driver": "Martinius Stenshorne",
+      "driver_country": "Norway",
+      "rounds": "1"
+    },
+    {
+      "team": "Rodin Motorsport",
+      "team_country": "New Zealand",
+      "number": "15",
+      "driver": "Alex Dunne",
+      "driver_country": "Republic of Ireland",
+      "rounds": "1"
+    },
+    {
+      "team": "ART Grand Prix",
+      "team_country": "France",
+      "number": "16",
+      "driver": "Kush Maini",
+      "driver_country": "India",
+      "rounds": "1"
+    },
+    {
+      "team": "ART Grand Prix",
+      "team_country": "France",
+      "number": "17",
+      "driver": "Tasanapol Inthraphuvasak",
+      "driver_country": "Thailand",
+      "rounds": "1"
+    },
+    {
+      "team": "AIX Racing",
+      "team_country": "United Arab Emirates",
+      "number": "20",
+      "driver": "Emerson Fittipaldi Jr.",
+      "driver_country": "Brazil",
+      "rounds": "1"
+    },
+    {
+      "team": "AIX Racing",
+      "team_country": "United Arab Emirates",
+      "number": "21",
+      "driver": "Cian Shields",
+      "driver_country": "United Kingdom",
+      "rounds": "1"
+    },
+    {
+      "team": "Van Amersfoort Racing",
+      "team_country": "Netherlands",
+      "number": "22",
+      "driver": "Nicolás Varrone",
+      "driver_country": "Argentina",
+      "rounds": "1"
+    },
+    {
+      "team": "Van Amersfoort Racing",
+      "team_country": "Netherlands",
+      "number": "23",
+      "driver": "Rafael Villagómez",
+      "driver_country": "Mexico",
+      "rounds": "1"
+    },
+    {
+      "team": "Trident",
+      "team_country": "Italy",
+      "number": "24",
+      "driver": "Laurens van Hoepen",
+      "driver_country": "Netherlands",
+      "rounds": "1"
+    },
+    {
+      "team": "Trident",
+      "team_country": "Italy",
+      "number": "25",
+      "driver": "John Bennett",
+      "driver_country": "United Kingdom",
+      "rounds": "1"
+    }
+  ]
+}

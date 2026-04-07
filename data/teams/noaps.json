@@ -1,0 +1,708 @@
+{
+  "teams": [
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Alpha Prime Racing",
+      "number": "44",
+      "driver": "Brennan Poole",
+      "crew_chief": "Frankie Kerr",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Alpha Prime Racing",
+      "number": "45",
+      "driver": "Lavar Scott (R)",
+      "crew_chief": "Kase Kallenbach",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Barrett–Cope Racing",
+      "number": "30",
+      "driver": "Carson Ware",
+      "crew_chief": "George Church",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Barrett–Cope Racing",
+      "number": "30",
+      "driver": "Cody Ware",
+      "crew_chief": "George Church",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Barrett–Cope Racing",
+      "number": "30",
+      "driver": "Baltazar Leguizamón",
+      "crew_chief": "George Church",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Barrett–Cope Racing",
+      "number": "30",
+      "driver": "TBA",
+      "crew_chief": "George Church",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Big Machine Racing",
+      "number": "48",
+      "driver": "Patrick Staropoli (R)",
+      "crew_chief": "Patrick Donahue",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "DGM Racing with Jesse Iwuji Motorsports",
+      "number": "91",
+      "driver": "Mason Maggio",
+      "crew_chief": "Mario Gosselin",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "DGM Racing with Jesse Iwuji Motorsports",
+      "number": "91",
+      "driver": "TBA",
+      "crew_chief": "Mario Gosselin",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "DGM Racing with Jesse Iwuji Motorsports",
+      "number": "92",
+      "driver": "Josh Williams",
+      "crew_chief": "Steve Addington",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Haas Factory Team",
+      "number": "00",
+      "driver": "Sheldon Creed",
+      "crew_chief": "Jonathan Toney",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Haas Factory Team",
+      "number": "41",
+      "driver": "Sam Mayer",
+      "crew_chief": "Jason Trinchere",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Hendrick Motorsports",
+      "number": "17",
+      "driver": "Corey Day",
+      "crew_chief": "Adam Wall",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jeremy Clements Racing",
+      "number": "51",
+      "driver": "Jeremy Clements",
+      "crew_chief": "Matt Weber",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "27",
+      "driver": "Jeb Burton",
+      "crew_chief": "J. C. Umscheid",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "31",
+      "driver": "Blaine Perkins",
+      "crew_chief": "Cody McKenzie",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "32",
+      "driver": "Jordan Anderson",
+      "crew_chief": "Mark Setzer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "32",
+      "driver": "Ross Chastain",
+      "crew_chief": "Mark Setzer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "32",
+      "driver": "Rajah Caruth",
+      "crew_chief": "Mark Setzer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Jordan Anderson Racing",
+      "number": "32",
+      "driver": "TBA",
+      "crew_chief": "Mark Setzer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "1",
+      "driver": "Carson Kvapil",
+      "crew_chief": "Rodney Childers",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "1",
+      "driver": "Connor Zilisch",
+      "crew_chief": "Rodney Childers",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "7",
+      "driver": "Justin Allgaier",
+      "crew_chief": "Andrew Overstreet",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "8",
+      "driver": "Sammy Smith",
+      "crew_chief": "Cory Shea",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "88",
+      "driver": "Rajah Caruth",
+      "crew_chief": "Mardy Lindley",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "88",
+      "driver": "William Byron",
+      "crew_chief": "Mardy Lindley",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "88",
+      "driver": "Kyle Larson",
+      "crew_chief": "Mardy Lindley",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "88",
+      "driver": "Alex Bowman",
+      "crew_chief": "Mardy Lindley",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "88",
+      "driver": "Chase Elliott",
+      "crew_chief": "Mardy Lindley",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Peterson Racing",
+      "number": "87",
+      "driver": "Austin Green",
+      "crew_chief": "Jody Measamer",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Richard Childress Racing",
+      "number": "2",
+      "driver": "Jesse Love",
+      "crew_chief": "Danny Stockman Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Richard Childress Racing",
+      "number": "21",
+      "driver": "Austin Hill",
+      "crew_chief": "Chad Haney",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "RSS Racing",
+      "number": "28",
+      "driver": "Kyle Sieg",
+      "crew_chief": "Aedan McHugh",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "RSS Racing",
+      "number": "39",
+      "driver": "Ryan Sieg",
+      "crew_chief": "Matt Noyce",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "SS-Green Light Racing",
+      "number": "07",
+      "driver": "Josh Bilicki",
+      "crew_chief": "Paul Clapprood",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "SS-Green Light Racing with BRK Racing",
+      "number": "0",
+      "driver": "Garrett Smithley",
+      "crew_chief": "Bryan Berry",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "SS-Green Light Racing with BRK Racing",
+      "number": "0",
+      "driver": "Alex Labbé",
+      "crew_chief": "Bryan Berry",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "SS-Green Light Racing with BRK Racing",
+      "number": "0",
+      "driver": "Cole Custer",
+      "crew_chief": "Bryan Berry",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "SS-Green Light Racing with BRK Racing",
+      "number": "0",
+      "driver": "TBA",
+      "crew_chief": "Bryan Berry",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Viking Motorsports",
+      "number": "96",
+      "driver": "Anthony Alfredo",
+      "crew_chief": "Joshua Graham",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Viking Motorsports",
+      "number": "99",
+      "driver": "Parker Retzlaff",
+      "crew_chief": "Danny Efland",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Young's Motorsports",
+      "number": "02",
+      "driver": "Ryan Ellis",
+      "crew_chief": "Eddie Troconis",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Young's Motorsports",
+      "number": "42",
+      "driver": "Carson Hocevar",
+      "crew_chief": "Andrew Abbott",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Young's Motorsports",
+      "number": "42",
+      "driver": "Nick Leitz",
+      "crew_chief": "Andrew Abbott",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Young's Motorsports",
+      "number": "42",
+      "driver": "TBA",
+      "crew_chief": "Andrew Abbott",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Ford",
+      "team": "AM Racing",
+      "number": "25",
+      "driver": "Nick Sanchez",
+      "crew_chief": "Dewey Townsend IV",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Ford",
+      "team": "Hettinger Racing",
+      "number": "5",
+      "driver": "Luke Fenhaus (R)",
+      "crew_chief": "Joe Williams Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Ford",
+      "team": "Hettinger Racing",
+      "number": "5",
+      "driver": "TBA",
+      "crew_chief": "Joe Williams Jr.",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "18",
+      "driver": "William Sawalich",
+      "crew_chief": "Jeff Meendering",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "19",
+      "driver": "Gio Ruggiero",
+      "crew_chief": "Seth Chavka",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "19",
+      "driver": "Brent Crews (R)",
+      "crew_chief": "Seth Chavka",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "19",
+      "driver": "Christopher Bell",
+      "crew_chief": "Seth Chavka",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "19",
+      "driver": "TBA",
+      "crew_chief": "Seth Chavka",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "20",
+      "driver": "Brandon Jones",
+      "crew_chief": "Sam McAulay",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Joe Gibbs Racing",
+      "number": "54",
+      "driver": "Taylor Gray",
+      "crew_chief": "Jason Ratcliff",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Sam Hunt Racing",
+      "number": "24",
+      "driver": "Harrison Burton",
+      "crew_chief": "Brian Gainey",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Toyota",
+      "team": "Sam Hunt Racing",
+      "number": "26",
+      "driver": "Dean Thompson",
+      "crew_chief": "Kris Bowen",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Alpha Prime Racing",
+      "number": "4",
+      "driver": "Caesar Bacarella",
+      "crew_chief": "Keith Wolfe",
+      "full_time": true
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Alpha Prime Racing",
+      "number": "4",
+      "driver": "Anthony Alfredo",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "35",
+      "driver": "Natalie Decker",
+      "crew_chief": "Jay Guy",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "35",
+      "driver": "Natalie Decker",
+      "crew_chief": "Scott Eggleston",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "35",
+      "driver": "Joey Gase",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "53",
+      "driver": "David Starr",
+      "crew_chief": "Jim Gase",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "53",
+      "driver": "Joey Gase",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "55",
+      "driver": "Scott Eggleston",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "55",
+      "driver": "TBA",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Joey Gase Motorsports with Scott Osteen",
+      "number": "55",
+      "driver": "TBA",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "9",
+      "driver": "Ross Chastain",
+      "crew_chief": "Phillip Bell",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "9",
+      "driver": "Shane van Gisbergen",
+      "crew_chief": "Phillip Bell",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "JR Motorsports",
+      "number": "TBA",
+      "driver": "Carson Kvapil",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Mike Harmon Racing",
+      "number": "74",
+      "driver": "Dawson Cram",
+      "crew_chief": "Mike Harmon",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "Pardus Racing Inc.",
+      "number": "50",
+      "driver": "Preston Pardus",
+      "crew_chief": "TBA",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Chevrolet",
+      "team": "RSS Racing",
+      "number": "38",
+      "driver": "Patrick Emerling",
+      "crew_chief": "R. B. Bracken",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Ford",
+      "team": "AM Racing",
+      "number": "52",
+      "driver": "Daniel Dye",
+      "crew_chief": "Blake Bainbridge",
+      "full_time": false
+    },
+    {
+      "manufacturer": "Ford",
+      "team": "TBA",
+      "number": "TBA",
+      "driver": "Austin J. Hill",
+      "crew_chief": "TBA",
+      "full_time": false
+    }
+  ],
+  "car_models": [
+    {
+      "manufacturer": "Chevrolet",
+      "model": "Camaro"
+    },
+    {
+      "manufacturer": "Ford",
+      "model": "Mustang"
+    },
+    {
+      "manufacturer": "Toyota",
+      "model": "Supra"
+    }
+  ],
+  "technical_spec": [
+    {
+      "key": "Generation",
+      "value": "Xfinity Series Car (Gen 6–based)"
+    },
+    {
+      "key": "Body Type",
+      "value": "Composite body, asymmetrical (offset)"
+    },
+    {
+      "key": "Chassis",
+      "value": "Steel tubular chassis (Xfinity-specific)"
+    },
+    {
+      "key": "Length",
+      "value": "~5000 mm (≈ 196–198 in)"
+    },
+    {
+      "key": "Width",
+      "value": "~1960 mm"
+    },
+    {
+      "key": "Height",
+      "value": "~1270 mm"
+    },
+    {
+      "key": "Wheelbase",
+      "value": "2794 mm (110 in)"
+    },
+    {
+      "key": "Minimum Weight",
+      "value": "1500 kg (with driver, approx. 3300 lb)"
+    },
+    {
+      "key": "Engine",
+      "value": "5.86 L (358 cu in) naturally aspirated V8"
+    },
+    {
+      "key": "Induction",
+      "value": "Carburetor (no EFI)"
+    },
+    {
+      "key": "Power Output",
+      "value": "~650 hp"
+    },
+    {
+      "key": "Drivetrain",
+      "value": "Rear-wheel drive (RWD)"
+    },
+    {
+      "key": "Transmission",
+      "value": "5-speed H-pattern manual gearbox"
+    },
+    {
+      "key": "Suspension (Front)",
+      "value": "Independent double wishbone"
+    },
+    {
+      "key": "Suspension (Rear)",
+      "value": "Solid rear axle (live axle)"
+    },
+    {
+      "key": "Brakes",
+      "value": "Steel disc brakes, 4-piston calipers"
+    },
+    {
+      "key": "Wheels",
+      "value": "15″ steel wheels, 5-lug"
+    },
+    {
+      "key": "Tires",
+      "value": "Goodyear Eagle bias-ply"
+    },
+    {
+      "key": "Fuel",
+      "value": "Sunoco Green E15"
+    },
+    {
+      "key": "Aerodynamics",
+      "value": "Front splitter, rear spoiler"
+    },
+    {
+      "key": "Underbody",
+      "value": "Flat bottom (no diffuser)"
+    },
+    {
+      "key": "Key Features",
+      "value": "Carburetor engine, live rear axle, 5-lug wheels, no sequential gearbox"
+    }
+  ]
+}

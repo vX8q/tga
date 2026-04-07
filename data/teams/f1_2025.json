@@ -1,0 +1,211 @@
+{
+  "teams": [
+    {
+      "manufacturer": "Alpine-Renault",
+      "team": "BWT Alpine F1 Team",
+      "chassis": "A525",
+      "power_unit": "Renault E-Tech RE25",
+      "number": "7",
+      "driver": "Jack Doohan",
+      "rounds": "1–6"
+    },
+    {
+      "manufacturer": "Alpine-Renault",
+      "team": "BWT Alpine F1 Team",
+      "chassis": "A525",
+      "power_unit": "Renault E-Tech RE25",
+      "number": "43",
+      "driver": "Franco Colapinto",
+      "rounds": "7–24"
+    },
+    {
+      "manufacturer": "Alpine-Renault",
+      "team": "BWT Alpine F1 Team",
+      "chassis": "A525",
+      "power_unit": "Renault E-Tech RE25",
+      "number": "10",
+      "driver": "Pierre Gasly",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Aston Martin Aramco-Mercedes",
+      "team": "Aston Martin Aramco F1 Team",
+      "chassis": "AMR25",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "14",
+      "driver": "Fernando Alonso",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Aston Martin Aramco-Mercedes",
+      "team": "Aston Martin Aramco F1 Team",
+      "chassis": "AMR25",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "18",
+      "driver": "Lance Stroll",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Ferrari",
+      "team": "Scuderia Ferrari HP",
+      "chassis": "SF-25",
+      "power_unit": "Ferrari 066/15",
+      "number": "16",
+      "driver": "Charles Leclerc",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Ferrari",
+      "team": "Scuderia Ferrari HP",
+      "chassis": "SF-25",
+      "power_unit": "Ferrari 066/15",
+      "number": "44",
+      "driver": "Lewis Hamilton",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Haas-Ferrari",
+      "team": "MoneyGram Haas F1 Team",
+      "chassis": "VF-25",
+      "power_unit": "Ferrari 066/15",
+      "number": "31",
+      "driver": "Esteban Ocon",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Haas-Ferrari",
+      "team": "MoneyGram Haas F1 Team",
+      "chassis": "VF-25",
+      "power_unit": "Ferrari 066/15",
+      "number": "87",
+      "driver": "Oliver Bearman",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Kick Sauber-Ferrari",
+      "team": "Stake F1 Team Kick Sauber",
+      "chassis": "C45",
+      "power_unit": "Ferrari 066/15",
+      "number": "5",
+      "driver": "Gabriel Bortoleto",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Kick Sauber-Ferrari",
+      "team": "Stake F1 Team Kick Sauber",
+      "chassis": "C45",
+      "power_unit": "Ferrari 066/15",
+      "number": "27",
+      "driver": "Nico Hülkenberg",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "McLaren-Mercedes",
+      "team": "McLaren Formula 1 Team",
+      "chassis": "MCL39",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "4",
+      "driver": "Lando Norris",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "McLaren-Mercedes",
+      "team": "McLaren Formula 1 Team",
+      "chassis": "MCL39",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "81",
+      "driver": "Oscar Piastri",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Mercedes",
+      "team": "Mercedes-AMG Petronas F1 Team",
+      "chassis": "F1 W16",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "12",
+      "driver": "Kimi Antonelli",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Mercedes",
+      "team": "Mercedes-AMG Petronas F1 Team",
+      "chassis": "F1 W16",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "63",
+      "driver": "George Russell",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Racing Bulls-Honda RBPT",
+      "team": "Visa Cash App Racing Bulls F1 Team",
+      "chassis": "VCARB 02",
+      "power_unit": "Honda RBPTH003",
+      "number": "6",
+      "driver": "Isack Hadjar",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Racing Bulls-Honda RBPT",
+      "team": "Visa Cash App Racing Bulls F1 Team",
+      "chassis": "VCARB 02",
+      "power_unit": "Honda RBPTH003",
+      "number": "22",
+      "driver": "Yuki Tsunoda",
+      "rounds": "1–2"
+    },
+    {
+      "manufacturer": "Racing Bulls-Honda RBPT",
+      "team": "Visa Cash App Racing Bulls F1 Team",
+      "chassis": "VCARB 02",
+      "power_unit": "Honda RBPTH003",
+      "number": "30",
+      "driver": "Liam Lawson",
+      "rounds": "3–24"
+    },
+    {
+      "manufacturer": "Red Bull Racing-Honda RBPT",
+      "team": "Oracle Red Bull Racing",
+      "chassis": "RB21",
+      "power_unit": "Honda RBPTH003",
+      "number": "1",
+      "driver": "Max Verstappen",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Red Bull Racing-Honda RBPT",
+      "team": "Oracle Red Bull Racing",
+      "chassis": "RB21",
+      "power_unit": "Honda RBPTH003",
+      "number": "30",
+      "driver": "Liam Lawson",
+      "rounds": "1–2"
+    },
+    {
+      "manufacturer": "Red Bull Racing-Honda RBPT",
+      "team": "Oracle Red Bull Racing",
+      "chassis": "RB21",
+      "power_unit": "Honda RBPTH003",
+      "number": "22",
+      "driver": "Yuki Tsunoda",
+      "rounds": "3–24"
+    },
+    {
+      "manufacturer": "Williams-Mercedes",
+      "team": "Atlassian Williams Racing",
+      "chassis": "FW47",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "23",
+      "driver": "Alexander Albon",
+      "rounds": "All"
+    },
+    {
+      "manufacturer": "Williams-Mercedes",
+      "team": "Atlassian Williams Racing",
+      "chassis": "FW47",
+      "power_unit": "Mercedes-AMG F1 M16",
+      "number": "55",
+      "driver": "Carlos Sainz Jr.",
+      "rounds": "All"
+    }
+  ]
+}

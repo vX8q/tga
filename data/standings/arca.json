@@ -1,0 +1,426 @@
+{
+  "race_order": [
+    "DAY",
+    "PHO",
+    "KAN",
+    "TAL",
+    "GLN",
+    "TOL",
+    "MCH",
+    "POC",
+    "BER",
+    "ELK",
+    "CHI",
+    "LRP",
+    "IRP",
+    "IOW",
+    "ISF",
+    "MAD",
+    "DSF",
+    "SLM",
+    "BRI",
+    "KAN"
+  ],
+  "rows": [
+    {
+      "pos": 1,
+      "driver": "Gio Ruggiero",
+      "team": "",
+      "manufacturer": "",
+      "points": "47",
+      "races": {
+        "DAY": "1"
+      }
+    },
+    {
+      "pos": 2,
+      "driver": "Jake Bollman (R)",
+      "team": "",
+      "manufacturer": "",
+      "points": "42",
+      "races": {
+        "DAY": "2"
+      }
+    },
+    {
+      "pos": 3,
+      "driver": "Kole Raz",
+      "team": "",
+      "manufacturer": "",
+      "points": "41",
+      "races": {
+        "DAY": "3"
+      }
+    },
+    {
+      "pos": 4,
+      "driver": "Daniel Dye",
+      "team": "",
+      "manufacturer": "",
+      "points": "41",
+      "races": {
+        "DAY": "4"
+      }
+    },
+    {
+      "pos": 5,
+      "driver": "Glen Reen",
+      "team": "",
+      "manufacturer": "",
+      "points": "39",
+      "races": {
+        "DAY": "5"
+      }
+    },
+    {
+      "pos": 6,
+      "driver": "Jack Wood",
+      "team": "",
+      "manufacturer": "",
+      "points": "38",
+      "races": {
+        "DAY": "6"
+      }
+    },
+    {
+      "pos": 7,
+      "driver": "Jason Kitzmiller",
+      "team": "",
+      "manufacturer": "",
+      "points": "37",
+      "races": {
+        "DAY": "7"
+      }
+    },
+    {
+      "pos": 8,
+      "driver": "Ryan Vargas",
+      "team": "",
+      "manufacturer": "",
+      "points": "37",
+      "races": {
+        "DAY": "8"
+      }
+    },
+    {
+      "pos": 9,
+      "driver": "Bobby Dale Earnhardt",
+      "team": "",
+      "manufacturer": "",
+      "points": "35",
+      "races": {
+        "DAY": "9"
+      }
+    },
+    {
+      "pos": 10,
+      "driver": "Andy Jankowiak",
+      "team": "",
+      "manufacturer": "",
+      "points": "34",
+      "races": {
+        "DAY": "10"
+      }
+    },
+    {
+      "pos": 11,
+      "driver": "Garrett Mitchell",
+      "team": "",
+      "manufacturer": "",
+      "points": "33",
+      "races": {
+        "DAY": "11"
+      }
+    },
+    {
+      "pos": 12,
+      "driver": "Michael Maples",
+      "team": "",
+      "manufacturer": "",
+      "points": "32",
+      "races": {
+        "DAY": "12"
+      }
+    },
+    {
+      "pos": 13,
+      "driver": "Bryce Applegate",
+      "team": "",
+      "manufacturer": "",
+      "points": "31",
+      "races": {
+        "DAY": "13"
+      }
+    },
+    {
+      "pos": 14,
+      "driver": "A. J. Moyer",
+      "team": "",
+      "manufacturer": "",
+      "points": "30",
+      "races": {
+        "DAY": "14"
+      }
+    },
+    {
+      "pos": 15,
+      "driver": "Robbie Kennealy",
+      "team": "",
+      "manufacturer": "",
+      "points": "29",
+      "races": {
+        "DAY": "15"
+      }
+    },
+    {
+      "pos": 16,
+      "driver": "Takuma Koga",
+      "team": "",
+      "manufacturer": "",
+      "points": "28",
+      "races": {
+        "DAY": "16"
+      }
+    },
+    {
+      "pos": 17,
+      "driver": "Willie Mullins",
+      "team": "",
+      "manufacturer": "",
+      "points": "27",
+      "races": {
+        "DAY": "17"
+      }
+    },
+    {
+      "pos": 18,
+      "driver": "Bryce Haugeberg",
+      "team": "",
+      "manufacturer": "",
+      "points": "26",
+      "races": {
+        "DAY": "18"
+      }
+    },
+    {
+      "pos": 19,
+      "driver": "Jake Finch",
+      "team": "",
+      "manufacturer": "",
+      "points": "26",
+      "races": {
+        "DAY": "20*"
+      }
+    },
+    {
+      "pos": 20,
+      "driver": "Hunter Deshautelle",
+      "team": "",
+      "manufacturer": "",
+      "points": "25",
+      "races": {
+        "DAY": "19"
+      }
+    },
+    {
+      "pos": 21,
+      "driver": "Ed Pompa",
+      "team": "",
+      "manufacturer": "",
+      "points": "23",
+      "races": {
+        "DAY": "21"
+      }
+    },
+    {
+      "pos": 22,
+      "driver": "Eric Caudell",
+      "team": "",
+      "manufacturer": "",
+      "points": "22",
+      "races": {
+        "DAY": "22"
+      }
+    },
+    {
+      "pos": 23,
+      "driver": "Tim Richmond",
+      "team": "",
+      "manufacturer": "",
+      "points": "21",
+      "races": {
+        "DAY": "23"
+      }
+    },
+    {
+      "pos": 24,
+      "driver": "Charles Weslowski Jr.",
+      "team": "",
+      "manufacturer": "",
+      "points": "20",
+      "races": {
+        "DAY": "24"
+      }
+    },
+    {
+      "pos": 25,
+      "driver": "Brad Smith",
+      "team": "",
+      "manufacturer": "",
+      "points": "19",
+      "races": {
+        "DAY": "25"
+      }
+    },
+    {
+      "pos": 26,
+      "driver": "Thomas Annunziata",
+      "team": "",
+      "manufacturer": "",
+      "points": "18",
+      "races": {
+        "DAY": "26"
+      }
+    },
+    {
+      "pos": 27,
+      "driver": "Presley Sorah",
+      "team": "",
+      "manufacturer": "",
+      "points": "17",
+      "races": {
+        "DAY": "27"
+      }
+    },
+    {
+      "pos": 28,
+      "driver": "Gus Dean",
+      "team": "",
+      "manufacturer": "",
+      "points": "17",
+      "races": {
+        "DAY": "29"
+      }
+    },
+    {
+      "pos": 29,
+      "driver": "Bryan Dauzat",
+      "team": "",
+      "manufacturer": "",
+      "points": "16",
+      "races": {
+        "DAY": "28"
+      }
+    },
+    {
+      "pos": 30,
+      "driver": "Taylor Reimer",
+      "team": "",
+      "manufacturer": "",
+      "points": "14",
+      "races": {
+        "DAY": "30"
+      }
+    },
+    {
+      "pos": 31,
+      "driver": "Con Nicolopoulos",
+      "team": "",
+      "manufacturer": "",
+      "points": "13",
+      "races": {
+        "DAY": "31"
+      }
+    },
+    {
+      "pos": 32,
+      "driver": "Caleb Costner",
+      "team": "",
+      "manufacturer": "",
+      "points": "12",
+      "races": {
+        "DAY": "32"
+      }
+    },
+    {
+      "pos": 33,
+      "driver": "Sean Corr",
+      "team": "",
+      "manufacturer": "",
+      "points": "11",
+      "races": {
+        "DAY": "33"
+      }
+    },
+    {
+      "pos": 34,
+      "driver": "Alli Owens",
+      "team": "",
+      "manufacturer": "",
+      "points": "10",
+      "races": {
+        "DAY": "34"
+      }
+    },
+    {
+      "pos": 35,
+      "driver": "Wesley Slimp",
+      "team": "",
+      "manufacturer": "",
+      "points": "9",
+      "races": {
+        "DAY": "35"
+      }
+    },
+    {
+      "pos": 36,
+      "driver": "Alex Clubb",
+      "team": "",
+      "manufacturer": "",
+      "points": "8",
+      "races": {
+        "DAY": "36"
+      }
+    },
+    {
+      "pos": 37,
+      "driver": "Isabella Robusto",
+      "team": "",
+      "manufacturer": "",
+      "points": "8",
+      "races": {
+        "DAY": "37"
+      }
+    },
+    {
+      "pos": 38,
+      "driver": "Mini Tyrrell",
+      "team": "",
+      "manufacturer": "",
+      "points": "6",
+      "races": {
+        "DAY": "38"
+      }
+    },
+    {
+      "pos": 39,
+      "driver": "Derek White",
+      "team": "",
+      "manufacturer": "",
+      "points": "5",
+      "races": {
+        "DAY": "39"
+      }
+    },
+    {
+      "pos": 40,
+      "driver": "Ryan Huff",
+      "team": "",
+      "manufacturer": "",
+      "points": "4",
+      "races": {
+        "DAY": "40"
+      }
+    }
+  ]
+}

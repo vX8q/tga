@@ -1,0 +1,40 @@
+{
+  "race_order": ["SMP1", "SMP2", "SMP3", "MLB4", "MLB5", "MLB6", "MLB7"],
+  "event_names": [
+    "Sydney 500",
+    "Sydney 500",
+    "Sydney 500",
+    "Melbourne SuperSprint Race 1",
+    "Melbourne SuperSprint Race 1",
+    "Melbourne SuperSprint Race 1",
+    "Melbourne SuperSprint Race 1"
+  ],
+  "completed_races": ["SMP1", "SMP2", "SMP3", "MLB4", "MLB5", "MLB6", "MLB7"],
+  "rows": [
+    {"pos": 1, "car": "17", "driver": "Brodie Kostecki", "team": "Dick Johnson Racing", "manufacturer": "", "points": "485", "races": {"SMP1": "10", "SMP2": "2", "SMP3": "12", "MLB4": "1", "MLB5": "1", "MLB6": "2", "MLB7": "1"}},
+    {"pos": 2, "car": "6", "driver": "Cam Waters", "team": "Monster Castrol Racing", "manufacturer": "", "points": "457", "races": {"SMP1": "5", "SMP2": "4", "SMP3": "3", "MLB4": "6", "MLB5": "4", "MLB6": "3", "MLB7": "6"}},
+    {"pos": 3, "car": "88", "driver": "Broc Feeney", "team": "Red Bull Ampol Racing", "manufacturer": "", "points": "442", "races": {"SMP1": "1", "SMP2": "6", "SMP3": "1", "MLB4": "3", "MLB5": "7", "MLB6": "1", "MLB7": "0"}},
+    {"pos": 4, "car": "19", "driver": "Matthew Payne", "team": "Grove Racing", "manufacturer": "", "points": "412", "races": {"SMP1": "4", "SMP2": "3", "SMP3": "2", "MLB4": "2", "MLB5": "2", "MLB6": "0", "MLB7": "20"}},
+    {"pos": 5, "car": "18", "driver": "Anton De Pasquale", "team": "DEWALT Racing", "manufacturer": "", "points": "354", "races": {"SMP1": "6", "SMP2": "1", "SMP3": "15", "MLB4": "9", "MLB5": "10", "MLB6": "6", "MLB7": "12"}},
+    {"pos": 6, "car": "4", "driver": "Jack Le Brocq", "team": "Sherrin Rentals Racing", "manufacturer": "", "points": "330", "races": {"SMP1": "17", "SMP2": "9", "SMP3": "6", "MLB4": "13", "MLB5": "6", "MLB6": "10", "MLB7": "4"}},
+    {"pos": 7, "car": "2", "driver": "Ryan Wood", "team": "Walkinshaw TWG Racing", "manufacturer": "", "points": "310", "races": {"SMP1": "21", "SMP2": "7", "SMP3": "5", "MLB4": "7", "MLB5": "3", "MLB6": "18", "MLB7": "21"}},
+    {"pos": 8, "car": "26", "driver": "Kai Allen", "team": "Grove Racing", "manufacturer": "", "points": "305", "races": {"SMP1": "11", "SMP2": "8", "SMP3": "23", "MLB4": "11", "MLB5": "5", "MLB6": "4", "MLB7": "9"}},
+    {"pos": 9, "car": "7", "driver": "James Golding", "team": "CoolDrive Racing", "manufacturer": "", "points": "286", "races": {"SMP1": "3", "SMP2": "10", "SMP3": "24", "MLB4": "4", "MLB5": "13", "MLB6": "19", "MLB7": "5"}},
+    {"pos": 10, "car": "1", "driver": "Chaz Mostert", "team": "Walkinshaw TWG Racing", "manufacturer": "", "points": "282", "races": {"SMP1": "15", "SMP2": "11", "SMP3": "4", "MLB4": "5", "MLB5": "14", "MLB6": "5", "MLB7": "8"}},
+    {"pos": 11, "car": "55", "driver": "Thomas Randle", "team": "Monster Castrol Racing", "manufacturer": "", "points": "277", "races": {"SMP1": "9", "SMP2": "14", "SMP3": "8", "MLB4": "12", "MLB5": "8", "MLB6": "0", "MLB7": "3"}},
+    {"pos": 12, "car": "20", "driver": "David Reynolds", "team": "Snowy River Caravans Racing", "manufacturer": "", "points": "249", "races": {"SMP1": "12", "SMP2": "5", "SMP3": "16", "MLB4": "15", "MLB5": "19", "MLB6": "7", "MLB7": "17"}},
+    {"pos": 13, "car": "888", "driver": "Will Brown", "team": "Red Bull Ampol Racing", "manufacturer": "", "points": "245", "races": {"SMP1": "7", "SMP2": "15", "SMP3": "18", "MLB4": "8", "MLB5": "21", "MLB6": "21", "MLB7": "2"}},
+    {"pos": 14, "car": "14", "driver": "Cameron Hill", "team": "Brad Jones Racing", "manufacturer": "", "points": "241", "races": {"SMP1": "16", "SMP2": "12", "SMP3": "7", "MLB4": "18", "MLB5": "11", "MLB6": "8", "MLB7": "13"}},
+    {"pos": 15, "car": "31", "driver": "Jayden Ojeda", "team": "PremiAir Racing", "manufacturer": "", "points": "191", "races": {"SMP1": "13", "SMP2": "22", "SMP3": "19", "MLB4": "16", "MLB5": "18", "MLB6": "13", "MLB7": "7"}},
+    {"pos": 16, "car": "96", "driver": "Macauley Jones", "team": "Brad Jones Racing", "manufacturer": "", "points": "187", "races": {"SMP1": "22", "SMP2": "23", "SMP3": "10", "MLB4": "21", "MLB5": "20", "MLB6": "11", "MLB7": "10"}},
+    {"pos": 17, "car": "777", "driver": "Declan Fraser", "team": "PremiAir Racing", "manufacturer": "", "points": "185", "races": {"SMP1": "19", "SMP2": "13", "SMP3": "21", "MLB4": "22", "MLB5": "12", "MLB6": "15", "MLB7": "11"}},
+    {"pos": 18, "car": "3", "driver": "Aaron Cameron", "team": "LIQUI MOLY BLAHST Racing", "manufacturer": "", "points": "181", "races": {"SMP1": "2", "SMP2": "16", "SMP3": "17", "MLB4": "23", "MLB5": "24", "MLB6": "20", "MLB7": "19"}},
+    {"pos": 19, "car": "38", "driver": "Rylan Gray", "team": "Dick Johnson Racing", "manufacturer": "", "points": "178", "races": {"SMP1": "20", "SMP2": "21", "SMP3": "11", "MLB4": "17", "MLB5": "15", "MLB6": "17", "MLB7": "14"}},
+    {"pos": 20, "car": "11", "driver": "Jackson Walls", "team": "Objective Racing", "manufacturer": "", "points": "169", "races": {"SMP1": "18", "SMP2": "20", "SMP3": "14", "MLB4": "24", "MLB5": "16", "MLB6": "12", "MLB7": "16"}},
+    {"pos": 21, "car": "10", "driver": "Zach Bates", "team": "Bendix Racing", "manufacturer": "", "points": "161", "races": {"SMP1": "14", "SMP2": "18", "SMP3": "13", "MLB4": "19", "MLB5": "17", "MLB6": "14", "MLB7": "0"}},
+    {"pos": 22, "car": "800", "driver": "Andre Heimgartner", "team": "R&J Batteries Racing", "manufacturer": "", "points": "160", "races": {"SMP1": "8", "SMP2": "0", "SMP3": "9", "MLB4": "—", "MLB5": "—", "MLB6": "9", "MLB7": "15"}},
+    {"pos": 23, "car": "9", "driver": "Jobe Stewart", "team": "Erebus Motorsport", "manufacturer": "", "points": "133", "races": {"SMP1": "23", "SMP2": "17", "SMP3": "22", "MLB4": "20", "MLB5": "22", "MLB6": "16", "MLB7": "18"}},
+    {"pos": 24, "car": "99", "driver": "Cooper Murray", "team": "Erebus Motorsport", "manufacturer": "", "points": "114", "races": {"SMP1": "0", "SMP2": "19", "SMP3": "20", "MLB4": "10", "MLB5": "23", "MLB6": "22", "MLB7": "0"}},
+    {"pos": 25, "car": "8", "driver": "Andre Heimgartner", "team": "Brad Jones Racing", "manufacturer": "", "points": "63", "races": {"SMP1": "—", "SMP2": "—", "SMP3": "—", "MLB4": "14", "MLB5": "9", "MLB6": "—", "MLB7": "—"}}
+  ]
+}

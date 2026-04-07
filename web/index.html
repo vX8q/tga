@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Grid Archive (TGA) — 2026</title>
+  <link rel="icon" type="image/svg+xml" href="/web/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><span class="logo-the">The</span> <span class="logo-grid">Grid</span> <span class="logo-archive">Archive</span></a>
+    </div>
+  </header>
+  <main class="container main">
+    <div id="view-list" class="view">
+
+      <!-- Per-series next race cards -->
+      <div id="next-races-row" class="next-races-row hidden"></div>
+
+      <!-- Last weekend results cards -->
+      <div id="last-results-row" class="last-results-row hidden"></div>
+
+      <!-- Full Schedule button -->
+      <a href="/?full_schedule=1" class="full-sched-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span data-i18n="home.full_schedule">Full Schedule</span>
+      </a>
+
+      <!-- Series navigation -->
+      <section class="series-section">
+        <div id="series-list" class="series-list-wrap"><p class="loading">Loading…</p></div>
+      </section>
+    </div>
+
+    <!-- Schedule page -->
+    <div id="view-schedule" class="view hidden">
+      <nav class="breadcrumb" id="sched-page-breadcrumb"></nav>
+      <header class="event-header" style="margin-bottom:0.75rem">
+        <h1 id="sched-page-title" style="font-size:1.4rem;margin:0 0 0.5rem">Full Schedule</h1>
+        <div class="schedule-controls">
+          <label class="schedule-toggle">
+            <input type="checkbox" id="sched-hide-past-toggle">
+            <span>Hide past races</span>
+          </label>
+          <div class="schedule-time-settings">
+            <label for="time-zone-select" class="sr-only">Time zone</label>
+            <select id="time-zone-select" aria-label="Time zone">
+              <option value="track">Track time</option>
+              <option value="my">My time</option>
+            </select>
+          </div>
+        </div>
+      </header>
+      <h3 class="table-section-title" data-i18n="section.h3.schedule">Schedule</h3>
+      <div class="table-wrap">
+        <table class="data-table sched-compact">
+          <thead>
+            <tr>
+              <th data-col="series"></th>
+              <th data-col="race">Race</th>
+              <th data-col="date">Date</th>
+              <th data-col="location">Location</th>
+              <th data-col="time">Time</th>
+            </tr>
+          </thead>
+          <tbody id="sched-page-body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="view-detail" class="view hidden">
+      <div class="detail-sticky-header">
+        <nav class="breadcrumb" id="detail-breadcrumb">
+          <a href="/">← All series</a>
+        </nav>
+        <header class="detail-header">
+          <h1 id="detail-title">—</h1>
+          <p id="detail-meta" class="detail-meta"></p>
+          <nav id="series-nav" class="series-nav" aria-label="Series sections"></nav>
+        </header>
+        <div id="series-live-banner" class="series-live-banner hidden" aria-hidden="true">
+          <span class="series-live-dot"></span>
+          <span class="series-live-text">Live race in progress</span>
+        </div>
+      </div>
+      <div id="detail-panels-wrap" class="detail-panels-wrap">
+      <div id="schedule-panel" class="series-panel">
+        <section class="schedule-section">
+          <h3 data-i18n="section.h3.schedule">Schedule</h3>
+          <div class="schedule-time-settings" style="margin-bottom:0.5rem">
+            <label for="time-zone-select-detail" class="sr-only">Time zone</label>
+            <select id="time-zone-select-detail" aria-label="Time zone">
+              <option value="track">Track time</option>
+              <option value="my">My time</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="schedule-table">
+              <thead><tr><th>#</th><th>date</th><th data-i18n="th.race_col">Race</th><th class="col-location" data-i18n="th.location">Location</th><th data-i18n="th.time">Time</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="schedule-empty" class="empty-msg hidden">No schedule data yet. Import from Excel to see events.</p>
+        </section>
+      </div>
+      <div id="standings-panel" class="series-panel hidden">
+        <section class="standings-section">
+          <h3 data-i18n="section.h3.standings">Standings</h3>
+          <div class="standings-scroll-container">
+            <div class="table-wrap standings-scroll-bottom" id="standings-wrap">
+              <table class="data-table" id="standings-table">
+                <thead><tr id="standings-thead"></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div id="standings-imsa-wrap" class="hidden"></div>
+          </div>
+          <h4 id="standings-ineligible-title" class="table-section-title hidden" data-i18n="standings.ineligible">Ineligible for driver points</h4>
+          <div id="standings-ineligible-scroll-container" class="standings-scroll-container hidden">
+            <div id="standings-ineligible-wrap" class="table-wrap standings-scroll-bottom">
+              <table class="data-table" id="standings-ineligible-table">
+                <thead><tr id="standings-ineligible-thead"></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <p id="standings-empty" class="empty-msg hidden">No standings data. Re-import Excel with Standings sheet.</p>
+        </section>
+      </div>
+      <div id="teams-panel" class="series-panel hidden">
+        <section class="teams-section">
+          <h3 data-i18n="section.h3.teams">Teams</h3>
+          <h4 id="teams-fulltime-title" class="table-section-title hidden">Full-time teams</h4>
+          <div id="teams-fulltime-wrap" class="table-wrap hidden">
+            <table class="data-table" id="teams-fulltime-table">
+              <thead><tr><th>#</th><th data-i18n="th.manufacturer">Manufacturer</th><th data-i18n="th.team">Team</th><th data-i18n="th.no">No.</th><th data-i18n="th.driver">Driver</th><th data-i18n="th.crew_chief">Crew Chief</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <h4 id="teams-nonchartered-title" class="table-section-title hidden" data-i18n="teams.nonchartered">Non-chartered teams</h4>
+          <div id="teams-nonchartered-wrap" class="table-wrap hidden">
+            <table class="data-table" id="teams-nonchartered-table">
+              <thead><tr><th>#</th><th data-i18n="th.manufacturer">Manufacturer</th><th data-i18n="th.team">Team</th><th data-i18n="th.no">No.</th><th data-i18n="th.driver">Driver</th><th data-i18n="th.crew_chief">Crew Chief</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <h4 id="teams-parttime-title" class="table-section-title hidden" data-i18n="teams.parttime">Part-time teams</h4>
+          <div id="teams-parttime-wrap" class="table-wrap hidden">
+            <table class="data-table" id="teams-parttime-table">
+              <thead><tr><th>#</th><th data-i18n="th.manufacturer">Manufacturer</th><th data-i18n="th.team">Team</th><th data-i18n="th.no">No.</th><th data-i18n="th.driver">Driver</th><th data-i18n="th.crew_chief">Crew Chief</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="teams-dual-wrap">
+            <div class="table-wrap" id="teams-table-wrap">
+              <table class="data-table" id="teams-table">
+                <thead><tr><th>#</th><th data-i18n="th.manufacturer">Manufacturer</th><th data-i18n="th.team">Team</th><th data-i18n="th.no">No.</th><th data-i18n="th.driver">Driver</th><th data-i18n="th.crew_chief">Crew Chief</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="table-wrap hidden" id="teams-endurance-wrap">
+              <table class="data-table" id="teams-endurance-table">
+                <thead>
+                  <tr>
+                    <th>Co-driver name</th>
+                    <th>Rounds</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <h4 id="teams-wildcard-title" class="table-section-title hidden">Wildcard entries</h4>
+          <div class="table-wrap hidden" id="teams-wildcard-wrap">
+            <table class="data-table" id="teams-wildcard-table">
+              <thead>
+                <tr>
+                  <th>Manufacturer</th>
+                  <th>Model</th>
+                  <th>Team</th>
+                  <th>No.</th>
+                  <th>Driver</th>
+                  <th>Rounds</th>
+                  <th>Co-driver</th>
+                  <th>Rounds</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="teams-empty" class="empty-msg hidden">No teams data. Re-import Excel with Teams sheet.</p>
+        </section>
+      </div>
+      <div id="specs-panel" class="series-panel hidden">
+        <section class="specs-section">
+          <h3 data-i18n="section.h3.specs">Car Specs</h3>
+          <div id="car-spec-wrap" class="car-spec hidden">
+            <h4 class="table-section-title" data-i18n="specs.car_models">Car models</h4>
+            <div class="table-wrap" id="car-models-table-wrap"></div>
+            <h4 class="table-section-title" data-i18n="specs.tech_spec">Technical specification</h4>
+            <div class="table-wrap" id="technical-spec-table-wrap"></div>
+            <h4 id="engines-spec-title" class="table-section-title hidden">Engines</h4>
+            <div class="table-wrap hidden" id="engines-spec-table-wrap"></div>
+            <h4 id="homologation-spec-title" class="table-section-title hidden">Homologation</h4>
+            <div class="table-wrap hidden" id="homologation-spec-table-wrap"></div>
+          </div>
+          <div id="imsa-classes-static" class="car-spec hidden">
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Class</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Grand Touring Prototype (GTP) (LMDh and LMH)</td></tr>
+                  <tr><td>Le Mans Prototype 2 (LMP2)</td></tr>
+                  <tr><td>GT Daytona Pro (GTD Pro)</td></tr>
+                  <tr><td>GT Daytona (GTD)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="table-section-title">LMDh – Technical Regulations Overview</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>LMDh Regulation Requirement</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Class / Naming</td><td>Le Mans Daytona h (LMDh) – IMSA designation: GTP</td></tr>
+                  <tr><td>Car Type</td><td>Closed-cockpit hybrid racing prototype</td></tr>
+                  <tr><td>Chassis Base</td><td>LMP2-derived chassis with fixed geometry</td></tr>
+                  <tr><td>Approved Chassis Suppliers</td><td>Dallara / Oreca / Ligier / Multimatic</td></tr>
+                  <tr><td>Bodywork</td><td>Manufacturer-specific styling within homologated aero package</td></tr>
+                  <tr><td>Aerodynamics</td><td>Single homologated aero kit, development frozen</td></tr>
+                  <tr><td>Minimum Weight</td><td>1,030 kg</td></tr>
+                  <tr><td>Drivetrain</td><td>Rear-wheel drive (RWD)</td></tr>
+                  <tr><td>Internal Combustion Engine</td><td>Free configuration (V6, V8; turbocharged or naturally aspirated)</td></tr>
+                  <tr><td>Engine Origin</td><td>Manufacturer-developed engine only</td></tr>
+                  <tr><td>Hybrid System</td><td>Spec (standardized) hybrid system</td></tr>
+                  <tr><td>Hybrid Power Output</td><td>50 kW (≈67 hp)</td></tr>
+                  <tr><td>Hybrid Placement</td><td>Rear axle</td></tr>
+                  <tr><td>Hybrid Deployment</td><td>Activated only above a prescribed speed</td></tr>
+                  <tr><td>Maximum Combined Power</td><td>500 kW (≈670 hp)</td></tr>
+                  <tr><td>Motor Generator Unit (MGU)</td><td>Bosch</td></tr>
+                  <tr><td>Battery Pack Supplier</td><td>Williams Advanced Engineering</td></tr>
+                  <tr><td>Transmission Supplier</td><td>Xtrac</td></tr>
+                  <tr><td>Gearbox Type</td><td>7-speed sequential, integrated with MGU</td></tr>
+                  <tr><td>Tyres</td><td>Single tyre supplier per championship</td></tr>
+                  <tr><td>Balance of Performance (BoP)</td><td>Global BoP applied across series</td></tr>
+                  <tr><td>BoP Adjustable Parameters</td><td>Vehicle weight, power output, hybrid energy, fuel flow</td></tr>
+                  <tr><td>Homologation</td><td>Limited update windows</td></tr>
+                  <tr><td>Cost Control Measures</td><td>Restrictions on engine, gearbox, and hybrid component usage</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="table-section-title">LMH – Vehicle &amp; Technical Specifications</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>LMH Regulation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Class Name</td><td>Le Mans Hypercar (LMH)</td></tr>
+                  <tr><td>Championship</td><td>WEC</td></tr>
+                  <tr><td>Car Type</td><td>Closed-cockpit hypercar prototype</td></tr>
+                  <tr><td>Chassis Concept</td><td>Fully bespoke manufacturer design</td></tr>
+                  <tr><td>Monocoque</td><td>Carbon-fibre monocoque</td></tr>
+                  <tr><td>Chassis Supplier</td><td>Free (manufacturer or appointed contractor)</td></tr>
+                  <tr><td>Maximum Length</td><td>5,000 mm</td></tr>
+                  <tr><td>Maximum Width</td><td>2,000 mm</td></tr>
+                  <tr><td>Maximum Wheelbase</td><td>3,150 mm</td></tr>
+                  <tr><td>Minimum Frontal Area</td><td>1.6 m²</td></tr>
+                  <tr><td>Minimum Vehicle Weight</td><td>1,030 kg</td></tr>
+                  <tr><td>Minimum Engine Weight</td><td>165 kg</td></tr>
+                  <tr><td>Drivetrain (non-hybrid)</td><td>Rear-wheel drive</td></tr>
+                  <tr><td>Drivetrain (hybrid)</td><td>All-wheel drive permitted</td></tr>
+                  <tr><td>Internal Combustion Engine</td><td>Free configuration</td></tr>
+                  <tr><td>Engine Aspiration</td><td>Naturally aspirated or turbocharged</td></tr>
+                  <tr><td>Engine Displacement</td><td>No limit</td></tr>
+                  <tr><td>Engine Origin</td><td>Manufacturer-developed</td></tr>
+                  <tr><td>Maximum Combined Power</td><td>500 kW (670 hp)</td></tr>
+                  <tr><td>Hybrid System</td><td>Optional</td></tr>
+                  <tr><td>Maximum Hybrid Power</td><td>Up to 200 kW</td></tr>
+                  <tr><td>Hybrid Axle</td><td>Front axle only</td></tr>
+                  <tr><td>Hybrid Deployment Speed</td><td>Regulated minimum speed</td></tr>
+                  <tr><td>Aerodynamics</td><td>Free within dimensional limits</td></tr>
+                  <tr><td>Aerodynamic Packages</td><td>One homologated package</td></tr>
+                  <tr><td>Homologation Period</td><td>Long-term, limited update windows</td></tr>
+                  <tr><td>Balance of Performance (BoP)</td><td>Mandatory</td></tr>
+                  <tr><td>BoP Adjusts</td><td>Weight, power, hybrid energy, fuel flow</td></tr>
+                  <tr><td>Maximum Wheel Diameter</td><td>710 mm</td></tr>
+                  <tr><td>Maximum Wheel Width</td><td>380 mm</td></tr>
+                  <tr><td>Tyres</td><td>Single supplier</td></tr>
+                  <tr><td>Minimum Headlight Height</td><td>400 mm above reference plane</td></tr>
+                  <tr><td>Fuel</td><td>FIA-approved renewable fuel</td></tr>
+                  <tr><td>Transmission</td><td>Free (within regulation limits)</td></tr>
+                  <tr><td>Cost Control</td><td>Indirect (homologation + BoP)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="table-section-title">LMP2 – Vehicle &amp; Technical Specifications (2028 Regulations)</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>LMP2 Regulation (2028)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Class Name</td><td>Le Mans Prototype 2 (LMP2)</td></tr>
+                  <tr><td>Championships</td><td>WEC / IMSA / ELMS / AsLMS</td></tr>
+                  <tr><td>Car Type</td><td>Closed-cockpit endurance racing prototype</td></tr>
+                  <tr><td>Chassis Concept</td><td>Spec LMP2 platform</td></tr>
+                  <tr><td>Monocoque</td><td>Carbon-fibre monocoque</td></tr>
+                  <tr><td>Approved Chassis Suppliers</td><td>Oreca / Ligier</td></tr>
+                  <tr><td>Chassis Development</td><td>Frozen (no performance development)</td></tr>
+                  <tr><td>Minimum Vehicle Weight</td><td>950 kg</td></tr>
+                  <tr><td>Maximum Length</td><td>4,750 mm</td></tr>
+                  <tr><td>Overall Width</td><td>1,800 mm (min) – 1,900 mm (max)</td></tr>
+                  <tr><td>Maximum Height</td><td>1,050 mm</td></tr>
+                  <tr><td>Minimum Frontal Area</td><td>FIA regulated</td></tr>
+                  <tr><td>Drivetrain</td><td>Rear-wheel drive (RWD)</td></tr>
+                  <tr><td>Internal Combustion Engine</td><td>Homologated Gibson 4.2 L V8 naturally aspirated</td></tr>
+                  <tr><td>Engine Displacement</td><td>4,200 cc (260 in³)</td></tr>
+                  <tr><td>Engine Power</td><td>~420 kW (560 hp)</td></tr>
+                  <tr><td>Hybrid System</td><td>Not permitted</td></tr>
+                  <tr><td>Fuel Tank Capacity</td><td>75 litres (20 US gallons)</td></tr>
+                  <tr><td>Aerodynamics</td><td>Spec aero package</td></tr>
+                  <tr><td>Aerodynamic Packages</td><td>One homologated kit</td></tr>
+                  <tr><td>Balance of Performance (BoP)</td><td>Not applied (performance fixed by spec)</td></tr>
+                  <tr><td>Gearbox</td><td>Spec sequential gearbox</td></tr>
+                  <tr><td>Transmission Supplier</td><td>Xtrac</td></tr>
+                  <tr><td>Number of Gears</td><td>6-speed sequential</td></tr>
+                  <tr><td>Maximum Wheel Diameter</td><td>Front: 690 mm, Rear: 715 mm</td></tr>
+                  <tr><td>Maximum Wheel Width</td><td>Front: 342 mm, Rear: 362 mm</td></tr>
+                  <tr><td>Tyres</td><td>Single supplier per championship</td></tr>
+                  <tr><td>Minimum Headlight Height</td><td>FIA regulated</td></tr>
+                  <tr><td>Fuel</td><td>FIA-approved renewable fuel</td></tr>
+                  <tr><td>Cost Control</td><td>Strict (spec engine, spec aero, frozen chassis)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="table-section-title">Key Differences: GTD Pro vs GTD</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>GTD Pro</th>
+                    <th>GTD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Purpose / Driver Level</td>
+                    <td>Professional class: only all-pro driver lineups</td>
+                    <td>Pro-Am class: mixed lineups with professional and amateur drivers</td>
+                  </tr>
+                  <tr>
+                    <td>Driver Ratings</td>
+                    <td>All drivers FIA Platinum/Gold</td>
+                    <td>Combination of Pro (Platinum/Gold) + Silver/Bronze</td>
+                  </tr>
+                  <tr>
+                    <td>Cars</td>
+                    <td>GT3-spec cars, same models as GTD</td>
+                    <td>GT3-spec cars (identical technical specifications)</td>
+                  </tr>
+                  <tr>
+                    <td>BoP</td>
+                    <td>Applied</td>
+                    <td>Applied (same as GTD Pro)</td>
+                  </tr>
+                  <tr>
+                    <td>Race Strategy / Pace</td>
+                    <td>Aggressive strategy, full pro stints</td>
+                    <td>Often more conservative strategy, with restrictions for amateur drivers</td>
+                  </tr>
+                  <tr>
+                    <td>Series / Events</td>
+                    <td>IMSA WeatherTech: full season including Rolex 24, Sebring, Long Beach</td>
+                    <td>IMSA WeatherTech: full season, but with driver rating restrictions</td>
+                  </tr>
+                  <tr>
+                    <td>Teams</td>
+                    <td>Usually factory-backed professional teams</td>
+                    <td>Often customer/privateer teams and amateur drivers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="table-section-title">IMSA GT3 (GTD / GTD Pro) – General Regulations (2026)</h4>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>GTD / GTD Pro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Class Type</td><td>GT3-spec cars</td></tr>
+                  <tr><td>Championships</td><td>IMSA WeatherTech GTD / GTD Pro</td></tr>
+                  <tr><td>Chassis</td><td>FIA-homologated GT3 chassis (steel or aluminium spaceframe / carbon monocoque depending on manufacturer)</td></tr>
+                  <tr><td>Bodywork</td><td>Manufacturer-specific GT3 aero kit, homologated by FIA</td></tr>
+                  <tr><td>Engine Type</td><td>FIA-homologated GT3 engines (turbocharged or naturally aspirated, production-based)</td></tr>
+                  <tr><td>Engine Displacement</td><td>Manufacturer-specific, within FIA GT3 limits (~2.0–4.0 L)</td></tr>
+                  <tr><td>Maximum Power</td><td>~500–600 hp (regulated via BoP)</td></tr>
+                  <tr><td>Hybrid System</td><td>Not permitted</td></tr>
+                  <tr><td>Drivetrain</td><td>Rear-wheel drive (standard GT3); some AWD permitted in BoP rules</td></tr>
+                  <tr><td>Minimum Weight</td><td>Determined by BoP; typically 1,245–1,360 kg depending on model</td></tr>
+                  <tr><td>Fuel</td><td>FIA-approved renewable fuel; series-specific fuel flow regulated</td></tr>
+                  <tr><td>Gearbox</td><td>Sequential, 6–7 speed; spec or homologated per GT3 rules</td></tr>
+                  <tr><td>Tyres</td><td>Single supplier per championship (Michelin / Continental / Pirelli)</td></tr>
+                  <tr><td>Aerodynamics</td><td>Homologated GT3 aero kit; cannot be modified outside FIA update rules</td></tr>
+                  <tr><td>BoP</td><td>Mandatory; regulates weight, power, fuel flow, restrictor size</td></tr>
+                  <tr><td>Driver Lineup</td><td>GTD Pro: all-pro drivers (Platinum/Gold FIA); GTD: Pro-Am mix (Platinum/Gold + Silver/Bronze)</td></tr>
+                  <tr><td>Pit / Driver Regulations</td><td>GTD Pro: professional pit stops, flexible stint length; GTD: restrictions on amateur driving time per stint</td></tr>
+                  <tr><td>Dimensions</td><td>Max width ~2,000 mm, length ~4,900–5,000 mm, height ~1,200 mm; per FIA GT3 homologation</td></tr>
+                  <tr><td>Notes</td><td>GTD Pro and GTD use the same cars; main difference is driver lineup and strategic restrictions. BoP ensures parity across all GT3 models.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p id="specs-empty" class="empty-msg hidden" data-i18n="specs.empty">No car specs data yet. Re-import Excel with Car Specs sheet.</p>
+        </section>
+      </div>
+      <div id="stats-panel" class="series-panel hidden">
+        <section class="stats-section">
+          <h3 data-i18n="section.h3.stats">Driver Stats</h3>
+          <div class="stats-controls">
+          <div class="stats-controls-left">
+          <label>
+                Min starts
+                <select id="stats-min-starts">
+                  <option value="0">All drivers</option>
+                  <option value="3">3+ starts</option>
+                  <option value="5">5+ starts</option>
+                  <option value="10">10+ starts</option>
+                </select>
+              </label>
+            </div>
+            <div class="stats-controls-right">
+              <input id="stats-filter" type="search" placeholder="Filter by driver">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="stats-table" class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th.pos">Pos</th>
+                  <th data-i18n="th.no">#</th>
+                  <th data-i18n="th.driver">Driver</th>
+                  <th data-i18n="th.team">Team</th>
+                  <th data-i18n="th.manufacturer">Manufacturer</th>
+                  <th>St</th>
+                  <th data-i18n="standings.wins">Wins</th>
+                  <th data-i18n="standings.poles">Poles</th>
+                  <th data-i18n="standings.top5">Top 5</th>
+                  <th data-i18n="standings.top10">Top 10</th>
+                  <th data-i18n="standings.top15">Top 15</th>
+                  <th data-i18n="standings.top20">Top 20</th>
+                  <th data-i18n="standings.avg_start">Avg. Start</th>
+                  <th data-i18n="standings.avg_finish">Avg. Finish</th>
+                  <th data-i18n="standings.stage_wins">Stage Wins</th>
+                  <th data-i18n="standings.stage_points">Stage Pts</th>
+                  <th data-i18n="standings.avg_stage_points">Avg. Stage Pts</th>
+                  <th data-i18n="standings.laps_led">Led</th>
+                  <th>Laps Completed %</th>
+                  <th>Pos. Diff</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p id="stats-empty" class="empty-msg hidden">No stats data yet.</p>
+          <div id="team-stats-wrap">
+            <h3 class="mt-3">Team Stats</h3>
+            <div class="stats-controls">
+              <div class="stats-controls-right">
+                <input id="team-stats-filter" type="search" placeholder="Filter by team">
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table id="team-stats-table" class="data-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="th.pos">Pos</th>
+                    <th data-i18n="th.team">Team</th>
+                    <th>St</th>
+                    <th data-i18n="standings.wins">Wins</th>
+                    <th data-i18n="standings.poles">Poles</th>
+                    <th data-i18n="standings.top5">Top 5</th>
+                    <th data-i18n="standings.top10">Top 10</th>
+                    <th data-i18n="standings.top15">Top 15</th>
+                    <th data-i18n="standings.top20">Top 20</th>
+                    <th data-i18n="standings.avg_start">Avg. Start</th>
+                    <th data-i18n="standings.avg_finish">Avg. Finish</th>
+                    <th data-i18n="standings.stage_wins">Stage Wins</th>
+                    <th data-i18n="standings.stage_points">Stage Pts</th>
+                    <th data-i18n="standings.avg_stage_points">Avg. Stage Pts</th>
+                    <th>Led</th>
+                    <th>Laps Completed %</th>
+                    <th>Pos. Diff</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p id="team-stats-empty" class="empty-msg hidden">No team stats data yet.</p>
+          </div>
+          <div id="manufacturer-stats-wrap">
+            <h3 class="mt-3">Manufacturer Stats</h3>
+            <div class="stats-controls">
+              <div class="stats-controls-right">
+                <input id="manufacturer-stats-filter" type="search" placeholder="Filter by manufacturer">
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table id="manufacturer-stats-table" class="data-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="th.pos">Pos</th>
+                    <th data-i18n="th.manufacturer">Manufacturer</th>
+                    <th>Starts</th>
+                    <th>Wins</th>
+                    <th>Top-2</th>
+                    <th>Top-3</th>
+                    <th>Podiums</th>
+                    <th>Top-5</th>
+                    <th>Top-10</th>
+                    <th>Avg. Start</th>
+                    <th>Avg. Qualifying</th>
+                    <th>Avg. Finish</th>
+                    <th>Q2</th>
+                    <th>Q3</th>
+                    <th>Laps Led</th>
+                    <th>Laps Completed</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p id="manufacturer-stats-empty" class="empty-msg hidden">No manufacturer stats data yet.</p>
+          </div>
+        </section>
+      </div>
+      <div id="history-panel" class="series-panel hidden">
+        <section class="history-section">
+          <h3 data-i18n="section.h3.history">History</h3>
+          <div class="table-wrap">
+            <table id="history-table" class="data-table">
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Races</th>
+                  <th>Constructors champion</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      </div>
+    </div>
+    <div id="view-track" class="view hidden">
+      <nav class="breadcrumb" id="track-breadcrumb"></nav>
+      <header class="event-header">
+        <h1 id="track-title">—</h1>
+        <p id="track-meta" class="detail-meta"></p>
+      </header>
+      <div id="track-content" class="track-content"></div>
+    </div>
+    <div id="view-driver" class="view hidden">
+      <nav class="breadcrumb" id="driver-breadcrumb"></nav>
+      <header class="event-header driver-header">
+        <div class="driver-header-row">
+          <div class="driver-photo-wrap">
+            <img id="driver-photo" class="driver-photo" alt="Driver photo" />
+          </div>
+          <div class="driver-header-text">
+            <h1 id="driver-title">—</h1>
+            <p id="driver-meta" class="detail-meta"></p>
+          </div>
+        </div>
+      </header>
+      <div id="driver-content" class="track-content"></div>
+    </div>
+    <div id="view-team" class="view hidden">
+      <nav class="breadcrumb" id="team-breadcrumb"></nav>
+      <header class="event-header">
+        <h1 id="team-title">—</h1>
+        <p id="team-meta" class="detail-meta"></p>
+      </header>
+      <div id="team-content" class="track-content"></div>
+    </div>
+    <div id="view-crew-chief" class="view hidden">
+      <nav class="breadcrumb" id="crew-chief-breadcrumb"></nav>
+      <header class="event-header">
+        <h1 id="crew-chief-title">—</h1>
+        <p id="crew-chief-meta" class="detail-meta"></p>
+      </header>
+      <div id="crew-chief-content" class="track-content"></div>
+    </div>
+    <div id="view-event" class="view hidden">
+      <div class="event-sticky-header">
+        <nav class="breadcrumb" id="event-breadcrumb"></nav>
+        <header class="event-header">
+          <h1 id="event-title">—</h1>
+          <p id="event-meta" class="event-meta"></p>
+        </header>
+        <nav id="event-section-nav" class="event-section-nav" aria-label="Event sections"></nav>
+      </div>
+      <div id="event-panels-wrap" class="event-panels-wrap">
+        <div id="event-content"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container"><p id="footer-text">The Grid Archive (TGA) — Season 2026</p></div>
+  </footer>
+  <script src="/web/data/translations.js" defer></script>
+  <script src="/web/data/series-colors.js" defer></script>
+  <script src="/web/data/f1-tech-spec-2025.js" defer></script>
+  <script src="/web/data/f1-tech-spec-2026.js" defer></script>
+  <script src="/web/data/static-schedules.js" defer></script>
+  <script src="/web/utils/localize-ru-data.js" defer></script>
+  <script src="/web/utils/fetch-json.js" defer></script>
+  <script src="/web/tga-i18n.js" defer></script>
+  <script src="/web/components/table-sort.js" defer></script>
+  <script src="/web/components/next-race-cards.js" defer></script>
+  <script src="/web/components/last-results-cards.js" defer></script>
+  <script src="/web/components/schedule.js" defer></script>
+  <script src="/web/pages/list.js" defer></script>
+  <script src="/web/series-supercars.js" defer></script>
+  <script src="/web/tga-series.js" defer></script>
+  <script src="/web/app.js" defer></script>
+</body>
+</html>

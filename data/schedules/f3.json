@@ -1,0 +1,12 @@
+[
+  {"id": "F3_2026_1", "series_id": "F3", "season": "2026", "name": "Melbourne", "location": "Melbourne", "circuit_name": "Albert Park Circuit", "start_date": "2026-03-07", "end_date": "2026-03-08", "time_est": "13:00", "time_msk": "05:00"},
+  {"id": "F3_2026_2", "series_id": "F3", "season": "2026", "name": "Bahrain", "location": "Sakhir", "circuit_name": "Bahrain International Circuit", "start_date": "2026-04-11", "end_date": "2026-04-12", "time_est": "16:00", "time_msk": "16:00"},
+  {"id": "F3_2026_3", "series_id": "F3", "season": "2026", "name": "Monaco", "location": "Monaco", "circuit_name": "Circuit de Monaco", "start_date": "2026-06-06", "end_date": "2026-06-07", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_4", "series_id": "F3", "season": "2026", "name": "Barcelona", "location": "Montmeló", "circuit_name": "Circuit de Barcelona-Catalunya", "start_date": "2026-06-13", "end_date": "2026-06-14", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_5", "series_id": "F3", "season": "2026", "name": "Spielberg", "location": "Spielberg", "circuit_name": "Red Bull Ring", "start_date": "2026-06-27", "end_date": "2026-06-28", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_6", "series_id": "F3", "season": "2026", "name": "Silverstone", "location": "Silverstone", "circuit_name": "Silverstone Circuit", "start_date": "2026-07-04", "end_date": "2026-07-05", "time_est": "13:00", "time_msk": "15:00"},
+  {"id": "F3_2026_7", "series_id": "F3", "season": "2026", "name": "Spa-Francorchamps", "location": "Stavelot", "circuit_name": "Circuit de Spa-Francorchamps", "start_date": "2026-07-18", "end_date": "2026-07-19", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_8", "series_id": "F3", "season": "2026", "name": "Hungaroring", "location": "Mogyoród", "circuit_name": "Hungaroring", "start_date": "2026-07-25", "end_date": "2026-07-26", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_9", "series_id": "F3", "season": "2026", "name": "Monza", "location": "Monza", "circuit_name": "Monza Circuit", "start_date": "2026-09-05", "end_date": "2026-09-06", "time_est": "13:00", "time_msk": "14:00"},
+  {"id": "F3_2026_10", "series_id": "F3", "season": "2026", "name": "Madrid", "location": "Madrid", "circuit_name": "Madrid Circuit", "start_date": "2026-09-12", "end_date": "2026-09-13", "time_est": "13:00", "time_msk": "14:00"}
+]

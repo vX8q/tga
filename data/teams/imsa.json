@@ -1,0 +1,784 @@
+{
+  "teams": [
+    {
+      "class": "GTP",
+      "team": "Porsche Penske Motorsport",
+      "chassis": "Porsche 963",
+      "number": "6",
+      "drivers": [
+        "Matt Campbell",
+        "Kévin Estre",
+        "Laurens Vanthoor"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Porsche Penske Motorsport",
+      "chassis": "Porsche 963",
+      "number": "7",
+      "drivers": [
+        "Julien Andlauer",
+        "Laurin Heinrich",
+        "Felipe Nasr"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Wayne Taylor Racing",
+      "chassis": "Cadillac V-Series.R",
+      "number": "10",
+      "drivers": [
+        "Filipe Albuquerque",
+        "Will Stevens",
+        "Ricky Taylor"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Wayne Taylor Racing",
+      "chassis": "Cadillac V-Series.R",
+      "number": "40",
+      "drivers": [
+        "Louis Delétraz",
+        "Colton Herta",
+        "Jordan Taylor"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "THOR Team",
+      "chassis": "Aston Martin Valkyrie",
+      "number": "23",
+      "drivers": [
+        "Roman De Angelis",
+        "Ross Gunn",
+        "Alex Riberas",
+        "Marco Sørensen"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "BMW M Team WRT",
+      "chassis": "BMW M Hybrid V8",
+      "number": "24",
+      "drivers": [
+        "Robin Frijns",
+        "René Rast",
+        "Sheldon van der Linde",
+        "Dries Vanthoor"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "BMW M Team WRT",
+      "chassis": "BMW M Hybrid V8",
+      "number": "25",
+      "drivers": [
+        "Philipp Eng",
+        "Kevin Magnussen",
+        "Raffaele Marciello",
+        "Marco Wittmann"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Cadillac Whelen",
+      "chassis": "Cadillac V-Series.R",
+      "number": "31",
+      "drivers": [
+        "Jack Aitken",
+        "Earl Bamber",
+        "Frederik Vesti",
+        "Connor Zilisch"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Meyer Shank Racing with Curb-Agajanian",
+      "chassis": "Acura ARX-06",
+      "number": "60",
+      "drivers": [
+        "A. J. Allmendinger",
+        "Tom Blomqvist",
+        "Colin Braun",
+      "Scott Dixon"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "Meyer Shank Racing with Curb-Agajanian",
+      "chassis": "Acura ARX-06",
+      "number": "93",
+      "drivers": [
+        "Kakunoshin Ohta",
+        "Álex Palou",
+        "Nick Yelloly",
+        "Renger van der Zande"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTP",
+      "team": "JDC–Miller MotorSports",
+      "chassis": "Porsche 963",
+      "number": "85",
+      "drivers": [
+        "Kaylen Frederick",
+        "Tijmen van der Helm",
+        "Nico Pino"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "CrowdStrike Racing by APR",
+      "chassis": "Oreca 07",
+      "number": "04",
+      "drivers": [
+        "Malthe Jakobsen",
+        "George Kurtz",
+        "Alex Quinn",
+        "Toby Sowery"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "United Autosports USA",
+      "chassis": "Oreca 07",
+      "number": "2",
+      "drivers": [
+        "Phil Fayer",
+        "Ben Hanley",
+        "Mikkel Jensen",
+        "Hunter McElrea"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "United Autosports USA",
+      "chassis": "Oreca 07",
+      "number": "22",
+      "drivers": [
+        "Paul di Resta",
+        "Dan Goldburg",
+        "Rasmus Lindh",
+        "Grégoire Saucy"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Tower Motorsports",
+      "chassis": "Oreca 07",
+      "number": "8",
+      "drivers": [
+        "Sebastián Álvarez",
+        "Sébastien Bourdais",
+        "John Farano",
+        "Kyffin Simpson",
+        "Tristan Vautier"
+      ],
+      "rounds": "TBC"
+    },
+    {
+      "class": "LMP2",
+      "team": "TDS Racing",
+      "chassis": "Oreca 07",
+      "number": "11",
+      "drivers": [
+        "Mathias Beche",
+        "David Heinemeier Hansson",
+        "Tobias Lütke",
+        "Charles Milesi"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Era Motorsport",
+      "chassis": "Oreca 07",
+      "number": "18",
+      "drivers": [
+        "Jacob Abel",
+        "Ferdinand Habsburg",
+        "Naveen Rao",
+        "Logan Sargeant"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Intersport Racing",
+      "chassis": "Oreca 07",
+      "number": "37",
+      "drivers": [
+        "Jon Field",
+        "Oliver Jarvis",
+        "Seth Lucas",
+        "Job van Uitert"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Inter Europol Competition",
+      "chassis": "Oreca 07",
+      "number": "43",
+      "drivers": [
+        "Jeremy Clarke",
+        "Tom Dillmann",
+        "António Félix da Costa",
+        "Bijoy Garg"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Inter Europol Competition",
+      "chassis": "Oreca 07",
+      "number": "343",
+      "drivers": [
+        "Nick Cassidy",
+        "Georgios Kolovos",
+        "Nolan Siegel",
+        "Jakub Śmiechowski"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Bryan Herta Autosport with PR1/Mathiasen",
+      "chassis": "Oreca 07",
+      "number": "52",
+      "drivers": [
+        "Misha Goikhberg",
+        "Ben Keating",
+        "Parker Thompson",
+        "Harry Tincknell"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "Team Tonis",
+      "chassis": "Oreca 07",
+      "number": "61",
+      "drivers": [
+        "Tõnis Kasemets"
+      ],
+      "rounds": "TBC"
+    },
+    {
+      "class": "LMP2",
+      "team": "Pratt Miller Motorsports",
+      "chassis": "Oreca 07",
+      "number": "73",
+      "drivers": [
+        "Chris Cumming",
+        "Manuel Espírito Santo",
+        "Enzo Fittipaldi",
+        "Pietro Fittipaldi"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "AF Corse",
+      "chassis": "Oreca 07",
+      "number": "83",
+      "drivers": [
+        "Dylan Murry",
+        "Nicklas Nielsen",
+        "François Perrodo",
+        "Matthieu Vaxivière"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "LMP2",
+      "team": "AO Racing",
+      "chassis": "Oreca 07",
+      "number": "99",
+      "drivers": [
+        "Dane Cameron",
+        "Jonny Edgar",
+        "P. J. Hyett",
+        "Christian Rasmussen"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Triarsi Competizione",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "033",
+      "drivers": [
+        "Riccardo Agostini",
+        "James Calado",
+        "Miguel Molina",
+        "Alessio Rovera"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Paul Miller Racing",
+      "chassis": "BMW M4 GT3 Evo",
+      "number": "1",
+      "drivers": [
+        "Connor De Phillippi",
+        "Dan Harper",
+        "Max Hesse",
+        "Neil Verhagen"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Corvette Racing by Pratt Miller Motorsports",
+      "chassis": "Chevrolet Corvette Z06 GT3.R",
+      "number": "3",
+      "drivers": [
+        "Antonio García",
+        "Marvin Kirchhöfer",
+        "Alexander Sims"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Corvette Racing by Pratt Miller Motorsports",
+      "chassis": "Chevrolet Corvette Z06 GT3.R",
+      "number": "4",
+      "drivers": [
+        "Nicky Catsburg",
+        "Tommy Milner",
+        "Nico Varrone"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Pfaff Motorsports",
+      "chassis": "Lamborghini Huracán GT3 Evo 2 / Temerario GT3",
+      "number": "9",
+      "drivers": [
+        "Mirko Bortolotti",
+        "Andrea Caldarelli",
+        "James Hinchcliffe",
+        "Sandy Mitchell",
+        "Franck Perera"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Vasser Sullivan Racing",
+      "chassis": "Lexus RC F GT3",
+      "number": "14",
+      "drivers": [
+        "Ben Barnicoat",
+        "Jack Hawksworth",
+        "Kyle Kirkwood"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Winward Racing",
+      "chassis": "Mercedes-AMG GT3 Evo",
+      "number": "48",
+      "drivers": [
+        "Jason Hart",
+        "Maxime Martin",
+        "Scott Noble",
+        "Luca Stolz"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "RLL Team McLaren",
+      "chassis": "McLaren 720S GT3 Evo",
+      "number": "59",
+      "drivers": [
+        "Max Esterson",
+        "Nikita Johnson",
+        "Dean MacDonald",
+        "Jüri Vips"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Risi Competizione",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "62",
+      "drivers": [
+        "Alessandro Pier Guidi",
+        "Davide Rigon",
+        "Daniel Serra"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Ford Multimatic Motorsports",
+      "chassis": "Ford Mustang GT3 Evo",
+      "number": "64",
+      "drivers": [
+        "Ben Barker",
+        "Dennis Olsen",
+        "Mike Rockenfeller"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Ford Multimatic Motorsports",
+      "chassis": "Ford Mustang GT3 Evo",
+      "number": "65",
+      "drivers": [
+        "Christopher Mies",
+        "Sebastian Priaulx",
+        "Frédéric Vervisch"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Bartone Bros with GetSpeed",
+      "chassis": "Mercedes-AMG GT3 Evo",
+      "number": "69",
+      "drivers": [
+        "Anthony Bartone",
+        "Maximilian Götz",
+        "Jules Gounon",
+        "Fabian Schiller"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "75 Express",
+      "chassis": "Mercedes-AMG GT3 Evo",
+      "number": "75",
+      "drivers": [
+        "Maro Engel",
+        "Kenny Habul",
+        "Chaz Mostert",
+        "Will Power"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "AO Racing",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "77",
+      "drivers": [
+        "Harry King",
+        "Alessio Picariello",
+        "Nick Tandy"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD Pro",
+      "team": "Manthey Racing",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "911",
+      "drivers": [
+        "Klaus Bachler",
+        "Ricardo Feller",
+        "Ayhancan Güven",
+        "Thomas Preining"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Triarsi Competizione",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "023",
+      "drivers": [
+        "Kenton Koch",
+        "Robert Megennis",
+        "Onofrio Triarsi",
+        "Yifei Ye"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Vasser Sullivan Racing",
+      "chassis": "Lexus RC F GT3",
+      "number": "12",
+      "drivers": [
+        "Esteban Masson",
+        "Frankie Montecalvo",
+        "Benjamin Pedersen",
+        "Aaron Telitz"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "13 Autosport",
+      "chassis": "Chevrolet Corvette Z06 GT3.R",
+      "number": "13",
+      "drivers": [
+        "Matt Bell",
+        "Orey Fidani",
+        "Ben Green",
+        "Lars Kern"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Myers Riley Motorsports",
+      "chassis": "Ford Mustang GT3 Evo",
+      "number": "16",
+      "drivers": [
+        "Jenson Altzman",
+        "Felipe Fraga",
+        "Romain Grosjean",
+        "Sheena Monk"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "van der Steur Racing",
+      "chassis": "Aston Martin Vantage AMR GT3 Evo",
+      "number": "19",
+      "drivers": [
+        "Sébastien Baud",
+        "Carl Bennett",
+        "Valentin Hasse-Clot",
+        "Rory van der Steur"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "AF Corse",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "21",
+      "drivers": [
+        "Antonio Fuoco",
+        "Simon Mann",
+        "Tommaso Mosca",
+        "Lilou Wadoux"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Heart of Racing Team",
+      "chassis": "Aston Martin Vantage AMR GT3 Evo",
+      "number": "27",
+      "drivers": [
+        "Eduardo Barrichello",
+        "Mattia Drudi",
+        "Tom Gamble",
+        "Zacharie Robichon"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "RS1",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "28",
+      "drivers": [
+        "Jan Heylen",
+        "Dillon Machavern",
+        "Sven Müller",
+        "Eric Zitza"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Conquest Racing",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "34",
+      "drivers": [
+        "Albert Costa",
+        "Manny Franco",
+        "Lorenzo Patrese",
+        "Thierry Vermeulen"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "DXDT Racing",
+      "chassis": "Chevrolet Corvette Z06 GT3.R",
+      "number": "36",
+      "drivers": [
+        "Charlie Eastwood",
+        "Mason Filippi",
+        "Scott McLaughlin",
+        "Salih Yoluç"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Magnus Racing",
+      "chassis": "Aston Martin Vantage AMR GT3 Evo",
+      "number": "44",
+      "drivers": [
+        "John Potter",
+        "Spencer Pumpelly",
+        "Madison Snow",
+        "Nicki Thiim"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Wayne Taylor Racing",
+      "chassis": "Lamborghini Huracán GT3 Evo 2",
+      "number": "45",
+      "drivers": [
+        "Graham Doyle",
+        "Marcus Ericsson",
+        "Danny Formal",
+        "Trent Hindman"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Winward Racing",
+      "chassis": "Mercedes-AMG GT3 Evo",
+      "number": "57",
+      "drivers": [
+        "Lucas Auer",
+        "Indy Dontje",
+        "Philip Ellis",
+        "Russell Ward"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Gradient Racing",
+      "chassis": "Ford Mustang GT3 Evo",
+      "number": "66",
+      "drivers": [
+        "Till Bechtolsheimer",
+        "Joey Hand",
+        "Corey Lewis",
+        "Jake Walker"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Inception Racing",
+      "chassis": "Ferrari 296 GT3 Evo",
+      "number": "70",
+      "drivers": [
+        "David Fumanelli",
+        "Brendan Iribe",
+        "Ollie Millroy",
+        "Frederik Schandorff"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Lone Star Racing",
+      "chassis": "Mercedes-AMG GT3 Evo",
+      "number": "80",
+      "drivers": [
+        "Scott Andrews",
+        "Ralf Aron",
+        "Lin Hodenius",
+        "James Roe"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "DragonSpeed",
+      "chassis": "Chevrolet Corvette Z06 GT3.R",
+      "number": "81",
+      "drivers": [
+        "Giacomo Altoè",
+        "Matteo Cairoli",
+        "Henrik Hedman",
+        "Casper Stevenson"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Turner Motorsport",
+      "chassis": "BMW M4 GT3 Evo",
+      "number": "96",
+      "drivers": [
+        "Robby Foley",
+        "Patrick Gallagher",
+        "Jens Klingmann",
+        "Francis Selldorff"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Wright Motorsports",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "120",
+      "drivers": [
+        "Adam Adelson",
+        "Callum Ilott",
+        "Tom Sargent",
+        "Elliott Skeer"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Mühlner Motorsport",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "123",
+      "drivers": [
+        "Peter Ludwig",
+        "Dave Musial",
+        "Dave Musial Jr.",
+        "Ryan Yardley"
+      ],
+      "rounds": "Rolex 24"
+    },
+    {
+      "class": "GTD",
+      "team": "Manthey 1st Phorm",
+      "chassis": "Porsche 911 GT3 R (992.2)",
+      "number": "912",
+      "drivers": [
+        "Ryan Hardwick",
+        "Riccardo Pera",
+        "Richard Lietz",
+        "Morris Schuring"
+      ],
+      "rounds": "Rolex 24"
+    }
+  ]
+}

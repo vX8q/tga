@@ -1,0 +1,26 @@
+{
+  "teams": [
+    { "manufacturer": "Alpine-Mercedes", "team": "BWT Alpine F1 Team", "chassis": "A526", "power_unit": "Mercedes-AMG F1 M17", "number": "10", "driver": "Pierre Gasly", "rounds": "1" },
+    { "manufacturer": "Alpine-Mercedes", "team": "BWT Alpine F1 Team", "chassis": "A526", "power_unit": "Mercedes-AMG F1 M17", "number": "43", "driver": "Franco Colapinto", "rounds": "1" },
+    { "manufacturer": "Aston Martin Aramco-Honda", "team": "Aston Martin Aramco F1 Team", "chassis": "AMR26", "power_unit": "Honda RA626H", "number": "14", "driver": "Fernando Alonso", "rounds": "1" },
+    { "manufacturer": "Aston Martin Aramco-Honda", "team": "Aston Martin Aramco F1 Team", "chassis": "AMR26", "power_unit": "Honda RA626H", "number": "18", "driver": "Lance Stroll", "rounds": "1" },
+    { "manufacturer": "Atlassian Williams-Mercedes", "team": "Atlassian Williams F1 Team", "chassis": "FW48", "power_unit": "Mercedes-AMG F1 M17", "number": "23", "driver": "Alexander Albon", "rounds": "1" },
+    { "manufacturer": "Atlassian Williams-Mercedes", "team": "Atlassian Williams F1 Team", "chassis": "FW48", "power_unit": "Mercedes-AMG F1 M17", "number": "55", "driver": "Carlos Sainz Jr.", "rounds": "1" },
+    { "manufacturer": "Audi", "team": "Audi Revolut F1 Team", "chassis": "R26", "power_unit": "Audi AFR 26 Hybrid", "number": "5", "driver": "Gabriel Bortoleto", "rounds": "1" },
+    { "manufacturer": "Audi", "team": "Audi Revolut F1 Team", "chassis": "R26", "power_unit": "Audi AFR 26 Hybrid", "number": "27", "driver": "Nico Hülkenberg", "rounds": "1" },
+    { "manufacturer": "Cadillac-Ferrari", "team": "Cadillac Formula 1 Team", "chassis": "MAC-26", "power_unit": "Ferrari 067/6", "number": "11", "driver": "Sergio Pérez", "rounds": "1" },
+    { "manufacturer": "Cadillac-Ferrari", "team": "Cadillac Formula 1 Team", "chassis": "MAC-26", "power_unit": "Ferrari 067/6", "number": "77", "driver": "Valtteri Bottas", "rounds": "1" },
+    { "manufacturer": "Ferrari", "team": "Scuderia Ferrari HP", "chassis": "SF-26", "power_unit": "Ferrari 067/6", "number": "16", "driver": "Charles Leclerc", "rounds": "1" },
+    { "manufacturer": "Ferrari", "team": "Scuderia Ferrari HP", "chassis": "SF-26", "power_unit": "Ferrari 067/6", "number": "44", "driver": "Lewis Hamilton", "rounds": "1" },
+    { "manufacturer": "Haas-Ferrari", "team": "TGR Haas F1 Team", "chassis": "VF-26", "power_unit": "Ferrari 067/6", "number": "31", "driver": "Esteban Ocon", "rounds": "1" },
+    { "manufacturer": "Haas-Ferrari", "team": "TGR Haas F1 Team", "chassis": "VF-26", "power_unit": "Ferrari 067/6", "number": "87", "driver": "Oliver Bearman", "rounds": "1" },
+    { "manufacturer": "McLaren-Mercedes", "team": "McLaren Mastercard F1 Team", "chassis": "MCL40", "power_unit": "Mercedes-AMG F1 M17", "number": "1", "driver": "Lando Norris", "rounds": "1" },
+    { "manufacturer": "McLaren-Mercedes", "team": "McLaren Mastercard F1 Team", "chassis": "MCL40", "power_unit": "Mercedes-AMG F1 M17", "number": "81", "driver": "Oscar Piastri", "rounds": "1" },
+    { "manufacturer": "Mercedes", "team": "Mercedes-AMG Petronas F1 Team", "chassis": "F1 W17", "power_unit": "Mercedes-AMG F1 M17", "number": "12", "driver": "Kimi Antonelli", "rounds": "1" },
+    { "manufacturer": "Mercedes", "team": "Mercedes-AMG Petronas F1 Team", "chassis": "F1 W17", "power_unit": "Mercedes-AMG F1 M17", "number": "63", "driver": "George Russell", "rounds": "1" },
+    { "manufacturer": "Racing Bulls-Red Bull Ford", "team": "Visa Cash App Racing Bulls F1 Team", "chassis": "VCARB 03", "power_unit": "Red Bull Ford DM01", "number": "30", "driver": "Liam Lawson", "rounds": "1" },
+    { "manufacturer": "Racing Bulls-Red Bull Ford", "team": "Visa Cash App Racing Bulls F1 Team", "chassis": "VCARB 03", "power_unit": "Red Bull Ford DM01", "number": "41", "driver": "Arvid Lindblad", "rounds": "1" },
+    { "manufacturer": "Red Bull Racing-Red Bull Ford", "team": "Oracle Red Bull Racing", "chassis": "RB22", "power_unit": "Red Bull Ford DM01", "number": "3", "driver": "Max Verstappen", "rounds": "1" },
+    { "manufacturer": "Red Bull Racing-Red Bull Ford", "team": "Oracle Red Bull Racing", "chassis": "RB22", "power_unit": "Red Bull Ford DM01", "number": "6", "driver": "Isack Hadjar", "rounds": "1" }
+  ]
+}

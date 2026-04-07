@@ -1,0 +1,62 @@
+[
+  {
+    "id": "GTWCE_END_2026_1",
+    "series_id": "GTWCE_END",
+    "season": "2026",
+    "name": "6 Hours of Paul Ricard",
+    "location": "Le Castellet",
+    "circuit_name": "Circuit Paul Ricard",
+    "start_date": "2026-04-11",
+    "end_date": "2026-04-12",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "GTWCE_END_2026_2",
+    "series_id": "GTWCE_END",
+    "season": "2026",
+    "name": "3 Hours of Monza",
+    "location": "Monza",
+    "circuit_name": "Autodromo Nazionale di Monza",
+    "start_date": "2026-05-30",
+    "end_date": "2026-05-31",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "GTWCE_END_2026_3",
+    "series_id": "GTWCE_END",
+    "season": "2026",
+    "name": "CrowdStrike 24 Hours of Spa",
+    "location": "Stavelot",
+    "circuit_name": "Circuit de Spa-Francorchamps",
+    "start_date": "2026-06-25",
+    "end_date": "2026-06-28",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "GTWCE_END_2026_4",
+    "series_id": "GTWCE_END",
+    "season": "2026",
+    "name": "3 Hours of Nürburgring",
+    "location": "Nürburg",
+    "circuit_name": "Nürburgring",
+    "start_date": "2026-08-29",
+    "end_date": "2026-08-30",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  },
+  {
+    "id": "GTWCE_END_2026_5",
+    "series_id": "GTWCE_END",
+    "season": "2026",
+    "name": "3 Hours of Portimão",
+    "location": "Portimão",
+    "circuit_name": "Algarve International Circuit",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-18",
+    "time_est": "12:00",
+    "time_msk": "14:00"
+  }
+]

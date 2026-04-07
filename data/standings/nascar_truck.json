@@ -1,0 +1,487 @@
+{
+  "race_order": [
+    "DAY",
+    "ATL",
+    "STP",
+    "DAR",
+    "BRI",
+    "TEX",
+    "GLN",
+    "DOV",
+    "CLT",
+    "NSH",
+    "MCH",
+    "COR",
+    "LRP",
+    "NWS",
+    "IRP",
+    "RCH",
+    "NHA",
+    "BRI",
+    "KAN",
+    "CLT",
+    "PHO",
+    "TAL",
+    "MAR",
+    "HOM"
+  ],
+  "rows": [
+    {
+      "pos": 1,
+      "driver": "Chandler Smith",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "65",
+      "races": {
+        "DAY": "1*2"
+      }
+    },
+    {
+      "pos": 2,
+      "driver": "Christian Eckes",
+      "team": "McAnally–Hilgemann Racing",
+      "manufacturer": "Chevrolet",
+      "points": "46",
+      "races": {
+        "DAY": "3"
+      }
+    },
+    {
+      "pos": 3,
+      "driver": "Ty Majeski",
+      "team": "ThorSport Racing",
+      "manufacturer": "Ford",
+      "points": "45",
+      "races": {
+        "DAY": "4"
+      }
+    },
+    {
+      "pos": 4,
+      "driver": "Gio Ruggiero",
+      "team": "Tricon Garage",
+      "manufacturer": "Toyota",
+      "points": "35",
+      "races": {
+        "DAY": "2"
+      }
+    },
+    {
+      "pos": 5,
+      "driver": "Kaden Honeycutt",
+      "team": "Tricon Garage",
+      "manufacturer": "Toyota",
+      "points": "34",
+      "races": {
+        "DAY": "8"
+      }
+    },
+    {
+      "pos": 6,
+      "driver": "Brenden Queen (R)",
+      "team": "Kaulig Racing",
+      "manufacturer": "Ram",
+      "points": "32",
+      "races": {
+        "DAY": "7"
+      }
+    },
+    {
+      "pos": 7,
+      "driver": "Nick Leitz",
+      "team": "Tricon Garage",
+      "manufacturer": "Toyota",
+      "points": "31",
+      "races": {
+        "DAY": "11"
+      }
+    },
+    {
+      "pos": 8,
+      "driver": "Tyler Ankrum",
+      "team": "McAnally–Hilgemann Racing",
+      "manufacturer": "Chevrolet",
+      "points": "28",
+      "races": {
+        "DAY": "9"
+      }
+    },
+    {
+      "pos": 9,
+      "driver": "Stewart Friesen",
+      "team": "Halmar Friesen Racing",
+      "manufacturer": "Toyota",
+      "points": "27",
+      "races": {
+        "DAY": "10"
+      }
+    },
+    {
+      "pos": 10,
+      "driver": "Ben Rhodes",
+      "team": "ThorSport Racing",
+      "manufacturer": "Ford",
+      "points": "26",
+      "races": {
+        "DAY": "12"
+      }
+    },
+    {
+      "pos": 11,
+      "driver": "Andrés Pérez de Lara",
+      "team": "Niece Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "24",
+      "races": {
+        "DAY": "13"
+      }
+    },
+    {
+      "pos": 12,
+      "driver": "Cole Butcher (R)",
+      "team": "ThorSport Racing",
+      "manufacturer": "Ford",
+      "points": "23",
+      "races": {
+        "DAY": "14"
+      }
+    },
+    {
+      "pos": 13,
+      "driver": "Tanner Gray",
+      "team": "Tricon Garage",
+      "manufacturer": "Toyota",
+      "points": "23",
+      "races": {
+        "DAY": "23"
+      }
+    },
+    {
+      "pos": 14,
+      "driver": "Travis Pastrana",
+      "team": "Niece Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "22",
+      "races": {
+        "DAY": "15"
+      }
+    },
+    {
+      "pos": 15,
+      "driver": "Frankie Muniz",
+      "team": "Team Reaume",
+      "manufacturer": "Ford",
+      "points": "21",
+      "races": {
+        "DAY": "16"
+      }
+    },
+    {
+      "pos": 16,
+      "driver": "Daniel Dye",
+      "team": "Kaulig Racing",
+      "manufacturer": "Ram",
+      "points": "20",
+      "races": {
+        "DAY": "17"
+      }
+    },
+    {
+      "pos": 17,
+      "driver": "Clay Greenfield",
+      "team": "GK Racing",
+      "manufacturer": "Chevrolet",
+      "points": "19",
+      "races": {
+        "DAY": "18"
+      }
+    },
+    {
+      "pos": 18,
+      "driver": "Mini Tyrrell (R)",
+      "team": "Kaulig Racing",
+      "manufacturer": "Ram",
+      "points": "18",
+      "races": {
+        "DAY": "19"
+      }
+    },
+    {
+      "pos": 19,
+      "driver": "Josh Reaume",
+      "team": "Team Reaume",
+      "manufacturer": "Ford",
+      "points": "17",
+      "races": {
+        "DAY": "20"
+      }
+    },
+    {
+      "pos": 20,
+      "driver": "Spencer Boyd",
+      "team": "Freedom Racing Enterprises",
+      "manufacturer": "Chevrolet",
+      "points": "16",
+      "races": {
+        "DAY": "21"
+      }
+    },
+    {
+      "pos": 21,
+      "driver": "Justin Haley",
+      "team": "Kaulig Racing",
+      "manufacturer": "Ram",
+      "points": "15",
+      "races": {
+        "DAY": "22*"
+      }
+    },
+    {
+      "pos": 22,
+      "driver": "Layne Riggs",
+      "team": "Front Row Motorsports",
+      "manufacturer": "Ford",
+      "points": "15",
+      "races": {
+        "DAY": "31"
+      }
+    },
+    {
+      "pos": 23,
+      "driver": "Kris Wright",
+      "team": "McAnally–Hilgemann Racing",
+      "manufacturer": "Chevrolet",
+      "points": "12",
+      "races": {
+        "DAY": "25"
+      }
+    },
+    {
+      "pos": 24,
+      "driver": "Daniel Hemric",
+      "team": "McAnally–Hilgemann Racing",
+      "manufacturer": "Chevrolet",
+      "points": "12",
+      "races": {
+        "DAY": "26F"
+      }
+    },
+    {
+      "pos": 25,
+      "driver": "Dawson Sutton",
+      "team": "Rackley W.A.R.",
+      "manufacturer": "Chevrolet",
+      "points": "10",
+      "races": {
+        "DAY": "27"
+      }
+    },
+    {
+      "pos": 26,
+      "driver": "Grant Enfinger",
+      "team": "CR7 Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "9",
+      "races": {
+        "DAY": "29"
+      }
+    },
+    {
+      "pos": 27,
+      "driver": "Jason Kitzmiller",
+      "team": "CR7 Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "7",
+      "races": {
+        "DAY": "30"
+      }
+    },
+    {
+      "pos": 28,
+      "driver": "Jake Garcia",
+      "team": "ThorSport Racing",
+      "manufacturer": "Ford",
+      "points": "5",
+      "races": {
+        "DAY": "32"
+      }
+    },
+    {
+      "pos": 29,
+      "driver": "Jason White",
+      "team": "Team Reaume",
+      "manufacturer": "Ford",
+      "points": "4",
+      "races": {
+        "DAY": "33"
+      }
+    },
+    {
+      "pos": 30,
+      "driver": "Tony Stewart",
+      "team": "Kaulig Racing",
+      "manufacturer": "Ram",
+      "points": "1",
+      "races": {
+        "DAY": "36"
+      }
+    },
+    {
+      "pos": 31,
+      "driver": "Garrett Mitchell",
+      "team": "Niece Motorsports",
+      "manufacturer": "Chevrolet",
+      "points": "1",
+      "races": {
+        "DAY": "37"
+      }
+    },
+    {
+      "pos": 0,
+      "driver": "Team",
+      "team": "Manufacturer",
+      "manufacturer": "Status",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Halmar Friesen Racing",
+      "team": "Toyota",
+      "manufacturer": "–",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Niece Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "–",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Costner Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "–",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Tricon Garage",
+      "team": "Toyota",
+      "manufacturer": "–",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Norm Benning Racing",
+      "team": "Chevrolet",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Rackley W.A.R.",
+      "team": "Chevrolet",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "FDNY Racing",
+      "team": "Chevrolet",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Greg Van Alst Motorsports",
+      "team": "Toyota",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Hill Motorsports",
+      "team": "Toyota",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "MBM Motorsports",
+      "team": "Ford",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "TC Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "DNQ",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Team",
+      "team": "Manufacturer",
+      "manufacturer": "DAY",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Halmar Friesen Racing",
+      "team": "Toyota",
+      "manufacturer": "5",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Niece Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "6",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Spire Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "24*",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Tricon Garage",
+      "team": "Toyota",
+      "manufacturer": "28",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Henderson Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "34",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Spire Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "35*1",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Spire Motorsports",
+      "team": "Chevrolet",
+      "manufacturer": "–",
+      "points": ""
+    },
+    {
+      "pos": 0,
+      "driver": "Kaulig Racing",
+      "team": "Ram",
+      "manufacturer": "–",
+      "points": ""
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "event_id": "F1_2026_PRE_SEASON_TEST_2",
+  "series": "FIA Formula 1 World Championship",
+  "race": "F1 — Pre-Season Testing 2",
+  "date": "18–20 February 2026",
+  "track": "Bahrain International Circuit",
+  "location": "Sakhir",
+  "laps": "",
+  "distance": "",
+  "track_info": "Bahrain International Circuit measures 5.412 km (3.363 mi), featuring 15 turns running clockwise around the desert sands of Sakhir, Bahrain. The circuit hosts the Bahrain Grand Prix - frequently the season-opening round - across 57 laps for a total race distance of 308.238 km. Inaugurated in 2004 and designed by Hermann Tilke, the venue underwent a notable resurfacing ahead of the 2021 season, with several corner exits widened to encourage side-by-side racing. The track features three DRS zones and is uniquely known for hosting a floodlit race under artificial lighting since 2014, with the low desert temperatures of evening sessions producing very different tyre behaviour compared to daytime practice. Sand blown from the surrounding desert significantly compromises off-line grip early in the weekend, making the racing line particularly precious. The circuit is characterised by a long flat-out blast down the main straight, a technical middle sector of tight hairpins and flowing esses, and a demanding final sector that places heavy emphasis on traction out of slow corners. The official race lap record stands at 1:31.447, set by Pedro de la Rosa for McLaren during the 2005 Bahrain Grand Prix, while the all-time fastest lap belongs to Max Verstappen, who clocked a 1:29.708 in Q3 qualifying for the 2023 race.",
+  "entry_list": [],
+  "tables": {
+    "pre_season_tests": {
+      "sessions": [
+        {
+          "title": "Day 1",
+          "headers": ["Pos", "Driver", "Manufacturer", "Gap to Fastest", "Laps"],
+          "rows": [
+            ["1", "George Russell", "Mercedes", "1:33.459", "76"],
+            ["2", "Oscar Piastri", "McLaren-Mercedes", "+0.010", "70"],
+            ["3", "Charles Leclerc", "Ferrari", "+0.280", "70"],
+            ["4", "Lando Norris", "McLaren-Mercedes", "+0.593", "54"],
+            ["5", "Kimi Antonelli", "Mercedes", "+0.699", "69"],
+            ["6", "Isack Hadjar", "Red Bull Racing-Red Bull Ford", "+0.801", "66"],
+            ["7", "Lewis Hamilton", "Ferrari", "+0.840", "44"],
+            ["8", "Carlos Sainz Jr.", "Atlassian Williams-Mercedes", "+1.654", "55"],
+            ["9", "Franco Colapinto", "Alpine-Mercedes", "+1.795", "60"],
+            ["10", "Gabriel Bortoleto", "Audi", "+1.804", "71"],
+            ["11", "Alexander Albon", "Atlassian Williams-Mercedes", "+2.231", "55"],
+            ["12", "Liam Lawson", "Racing Bulls-Red Bull Ford", "+2.294", "61"],
+            ["13", "Oliver Bearman", "Haas-Ferrari", "+2.319", "42"],
+            ["14", "Pierre Gasly", "Alpine-Mercedes", "+2.439", "61"],
+            ["15", "Lance Stroll", "Aston Martin Aramco-Honda", "+2.515", "26"],
+            ["16", "Esteban Ocon", "Haas-Ferrari", "+2.959", "65"],
+            ["17", "Fernando Alonso", "Aston Martin Aramco-Honda", "+3.077", "28"],
+            ["18", "Nico Hülkenberg", "Audi", "+3.282", "49"],
+            ["19", "Arvid Lindblad", "Racing Bulls-Red Bull Ford", "+3.310", "75"],
+            ["20", "Valtteri Bottas", "Cadillac-Ferrari", "+3.339", "35"],
+            ["21", "Sergio Pérez", "Cadillac-Ferrari", "+4.732", "24"],
+            ["22", "Max Verstappen", "Red Bull Racing-Red Bull Ford", "—", "0"]
+          ]
+        },
+        {
+          "title": "Day 2",
+          "headers": ["Pos", "Driver", "Manufacturer", "Gap to Fastest", "Laps"],
+          "rows": [
+            ["1", "Kimi Antonelli", "Mercedes", "1:32.803", "79"],
+            ["2", "Oscar Piastri", "McLaren-Mercedes", "+0.058", "86"],
+            ["3", "Max Verstappen", "Red Bull Racing-Red Bull Ford", "+0.359", "139"],
+            ["4", "Lewis Hamilton", "Ferrari", "+0.605", "78"],
+            ["5", "Lando Norris", "McLaren-Mercedes", "+0.650", "72"],
+            ["6", "Franco Colapinto", "Alpine-Mercedes", "+1.015", "120"],
+            ["7", "Nico Hülkenberg", "Audi", "+1.184", "73"],
+            ["8", "George Russell", "Mercedes", "+1.308", "77"],
+            ["9", "Esteban Ocon", "Haas-Ferrari", "+1.398", "58"],
+            ["10", "Liam Lawson", "Racing Bulls-Red Bull Ford", "+1.729", "106"],
+            ["11", "Alexander Albon", "Atlassian Williams-Mercedes", "+1.752", "117"],
+            ["12", "Gabriel Bortoleto", "Audi", "+2.460", "29"],
+            ["13", "Oliver Bearman", "Haas-Ferrari", "+2.476", "69"],
+            ["14", "Sergio Pérez", "Cadillac-Ferrari", "+2.566", "50"],
+            ["15", "Fernando Alonso", "Aston Martin Aramco-Honda", "+4.669", "68"],
+            ["16", "Valtteri Bottas", "Cadillac-Ferrari", "+7.390", "58"],
+            ["17", "Isack Hadjar", "Red Bull Racing-Red Bull Ford", "—", "0"],
+            ["18", "Pierre Gasly", "Alpine-Mercedes", "—", "0"],
+            ["19", "Charles Leclerc", "Ferrari", "—", "0"],
+            ["20", "Lance Stroll", "Aston Martin Aramco-Honda", "—", "0"],
+            ["21", "Arvid Lindblad", "Racing Bulls-Red Bull Ford", "—", "0"],
+            ["22", "Carlos Sainz Jr.", "Atlassian Williams-Mercedes", "—", "0"]
+          ]
+        },
+        {
+          "title": "Day 3",
+          "headers": ["Pos", "Driver", "Manufacturer", "Gap to Fastest", "Laps"],
+          "rows": [
+            ["1", "Charles Leclerc", "Ferrari", "1:31.992", "132"],
+            ["2", "Lando Norris", "McLaren-Mercedes", "+0.879", "47"],
+            ["3", "Max Verstappen", "Red Bull Racing-Red Bull Ford", "+1.117", "65"],
+            ["4", "George Russell", "Mercedes", "+1.205", "82"],
+            ["5", "Pierre Gasly", "Alpine-Mercedes", "+1.429", "118"],
+            ["6", "Oliver Bearman", "Haas-Ferrari", "+1.495", "88"],
+            ["7", "Gabriel Bortoleto", "Audi", "+1.763", "71"],
+            ["8", "Kimi Antonelli", "Mercedes", "+1.924", "49"],
+            ["9", "Arvid Lindblad", "Racing Bulls-Red Bull Ford", "+2.157", "165"],
+            ["10", "Carlos Sainz Jr.", "Atlassian Williams-Mercedes", "+2.350", "141"],
+            ["11", "Oscar Piastri", "McLaren-Mercedes", "+2.360", "66"],
+            ["12", "Esteban Ocon", "Haas-Ferrari", "+2.502", "82"],
+            ["13", "Isack Hadjar", "Red Bull Racing-Red Bull Ford", "+2.519", "59"],
+            ["14", "Valtteri Bottas", "Cadillac-Ferrari", "+3.298", "38"],
+            ["15", "Nico Hülkenberg", "Audi", "+4.027", "64"],
+            ["16", "Sergio Pérez", "Cadillac-Ferrari", "+8.850", "61"],
+            ["17", "Lance Stroll", "Aston Martin Aramco-Honda", "—", "6"],
+            ["18", "Fernando Alonso", "Aston Martin Aramco-Honda", "—", "0"],
+            ["19", "Alexander Albon", "Atlassian Williams-Mercedes", "—", "0"],
+            ["20", "Liam Lawson", "Racing Bulls-Red Bull Ford", "—", "0"],
+            ["21", "Franco Colapinto", "Alpine-Mercedes", "—", "0"],
+            ["22", "Lewis Hamilton", "Ferrari", "—", "0"]
+          ]
+        }
+      ]
+    }
+  }
+}

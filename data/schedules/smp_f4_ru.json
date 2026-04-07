@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SMP_F4_RU_2026_1",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Moscow Raceway",
+    "location": "Sheludkovo, Moscow Oblast",
+    "circuit_name": "Moscow Raceway",
+    "start_date": "2026-05-16",
+    "end_date": "2026-05-17",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  },
+  {
+    "id": "SMP_F4_RU_2026_2",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Kazan Ring",
+    "location": "Tatarstan",
+    "circuit_name": "Kazan Ring",
+    "start_date": "2026-06-13",
+    "end_date": "2026-06-14",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  },
+  {
+    "id": "SMP_F4_RU_2026_3",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Igora Drive",
+    "location": "Leningrad Oblast",
+    "circuit_name": "Igora Drive",
+    "start_date": "2026-08-08",
+    "end_date": "2026-08-09",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  },
+  {
+    "id": "SMP_F4_RU_2026_4",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Nizhny Novgorod Ring",
+    "location": "Nizhny Novgorod Oblast",
+    "circuit_name": "Nizhegorodskoye Koltso",
+    "start_date": "2026-08-29",
+    "end_date": "2026-08-30",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  },
+  {
+    "id": "SMP_F4_RU_2026_5",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Krepost Groznaya",
+    "location": "Grozny, Chechnya",
+    "circuit_name": "Krepost Groznaya",
+    "start_date": "2026-09-12",
+    "end_date": "2026-09-13",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  },
+  {
+    "id": "SMP_F4_RU_2026_6",
+    "series_id": "SMP_F4_RU",
+    "season": "2026",
+    "name": "SMP F4 — Moscow Raceway",
+    "location": "Sheludkovo, Moscow Oblast",
+    "circuit_name": "Moscow Raceway",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-11",
+    "time_est": "12:00",
+    "time_msk": "12:00"
+  }
+]

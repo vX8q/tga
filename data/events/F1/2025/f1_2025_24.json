@@ -1,0 +1,23 @@
+{
+  "event_id": "F1_2025_24",
+  "series": "FIA Formula 1 World Championship",
+  "race": "2025 Abu Dhabi Grand Prix",
+  "date": "2025-12-07",
+  "track": "Yas Marina Circuit",
+  "location": "Abu Dhabi",
+  "laps": "",
+  "distance": "",
+  "track_info": "",
+  "entry_list": [],
+  "tables": {
+    "practice": {
+      "sessions": []
+    },
+    "qualifying": {
+      "sessions": []
+    },
+    "race": {
+      "sessions": []
+    }
+  }
+}

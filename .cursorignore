@@ -1,0 +1,58 @@
+# Зависимости JS
+node_modules/
+.pnp/
+.yarn/
+
+# Сборка JS
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.turbo/
+*.tsbuildinfo
+
+# Go
+vendor/
+bin/
+*.exe
+*.test
+*.out
+
+# Git
+.git/
+
+# Логи
+logs/
+*.log
+
+# Env
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Медиа
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.mp4
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Минифицированные файлы (уже собранные)
+*.min.js
+*.min.css
+
+# Coverage
+coverage/
+.nyc_output/

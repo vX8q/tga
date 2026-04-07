@@ -1,0 +1,30 @@
+services:
+
+  # ── TGA App ──────────────────────────────────────────────────────────────────
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      PORT: "8080"
+    volumes:
+      - ./data:/app/data:ro      # данные (расписание, результаты, зачёт) — только чтение
+    networks:
+      - internal
+    # Порты намеренно НЕ публикуются: внешний доступ только через cloudflared tunnel
+
+  # ── Cloudflare Tunnel ─────────────────────────────────────────────────────────
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --protocol http2 run
+    environment:
+      TUNNEL_TOKEN: "${CLOUDFLARE_TUNNEL_TOKEN}"
+    depends_on:
+      - app
+    networks:
+      - internal
+
+# Изолированная внутренняя сеть: app не виден снаружи, только через tunnel
+networks:
+  internal:
+    driver: bridge

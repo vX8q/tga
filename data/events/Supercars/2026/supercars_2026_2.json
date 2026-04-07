@@ -1,0 +1,38 @@
+{
+  "event_id": "SUPERCARS_2026_2",
+  "series": "Supercars Championship",
+  "race": "Sydney 500",
+  "date": "Saturday, February 21, 2026",
+  "track": "Sydney Motorsport Park",
+  "location": "Eastern Creek, New South Wales",
+  "laps": "",
+  "distance": "",
+  "entry_list": [
+    { "number": "4",   "driver": "Jack Le Brocq",       "team": "Matt Stone Racing",              "manufacturer": "Chevrolet" },
+    { "number": "10",  "driver": "Zach Bates",          "team": "Matt Stone Racing",              "manufacturer": "Chevrolet" },
+    { "number": "9",   "driver": "Jobe Stewart",        "team": "Erebus Motorsport",              "manufacturer": "Chevrolet" },
+    { "number": "99",  "driver": "Cooper Murray",       "team": "Erebus Motorsport",              "manufacturer": "Chevrolet" },
+    { "number": "18",  "driver": "Anton de Pasquale",   "team": "Team 18",                        "manufacturer": "Chevrolet" },
+    { "number": "20",  "driver": "David Reynolds",      "team": "Team 18",                        "manufacturer": "Chevrolet" },
+    { "number": "31",  "driver": "Jayden Ojeda",        "team": "PremiAir Racing",                "manufacturer": "Chevrolet" },
+    { "number": "777", "driver": "Declan Fraser",       "team": "PremiAir Racing",                "manufacturer": "Chevrolet" },
+    { "number": "3",   "driver": "Aaron Cameron",       "team": "Blanchard Racing Team",          "manufacturer": "Ford" },
+    { "number": "7",   "driver": "James Golding",       "team": "Blanchard Racing Team",          "manufacturer": "Ford" },
+    { "number": "6",   "driver": "Cameron Waters",      "team": "Tickford Racing",                "manufacturer": "Ford" },
+    { "number": "55",  "driver": "Thomas Randle",       "team": "Tickford Racing",                "manufacturer": "Ford" },
+    { "number": "11",  "driver": "Jackson Walls",       "team": "Triple Eight Race Engineering",  "manufacturer": "Ford" },
+    { "number": "88",  "driver": "Broc Feeney",         "team": "Triple Eight Race Engineering",  "manufacturer": "Ford" },
+    { "number": "888", "driver": "Will Brown",          "team": "Triple Eight Race Engineering",  "manufacturer": "Ford" },
+    { "number": "17",  "driver": "Brodie Kostecki",     "team": "Dick Johnson Racing",            "manufacturer": "Ford" },
+    { "number": "38",  "driver": "Rylan Gray",          "team": "Dick Johnson Racing",            "manufacturer": "Ford" },
+    { "number": "19",  "driver": "Matt Payne",          "team": "Grove Racing",                   "manufacturer": "Ford" },
+    { "number": "26",  "driver": "Kai Allen",           "team": "Grove Racing",                   "manufacturer": "Ford" },
+    { "number": "1",   "driver": "Chaz Mostert",        "team": "Walkinshaw TWG Racing",          "manufacturer": "Toyota" },
+    { "number": "2",   "driver": "Ryan Wood",           "team": "Walkinshaw TWG Racing",          "manufacturer": "Toyota" },
+    { "number": "800", "driver": "Andre Heimgartner",   "team": "Brad Jones Racing",              "manufacturer": "Toyota" },
+    { "number": "14",  "driver": "Cameron Hill",        "team": "Brad Jones Racing",              "manufacturer": "Toyota" },
+    { "number": "96",  "driver": "Macauley Jones",      "team": "Brad Jones Racing",              "manufacturer": "Toyota" }
+  ],
+  "tables": {}
+}
+

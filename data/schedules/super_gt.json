@@ -1,0 +1,98 @@
+[
+  {
+    "id": "SUPER_GT_2026_1",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Okayama GT 300 km Race",
+    "location": "Mimasaka, Okayama Prefecture",
+    "circuit_name": "Okayama International Circuit",
+    "start_date": "2026-04-11",
+    "end_date": "2026-04-12",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_2",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Fuji GT 3 Hours Race",
+    "location": "Oyama, Shizuoka Prefecture",
+    "circuit_name": "Fuji Speedway",
+    "start_date": "2026-05-03",
+    "end_date": "2026-05-04",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_3",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Sepang GT 300 km Race",
+    "location": "Sepang, Selangor",
+    "circuit_name": "Sepang International Circuit",
+    "start_date": "2026-06-20",
+    "end_date": "2026-06-21",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_4",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Fuji GT 300 km Race",
+    "location": "Oyama, Shizuoka Prefecture",
+    "circuit_name": "Fuji Speedway",
+    "start_date": "2026-08-01",
+    "end_date": "2026-08-02",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_5",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Suzuka GT 300 km Race",
+    "location": "Suzuka, Mie Prefecture",
+    "circuit_name": "Suzuka Circuit",
+    "start_date": "2026-08-22",
+    "end_date": "2026-08-23",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_6",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Sugo GT 300 km Race",
+    "location": "Murata, Miyagi Prefecture",
+    "circuit_name": "Sportsland Sugo",
+    "start_date": "2026-09-19",
+    "end_date": "2026-09-20",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_7",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Autopolis GT 3 Hours Race",
+    "location": "Hita, Oita Prefecture",
+    "circuit_name": "Autopolis",
+    "start_date": "2026-10-17",
+    "end_date": "2026-10-18",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  },
+  {
+    "id": "SUPER_GT_2026_8",
+    "series_id": "SUPER_GT",
+    "season": "2026",
+    "name": "Motegi GT 300 km Race",
+    "location": "Motegi, Tochigi Prefecture",
+    "circuit_name": "Mobility Resort Motegi",
+    "start_date": "2026-11-07",
+    "end_date": "2026-11-08",
+    "time_est": "12:00",
+    "time_msk": "08:00"
+  }
+]
