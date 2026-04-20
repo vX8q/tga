@@ -5,8 +5,15 @@
     "date":  "Saturday, February 7, 2026",
     "track":  "New Smyrna Speedway",
     "location":  "New Smyrna Beach, FL",
-    "laps":  "200*",
-    "distance":  "0.480 mile paved track (96.000 miles)",
+  "laps":  "200*",
+  "distance":  "0.480 mile paved track (96.000 miles)",
+  "race_statistics": {
+    "Average speed": "58.175 miles per hour (93.628 km/h)",
+    "Cautions / Laps": "11 for 61 laps",
+    "Lead changes": "8",
+    "Red flags": "0",
+    "Time of race": "1 hour, 44 minutes and 4 seconds"
+  },
     "entry_list":  [
                        {
                            "number":  "1",

@@ -139,12 +139,14 @@
         ["30", "51", "Jeremy Clements", "Jeremy Clements Racing", "Chevrolet", "30.955", "158.863"],
         ["31", "87", "Austin Green", "Peterson Racing", "Chevrolet", "30.966", "158.806"],
         ["32", "07", "Josh Bilicki", "SS-Green Light Racing", "Chevrolet", "31.008", "158.591"],
+        ["Qualified by owner's points", "", "", "", "", "", ""],
         ["33", "26", "Dean Thompson", "Sam Hunt Racing", "Toyota", "31.140", "157.919"],
         ["34", "91", "Alex Labbe", "DGM Racing", "Chevrolet", "31.225", "157.489"],
         ["35", "30", "Myatt Snider", "Barrett-Cope Racing", "Chevrolet", "31.254", "157.343"],
         ["36", "02", "Ryan Ellis", "Young's Motorsports", "Chevrolet", "31.297", "157.127"],
         ["37", "55", "Joey Gase", "Joey Gase Motorsports", "Chevrolet", "31.507", "156.080"],
         ["38", "42", "Nathan Byrd", "Young's Motorsports", "Chevrolet", "—", "—"],
+        ["Failed to qualify", "", "", "", "", "", ""],
         ["39", "35", "Matt DiBenedetto", "Joey Gase Motorsports", "Chevrolet", "31.063", "158.311"]
       ]
     },
