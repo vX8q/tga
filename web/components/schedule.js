@@ -70,6 +70,20 @@
       var r1 = sfRoundNumFromId(first.id);
       var r2 = sfRoundNumFromId(last.id);
       var rdLabel = run.length > 1 && r1 && r2 ? (r1 + '–' + r2) : String(r1 || r2 || '');
+      function allSameNonEmptyTime(key) {
+        var vals = run.map(function (x) { return String((x && x[key]) || '').trim(); }).filter(function (v) { return v.length > 0; });
+        if (vals.length === 0) return '';
+        var base = vals[0];
+        for (var vi = 1; vi < vals.length; vi++) {
+          if (vals[vi] !== base) return '';
+        }
+        return base;
+      }
+      var mergedTimeEst = allSameNonEmptyTime('time_est') || String((first && first.time_est) || '').trim();
+      var mergedTimeMsk = allSameNonEmptyTime('time_msk') || String((first && first.time_msk) || '').trim();
+      if (!mergedTimeEst) mergedTimeEst = 'TBD';
+      if (!mergedTimeMsk) mergedTimeMsk = 'TBD';
+
       var merged = Object.assign({}, first, {
         start_date: d0,
         end_date: run.length > 1 ? d1 : (first.end_date || d0).slice(0, 10),
@@ -80,8 +94,9 @@
         id: first.id,
         _seriesId: first._seriesId || first.series_id || 'SUPER_FORMULA',
         has_detail: run.some(function (x) { return x.has_detail; }),
-        time_est: 'TBD',
-        time_msk: 'TBD',
+        _sfEventIds: run.map(function (x) { return x && x.id ? String(x.id) : ''; }).filter(function (id) { return id.length > 0; }),
+        time_est: mergedTimeEst,
+        time_msk: mergedTimeMsk,
         _sfRdLabel: rdLabel
       });
       out.push(merged);
@@ -95,11 +110,12 @@
     allEvents.forEach(function (e) {
       var ds = (e.start_date || e.date || '').slice(0, 10);
       var ms = ds ? new Date(ds + 'T12:00:00').getTime() : 0;
-      if (!curGroup || ms - curGroup.ms > 3 * 86400000) {
-        curGroup = { startDs: ds, endDs: ds, ms: ms, events: [] };
+      if (!curGroup || ms - curGroup.endMs > 3 * 86400000) {
+        curGroup = { startDs: ds, endDs: ds, ms: ms, endMs: ms, events: [] };
         groups.push(curGroup);
       } else if (ds > curGroup.endDs) {
         curGroup.endDs = ds;
+        curGroup.endMs = ms;
       }
       curGroup.events.push(e);
     });
@@ -276,7 +292,8 @@
     }
 
     groups.forEach(function (g) {
-      var isPastGroup = g.ms > 0 && g.ms < todayMs;
+      // Заголовок «уикенда»: считаем прошлым, когда закончился последний день группы (не только первый).
+      var isPastGroup = g.endMs > 0 && g.endMs < todayMs;
       html += '<tr class="weekend-hdr' + (isPastGroup ? ' sched-past' : '') + '">' +
         '<td colspan="5"><span class="wknd-date">' + esc(formatDateForGroup(g.startDs, g.endDs)) + '</span></td></tr>';
 
@@ -289,7 +306,9 @@
       eventsInGroup.forEach(function (e) {
         var ds = (e.start_date || e.date || '').slice(0, 10);
         var endDs = (e.end_date || '').slice(0, 10);
-        var ms = ds ? new Date(ds + 'T12:00:00').getTime() : 0;
+        // Прошлое: по последнему календарному дню события (для уикендов Sat–Sun end_date = воскресенье).
+        var lastDs = (endDs && ds && endDs >= ds) ? endDs : ds;
+        var ms = lastDs ? new Date(lastDs + 'T12:00:00').getTime() : 0;
         var isPast = ms > 0 && ms < todayMs;
         var isNext = !isPast && !nextMarked;
         if (isNext) nextMarked = true;
@@ -406,6 +425,11 @@
       if (rawIsPlaceholder(estRaw, mskRaw) || (!timeParsable(estRaw) && !timeParsable(mskRaw))) {
         return tbdLabel;
       }
+      if (useTrackTime) {
+        return (formatTimeForDisplay ? formatTimeForDisplay(estRaw || mskRaw) : (estRaw || mskRaw)) || tbdLabel;
+      }
+      // Super Formula: в колонке Time показываем только время без даты.
+      return getEstToLocalTimeOnly(ds, estRaw) || tbdLabel;
     }
 
     if (seriesIdUpper === 'F1') {
@@ -448,6 +472,21 @@
     var df = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', hour12: settings.timeFormat === '12h' });
     var localTime = df.format(new Date(utcMs));
     return dateShort ? (dateShort + ' ' + localTime) : (localTime || '—');
+  }
+
+  function getEstToLocalTimeOnly(ds, estRaw) {
+    var getTimeSettings = window.TGA.getTimeSettings;
+    var parseTimeStringToParts = window.TGA.parseTimeStringToParts;
+    var estToUtcMsFn = window.TGA && window.TGA.estToUtcMs;
+    if (!ds || !estRaw || !parseTimeStringToParts || typeof Intl === 'undefined') return '—';
+    var parts = parseTimeStringToParts(String(estRaw).trim());
+    if (!parts) return '—';
+    var y = parseInt(ds.slice(0, 4), 10), m = parseInt(ds.slice(5, 7), 10), d = parseInt(ds.slice(8, 10), 10);
+    if (!y || !m || !d) return '—';
+    var settings = getTimeSettings ? getTimeSettings() : { timeFormat: '24h' };
+    var utcMs = estToUtcMsFn ? estToUtcMsFn(y, m, d, parts.hour, parts.minute) : Date.UTC(y, m - 1, d, parts.hour + 5, parts.minute);
+    var df = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', hour12: settings && settings.timeFormat === '12h' });
+    return df.format(new Date(utcMs)) || '—';
   }
 
   function getMskToLocalLabel(ds, mskRaw, dateShort) {

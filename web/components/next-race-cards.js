@@ -168,6 +168,7 @@
           }
           var eventSlug = (e.id || '').toLowerCase().replace(/_+/g, '-');
           var seriesSlug = (e._seriesId || e.series_id || '').toLowerCase().replace(/_+/g, '-');
+          var eventNameLc = String(e.name || '').toLowerCase();
           var href = e.has_detail
             ? '/event/' + encodeURIComponent(eventSlug)
             : '/series/' + encodeURIComponent(seriesSlug);
@@ -175,8 +176,9 @@
           // Дополнительные классы для фоновых картинок трасс.
           var extraClass = '';
           var circuitName = (e.circuit_name || '').toLowerCase();
+          var trackName = (e.track || '').toLowerCase();
           var location = (e.location || '').toLowerCase();
-          var trackKey = circuitName || location;
+          var trackKey = [circuitName, trackName, location].filter(Boolean).join(' ');
           if (trackKey.indexOf('shanghai international circuit') >= 0) {
             extraClass += ' nrc-card--f1-2026-2';
           }
@@ -211,6 +213,63 @@
           if (trackKey.indexOf('albert park circuit') >= 0) {
             extraClass += ' nrc-card--albert-park';
           }
+          if (trackKey.indexOf('mobility resort motegi') >= 0) {
+            extraClass += ' nrc-card--motegi';
+          }
+          if (trackKey.indexOf('circuit de barcelona-catalunya') >= 0 || trackKey.indexOf('barcelona') >= 0 || trackKey.indexOf('montmelo') >= 0) {
+            extraClass += ' nrc-card--barcelona';
+          }
+          if (trackKey.indexOf('taupo') >= 0) {
+            extraClass += ' nrc-card--taupo';
+          }
+          if (trackKey.indexOf('okayama') >= 0 || trackKey.indexOf('okoyama') >= 0) {
+            extraClass += ' nrc-card--okayama';
+          }
+          if (trackKey.indexOf('paul ricard') >= 0 || trackKey.indexOf('le castellet') >= 0) {
+            extraClass += ' nrc-card--paul-ricard';
+          }
+          if (trackKey.indexOf('thompson') >= 0) {
+            extraClass += ' nrc-card--thompson';
+          }
+          if (trackKey.indexOf('imola') >= 0) {
+            extraClass += ' nrc-card--imola';
+          }
+          if (trackKey.indexOf('kansas speedway') >= 0 || trackKey.indexOf('kansas city, kansas') >= 0) {
+            extraClass += ' nrc-card--kansas';
+          }
+          if (trackKey.indexOf('long beach') >= 0) {
+            extraClass += ' nrc-card--long-beach';
+          }
+          if (trackKey.indexOf('euromarque') >= 0 || trackKey.indexOf('christchurch') >= 0) {
+            extraClass += ' nrc-card--euromarque';
+          }
+          if (eventNameLc.indexOf('taupo') >= 0 || eventNameLc.indexOf('taupō') >= 0) {
+            extraClass += ' nrc-card--taupo';
+          }
+          if (eventNameLc.indexOf('okayama') >= 0 || eventNameLc.indexOf('okoyama') >= 0) {
+            extraClass += ' nrc-card--okayama';
+          }
+          if (eventNameLc.indexOf('paul ricard') >= 0 || eventNameLc.indexOf('le castellet') >= 0) {
+            extraClass += ' nrc-card--paul-ricard';
+          }
+          if (eventNameLc.indexOf('thompson') >= 0) {
+            extraClass += ' nrc-card--thompson';
+          }
+          if (eventNameLc.indexOf('imola') >= 0) {
+            extraClass += ' nrc-card--imola';
+          }
+          if (eventNameLc.indexOf('kansas') >= 0) {
+            extraClass += ' nrc-card--kansas';
+          }
+          if (eventNameLc.indexOf('long beach') >= 0) {
+            extraClass += ' nrc-card--long-beach';
+          }
+          if (eventNameLc.indexOf('euromarque') >= 0) {
+            extraClass += ' nrc-card--euromarque';
+          }
+          if (trackKey.indexOf('bristol') >= 0) {
+            extraClass += ' nrc-card--bristol';
+          }
           // Fallback по конкретным событиям (на случай старых/особых данных без circuit_name).
           if (!extraClass) {
             if (eventSlug === 'f1-2026-2') {
@@ -219,6 +278,28 @@
               extraClass += ' nrc-card--cup-2026-3';
             } else if (eventSlug === 'indycar-2026-3') {
               extraClass += ' nrc-card--indycar-2026-3';
+            } else if (eventSlug === 'super-formula-2026-1') {
+              extraClass += ' nrc-card--motegi';
+            } else if (eventSlug === 'elms-2026-prologue') {
+              extraClass += ' nrc-card--barcelona';
+            } else if (eventSlug.indexOf('taupo') >= 0) {
+              extraClass += ' nrc-card--taupo';
+            } else if (eventSlug.indexOf('bristol') >= 0) {
+              extraClass += ' nrc-card--bristol';
+            } else if (eventSlug.indexOf('okayama') >= 0 || eventSlug.indexOf('okoyama') >= 0) {
+              extraClass += ' nrc-card--okayama';
+            } else if (eventSlug.indexOf('ricard') >= 0 || eventSlug.indexOf('le-castellet') >= 0) {
+              extraClass += ' nrc-card--paul-ricard';
+            } else if (eventSlug.indexOf('thompson') >= 0) {
+              extraClass += ' nrc-card--thompson';
+            } else if (eventSlug.indexOf('imola') >= 0) {
+              extraClass += ' nrc-card--imola';
+            } else if (eventSlug.indexOf('kansas') >= 0) {
+              extraClass += ' nrc-card--kansas';
+            } else if (eventSlug.indexOf('long-beach') >= 0 || eventSlug.indexOf('long_beach') >= 0) {
+              extraClass += ' nrc-card--long-beach';
+            } else if (eventSlug.indexOf('euromarque') >= 0) {
+              extraClass += ' nrc-card--euromarque';
             }
           }
           return (

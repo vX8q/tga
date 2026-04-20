@@ -84,6 +84,11 @@ body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) main.c
   margin-left: 0;
   margin-right: 0;
 }
+/* GTWCE Endurance: широкие таблицы остаются на 1600px, но main снова по центру — как у остальных вью, не «впритык» к левому краю вьюпорта */
+body.series-gtwce_end:has(#view-event:not(.hidden) #event-content .event-pre-season-block) main.container.main {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .hidden { display: none !important; }
 
@@ -1412,6 +1417,108 @@ body.cat-openwheel #stats-panel .stats-controls-left {
   width: auto !important;
   min-width: 0;
 }
+/* ELMS practice: wider No. column for readability */
+body.series-elms #view-event #event-content[data-event-section="practice"] .data-table.practice-results-table th:nth-child(4),
+body.series-elms #view-event #event-content[data-event-section="practice"] .data-table.practice-results-table td:nth-child(4) {
+  min-width: 4.5rem;
+  white-space: nowrap;
+}
+/* GTWCE Endurance practice & qualifying: Time & Gap stay on one line (no Laps column) */
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table th:nth-child(7),
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table td:nth-child(7),
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table th:nth-child(8),
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table td:nth-child(8),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table th:nth-child(7),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table td:nth-child(7),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table th:nth-child(8),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table td:nth-child(8) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+/* GTWCE Endurance: Drivers on one line (column 4: Pos, #, Class, Drivers, …) */
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table th:nth-child(4),
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table td:nth-child(4),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table th:nth-child(4),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table td:nth-child(4),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table th:nth-child(4),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table td:nth-child(4) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* GTWCE Endurance: Class (Pro Cup, Bronze Cup, …) on one line — column 3 */
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table th:nth-child(3),
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .data-table td:nth-child(3),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table th:nth-child(3),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table td:nth-child(3),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table th:nth-child(3),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table td:nth-child(3) {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* GTWCE Endurance: pre-season block was capped at 1100px — wide tables were squeezed/clipped; use full main width, no inner scroll */
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .event-pre-season-block,
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .event-pre-season-block,
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .event-pre-season-block {
+  max-width: none;
+}
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"] .event-pre-season-block .table-wrap:not(.event-pre-season-meta-wrap),
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .event-pre-season-block .table-wrap:not(.event-pre-season-meta-wrap),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .event-pre-season-block .table-wrap:not(.event-pre-season-meta-wrap) {
+  max-width: none;
+  width: 100%;
+  overflow-x: visible;
+}
+body.series-gtwce_end #view-event #event-content .event-pre-season-block .event-pre-season-meta-wrap.table-wrap {
+  width: fit-content;
+  max-width: 100%;
+}
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .table-wrap:has(.qualifying-results-table),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .table-wrap:has(.gtwce-race-results-table) {
+  /* Базовый .table-wrap и #view-event … race-session дают overflow-x: auto — выглядит как «приклеенная» правая половина */
+  overflow-x: visible !important;
+}
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"] .data-table.pre-season-results-table.qualifying-results-table {
+  /* Две декларации pre-season (fixed/100%) и qualifying (auto/max-content) — фиксируем одну модель */
+  table-layout: auto !important;
+  width: max-content !important;
+  max-width: none;
+}
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .data-table.gtwce-race-results-table.race-session-results-table {
+  /* Перебиваем #view-event .race-session (width:100%, min-width:min(100%,58rem)) — иначе колонки ломаются и появляется шов */
+  width: max-content !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  table-layout: auto !important;
+}
+/* GTWCE: колонки Team / Car — не центрировать как в дефолтном race-session (там другая сетка) */
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table.race-session-results-table th:nth-child(5),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table.race-session-results-table td:nth-child(5),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table.race-session-results-table th:nth-child(6),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table.race-session-results-table td:nth-child(6) {
+  text-align: left;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+/* GTWCE Endurance race: Cup pts & Overall pts */
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table th:nth-child(10),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table td:nth-child(10),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table th:nth-child(11),
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] .gtwce-race-results-table td:nth-child(11) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+/* Super GT race: keep team names readable in one line */
+body.series-super_gt #view-event #event-content[data-event-section="race"] .data-table.race-session-results-table th:nth-child(4),
+body.series-super_gt #view-event #event-content[data-event-section="race"] .data-table.race-session-results-table td:nth-child(4) {
+  min-width: 12rem;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
 .data-table.pre-season-results-table th:nth-child(1),
 .data-table.pre-season-results-table td:nth-child(1) {
   width: 5%;
@@ -2222,9 +2329,9 @@ body.series-imsa .event-overview-laps-and-blocks .event-blocks--2x2 .event-block
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 1.5rem;
 }
-.series-supercars .video-embed-wrap:has(.video-facade-wrap) {
-  /* Более компактные превью только для Supercars */
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+/* Крупнее превью только на выбранных этапах (см. body.ev-… в app.js) */
+body.ev-supercars-2026-8 .video-embed-wrap:has(.video-facade-wrap) {
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
 }
 .video-embed-wrap--single {
   display: block;
@@ -2260,15 +2367,25 @@ body.series-imsa .event-overview-laps-and-blocks .event-blocks--2x2 .event-block
   border: 1px solid var(--border);
   background: #000;
   cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .video-facade img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.2s;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: transform 0.25s ease;
 }
-.video-facade:hover img { opacity: 0.75; }
+.video-facade:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-2);
+}
+.video-facade:hover img {
+  transform: scale(1.02);
+}
 .video-play-btn {
   position: absolute;
   top: 50%;
@@ -2612,6 +2729,12 @@ body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) .event
 #view-event #event-content[data-event-section="bop"] {
   max-width: 1600px;
 }
+/* GTWCE Endurance: широкие таблицы — иначе #event-content (1200px) уже самой таблицы, «панель» обрезается */
+body.series-gtwce_end #view-event #event-content[data-event-section="practice"],
+body.series-gtwce_end #view-event #event-content[data-event-section="qualifying"],
+body.series-gtwce_end #view-event #event-content[data-event-section="race"] {
+  max-width: 1600px;
+}
 .event-section-nav {
   display: flex;
   gap: 0.5rem;
@@ -2778,7 +2901,7 @@ tr.table-separator-row td {
   min-width: 14.5rem;
   max-width: 20rem;
   min-height: 8.4rem;
-  height: auto;
+  height: 8.4rem; /* keep cards same height even with multiple winner lines */
   overflow: hidden;
   text-decoration: none;
   color: inherit;
@@ -2817,6 +2940,11 @@ tr.table-separator-row td {
   overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 .lrc-winner {
   font-size: 0.85rem;
@@ -2825,6 +2953,8 @@ tr.table-separator-row td {
   line-height: 1.25;
   color: #fff;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  max-height: 3.8em;
+  overflow: hidden;
 }
 
 .lrc-card--f2 .lrc-winner,
@@ -2840,10 +2970,46 @@ tr.table-separator-row td {
   margin-top: 0.35rem;
 }
 
+/* ELMS / GTWCE Europe: одна высота карточки, до 4 строк победителей по классам */
+.lrc-card--elms,
+.lrc-card--gtwce {
+  height: 8.4rem;
+}
+.lrc-card--elms .lrc-name,
+.lrc-card--gtwce .lrc-name {
+  font-size: 0.98rem;
+  line-height: 1.05;
+}
+.lrc-card--elms .lrc-winner,
+.lrc-card--gtwce .lrc-winner {
+  font-size: 0.64rem;
+  line-height: 1.02;
+  margin-top: 0.15rem;
+  display: block;
+  max-height: 4.2em;
+  overflow: hidden;
+}
+.lrc-card--elms .lrc-winner-line,
+.lrc-card--gtwce .lrc-winner-line {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .lrc-card--supercars .lrc-winner {
   font-size: 0.68rem;
   line-height: 1.15;
   margin-top: 0.4rem;
+}
+
+/* Super GT: название как у остальных Last Results; мельче только победители (GT500/GT300) */
+.lrc-card--super-gt .lrc-winner {
+  margin-top: 0.12rem;
+  font-size: 0.58rem;
+  line-height: 1.08;
+  max-height: 2.5em;
+  overflow: hidden;
 }
 
 .lrc-winner--pending {
@@ -2876,6 +3042,325 @@ tr.table-separator-row td {
   background-image: url('/web/albert-park-bg.jpg');
   background-size: cover;
   background-position: center;
+}
+
+.lrc-card--motegi {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/motegi.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--motegi::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--motegi > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--barcelona {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/Circuit-de-Catalunya-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--barcelona::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--barcelona > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--taupo {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/taupo-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--taupo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--taupo > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--bristol {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/bristol-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--bristol::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--bristol > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--okayama {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/okayama-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--okayama::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--okayama > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--paul-ricard {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/paul-ricard.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--paul-ricard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--paul-ricard > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--thompson {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/thompson-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--thompson::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--thompson > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--imola {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/imola-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--imola::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--imola > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--kansas {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/kansas-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--kansas::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--kansas > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--long-beach {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/long-beach.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--long-beach::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--long-beach > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.lrc-card--euromarque {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-image: url('/web/euromarque.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.lrc-card--euromarque::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.lrc-card--euromarque > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .lrc-card--phoenix,
@@ -3701,6 +4186,457 @@ tr.table-separator-row td {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .nrc-card--albert-park:hover::before {
+  transform: none;
+}
+
+.nrc-card--motegi {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--motegi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/motegi.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--motegi::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--motegi > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--motegi:hover::before {
+  transform: none;
+}
+
+.nrc-card--barcelona {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--barcelona::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/Circuit-de-Catalunya-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--barcelona::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--barcelona > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--barcelona:hover::before {
+  transform: none;
+}
+
+.nrc-card--taupo {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--taupo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/taupo-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--taupo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--taupo > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--taupo:hover::before {
+  transform: none;
+}
+
+.nrc-card--bristol {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--bristol::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/bristol-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--bristol::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--bristol > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--bristol:hover::before {
+  transform: none;
+}
+
+.nrc-card--okayama {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--okayama::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/okayama-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--okayama::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--okayama > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--okayama:hover::before {
+  transform: none;
+}
+
+.nrc-card--paul-ricard {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--paul-ricard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/paul-ricard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--paul-ricard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--paul-ricard > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--paul-ricard:hover::before {
+  transform: none;
+}
+
+.nrc-card--thompson {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--thompson::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/thompson-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--thompson::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--thompson > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--thompson:hover::before {
+  transform: none;
+}
+
+.nrc-card--imola {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--imola::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/imola-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--imola::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--imola > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--imola:hover::before {
+  transform: none;
+}
+
+.nrc-card--kansas {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--kansas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/kansas-speedway.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--kansas::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--kansas > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--kansas:hover::before {
+  transform: none;
+}
+
+.nrc-card--long-beach {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--long-beach::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/long-beach.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--long-beach::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--long-beach > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--long-beach:hover::before {
+  transform: none;
+}
+
+.nrc-card--euromarque {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.nrc-card--euromarque::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/web/euromarque.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+  transition: transform 0.2s ease;
+}
+.nrc-card--euromarque::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  z-index: 1;
+}
+.nrc-card--euromarque > * {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.nrc-card--euromarque:hover::before {
   transform: none;
 }
 
