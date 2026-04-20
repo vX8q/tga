@@ -263,7 +263,6 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			return
 		}
 		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
-		driverCol := colIndex(rr.Headers, "Driver")
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
 		manuCol := colIndex(rr.Headers, "Manufacturer")
@@ -273,14 +272,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		if manuCol < 0 {
 			manuCol = colIndex(rr.Headers, "Make")
 		}
-		ptsCol := colIndex(rr.Headers, "Points")
-		if ptsCol < 0 {
-			ptsCol = colIndex(rr.Headers, "Pts")
-		}
-		if ptsCol < 0 {
-			ptsCol = colIndex(rr.Headers, "Pts.")
-		}
-		if driverCol < 0 {
+		ptsCol := pointsColIndex(rr.Headers)
+		// Ранний выход: нет ни одиночной колонки Driver, ни множественной Drivers.
+		if colIndex(rr.Headers, "Driver") < 0 && colIndex(rr.Headers, "Drivers") < 0 {
 			return
 		}
 
@@ -322,15 +316,8 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		}
 
 		for _, row := range rr.Rows {
-			if driverCol >= len(row) {
-				continue
-			}
-			driver := strings.TrimSpace(row[driverCol])
-			// F1: нормализуем Carlos Sainz -> Carlos Sainz Jr.
-			if strings.EqualFold(seriesID, "F1") && driver == "Carlos Sainz" {
-				driver = "Carlos Sainz Jr."
-			}
-			if driver == "" {
+			drivers := driversFromRow(rr.Headers, row)
+			if len(drivers) == 0 {
 				continue
 			}
 			carNum := ""
@@ -358,29 +345,34 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			if ptsCol >= 0 && ptsCol < len(row) {
 				racePts = parsePointsValue(row[ptsCol])
 			}
-			key := canonicalDriverKey(driver)
-			if key == "" {
-				key = driver
+			for _, driver := range drivers {
+				// F1: нормализуем Carlos Sainz -> Carlos Sainz Jr.
+				if strings.EqualFold(seriesID, "F1") && driver == "Carlos Sainz" {
+					driver = "Carlos Sainz Jr."
+				}
+				key := canonicalDriverKey(driver)
+				if key == "" {
+					key = driver
+				}
+				if byDriver[key] == nil {
+					byDriver[key] = &accRow{driver: driver, car: carNum, team: team, manufacturer: manu, races: make(map[string]string)}
+				}
+				r := byDriver[key]
+				if r.car == "" {
+					r.car = carNum
+				}
+				if r.team == "" {
+					r.team = team
+				}
+				if r.manufacturer == "" {
+					r.manufacturer = manu
+				}
+				// В ячейку standings пишем ровно то, что было в колонке Pos
+				// (включая специальные значения вроде Ret, DSQ, NC и т.п.).
+				r.races[raceCode] = rawPos
+				r.points += racePts
+				r.stages += stagePointsByDriver[driver]
 			}
-			if byDriver[key] == nil {
-				byDriver[key] = &accRow{driver: driver, car: carNum, team: team, manufacturer: manu, races: make(map[string]string)}
-			}
-			r := byDriver[key]
-			if r.car == "" {
-				r.car = carNum
-			}
-			if r.team == "" {
-				r.team = team
-			}
-			if r.manufacturer == "" {
-				r.manufacturer = manu
-			}
-			// В ячейку standings пишем ровно то, что было в колонке Pos
-			// (включая специальные значения вроде Ret, DSQ, NC и т.п.).
-			raceDisplay := rawPos
-			r.races[raceCode] = raceDisplay
-			r.points += racePts
-			r.stages += stagePointsByDriver[driver]
 		}
 	}
 
@@ -517,7 +509,6 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		raceIdx++
 		completedRaces = append(completedRaces, raceCode)
 		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
-		driverCol := colIndex(rr.Headers, "Driver")
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
 		manuCol := colIndex(rr.Headers, "Manufacturer")
@@ -527,13 +518,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		if manuCol < 0 {
 			manuCol = colIndex(rr.Headers, "Make")
 		}
-		ptsCol := colIndex(rr.Headers, "Points")
-		if ptsCol < 0 {
-			ptsCol = colIndex(rr.Headers, "Pts")
-		}
-		if ptsCol < 0 {
-			ptsCol = colIndex(rr.Headers, "Pts.")
-		}
+		ptsCol := pointsColIndex(rr.Headers)
 		statusCol := colIndex(rr.Headers, "Status")
 		if statusCol < 0 {
 			statusCol = colIndex(rr.Headers, "Reason")
@@ -541,7 +526,8 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		if statusCol < 0 {
 			statusCol = colIndex(rr.Headers, "Notes")
 		}
-		if driverCol < 0 {
+		// Нужна хотя бы одна колонка пилотов (одиночная "Driver" или множественная "Drivers").
+		if colIndex(rr.Headers, "Driver") < 0 && colIndex(rr.Headers, "Drivers") < 0 {
 			continue
 		}
 		stagePointsByDriver := make(map[string]int)
@@ -578,15 +564,8 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			}
 		}
 		for rowIdx, row := range rr.Rows {
-			if driverCol >= len(row) {
-				continue
-			}
-			driver := strings.TrimSpace(row[driverCol])
-			// F1: нормализуем Carlos Sainz -> Carlos Sainz Jr.
-			if strings.EqualFold(seriesID, "F1") && driver == "Carlos Sainz" {
-				driver = "Carlos Sainz Jr."
-			}
-			if driver == "" {
+			drivers := driversFromRow(rr.Headers, row)
+			if len(drivers) == 0 {
 				continue
 			}
 			carNum := ""
@@ -618,23 +597,6 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			if ptsCol >= 0 && ptsCol < len(row) {
 				racePts = parsePointsValue(row[ptsCol])
 			}
-			key := canonicalDriverKey(driver)
-			if key == "" {
-				key = driver
-			}
-			if byDriver[key] == nil {
-				byDriver[key] = &accRow{driver: driver, car: carNum, team: team, manufacturer: manu, races: make(map[string]string)}
-			}
-			r := byDriver[key]
-			if r.car == "" {
-				r.car = carNum
-			}
-			if r.team == "" {
-				r.team = team
-			}
-			if r.manufacturer == "" {
-				r.manufacturer = manu
-			}
 			// Нормализуем отображаемое значение позиции:
 			// - пустой Pos + статус Did Not Qualify → DNQ
 			// - NC → индекс строки (1‑based), чтобы можно было отличить нескольких NC
@@ -644,9 +606,32 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			} else if strings.EqualFold(strings.TrimSpace(rawPos), "NC") {
 				raceDisplay = itoa(rowIdx + 1)
 			}
-			r.races[raceCode] = raceDisplay
-			r.points += racePts
-			r.stages += stagePointsByDriver[driver]
+			for _, driver := range drivers {
+				// F1: нормализуем Carlos Sainz -> Carlos Sainz Jr.
+				if strings.EqualFold(seriesID, "F1") && driver == "Carlos Sainz" {
+					driver = "Carlos Sainz Jr."
+				}
+				key := canonicalDriverKey(driver)
+				if key == "" {
+					key = driver
+				}
+				if byDriver[key] == nil {
+					byDriver[key] = &accRow{driver: driver, car: carNum, team: team, manufacturer: manu, races: make(map[string]string)}
+				}
+				r := byDriver[key]
+				if r.car == "" {
+					r.car = carNum
+				}
+				if r.team == "" {
+					r.team = team
+				}
+				if r.manufacturer == "" {
+					r.manufacturer = manu
+				}
+				r.races[raceCode] = raceDisplay
+				r.points += racePts
+				r.stages += stagePointsByDriver[driver]
+			}
 		}
 		// Did Not Qualify: добавляем пилотов из таблицы did_not_qualify с пометкой DNQ по этой гонке
 		if dnq, ok := detail.Tables["did_not_qualify"]; ok && len(dnq.Headers) > 0 && len(dnq.Rows) > 0 {
