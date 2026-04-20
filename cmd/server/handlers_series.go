@@ -285,6 +285,16 @@ func handleSeriesStandings(w http.ResponseWriter, _ *http.Request, dataDir, data
 			writeError(w, http.StatusInternalServerError, "failed to load standings")
 			return
 		}
+	} else if strings.EqualFold(dataSeriesID, "SUPERCARS") {
+		data, err = loadSupercarsStandings(dataDir, season)
+		if err != nil {
+			slog.Error("supercars standings failed",
+				"series", dataSeriesID,
+				"err", err,
+			)
+			writeError(w, http.StatusInternalServerError, "failed to load standings")
+			return
+		}
 	} else {
 		data, err = schedulefile.BuildStandingsFromEvents(dataDir, dataSeriesID, season)
 		if err != nil {
@@ -309,40 +319,57 @@ func handleSeriesStandings(w http.ResponseWriter, _ *http.Request, dataDir, data
 				schedulefile.SplitBaseIneligible(data)
 			}
 		}
-		// Supercars: если строк нет (нет БД или нет race_results в JSON), собираем из файлов Sydney + Melbourne.
-		if strings.EqualFold(dataSeriesID, "SUPERCARS") && (data == nil || len(data.Rows) == 0) {
-			if built, buildErr := schedulefile.BuildSupercarsStandingsFromFiles(dataDir); buildErr == nil && built != nil && len(built.Rows) > 0 {
-				data = built
-			}
-		}
 	}
 	if data == nil {
 		data = &schedulefile.StandingsData{Rows: []schedulefile.StandingRow{}}
 	}
-	if data != nil {
-		schedulefile.EnsureCompletedRaces(dataDir, dataSeriesID, data)
-	}
-	if data != nil && len(data.Rows) > 0 && dataSeriesID != "ARCA" {
+	schedulefile.EnsureCompletedRaces(dataDir, dataSeriesID, data)
+	if len(data.Rows) > 0 && dataSeriesID != "ARCA" {
 		schedulefile.EnrichStagesFromEvents(dataDir, dataSeriesID, data)
 	}
-	// Supercars: если по любой причине пришло меньше 7 колонок — доводим до 7 (SMP1–SMP3 + MLB4–MLB7) перед ответом.
-	if data != nil && len(data.Rows) > 0 && strings.EqualFold(dataSeriesID, "SUPERCARS") && len(data.RaceOrder) < 7 {
+	if strings.EqualFold(dataSeriesID, "SUPERCARS") && len(data.Rows) > 0 {
+		finalizeSupercarsStandings(dataDir, data)
+	}
+	_ = json.NewEncoder(w).Encode(data)
+}
+
+// loadSupercarsStandings собирает таблицу для Supercars в порядке приоритета:
+//  1. data/standings/supercars.json — основной источник (ведётся вручную, содержит все завершённые гонки);
+//  2. BuildStandingsFromEvents — если файла нет или он пустой;
+//  3. BuildSupercarsStandingsFromFiles — устаревший сборщик из Sydney/Melbourne (нужен только как аварийный fallback).
+func loadSupercarsStandings(dataDir, season string) (*schedulefile.StandingsData, error) {
+	if fileData, err := schedulefile.LoadStandings(dataDir, "SUPERCARS"); err != nil {
+		return nil, err
+	} else if fileData != nil && len(fileData.Rows) > 0 {
+		schedulefile.SplitBaseIneligible(fileData)
+		return fileData, nil
+	}
+	if built, err := schedulefile.BuildStandingsFromEvents(dataDir, "SUPERCARS", season); err != nil {
+		return nil, err
+	} else if built != nil && len(built.Rows) > 0 {
+		return built, nil
+	}
+	if built, err := schedulefile.BuildSupercarsStandingsFromFiles(dataDir); err == nil && built != nil && len(built.Rows) > 0 {
+		return built, nil
+	}
+	return nil, nil
+}
+
+// finalizeSupercarsStandings применяет Supercars-специфичные пост-обработки:
+// нормализация <7 колонок (аварийный путь), слияние дубликатов (car 800 ↔ 8)
+// и пересчёт completed_races по фактически заполненным колонкам.
+func finalizeSupercarsStandings(dataDir string, data *schedulefile.StandingsData) {
+	if len(data.RaceOrder) < 7 {
 		was := len(data.RaceOrder)
 		schedulefile.NormalizeSupercarsStandingsToSeven(data)
 		schedulefile.EnrichSupercarsStandingsWithMelbourne(dataDir, data)
-		schedulefile.RecomputeCompletedRacesFromFilled(data)
-		slog.Info("supercars standings forced to 7 columns", "was", was, "now", len(data.RaceOrder))
+		slog.Info("supercars standings normalized to baseline columns",
+			"was", was,
+			"now", len(data.RaceOrder),
+		)
 	}
-	// Supercars: после любого enrich пересчитываем completed_races по фактически заполненным колонкам.
-	if data != nil && len(data.Rows) > 0 && strings.EqualFold(dataSeriesID, "SUPERCARS") && len(data.RaceOrder) == 7 {
-		schedulefile.RecomputeCompletedRacesFromFilled(data)
-	}
-	// Supercars: объединяем строки 800 и 8 в одну с номером 8 (на случай данных из БД с разными driver_id).
-	if data != nil && len(data.Rows) > 0 && strings.EqualFold(dataSeriesID, "SUPERCARS") {
-		schedulefile.MergeSupercarsCar800Into8(data)
-		schedulefile.RecomputeCompletedRacesFromFilled(data)
-	}
-	_ = json.NewEncoder(w).Encode(data)
+	schedulefile.MergeSupercarsCar800Into8(data)
+	schedulefile.RecomputeCompletedRacesFromFilled(data)
 }
 
 func handleSeriesStats(w http.ResponseWriter, r *http.Request, dataDir, dataSeriesID, season string) {

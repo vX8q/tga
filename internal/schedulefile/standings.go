@@ -2,6 +2,7 @@ package schedulefile
 
 import (
 	"log"
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -210,8 +211,40 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		team         string
 		manufacturer string
 		races        map[string]string
-		points       int
+		points       float64
 		stages       int
+	}
+	parsePointsValue := func(raw string) float64 {
+		s := strings.TrimSpace(raw)
+		if s == "" {
+			return 0
+		}
+		var b strings.Builder
+		started := false
+		for _, c := range s {
+			if (c >= '0' && c <= '9') || c == '.' {
+				b.WriteRune(c)
+				started = true
+				continue
+			}
+			if started {
+				break
+			}
+		}
+		if b.Len() == 0 {
+			return 0
+		}
+		v, err := strconv.ParseFloat(b.String(), 64)
+		if err != nil {
+			return 0
+		}
+		return v
+	}
+	formatPointsValue := func(v float64) string {
+		if math.Abs(v-math.Round(v)) < 1e-9 {
+			return strconv.FormatInt(int64(math.Round(v)), 10)
+		}
+		return strconv.FormatFloat(v, 'f', -1, 64)
 	}
 	byDriver := make(map[string]*accRow)
 	var completedRaces []string
@@ -229,10 +262,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		if len(rr.Headers) == 0 || len(rr.Rows) == 0 {
 			return
 		}
-		posCol := colIndex(rr.Headers, "Pos")
-		if posCol < 0 {
-			posCol = colIndex(rr.Headers, "Fin")
-		}
+		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
 		driverCol := colIndex(rr.Headers, "Driver")
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
@@ -324,13 +354,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 					manu = eng
 				}
 			}
-			racePts := 0
+			racePts := 0.0
 			if ptsCol >= 0 && ptsCol < len(row) {
-				for _, c := range strings.TrimSpace(row[ptsCol]) {
-					if c >= '0' && c <= '9' {
-						racePts = racePts*10 + int(c-'0')
-					}
-				}
+				racePts = parsePointsValue(row[ptsCol])
 			}
 			key := canonicalDriverKey(driver)
 			if key == "" {
@@ -375,6 +401,33 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		}
 		if raceIdx >= len(raceOrder) {
 			break
+		}
+		// Super Formula: один event может содержать две гонки (race.sessions).
+		// В этом случае раскладываем все сессии последовательно по race_order (R1, R2, ...).
+		if strings.EqualFold(seriesID, "SUPER_FORMULA") {
+			if sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID); errSess == nil && len(sessions) > 0 {
+				var detail *EventDetailJSON
+				if det, errDet := LoadEventDetail(dataDir, ev.ID); errDet == nil {
+					detail = det
+				}
+				used := false
+				for _, rs := range sessions {
+					if raceIdx >= len(raceOrder) {
+						break
+					}
+					if len(rs.Headers) == 0 || len(rs.Rows) == 0 {
+						continue
+					}
+					raceCode := raceOrder[raceIdx]
+					applyEventTable(EventTable{Headers: rs.Headers, Rows: rs.Rows}, raceCode, detail, false)
+					completedRaces = append(completedRaces, raceCode)
+					raceIdx++
+					used = true
+				}
+				if used {
+					continue
+				}
+			}
 		}
 
 		// F1 2025: спринт‑уикенд — выделяем две колонки (Sprint и основная гонка),
@@ -463,10 +516,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		// продвигаем индекс гонок и помечаем её как завершённую.
 		raceIdx++
 		completedRaces = append(completedRaces, raceCode)
-		posCol := colIndex(rr.Headers, "Pos")
-		if posCol < 0 {
-			posCol = colIndex(rr.Headers, "Fin")
-		}
+		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
 		driverCol := colIndex(rr.Headers, "Driver")
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
@@ -564,13 +614,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 					manu = eng
 				}
 			}
-			racePts := 0
+			racePts := 0.0
 			if ptsCol >= 0 && ptsCol < len(row) {
-				for _, c := range strings.TrimSpace(row[ptsCol]) {
-					if c >= '0' && c <= '9' {
-						racePts = racePts*10 + int(c-'0')
-					}
-				}
+				racePts = parsePointsValue(row[ptsCol])
 			}
 			key := canonicalDriverKey(driver)
 			if key == "" {
@@ -657,12 +703,13 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			Team:         r.team,
 			Manufacturer: r.manufacturer,
 			Races:        r.races,
-			Points:       itoa(r.points),
+			Points:       formatPointsValue(r.points),
 			Stages:       itoa(r.stages),
 		})
 	}
 	sort.Slice(rows, func(i, j int) bool {
-		pi, pj := atoi(rows[i].Points), atoi(rows[j].Points)
+		pi := parsePointsValue(rows[i].Points)
+		pj := parsePointsValue(rows[j].Points)
 		if pi != pj {
 			return pi > pj
 		}
@@ -681,7 +728,8 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		eligible[i].Pos = i + 1
 	}
 	sort.Slice(ineligible, func(i, j int) bool {
-		pi, pj := atoi(ineligible[i].Points), atoi(ineligible[j].Points)
+		pi := parsePointsValue(ineligible[i].Points)
+		pj := parsePointsValue(ineligible[j].Points)
 		if pi != pj {
 			return pi > pj
 		}
@@ -1153,4 +1201,3 @@ func EnrichSupercarsStandingsWithMelbourne(dataDir string, data *StandingsData) 
 		data.Rows[i].Pos = i + 1
 	}
 }
-
