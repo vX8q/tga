@@ -225,7 +225,7 @@ func findEventByDate(events []schedulefile.EventJSON, target string, allowWeeken
 }
 
 func readLiveIDs(livePath string) []string {
-	raw, err := os.ReadFile(livePath)
+	raw, err := os.ReadFile(livePath) //nolint:gosec
 	if err != nil {
 		return nil
 	}
@@ -250,10 +250,10 @@ func writeLiveJSON(path string, ids []string) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, b, 0644)
+	return os.WriteFile(path, b, 0o600)
 }
 
-func mergeLiveJSONNASCAR(livePath string, newNascarIds []string) error {
+func mergeLiveJSONNASCAR(livePath string, newNascarIDs []string) error {
 	current := readLiveIDs(livePath)
 	if current == nil {
 		current = []string{}
@@ -269,7 +269,7 @@ func mergeLiveJSONNASCAR(livePath string, newNascarIds []string) error {
 		filtered = append(filtered, id)
 		seen[u] = struct{}{}
 	}
-	for _, id := range newNascarIds {
+	for _, id := range newNascarIDs {
 		if id == "" {
 			continue
 		}
@@ -332,7 +332,11 @@ func fetchNASCARLiveFeed() (*nascarLiveFeed, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); closeErr != nil {
+			log.Printf("livesync: failed to close NASCAR live feed body: %v", closeErr)
+		}
+	}()
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
@@ -352,7 +356,11 @@ func fetchNASCARRaces(seriesID, season int) ([]nascarRace, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); closeErr != nil {
+			log.Printf("livesync: failed to close NASCAR races body: %v", closeErr)
+		}
+	}()
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
@@ -378,7 +386,11 @@ func fetchOpenF1SessionsLatest() ([]openF1Session, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); closeErr != nil {
+			log.Printf("livesync: failed to close OpenF1 sessions body: %v", closeErr)
+		}
+	}()
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("status %d", resp.StatusCode)
 	}
@@ -398,13 +410,17 @@ func StartBackground(ctx context.Context, dataDir string, interval time.Duration
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 	// первый запуск сразу
-	Run(dataDir)
+	if err := Run(dataDir); err != nil {
+		log.Printf("livesync background tick error: %v", err)
+	}
 	for {
 		select {
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
-			Run(dataDir)
+			if err := Run(dataDir); err != nil {
+				log.Printf("livesync background tick error: %v", err)
+			}
 		}
 	}
 }

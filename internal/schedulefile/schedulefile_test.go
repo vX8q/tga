@@ -110,6 +110,10 @@ func TestIsExhibitionEvent(t *testing.T) {
 		{"NASCAR_CUP", "NASCAR_CUP_2026_1", false},
 		{"nascar_cup", "NASCAR_CUP_2026_0", true},
 		{"F1", "F1_2026_0", false},
+		{"NASCAR_CUP", "NASCAR_CUP_2026_ALLSTAR_RACE", true},
+		{"nascar_cup", "NASCAR_CUP_2026_ALLSTAR_RACE", true},
+		{"NASCAR_CUP", "NASCAR_CUP_2025_ALL_STAR_OPEN", true},
+		{"F1", "F1_2026_ALLSTAR_RACE", false},
 	}
 	for _, tt := range tests {
 		got := isExhibitionEvent(tt.seriesID, tt.eventID)
@@ -222,6 +226,88 @@ func TestBuildStandingsFromEvents_DNQAndNC(t *testing.T) {
 	// Для NC ожидаем использование индекса строки (третья строка → \"3\").
 	if got := raceByDriver["Driver C"]; got != "3" {
 		t.Errorf("Driver C race result = %q, want %q (NC → row index)", got, "3")
+	}
+}
+
+func TestBuildStandingsFromEvents_F2SprintAndFeature(t *testing.T) {
+	dataDir := t.TempDir()
+
+	events := []EventJSON{
+		{
+			ID:        "F2_2026_1",
+			SeriesID:  "F2",
+			Season:    "2026",
+			Name:      "Melbourne",
+			StartDate: "2026-03-07",
+			EndDate:   "2026-03-08",
+		},
+	}
+	writeJSON(t, filepath.Join(dataDir, "schedules", "f2.json"), events)
+
+	detail := &EventDetailJSON{
+		EventID: "F2_2026_1",
+		Tables: map[string]EventTable{
+			"race": {
+				Sessions: []EventTableSession{
+					{
+						Title:   "Sprint Race Results",
+						Headers: []string{"Pos", "No.", "Driver", "Team", "Pts"},
+						Rows: [][]string{
+							{"1", "2", "Joshua Durksen", "Invicta Racing", "10"},
+							{"2", "5", "Noel Leon", "Campos Racing", "8"},
+						},
+					},
+					{
+						Title:   "Feature Race Results",
+						Headers: []string{"Pos", "No.", "Driver", "Team", "Pts"},
+						Rows: [][]string{
+							{"1", "5", "Noel Leon", "Campos Racing", "25"},
+							{"2", "2", "Joshua Durksen", "Invicta Racing", "18"},
+						},
+					},
+				},
+			},
+		},
+	}
+	writeJSON(t, filepath.Join(dataDir, "events", "F2", "2026", "f2_2026_1.json"), detail)
+
+	got, err := BuildStandingsFromEvents(dataDir, "F2", "2026")
+	if err != nil {
+		t.Fatalf("BuildStandingsFromEvents error: %v", err)
+	}
+	if got == nil {
+		t.Fatal("BuildStandingsFromEvents returned nil")
+	}
+	wantOrder := []string{"R1S", "R1F"}
+	if len(got.RaceOrder) != len(wantOrder) {
+		t.Fatalf("RaceOrder = %#v, want %#v", got.RaceOrder, wantOrder)
+	}
+	for i := range wantOrder {
+		if got.RaceOrder[i] != wantOrder[i] {
+			t.Fatalf("RaceOrder = %#v, want %#v", got.RaceOrder, wantOrder)
+		}
+	}
+	if len(got.CompletedRaces) != len(wantOrder) {
+		t.Fatalf("CompletedRaces = %#v, want %#v", got.CompletedRaces, wantOrder)
+	}
+	for i := range wantOrder {
+		if got.CompletedRaces[i] != wantOrder[i] {
+			t.Fatalf("CompletedRaces = %#v, want %#v", got.CompletedRaces, wantOrder)
+		}
+	}
+
+	byDriver := map[string]StandingRow{}
+	for _, r := range got.Rows {
+		byDriver[r.Driver] = r
+	}
+	if got := byDriver["Noel Leon"].Points; got != "33" {
+		t.Fatalf("Noel Leon points = %q, want 33", got)
+	}
+	if got := byDriver["Noel Leon"].Races["R1S"]; got != "2" {
+		t.Fatalf("Noel Leon sprint = %q, want 2", got)
+	}
+	if got := byDriver["Noel Leon"].Races["R1F"]; got != "1" {
+		t.Fatalf("Noel Leon feature = %q, want 1", got)
 	}
 }
 
@@ -446,7 +532,7 @@ func TestBuildSupercarsDriverStatsFromJSON_Basic(t *testing.T) {
 			"race": map[string]any{
 				"sessions": []any{
 					map[string]any{
-						"name": "Race 1",
+						"name":    "Race 1",
 						"headers": []any{"Pos", "Driver", "No"},
 						"rows": []any{
 							[]any{"1", "Driver A", "25"},
@@ -506,7 +592,7 @@ func FuzzAtoiSafe(f *testing.F) {
 	f.Add("42")
 	f.Add("")
 	f.Add("-1")
-	f.Fuzz(func(t *testing.T, s string) {
+	f.Fuzz(func(_ *testing.T, s string) {
 		n := atoiSafe(s)
 		_ = n
 	})

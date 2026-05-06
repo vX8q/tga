@@ -1,3 +1,4 @@
+// Package models defines core domain entities.
 package models
 
 import "time"

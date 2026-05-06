@@ -1,3 +1,4 @@
+// Package schedulefile provides schedule and stats aggregation utilities.
 package schedulefile
 
 import (

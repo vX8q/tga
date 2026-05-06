@@ -1,0 +1,582 @@
+{
+  "event_id": "SUPER_GT_2026_2",
+  "series": "SUPER GT",
+  "race": "Fuji GT 3 Hours Race",
+  "date": "3-4 May 2026",
+  "start_date": "2026-05-03",
+  "end_date": "2026-05-04",
+  "track": "Fuji Speedway",
+  "location": "Oyama, Shizuoka Prefecture",
+  "laps": "",
+  "distance": "3 hours",
+  "youtube_id": "",
+  "youtube_highlights": [],
+  "event_preview": "Fuji Speedway is a 4.563 km (2.836 mi) road course at the foothills of Mount Fuji in Oyama, Shizuoka Prefecture — Toyota's home circuit and the fastest track on the Super GT calendar, built around a 1.5 km front straight that feeds a heavy braking zone at Turn 1. The Fuji GT 3 Hours Race GW Special is one of only two three-hour races on the 2026 calendar and the 31st edition of the Golden Week race dating back to 1994. With Sepang postponed to 2027, it is also the last race before a three-month break.\n\nThe GT500 qualifying record belongs to Kenta Yamashita, who set a 1:25.764 in the No. 14 ENEOS GR Supra during Q2 at the November 2021 round. The GT300 record is Hideki Yamauchi's 1:34.395 in the No. 61 Subaru BRZ from the same session.",
+  "event_preview_ru": "",
+  "entry_list": [
+    {
+      "class": "GT500",
+      "number": "8",
+      "team": "Team HRC ARTA Mugen",
+      "make": "Honda",
+      "car": "Honda HRC Prelude-GT",
+      "driver1": "Kakunoshin Ohta",
+      "driver2": "Hiroki Otsu",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "16",
+      "team": "ARTA Mugen",
+      "make": "Honda",
+      "car": "Honda HRC Prelude-GT",
+      "driver1": "Tomoki Nojiri",
+      "driver2": "Ren Sato",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "12",
+      "team": "Team Impul",
+      "make": "Nissan",
+      "car": "Nissan Z NISMO GT500",
+      "driver1": "Kazuki Hiramine",
+      "driver2": "Bertrand Baguette",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "14",
+      "team": "TGR Team ENEOS ROOKIE",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Nirei Fukuzumi",
+      "driver2": "Kazuya Oshima",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "17",
+      "team": "Astemo Real Racing",
+      "make": "Honda",
+      "car": "Honda HRC Prelude-GT",
+      "driver1": "Koudai Tsukakoshi",
+      "driver2": "Yuto Nomura",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "19",
+      "team": "TGR Team WedsSport Bandoh",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Yuji Kunimoto",
+      "driver2": "Sena Sakaguchi",
+      "tire": "Y"
+    },
+    {
+      "class": "GT500",
+      "number": "23",
+      "team": "NISMO",
+      "make": "Nissan",
+      "car": "Nissan Z NISMO GT500",
+      "driver1": "Katsumasa Chiyo",
+      "driver2": "Mitsunori Takaboshi",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "24",
+      "team": "Kondo Racing",
+      "make": "Nissan",
+      "car": "Nissan Z NISMO GT500",
+      "driver1": "Teppei Natori",
+      "driver2": "Atsushi Miyake",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "36",
+      "team": "TGR Team au TOM'S",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Sho Tsuboi",
+      "driver2": "Kenta Yamashita",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "37",
+      "team": "TGR Team Deloitte TOM'S",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Ukyo Sasahara",
+      "driver2": "Giuliano Alesi",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "38",
+      "team": "TGR Team KeePer Cerumo",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Toshiki Oyu",
+      "driver2": "Rikuto Kobayashi",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "39",
+      "team": "TGR Team SARD",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT500",
+      "driver1": "Yuhi Sekiguchi",
+      "driver2": "Sacha Fenestraz",
+      "tire": "B"
+    },
+    {
+      "class": "GT500",
+      "number": "64",
+      "team": "Modulo Nakajima Racing",
+      "make": "Honda",
+      "car": "Honda HRC Prelude-GT",
+      "driver1": "Riki Okusa",
+      "driver2": "Igor Omura Fraga",
+      "tire": "D"
+    },
+    {
+      "class": "GT500",
+      "number": "100",
+      "team": "Stanley Team Kunimitsu",
+      "make": "Honda",
+      "car": "Honda HRC Prelude-GT",
+      "driver1": "Naoki Yamamoto",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "2",
+      "team": "Hyper Water Racing Inging",
+      "make": "Toyota GR",
+      "car": "Toyota GR86 GT300",
+      "driver1": "Yuui Tsutsumi",
+      "driver2": "Kazuhisa Urabe",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "4",
+      "team": "Goodsmile Racing & TeamUKYO",
+      "make": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "driver1": "Nobuteru Taniguchi",
+      "driver2": "Tatsuya Kataoka",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "5",
+      "team": "Team Mach",
+      "make": "Toyota",
+      "car": "Toyota 86 MC GT300",
+      "driver1": "Yusuke Shiotsu",
+      "driver2": "Souta Arao",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "6",
+      "team": "Velorex",
+      "make": "Ferrari",
+      "car": "Ferrari 296 GT3 Evo",
+      "driver1": "Yoshiaki Katayama",
+      "driver2": "Niklas Krutten",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "7",
+      "team": "CarGuy MKS Racing",
+      "make": "Ferrari",
+      "car": "Ferrari 296 GT3 Evo",
+      "driver1": "Zak O'Sullivan",
+      "driver2": "Reimei Ito",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "9",
+      "team": "Pacific Racing Team",
+      "make": "BMW",
+      "car": "BMW M4 GT3 Evo",
+      "driver1": "Yusuke Tomibayashi",
+      "driver2": "Yuta Fujiwara",
+      "tire": "M"
+    },
+    {
+      "class": "GT300",
+      "number": "11",
+      "team": "GAINER",
+      "make": "Nissan",
+      "car": "Nissan Fairlady Z GT300 (RZ34)",
+      "driver1": "Ryuichiro Tomita",
+      "driver2": "Kazuki Oki",
+      "tire": "D"
+    },
+    {
+      "class": "GT300",
+      "number": "26",
+      "team": "Anest Iwata Racing",
+      "make": "Nissan",
+      "car": "Nissan Fairlady Z GT300 (RZ34)",
+      "driver1": "Hironobu Yasuda",
+      "driver2": "Lee Jungwoo",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "18",
+      "team": "Team UpGarage",
+      "make": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "driver1": "Takashi Kobayashi",
+      "driver2": "Kotaro Shimbara",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "20",
+      "team": "SHADE Racing",
+      "make": "Lexus",
+      "car": "Lexus RC F GT3",
+      "driver1": "Katsuyuki Hiranaka",
+      "driver2": "Eijiro Shimizu",
+      "tire": "M"
+    },
+    {
+      "class": "GT300",
+      "number": "22",
+      "team": "R'Qs Motor Sports",
+      "make": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "driver1": "Hisashi Wada",
+      "driver2": "Masaki Kano",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "25",
+      "team": "Hoppy Team Tsuchiya",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT300",
+      "driver1": "Takamitsu Matsui",
+      "driver2": "Ryota Horachi",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "30",
+      "team": "apr",
+      "make": "Toyota GR",
+      "car": "Toyota GR86 GT300",
+      "driver1": "Hiroaki Nagai",
+      "driver2": "Hibiki Taira",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "31",
+      "team": "apr",
+      "make": "Lexus",
+      "car": "Lexus LC 500h GT",
+      "driver1": "Kazuto Kotaka",
+      "driver2": "Miki Koyama",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "32",
+      "team": "Team ENEOS Rookie",
+      "make": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "driver1": "Hiroaki Ishiura",
+      "driver2": "Tokiya Suzuki",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "45",
+      "team": "Ponos Racing",
+      "make": "Ferrari",
+      "car": "Ferrari 296 GT3 Evo",
+      "driver1": "Kei Cozzolino",
+      "driver2": "Takuro Shinohara",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "48",
+      "team": "Nilzz Racing",
+      "make": "Nissan",
+      "car": "Nissan GT-R Nismo GT3",
+      "driver1": "Taiyo Iida",
+      "driver2": "James Pull",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "52",
+      "team": "Saitama Green Brave",
+      "make": "Toyota GR",
+      "car": "Toyota GR Supra GT300",
+      "driver1": "Hiroki Yoshida",
+      "driver2": "Seita Nonaka",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "56",
+      "team": "Kondo Racing",
+      "make": "Nissan",
+      "car": "Nissan GT-R Nismo GT3",
+      "driver1": "Joao Paulo de Oliveira",
+      "driver2": "Iori Kimura",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "60",
+      "team": "LM corsa",
+      "make": "Lexus",
+      "car": "Lexus LC 500 GT",
+      "driver1": "Hiroki Yoshimoto",
+      "driver2": "Shunsuke Kohno",
+      "tire": "D"
+    },
+    {
+      "class": "GT300",
+      "number": "61",
+      "team": "R&D Sport",
+      "make": "Subaru",
+      "car": "Subaru BRZ GT300 (ZD8)",
+      "driver1": "Takuto Iguchi",
+      "driver2": "Hideki Yamauchi",
+      "tire": "D"
+    },
+    {
+      "class": "GT300",
+      "number": "62",
+      "team": "HELM Motorsports",
+      "make": "Nissan",
+      "car": "Nissan GT-R Nismo GT3",
+      "driver1": "Yuya Hiraki",
+      "driver2": "Reiji Hiraki",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "65",
+      "team": "K2 R&D LEON Racing",
+      "make": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "driver1": "Naoya Gamou",
+      "driver2": "Togo Suganami",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "87",
+      "team": "JLOC",
+      "make": "Lamborghini",
+      "car": "Lamborghini Huracan GT3 Evo 2",
+      "driver1": "Yuya Motojima",
+      "driver2": "Kosuke Matsuura",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "88",
+      "team": "JLOC",
+      "make": "Lamborghini",
+      "car": "Lamborghini Huracan GT3 Evo 2",
+      "driver1": "Takashi Kogure",
+      "driver2": "Daniil Kvyat",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "96",
+      "team": "K-tunes Racing",
+      "make": "Lexus",
+      "car": "Lexus RC F GT3",
+      "driver1": "Morio Nitta",
+      "driver2": "Shinichi Takagi",
+      "tire": "B"
+    },
+    {
+      "class": "GT300",
+      "number": "360",
+      "team": "Tomei Sports",
+      "make": "Nissan",
+      "car": "Nissan GT-R Nismo GT3",
+      "driver1": "Rin Arakawa",
+      "driver2": "Yu Kanamaru",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "666",
+      "team": "Seven x Seven Racing",
+      "make": "Porsche",
+      "car": "Porsche 911 GT3 R (992.2)",
+      "driver1": "Sven Muller",
+      "driver2": "Kiyoto Fujinami",
+      "tire": "Y"
+    },
+    {
+      "class": "GT300",
+      "number": "777",
+      "team": "D'station Racing",
+      "make": "Aston Martin",
+      "car": "Aston Martin Vantage AMR GT3 Evo",
+      "driver1": "Tomonobu Fujii",
+      "driver2": "Charlie Fagg",
+      "tire": "D"
+    }
+  ],
+  "tables": {
+    "practice": {
+      "title": "Free Practice",
+      "meta": {
+        "Date": "Sat 3 May 2026",
+        "Location": "Oyama, Shizuoka Prefecture",
+        "Course": "Fuji Speedway"
+      },
+      "sessions": [
+        {
+          "title": "GT500",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        },
+        {
+          "title": "GT300",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        }
+      ]
+    },
+    "qualifying": {
+      "title": "Qualifying",
+      "meta": {
+        "Date": "Sat 3 May 2026",
+        "Location": "Oyama, Shizuoka Prefecture",
+        "Course": "Fuji Speedway"
+      },
+      "sessions": [
+        {
+          "class": "GT500",
+          "title": "Qualifying 1",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        },
+        {
+          "class": "GT500",
+          "title": "Qualifying 2",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        },
+        {
+          "class": "GT300",
+          "title": "Qualifying 1",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        },
+        {
+          "class": "GT300",
+          "title": "Qualifying 2",
+          "headers": [
+            "Pos.",
+            "No.",
+            "Team",
+            "Drivers",
+            "Best lap",
+            "Gap",
+            "Laps",
+            "Tire"
+          ],
+          "rows": []
+        }
+      ]
+    },
+    "race": {
+      "title": "Race",
+      "meta": {
+        "Date": "Sun 4 May 2026",
+        "Location": "Oyama, Shizuoka Prefecture",
+        "Course": "Fuji Speedway",
+        "Distance": "3 hours"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Drivers",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day",
+        "DP",
+        "TP"
+      ],
+      "rows": []
+    }
+  }
+}

@@ -11,7 +11,7 @@
   "stage1_laps": "60",
   "stage2_laps": "125",
   "stage3_laps": "127",
-  "track_info": "Phoenix Raceway in its current form is measured at 1.000 mi (1.609 km), with 9° of banking in the first two turns, 11° of banking in the last two turns, 9° of banking on the frontstretch, and 3° of banking on the backstretch. The track is known for its frontstretch kink, commonly referred to as a \"dogleg\" that was added to accommodate the track's original road course, which used parts of the oval alongside specialized portions outside the oval.",
+  "event_preview": "Phoenix Raceway in its current form is measured at 1.000 mi (1.609 km), with 9° of banking in the first two turns, 11° of banking in the last two turns, 9° of banking on the frontstretch, and 3° of banking on the backstretch. The track is known for its frontstretch kink, commonly referred to as a \"dogleg\" that was added to accommodate the track's original road course, which used parts of the oval alongside specialized portions outside the oval.",
   "entry_list": [
     {"number": "1", "driver": "Ross Chastain", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Brandon McSwain"},
     {"number": "2", "driver": "Austin Cindric", "team": "Team Penske", "manufacturer": "Ford", "crew_chief": "Brian Wilson"},

@@ -32,12 +32,12 @@
       <p class="event-meta">{{.Event.Date}}{{if .Event.Track}} · {{.Event.Track}}{{end}}{{if .Event.Location}}, {{.Event.Location}}{{end}}</p>
     </header>
 
-    {{if .Event.TrackInfo}}
+    {{if .Event.EventPreview}}
     <section class="event-data-section">
-      <h2>Track info</h2>
-      <p class="track-info-text">{{.Event.TrackInfo}}</p>
+      <h2>Event preview</h2>
+      <p class="event-preview-text">{{.Event.EventPreview}}</p>
       {{if .Event.TyreCompounds}}
-      <p class="track-info-text tyre-compounds-text">{{.Event.TyreCompounds}}</p>
+      <p class="event-preview-text tyre-compounds-text">{{.Event.TyreCompounds}}</p>
       {{end}}
     </section>
     {{end}}
@@ -118,10 +118,10 @@
         </table>
       </div>
     </section>
-      {{else if eq .Type "track_info"}}
+      {{else if eq .Type "event_preview"}}
     <section class="event-data-section">
       <h2>{{.Title}}</h2>
-      <p class="track-info-text">{{.TrackInfo}}</p>
+      <p class="event-preview-text">{{.EventPreview}}</p>
     </section>
       {{end}}
     {{end}}

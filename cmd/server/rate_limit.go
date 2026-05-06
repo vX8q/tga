@@ -52,8 +52,8 @@ func (rl *rateLimiter) allow(r *http.Request) bool {
 	}
 	if fwd := r.Header.Get("X-Forwarded-For"); fwd != "" {
 		key = strings.TrimSpace(strings.SplitN(fwd, ",", 2)[0])
-	} else if real := r.Header.Get("X-Real-IP"); real != "" {
-		key = strings.TrimSpace(real)
+	} else if realIP := r.Header.Get("X-Real-IP"); realIP != "" {
+		key = strings.TrimSpace(realIP)
 	}
 	if key == "" {
 		key = "unknown"

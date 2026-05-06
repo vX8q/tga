@@ -1,0 +1,55 @@
+{
+  "teams": [
+    { "team": "Rodin Motorsport", "number": "2", "driver": "Alex Ninovic", "status": "", "rounds": "1" },
+    { "team": "Rodin Motorsport", "number": "4", "driver": "Reza Seewooruthun", "status": "", "rounds": "1" },
+    { "team": "Rodin Motorsport", "number": "78", "driver": "Gabriel Gomez", "status": "R", "rounds": "1" },
+
+    { "team": "G4 Racing", "number": "3", "driver": "Saqer Al Maosherji", "status": "", "rounds": "1" },
+    { "team": "G4 Racing", "number": "23", "driver": "Rahim Alibhai", "status": "R", "rounds": "1" },
+    { "team": "G4 Racing", "number": "67", "driver": "Marcus Saeter", "status": "R", "rounds": "1" },
+
+    { "team": "RPM", "number": "5", "driver": "Miguel Costa", "status": "", "rounds": "1" },
+    { "team": "RPM", "number": "8", "driver": "Jan Przyrowski", "status": "", "rounds": "1" },
+    { "team": "RPM", "number": "99", "driver": "Giovanni Maschio", "status": "", "rounds": "1" },
+
+    { "team": "CL Motorsport", "number": "6", "driver": "Enea Frey", "status": "", "rounds": "1" },
+    { "team": "CL Motorsport", "number": "24", "driver": "Jules Roussel", "status": "", "rounds": "1" },
+    { "team": "CL Motorsport", "number": "69", "driver": "Reno Francot", "status": "", "rounds": "1" },
+
+    { "team": "Van Amersfoort Racing", "number": "7", "driver": "Andrea Dupe", "status": "", "rounds": "1" },
+    { "team": "Van Amersfoort Racing", "number": "11", "driver": "Francisco Macedo", "status": "", "rounds": "1" },
+    { "team": "Van Amersfoort Racing", "number": "55", "driver": "Dion Gowda", "status": "", "rounds": "1" },
+
+    { "team": "R-ace GP", "number": "12", "driver": "Yuki Sano", "status": "", "rounds": "1" },
+    { "team": "R-ace GP", "number": "71", "driver": "Rashid Al Dhaheri", "status": "", "rounds": "1" },
+    { "team": "R-ace GP", "number": "73", "driver": "Emanuele Olivieri", "status": "R", "rounds": "1" },
+
+    { "team": "MP Motorsport", "number": "15", "driver": "Alexander Abkhazava", "status": "", "rounds": "1" },
+    { "team": "MP Motorsport", "number": "28", "driver": "Zhenrui Chi", "status": "", "rounds": "1" },
+    { "team": "MP Motorsport", "number": "98", "driver": "Sebastian Wheldon", "status": "", "rounds": "1" },
+
+    { "team": "ART Grand Prix", "number": "19", "driver": "Kabir Anurag", "status": "", "rounds": "1" },
+    { "team": "ART Grand Prix", "number": "27", "driver": "Matteo Giaccardi", "status": "", "rounds": "1" },
+    { "team": "ART Grand Prix", "number": "95", "driver": "Alexandre Munoz", "status": "R", "rounds": "1" },
+
+    { "team": "Trident Motorsport", "number": "33", "driver": "Maximilian Popov", "status": "", "rounds": "1" },
+    { "team": "Trident Motorsport", "number": "47", "driver": "Andrija Kostic", "status": "", "rounds": "1" },
+    { "team": "Trident Motorsport", "number": "87", "driver": "Kai Daryanani", "status": "", "rounds": "1" },
+
+    { "team": "Prema Racing", "number": "51", "driver": "Kean Nakamura-Berta", "status": "", "rounds": "1" },
+    { "team": "Prema Racing", "number": "60", "driver": "Tomass Stolcermanis", "status": "R", "rounds": "1" },
+    { "team": "Prema Racing", "number": "88", "driver": "Salim Hanna", "status": "", "rounds": "1" }
+  ],
+  "technical_spec": [
+    { "key": "Chassis", "value": "Tatuus T-326" },
+    { "key": "Size", "value": "Length 4,990 mm / Width 1,850 mm / Height 960 mm" },
+    { "key": "Suspension", "value": "Double wishbone with pushrods (Dampers: KONI 2 way / Spring: Eibach)" },
+    { "key": "Calipers / Brake discs", "value": "Brembo four-piston monolithic forged calipers / Brembo 26 mm" },
+    { "key": "Brake pads", "value": "Pagid" },
+    { "key": "Wheels", "value": "15-inch OZ wheels" },
+    { "key": "Tires", "value": "Pirelli, Front 1575 mm, Rear 1530 mm" },
+    { "key": "Engine", "value": "ATM163T, 1,742 cc / 290 hp / 360 Nm, based on the Toyota G16E; co-developed by Autotecnica Motori and TOM'S." },
+    { "key": "ECU", "value": "Marelli SRG 141" },
+    { "key": "Transmission", "value": "Sadev SL-R 82 six-speed gearbox LSD" }
+  ]
+}

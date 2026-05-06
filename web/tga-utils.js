@@ -347,6 +347,117 @@
     return new Date(dateStr + 'T' + isoTime + offset);
   }
 
+  /** IMSA / GTWCE: несколько таблиц по классам в #standings-imsa-wrap */
+  function buildImsaGtwceClassStandingsHtml(dataObj, seriesKey) {
+    var tFn = function (k) { return window.TGA.t(k); };
+    var ddn = window.TGA.driverDisplayName;
+    var classes = dataObj && dataObj.classes && Array.isArray(dataObj.classes) ? dataObj.classes : [];
+    if (classes.length === 0) return '';
+    var raceOrder = (dataObj && dataObj.race_order) ? dataObj.race_order.slice() : [];
+    var completedRacesArr = (dataObj && dataObj.completed_races) ? dataObj.completed_races.slice() : [];
+    var completedRacesSet = {};
+    for (var cr = 0; cr < completedRacesArr.length; cr++) { completedRacesSet[completedRacesArr[cr]] = true; }
+    var eventNamesForStandings = (dataObj && Array.isArray(dataObj.event_names)) ? dataObj.event_names : [];
+    var sk = seriesKey;
+    var lang = getLang();
+    function raceHeaderLabel(code, idx) {
+      if (!code || typeof code !== 'string') return code;
+      if (sk === 'gtwce_end' || sk === 'gtwce_sprint') {
+        return code;
+      }
+      if (sk === 'super_formula') {
+        var evName = String((eventNamesForStandings[idx] || '')).toLowerCase();
+        var base = 'R';
+        if (evName.indexOf('motegi') >= 0) base = 'MOT';
+        else if (evName.indexOf('autopolis') >= 0) base = 'AUT';
+        else if (evName.indexOf('suzuka') >= 0) base = 'SUZ';
+        else if (evName.indexOf('fuji') >= 0) base = 'FUJ';
+        else if (evName.indexOf('sugo') >= 0) base = 'SUG';
+        var n = 0;
+        for (var ri = 0; ri <= idx; ri++) {
+          var evNamePrev = String((eventNamesForStandings[ri] || '')).toLowerCase();
+          var prevBase = 'R';
+          if (evNamePrev.indexOf('motegi') >= 0) prevBase = 'MOT';
+          else if (evNamePrev.indexOf('autopolis') >= 0) prevBase = 'AUT';
+          else if (evNamePrev.indexOf('suzuka') >= 0) prevBase = 'SUZ';
+          else if (evNamePrev.indexOf('fuji') >= 0) prevBase = 'FUJ';
+          else if (evNamePrev.indexOf('sugo') >= 0) prevBase = 'SUG';
+          if (prevBase === base) n++;
+        }
+        return base + String(n || 1);
+      }
+      var label = code.replace(/\d+$/, '') || code;
+      if (lang === 'ru') label = label.replace(/^R(\d*)$/i, 'Р$1');
+      return label;
+    }
+    var isGtwce = sk === 'gtwce_end' || sk === 'gtwce_sprint';
+    var html = '<div class="imsa-standings-by-class' + (isGtwce ? ' gtwce-standings-by-class' : '') + '">';
+    classes.forEach(function (cls) {
+      var classRows = cls.rows || [];
+      if (!isGtwce && classRows.length === 0) return;
+      var th;
+      var body;
+      if (isGtwce) {
+        th = '<th class="col-num">' + esc(tFn('th.pos') || 'Pos') + '</th>' +
+          '<th class="col-car">' + esc(tFn('th.no') || '#') + '</th>' +
+          '<th>' + esc(tFn('th.team') || 'Team') + '</th>' +
+          '<th>Drivers</th>' +
+          '<th>Car</th>';
+        for (var gi = 0; gi < raceOrder.length; gi++) {
+          th += '<th class="col-race">' + esc(raceHeaderLabel(raceOrder[gi], gi)) + '</th>';
+        }
+        th += '<th class="col-pts">' + esc(tFn('th.pts') || 'Pts') + '</th>';
+        body = classRows.map(function (row) {
+          var posDisplay = (row.pos === 0 || row.pos === null || row.pos === undefined) ? '—' : row.pos;
+          var td = '<td class="col-num">' + posDisplay + '</td>' +
+            '<td class="col-car">' + esc(row.car || '—') + '</td>' +
+            '<td>' + esc(dash(row.team)) + '</td>' +
+            '<td>' + esc(dash(row.driver)) + '</td>' +
+            '<td>' + esc(dash(row.manufacturer)) + '</td>';
+          for (var gj = 0; gj < raceOrder.length; gj++) {
+            var rvalg = row.races && row.races[raceOrder[gj]] ? String(row.races[raceOrder[gj]]).trim() : '';
+            var raceCodeg = raceOrder[gj];
+            var isCompletedg = completedRacesSet[raceCodeg];
+            var raceCellg = rvalg ? esc(rvalg) : (isCompletedg ? '—' : '');
+            td += '<td class="col-race">' + raceCellg + '</td>';
+          }
+          td += '<td class="col-pts">' + esc(dash(row.points)) + '</td>';
+          return '<tr>' + td + '</tr>';
+        }).join('');
+        if (!body) body = '';
+      } else {
+        var hasCar = classRows.some(function (r) { return r.car; });
+        th = '<th class="col-num">' + tFn('th.pos') + '</th>';
+        if (hasCar) th += '<th class="col-car">' + tFn('th.no') + '</th>';
+        th += '<th>' + tFn('th.driver') + '</th><th>' + tFn('th.team') + '</th><th>' + tFn('th.manufacturer') + '</th>';
+        for (var i = 0; i < raceOrder.length; i++) {
+          th += '<th class="col-race">' + esc(raceHeaderLabel(raceOrder[i], i)) + '</th>';
+        }
+        th += '<th class="col-pts">' + tFn('th.pts') + '</th>';
+        body = classRows.map(function (row) {
+          var posDisplay = (row.pos === 0 || row.pos === null || row.pos === undefined) ? '—' : row.pos;
+          var td = '<td class="col-num">' + posDisplay + '</td>';
+          if (hasCar) td += '<td class="col-car">' + esc(row.car || '—') + '</td>';
+          td += '<td>' + esc(dash(ddn(row.driver))) + '</td><td>' + esc(dash(row.team)) + '</td><td>' + esc(dash(row.manufacturer)) + '</td>';
+          for (var j = 0; j < raceOrder.length; j++) {
+            var rval = row.races && row.races[raceOrder[j]] ? String(row.races[raceOrder[j]]).trim() : '';
+            var raceCode = raceOrder[j];
+            var isCompleted = completedRacesSet[raceCode];
+            var raceCell = rval ? esc(rval) : (isCompleted ? '—' : '');
+            td += '<td class="col-race">' + raceCell + '</td>';
+          }
+          td += '<td class="col-pts">' + esc(dash(row.points)) + '</td>';
+          return '<tr>' + td + '</tr>';
+        }).join('');
+      }
+      html += '<h4 class="table-section-title">' + esc(cls.name || cls.id || '') + '</h4>';
+      html += '<div class="table-wrap"><table class="data-table standings-class-table">';
+      html += '<thead><tr>' + th + '</tr></thead><tbody>' + body + '</tbody></table></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
   // ─── Экспорт ─────────────────────────────────────────────────────────────
   window.TGA.esc                      = esc;
   window.TGA.dash                     = dash;
@@ -361,6 +472,7 @@
   window.TGA.countryDisplay           = countryDisplay;
   window.TGA.countryHtml              = countryHtml;
   window.TGA.syncStandingsScrollBars  = syncStandingsScrollBars;
+  window.TGA.buildImsaGtwceClassStandingsHtml = buildImsaGtwceClassStandingsHtml;
   window.TGA.categories               = categories;
   window.TGA.categoryBySeriesId       = categoryBySeriesId;
   window.TGA.hexRgb                   = hexRgb;

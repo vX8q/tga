@@ -162,7 +162,7 @@ func handleDataHealth(w http.ResponseWriter, r *http.Request, dataDir string, st
 
 // readLiveIDsCompat читает live.json в формате []string или {"live_event_ids":[]} (для обратной совместимости).
 func readLiveIDsCompat(path string) []string {
-	raw, err := os.ReadFile(path)
+	raw, err := os.ReadFile(path) //nolint:gosec
 	if err != nil {
 		return nil
 	}

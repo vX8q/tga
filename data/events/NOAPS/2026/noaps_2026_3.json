@@ -11,12 +11,12 @@
   "stage2_laps": "20",
   "stage3_laps": "25",
   "youtube_id": "CrmcvrbsR1g",
-  "track_info": "Circuit of the Americas (COTA) is a grade 1 FIA-specification motorsports facility located within the extraterritorial jurisdiction of Austin, Texas. On November 20, 2024, it was announced that the race would move to the 2.400 mi (3.862 km) layout.",
+  "event_preview": "Circuit of the Americas (COTA) is a grade 1 FIA-specification motorsports facility located within the extraterritorial jurisdiction of Austin, Texas. On November 20, 2024, it was announced that the race would move to the 2.400 mi (3.862 km) layout.",
   "entry_list": [
     {
       "number": "0",
       "driver": "Alex Labbe",
-      "team": "SS-Green Light Racing with BRK Racing",
+      "team": "SS-Green Light Racing",
       "manufacturer": "Chevrolet",
       "crew_chief": "Bryan Berry"
     },
@@ -177,7 +177,7 @@
     {
       "number": "35",
       "driver": "Austin J Hill",
-      "team": "Joey Gase Motorsports with Scott Osteen",
+      "team": "Joey Gase Motorsports",
       "manufacturer": "Chevrolet",
       "crew_chief": "Scott Eggleston"
     },
@@ -247,7 +247,7 @@
     {
       "number": "55",
       "driver": "Sage Karam",
-      "team": "Joey Gase Motorsports with Scott Osteen",
+      "team": "Joey Gase Motorsports",
       "manufacturer": "Chevrolet",
       "crew_chief": "Joey Gase"
     },
@@ -268,14 +268,14 @@
     {
       "number": "91",
       "driver": "Carson Kvapil",
-      "team": "DGM Racing with Jesse Iwuji Motorsports",
+      "team": "DGM Racing",
       "manufacturer": "Chevrolet",
       "crew_chief": "Mario Gosselin"
     },
     {
       "number": "92",
       "driver": "Josh Williams",
-      "team": "DGM Racing with Jesse Iwuji Motorsports",
+      "team": "DGM Racing",
       "manufacturer": "Chevrolet",
       "crew_chief": "Steve Addington"
     },
@@ -379,7 +379,7 @@
           "6",
           "55",
           "Sage Karam",
-          "Joey Gase Motorsports with Scott Osteen",
+          "Joey Gase Motorsports",
           "Toyota",
           "100.126",
           "86.291",
@@ -405,7 +405,7 @@
           "8",
           "91",
           "Carson Kvapil",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "100.565",
           "85.915",
@@ -587,7 +587,7 @@
           "22",
           "0",
           "Alex Labbe",
-          "SS-Green Light Racing with BRK Racing",
+          "SS-Green Light Racing",
           "Chevrolet",
           "101.858",
           "84.824",
@@ -743,7 +743,7 @@
           "34",
           "92",
           "Josh Williams",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "102.797",
           "84.049",
@@ -795,7 +795,7 @@
           "38",
           "35",
           "Austin J Hill",
-          "Joey Gase Motorsports with Scott Osteen",
+          "Joey Gase Motorsports",
           "Chevrolet",
           "104.118",
           "82.983",
@@ -892,7 +892,7 @@
           "6",
           "91",
           "Carson Kvapil",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "1:38.572",
           "87.652"
@@ -1036,7 +1036,7 @@
           "22",
           "55",
           "Sage Karam",
-          "Joey Gase Motorsports with Scott Osteen",
+          "Joey Gase Motorsports",
           "Toyota",
           "1:39.947",
           "86.446"
@@ -1090,7 +1090,7 @@
           "28",
           "0",
           "Alex Labbé",
-          "SS-Green Light Racing with BRK Racing",
+          "SS-Green Light Racing",
           "Chevrolet",
           "1:40.243",
           "86.191"
@@ -1189,7 +1189,7 @@
           "38",
           "35",
           "Austin J. Hill",
-          "Joey Gase Motorsports with Scott Osteen",
+          "Joey Gase Motorsports",
           "Chevrolet",
           "—",
           "—"
@@ -1207,7 +1207,7 @@
           "39",
           "92",
           "Josh Williams",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "1:40.787",
           "85.725"
@@ -1277,7 +1277,7 @@
           "6",
           "91",
           "Carson Kvapil",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "5"
         ],
@@ -1345,7 +1345,7 @@
           "3",
           "91",
           "Carson Kvapil",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "8"
         ],
@@ -1642,7 +1642,7 @@
           "6",
           "91",
           "Carson Kvapil",
-          "DGM Racing with Jesse Iwuji Motorsports",
+          "DGM Racing",
           "Chevrolet",
           "65",
           "2",

@@ -101,7 +101,7 @@ func TestSyncNASCAR_GracefulOnEmptyFeed(t *testing.T) {
 	fetchNASCARLiveFeedFunc = func() (*nascarLiveFeed, error) {
 		return nil, fmt.Errorf("network down")
 	}
-	fetchNASCARRacesFunc = func(seriesID, season int) ([]nascarRace, error) {
+	fetchNASCARRacesFunc = func(_, _ int) ([]nascarRace, error) {
 		return nil, fmt.Errorf("should not be called")
 	}
 	defer func() {

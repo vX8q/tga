@@ -78,6 +78,11 @@ type TeamJSON struct {
 
 	// F1: силовая установка (Engine)
 	PowerUnit string `json:"power_unit,omitempty"`
+
+	// DTM / GT3 teams-page fields.
+	Car    string `json:"car,omitempty"`
+	Status string `json:"status,omitempty"`
+	Ref    string `json:"ref,omitempty"`
 }
 
 // CarModel — модель авто (Manufacturer + Model; для Truck — TruckBrand)
@@ -147,8 +152,8 @@ type EventDetailJSON struct {
 	EntryList      []EntryListRow      `json:"entry_list,omitempty"`
 	Tables         map[string]EventTable `json:"tables,omitempty"` // practice, qualifying, duel1, duel2, starting_lineup, practice2, final_practice, stage1, stage2, race_results, caution_breakdown
 	RaceStatistics map[string]string   `json:"race_statistics,omitempty"`
-	TrackInfo      string              `json:"track_info,omitempty"`
-	TrackInfoRu    string              `json:"track_info_ru,omitempty"`
+	EventPreview   string              `json:"event_preview,omitempty"`
+	EventPreviewRu string              `json:"event_preview_ru,omitempty"`
 	YoutubeID      string              `json:"youtube_id,omitempty"`
 }
 

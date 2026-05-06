@@ -48,40 +48,57 @@ type Store interface {
 // NoopStore — заглушка до появления реальной БД
 type NoopStore struct{}
 
-func (NoopStore) Health(ctx context.Context) error { return nil }
+// Health always reports healthy for NoopStore.
+func (NoopStore) Health(_ context.Context) error { return nil }
 
-func (NoopStore) UpsertSeries(ctx context.Context, s *models.Series) error   { return nil }
-func (NoopStore) ListSeries(ctx context.Context, season string) ([]models.Series, error) {
+// UpsertSeries is a no-op for NoopStore.
+func (NoopStore) UpsertSeries(_ context.Context, _ *models.Series) error { return nil }
+// ListSeries returns no rows for NoopStore.
+func (NoopStore) ListSeries(_ context.Context, _ string) ([]models.Series, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertEvent(ctx context.Context, e *models.Event) error     { return nil }
-func (NoopStore) ListEvents(ctx context.Context, seriesID, season string) ([]models.Event, error) {
+// UpsertEvent is a no-op for NoopStore.
+func (NoopStore) UpsertEvent(_ context.Context, _ *models.Event) error { return nil }
+// ListEvents returns no rows for NoopStore.
+func (NoopStore) ListEvents(_ context.Context, _, _ string) ([]models.Event, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertRace(ctx context.Context, r *models.Race) error       { return nil }
-func (NoopStore) ListRacesByEvent(ctx context.Context, eventID string) ([]models.Race, error) {
+// UpsertRace is a no-op for NoopStore.
+func (NoopStore) UpsertRace(_ context.Context, _ *models.Race) error { return nil }
+// ListRacesByEvent returns no rows for NoopStore.
+func (NoopStore) ListRacesByEvent(_ context.Context, _ string) ([]models.Race, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertDriver(ctx context.Context, d *models.Driver) error   { return nil }
-func (NoopStore) ListDrivers(ctx context.Context) ([]models.Driver, error)   { return nil, nil }
-func (NoopStore) GetDriversBySlug(ctx context.Context, slug string) ([]models.Driver, error) {
+// UpsertDriver is a no-op for NoopStore.
+func (NoopStore) UpsertDriver(_ context.Context, _ *models.Driver) error { return nil }
+// ListDrivers returns no rows for NoopStore.
+func (NoopStore) ListDrivers(_ context.Context) ([]models.Driver, error) { return nil, nil }
+// GetDriversBySlug returns no rows for NoopStore.
+func (NoopStore) GetDriversBySlug(_ context.Context, _ string) ([]models.Driver, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertTeam(ctx context.Context, t *models.Team) error { return nil }
-func (NoopStore) ListTeams(ctx context.Context, idPrefix string) ([]models.Team, error) {
+// UpsertTeam is a no-op for NoopStore.
+func (NoopStore) UpsertTeam(_ context.Context, _ *models.Team) error { return nil }
+// ListTeams returns no rows for NoopStore.
+func (NoopStore) ListTeams(_ context.Context, _ string) ([]models.Team, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertResult(ctx context.Context, r *models.Result) error   { return nil }
-func (NoopStore) ListResultsByRace(ctx context.Context, raceID string) ([]models.Result, error) {
+// UpsertResult is a no-op for NoopStore.
+func (NoopStore) UpsertResult(_ context.Context, _ *models.Result) error { return nil }
+// ListResultsByRace returns no rows for NoopStore.
+func (NoopStore) ListResultsByRace(_ context.Context, _ string) ([]models.Result, error) {
 	return nil, nil
 }
-func (NoopStore) ListDriverSeasonResults(ctx context.Context, driverIDs []string, season string) ([]models.DriverSeasonResult, error) {
+// ListDriverSeasonResults returns no rows for NoopStore.
+func (NoopStore) ListDriverSeasonResults(_ context.Context, _ []string, _ string) ([]models.DriverSeasonResult, error) {
 	return nil, nil
 }
-func (NoopStore) UpsertStageResult(ctx context.Context, r *models.StageResult) error {
+// UpsertStageResult is a no-op for NoopStore.
+func (NoopStore) UpsertStageResult(_ context.Context, _ *models.StageResult) error {
 	return nil
 }
 
-func (NoopStore) RunInTransaction(ctx context.Context, fn func(Store) error) error {
+// RunInTransaction executes callback directly for NoopStore.
+func (NoopStore) RunInTransaction(_ context.Context, fn func(Store) error) error {
 	return fn(NoopStore{})
 }

@@ -4,10 +4,16 @@
   "race": "F2 \u2014 Melbourne",
   "date": "7\u20138 March 2026",
   "track": "Albert Park Circuit",
-  "location": "Melbourne",
+  "location": "Melbourne, Victoria, Australia",
+  "start_date": "2026-03-07",
+  "end_date": "2026-03-08",
   "laps": "",
   "distance": "",
-  "track_info": "Albert Park Circuit is measured at 5.278 km (3.280 mi) and hosts FIA Formula 2 as a support series during the Australian Grand Prix weekend. The layout's combination of fast chicanes, a long Lakeside Drive section, and heavy braking zones rewards clean, disciplined driving - crucial for F2 cars with their spec tyres and limited aerodynamic adjustability. Tyre management and overtaking through Turn 3 are key strategic factors across the sprint and feature race formats. The official F2 lap record at Albert Park is 1:28.694, set by Dennis Hauger driving for MP Motorsport in 2024.",
+  "event_preview": "Albert Park Circuit is measured at 5.278 km (3.280 mi) and hosts FIA Formula 2 as a support series during the Australian Grand Prix weekend. The layout's combination of fast chicanes, a long Lakeside Drive section, and heavy braking zones rewards clean, disciplined driving - crucial for F2 cars with their spec tyres and limited aerodynamic adjustability. Tyre management and overtaking through Turn 3 are key strategic factors across the sprint and feature race formats. The official F2 lap record at Albert Park is 1:28.694, set by Dennis Hauger driving for MP Motorsport in 2024.",
+  "youtube_highlights": [
+    { "id": "mAe5mMx0LRc", "title": "Sprint highlights" },
+    { "id": "TrAFUhgeRzc", "title": "Feature highlights" }
+  ],
   "entry_list": [
     { "number": "1", "driver": "Rafael Câmara", "team": "Invicta Racing" },
     { "number": "2", "driver": "Joshua Dürksen", "team": "Invicta Racing" },

@@ -10,7 +10,7 @@
   "stage1_laps": "20",
   "stage2_laps": "25",
   "stage3_laps": "50",
-  "track_info": "Circuit of the Americas (COTA) is a grade 1 FIA-specification motorsports facility located within the extraterritorial jurisdiction of Austin, Texas. On November 20, 2024, it was announced that the race would move to the 2.400 mi (3.862 km) layout.",
+  "event_preview": "Circuit of the Americas (COTA) is a grade 1 FIA-specification motorsports facility located within the extraterritorial jurisdiction of Austin, Texas. On November 20, 2024, it was announced that the race would move to the 2.400 mi (3.862 km) layout.",
   "youtube_id": "otwwnGChIIY",
   "entry_list": [
     {"number": "1", "driver": "Ross Chastain", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Brandon McSwain"},

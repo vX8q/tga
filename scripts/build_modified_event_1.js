@@ -244,7 +244,7 @@ const event = {
   distance: "0.480 mile paved track (96.000 miles)",
   entry_list: entryList,
   tables: {
-    track_info: {
+    event_preview: {
       headers: ["Field", "Value"],
       rows: [["Track", trackInfoText]]
     },

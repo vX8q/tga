@@ -178,9 +178,6 @@ func collectDriverNames(dataDir, champID string) map[string]bool {
 	if err != nil {
 		log.Printf("collectDriverNames %s: LoadEvents: %v", champID, err)
 	}
-	if len(events) == 0 {
-		// standings и stats могут быть без расписания
-	}
 	for _, ev := range events {
 		detail, err := schedulefile.LoadEventDetail(dataDir, ev.ID)
 		if err != nil || detail == nil || detail.Tables == nil {
@@ -275,7 +272,7 @@ func wikiGet(ctx context.Context, client *http.Client, u string) (*http.Response
 		return nil, err
 	}
 	if resp.StatusCode != http.StatusOK {
-		resp.Body.Close()
+		_ = resp.Body.Close()
 		return nil, fmt.Errorf("wikidata HTTP %d", resp.StatusCode)
 	}
 	return resp, nil
@@ -287,7 +284,7 @@ func searchWikidata(ctx context.Context, client *http.Client, name string) (stri
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	var data struct {
 		Search []struct {
 			ID          string `json:"id"`
@@ -317,7 +314,7 @@ func getClaims(ctx context.Context, client *http.Client, qid string) (birth time
 	if err != nil {
 		return time.Time{}, "", "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	var data struct {
 		Entities map[string]struct {
 			Claims map[string][]struct {
@@ -376,7 +373,7 @@ func getPlaceClaims(ctx context.Context, client *http.Client, placeID string) (r
 	if err != nil {
 		return "", "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	var data struct {
 		Entities map[string]struct {
 			Claims map[string][]struct {
@@ -467,7 +464,7 @@ func getLabel(ctx context.Context, client *http.Client, qid string) (string, err
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	var data struct {
 		Entities map[string]struct {
 			Labels struct {

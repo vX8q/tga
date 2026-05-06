@@ -1,3 +1,4 @@
+// Package config defines championship settings.
 package config
 
 // ARCA — организация под управлением NASCAR

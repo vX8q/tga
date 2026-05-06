@@ -1,3 +1,4 @@
+// Package appenv resolves application environment paths.
 package appenv
 
 import (

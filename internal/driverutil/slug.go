@@ -1,3 +1,4 @@
+// Package driverutil provides helpers for driver identifiers.
 package driverutil
 
 import (

@@ -1,0 +1,449 @@
+{
+  "event_id": "DTM_2026_1",
+  "series": "Deutsche Tourenwagen Masters",
+  "race": "Red Bull Ring",
+  "date": "25-26 April 2026",
+  "start_date": "2026-04-25",
+  "end_date": "2026-04-26",
+  "track": "Red Bull Ring",
+  "location": "Spielberg, Styria",
+  "laps": "",
+  "distance": "",
+  "event_preview": "The Red Bull Ring is a 4.318 km circuit in Spielberg, Austria. Its elevation changes, long straights and heavy-braking zones make setup compromise and tyre management key factors over a DTM weekend.",
+  "entry_list": [
+    {
+      "manufacturer": "Aston Martin",
+      "car": "Aston Martin Vantage AMR GT3 Evo",
+      "power_unit": "Aston Martin AMR16A 4.0 L Turbo V8",
+      "team": "Comtoyou Racing",
+      "number": "7",
+      "driver": "Nicki Thiim",
+      "status": "",
+      "rounds": "1",
+      "ref": "[1]"
+    },
+    {
+      "manufacturer": "Aston Martin",
+      "car": "Aston Martin Vantage AMR GT3 Evo",
+      "power_unit": "Aston Martin AMR16A 4.0 L Turbo V8",
+      "team": "Comtoyou Racing",
+      "number": "8",
+      "driver": "Nicolas Baert",
+      "status": "R",
+      "rounds": "1",
+      "ref": "[1]"
+    },
+    {
+      "manufacturer": "BMW",
+      "car": "BMW M4 GT3 Evo",
+      "power_unit": "BMW P58 3.0 L Turbo I6",
+      "team": "Schubert Motorsport",
+      "number": "3",
+      "driver": "Kelvin van der Linde",
+      "status": "",
+      "rounds": "1",
+      "ref": "[2]"
+    },
+    {
+      "manufacturer": "BMW",
+      "car": "BMW M4 GT3 Evo",
+      "power_unit": "BMW P58 3.0 L Turbo I6",
+      "team": "Schubert Motorsport",
+      "number": "11",
+      "driver": "Marco Wittmann",
+      "status": "",
+      "rounds": "1",
+      "ref": "[2]"
+    },
+    {
+      "manufacturer": "Ferrari",
+      "car": "Ferrari 296 GT3 Evo",
+      "power_unit": "Ferrari F163CE 3.0 L Turbo V6",
+      "team": "Emil Frey Racing",
+      "number": "14",
+      "driver": "Matteo Cairoli",
+      "status": "",
+      "rounds": "1",
+      "ref": "[3]"
+    },
+    {
+      "manufacturer": "Ferrari",
+      "car": "Ferrari 296 GT3 Evo",
+      "power_unit": "Ferrari F163CE 3.0 L Turbo V6",
+      "team": "Emil Frey Racing",
+      "number": "69",
+      "driver": "Thierry Vermeulen",
+      "status": "",
+      "rounds": "1",
+      "ref": "[3]"
+    },
+    {
+      "manufacturer": "Ford",
+      "car": "Ford Mustang GT3 Evo",
+      "power_unit": "Ford Coyote 5.4 L V8",
+      "team": "HRT Ford Racing",
+      "number": "36",
+      "driver": "Arjun Maini",
+      "status": "",
+      "rounds": "1",
+      "ref": "[4]"
+    },
+    {
+      "manufacturer": "Ford",
+      "car": "Ford Mustang GT3 Evo",
+      "power_unit": "Ford Coyote 5.4 L V8",
+      "team": "HRT Ford Racing",
+      "number": "64",
+      "driver": "Finn Wiebelhaus",
+      "status": "R",
+      "rounds": "1",
+      "ref": "[4]"
+    },
+    {
+      "manufacturer": "Lamborghini",
+      "car": "Lamborghini Temerario GT3",
+      "power_unit": "Lamborghini L411 4.0 L Turbo V8",
+      "team": "Red Bull Team Abt",
+      "number": "10",
+      "driver": "Marco Mapelli",
+      "status": "",
+      "rounds": "1",
+      "ref": "[5][6]"
+    },
+    {
+      "manufacturer": "Lamborghini",
+      "car": "Lamborghini Temerario GT3",
+      "power_unit": "Lamborghini L411 4.0 L Turbo V8",
+      "team": "Red Bull Team Abt",
+      "number": "130",
+      "driver": "Luca Engstler",
+      "status": "",
+      "rounds": "1",
+      "ref": "[5][6]"
+    },
+    {
+      "manufacturer": "Lamborghini",
+      "car": "Lamborghini Temerario GT3",
+      "power_unit": "Lamborghini L411 4.0 L Turbo V8",
+      "team": "TGI Team by GRT",
+      "number": "19",
+      "driver": "Mirko Bortolotti",
+      "status": "",
+      "rounds": "1",
+      "ref": "[5][7]"
+    },
+    {
+      "manufacturer": "Lamborghini",
+      "car": "Lamborghini Temerario GT3",
+      "power_unit": "Lamborghini L411 4.0 L Turbo V8",
+      "team": "TGI Team by GRT",
+      "number": "63",
+      "driver": "Maximilian Paul",
+      "status": "",
+      "rounds": "1",
+      "ref": "[5][7]"
+    },
+    {
+      "manufacturer": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "power_unit": "Mercedes-AMG M159 6.2 L V8",
+      "team": "Mercedes-AMG Team Landgraf",
+      "number": "22",
+      "driver": "Lucas Auer",
+      "status": "",
+      "rounds": "1",
+      "ref": "[8]"
+    },
+    {
+      "manufacturer": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "power_unit": "Mercedes-AMG M159 6.2 L V8",
+      "team": "Mercedes-AMG Team Landgraf",
+      "number": "84",
+      "driver": "Tom Kalender",
+      "status": "R",
+      "rounds": "1",
+      "ref": "[8]"
+    },
+    {
+      "manufacturer": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "power_unit": "Mercedes-AMG M159 6.2 L V8",
+      "team": "Mercedes-AMG Team Mann-Filter",
+      "number": "48",
+      "driver": "Jules Gounon",
+      "status": "",
+      "rounds": "1",
+      "ref": "[8]"
+    },
+    {
+      "manufacturer": "Mercedes-AMG",
+      "car": "Mercedes-AMG GT3 Evo",
+      "power_unit": "Mercedes-AMG M159 6.2 L V8",
+      "team": "Mercedes-AMG Team Ravenol",
+      "number": "80",
+      "driver": "Maro Engel",
+      "status": "",
+      "rounds": "1",
+      "ref": "[8]"
+    },
+    {
+      "manufacturer": "McLaren",
+      "car": "McLaren 720S GT3 Evo",
+      "power_unit": "McLaren M840T 4.0 L Turbo V8",
+      "team": "Dorr Motorsport",
+      "number": "16",
+      "driver": "Timo Glock",
+      "status": "",
+      "rounds": "1",
+      "ref": "[9][10]"
+    },
+    {
+      "manufacturer": "McLaren",
+      "car": "McLaren 720S GT3 Evo",
+      "power_unit": "McLaren M840T 4.0 L Turbo V8",
+      "team": "Dorr Motorsport",
+      "number": "25",
+      "driver": "Ben Dorr",
+      "status": "",
+      "rounds": "1",
+      "ref": "[10]"
+    },
+    {
+      "manufacturer": "Porsche",
+      "car": "Porsche 911 GT3 R (992.2)",
+      "power_unit": "Porsche M97/80 4.2 L Flat-6",
+      "team": "Land-Motorsport",
+      "number": "29",
+      "driver": "Bastian Buus",
+      "status": "",
+      "rounds": "1",
+      "ref": "[11][12]"
+    },
+    {
+      "manufacturer": "Porsche",
+      "car": "Porsche 911 GT3 R (992.2)",
+      "power_unit": "Porsche M97/80 4.2 L Flat-6",
+      "team": "Manthey Racing",
+      "number": "90",
+      "driver": "Ricardo Feller",
+      "status": "",
+      "rounds": "1",
+      "ref": "[13]"
+    },
+    {
+      "manufacturer": "Porsche",
+      "car": "Porsche 911 GT3 R (992.2)",
+      "power_unit": "Porsche M97/80 4.2 L Flat-6",
+      "team": "Manthey Racing",
+      "number": "91",
+      "driver": "Thomas Preining",
+      "status": "",
+      "rounds": "1",
+      "ref": "[13]"
+    }
+  ],
+  "tables": {
+    "practice": {
+      "sessions": [
+        {
+          "title": "Practice 1",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Fastest Lap", "Gap", "Laps"],
+          "rows": [
+            ["1", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "1:28.567", "-", "16"],
+            ["2", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:28.769", "0.202", "15"],
+            ["3", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "1:28.791", "0.224", "17"],
+            ["4", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:29.012", "0.445", "10"],
+            ["5", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "1:29.024", "0.457", "13"],
+            ["6", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "1:29.038", "0.471", "17"],
+            ["7", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "1:29.195", "0.628", "15"],
+            ["8", "91", "Thomas Preining", "Manthey Racing", "Porsche", "1:29.209", "0.642", "19"],
+            ["9", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "1:29.304", "0.737", "12"],
+            ["10", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "1:29.392", "0.825", "19"],
+            ["11", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "1:29.483", "0.916", "10"],
+            ["12", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "1:29.518", "0.951", "11"],
+            ["13", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "1:29.578", "1.011", "15"],
+            ["14", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "1:29.706", "1.139", "15"],
+            ["15", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "1:30.047", "1.480", "13"],
+            ["16", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "1:30.057", "1.490", "11"],
+            ["17", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "1:30.103", "1.536", "10"],
+            ["18", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "1:30.140", "1.573", "15"],
+            ["19", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "1:30.155", "1.588", "11"],
+            ["20", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "1:30.175", "1.608", "14"],
+            ["21", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "1:30.470", "1.903", "15"]
+          ]
+        },
+        {
+          "title": "Practice 2",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Fastest Lap", "Gap", "Laps"],
+          "rows": [
+            ["1", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:28.204", "-", "8"],
+            ["2", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "1:28.208", "0.004", "8"],
+            ["3", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "1:28.210", "0.006", "9"],
+            ["4", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "1:28.342", "0.138", "9"],
+            ["5", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:28.370", "0.166", "9"],
+            ["6", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "1:28.433", "0.229", "8"],
+            ["7", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "1:28.574", "0.370", "8"],
+            ["8", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "1:28.731", "0.527", "5"],
+            ["9", "91", "Thomas Preining", "Manthey Racing", "Porsche", "1:28.731", "0.527", "8"],
+            ["10", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "1:28.797", "0.593", "6"],
+            ["11", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "1:28.798", "0.594", "7"],
+            ["12", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "1:28.923", "0.719", "8"],
+            ["13", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "1:29.012", "0.808", "7"],
+            ["14", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "1:29.031", "0.827", "7"],
+            ["15", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "1:29.061", "0.857", "7"],
+            ["16", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "1:29.298", "1.094", "7"],
+            ["17", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "1:29.345", "1.141", "10"],
+            ["18", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "1:29.481", "1.277", "10"],
+            ["19", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "1:29.618", "1.414", "8"],
+            ["20", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "1:29.887", "1.683", "3"],
+            ["21", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "1:30.111", "1.907", "6"]
+          ]
+        },
+        {
+          "title": "Practice 3",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Fastest Lap", "Gap", "Laps"],
+          "rows": [
+            ["1", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:28.841", "-", "21"],
+            ["2", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "1:28.884", "0.043", "20"],
+            ["3", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "1:28.898", "0.057", "16"],
+            ["4", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:29.027", "0.186", "20"],
+            ["5", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "1:29.183", "0.342", "20"],
+            ["6", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "1:29.346", "0.505", "20"],
+            ["7", "91", "Thomas Preining", "Manthey Racing", "Porsche", "1:29.356", "0.515", "26"],
+            ["8", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "1:29.373", "0.532", "11"],
+            ["9", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "1:29.374", "0.533", "17"],
+            ["10", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "1:29.459", "0.618", "17"],
+            ["11", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "1:29.474", "0.633", "19"],
+            ["12", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "1:29.493", "0.652", "21"],
+            ["13", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "1:29.587", "0.746", "18"],
+            ["14", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "1:29.634", "0.793", "24"],
+            ["15", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "1:29.666", "0.825", "25"],
+            ["16", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "1:29.688", "0.847", "15"],
+            ["17", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "1:29.793", "0.952", "19"],
+            ["18", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "1:29.802", "0.961", "19"],
+            ["19", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "1:29.956", "1.115", "18"],
+            ["20", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "1:30.414", "1.573", "21"],
+            ["21", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "1:30.442", "1.601", "20"]
+          ]
+        }
+      ]
+    },
+    "qualifying": {
+      "sessions": [
+        {
+          "title": "Qualifying (Race 1)",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Fastest Lap", "Int"],
+          "rows": [
+            ["1", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "1:27.403", "-"],
+            ["2", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "1:27.418", "0.015"],
+            ["3", "91", "Thomas Preining", "Manthey Racing", "Porsche", "1:27.451", "0.033"],
+            ["4", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:27.606", "0.155"],
+            ["5", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "1:27.650", "0.044"],
+            ["6", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "1:27.664", "0.014"],
+            ["7", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "1:27.673", "0.009"],
+            ["8", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "1:27.767", "0.094"],
+            ["9", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "1:27.773", "0.006"],
+            ["10", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:27.869", "0.096"],
+            ["11", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "1:27.950", "0.081"],
+            ["12", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "1:28.016", "0.066"],
+            ["13", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "1:28.032", "0.016"],
+            ["14", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "1:28.051", "0.019"],
+            ["15", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "1:28.161", "0.110"],
+            ["16", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "1:28.197", "0.036"],
+            ["17", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "1:28.197", "0.000"],
+            ["18", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "1:28.256", "0.059"],
+            ["19", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "1:28.336", "0.080"],
+            ["20", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "1:28.923", "0.587"],
+            ["21", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "1:29.007", "0.084"]
+          ]
+        },
+        {
+          "title": "Qualifying (Race 2)",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Fastest Lap", "Int"],
+          "rows": [
+            ["1", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "1:27.575", "-"],
+            ["2", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "1:27.660", "0.085"],
+            ["3", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:27.668", "0.008"],
+            ["4", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "1:27.680", "0.012"],
+            ["5", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "1:27.709", "0.029"],
+            ["6", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "1:27.712", "0.003"],
+            ["7", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "1:27.771", "0.059"],
+            ["8", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "1:27.800", "0.029"],
+            ["9", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "1:27.934", "0.134"],
+            ["10", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "1:27.948", "0.014"],
+            ["11", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "1:28.010", "0.062"],
+            ["12", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "1:28.029", "0.019"],
+            ["13", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "1:28.047", "0.018"],
+            ["14", "91", "Thomas Preining", "Manthey Racing", "Porsche", "1:28.060", "0.013"],
+            ["15", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "1:28.066", "0.006"],
+            ["16", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "1:28.129", "0.063"],
+            ["17", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "1:28.338", "0.209"],
+            ["18", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "1:28.378", "0.040"],
+            ["19", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "1:28.844", "0.466"],
+            ["20", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "1:29.022", "0.178"],
+            ["21", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "1:29.085", "0.063"]
+          ]
+        }
+      ]
+    },
+    "race": {
+      "sessions": [
+        {
+          "title": "Race 1",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Time", "Fastest Lap", "Pitstops", "Pts"],
+          "rows": [
+            ["1", "91", "Thomas Preining", "Manthey Racing", "Porsche", "+-", "1:28.899", "1", "26"],
+            ["2", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "+0.774", "1:28.905", "1", "20"],
+            ["3", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "+1.620", "1:29.070", "1", "19"],
+            ["4", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "+2.544", "1:29.217", "1", "13"],
+            ["5", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "+2.763", "1:29.849", "1", "11"],
+            ["6", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "+3.344", "1:29.044", "1", "10"],
+            ["7", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "+4.122", "1:29.424", "1", "9"],
+            ["8", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "+4.697", "1:29.453", "1", "8"],
+            ["9", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "+4.871", "1:29.475", "1", "7"],
+            ["10", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "+5.416", "1:29.675", "1", "6"],
+            ["11", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "+5.929", "1:29.352", "1", "5"],
+            ["12", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "+6.753", "1:29.993", "1", "4"],
+            ["13", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "+7.029", "1:29.046", "1", "3"],
+            ["14", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "+7.125", "1:28.739", "1", "2"],
+            ["15", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "+7.241", "1:29.564", "1", "1"],
+            ["16", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "+7.563", "1:30.233", "1", "0"],
+            ["17", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "+8.251", "1:30.481", "1", "0"],
+            ["18", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "DNF", "1:28.811", "2", "0"],
+            ["19", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "DNF", "1:30.336", "1", "0"],
+            ["20", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "DNF", "", "0", "2"],
+            ["21", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "DSQ", "1:29.620", "1", "0"]
+          ]
+        },
+        {
+          "title": "Race 2",
+          "headers": ["Pos", "No.", "Driver", "Team", "Manufacturer", "Time", "Fastest Lap", "Pitstops", "Pts"],
+          "rows": [
+            ["1", "80", "Maro Engel", "Mercedes-AMG Team Ravenol", "Mercedes-AMG", "+-", "1:28.899", "2", "25"],
+            ["2", "11", "Marco Wittmann", "Schubert Motorsport", "BMW", "+4.857", "1:28.673", "2", "20"],
+            ["3", "22", "Lucas Auer", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "+5.429", "1:28.826", "2", "17"],
+            ["4", "48", "Jules Gounon", "Mercedes-AMG Team Mann-Filter", "Mercedes-AMG", "+6.220", "1:28.833", "2", "13"],
+            ["5", "7", "Nicki Thiim", "Comtoyou Racing", "Aston Martin", "+9.203", "1:28.497", "2", "11"],
+            ["6", "3", "Kelvin van der Linde", "Schubert Motorsport", "BMW", "+10.312", "1:28.741", "2", "13"],
+            ["7", "25", "Ben Dorr", "Dorr Motorsport", "McLaren", "+10.527", "1:28.726", "2", "9"],
+            ["8", "64", "Finn Wiebelhaus", "HRT Ford Racing", "Ford", "+14.386", "1:28.945", "2", "10"],
+            ["9", "69", "Thierry Vermeulen", "Emil Frey Racing", "Ferrari", "+18.431", "1:28.845", "2", "7"],
+            ["10", "29", "Bastian Buus", "Land-Motorsport", "Porsche", "+20.236", "1:28.954", "2", "6"],
+            ["11", "36", "Arjun Maini", "HRT Ford Racing", "Ford", "+23.883", "1:29.190", "2", "5"],
+            ["12", "90", "Ricardo Feller", "Manthey Racing", "Porsche", "+24.282", "1:28.944", "2", "4"],
+            ["13", "91", "Thomas Preining", "Manthey Racing", "Porsche", "+24.675", "1:28.995", "2", "3"],
+            ["14", "14", "Matteo Cairoli", "Emil Frey Racing", "Ferrari", "+25.301", "1:28.763", "2", "2"],
+            ["15", "16", "Timo Glock", "Dorr Motorsport", "McLaren", "+28.900", "1:28.977", "2", "1"],
+            ["16", "19", "Mirko Bortolotti", "TGI Team by GRT", "Lamborghini", "+36.081", "1:29.471", "2", "0"],
+            ["17", "8", "Nicolas Baert", "Comtoyou Racing", "Aston Martin", "+36.445", "1:28.822", "2", "0"],
+            ["18", "130", "Luca Engstler", "Red Bull Team Abt", "Lamborghini", "+39.065", "1:29.471", "2", "0"],
+            ["19", "10", "Marco Mapelli", "Red Bull Team Abt", "Lamborghini", "+53.121", "1:29.514", "2", "0"],
+            ["20", "63", "Maximilian Paul", "TGI Team by GRT", "Lamborghini", "+1:00.591", "1:29.855", "2", "0"],
+            ["21", "84", "Tom Kalender", "Mercedes-AMG Team Landgraf", "Mercedes-AMG", "DNF", "1:28.873", "3", "0"]
+          ]
+        }
+      ]
+    }
+  }
+}

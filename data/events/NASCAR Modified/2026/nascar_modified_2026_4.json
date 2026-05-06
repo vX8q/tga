@@ -1,0 +1,74 @@
+{
+  "event_id": "NASCAR_MODIFIED_2026_4",
+  "series": "NASCAR Whelen Modified Tour",
+  "race": "All States Materials Group 150",
+  "date": "Saturday, June 6, 2026",
+  "start_date": "2026-06-06",
+  "end_date": "2026-06-06",
+  "track": "Oxford Plains Speedway",
+  "location": "Oxford, Maine",
+  "laps": "150",
+  "distance": "0.375 mile paved track (56.25 miles)",
+  "event_preview": "Oxford Plains Speedway is a 0.375-mile (0.604 km) paved oval in Oxford, Maine, opened in 1950 and operating in its current configuration since a 1992 repaving and backstretch widening that expanded the layout from its original third-mile dimensions. The track seats 14,000 — the largest capacity of any sporting venue in Maine. The All States Materials Group 150 marks the first Whelen Modified Tour visit to Oxford in 35 years, with the series having previously raced here five times in the mid-1980s through the early 1990s, the last occasion being June 1991 when future Tour champion Jeff Fuller won. Previous Whelen Modified Tour winners at the Route 26 oval include NASCAR Hall of Famer Richie Evans, former Cup Series winner Jimmy Spencer, and longtime Xfinity Series standout Mike McLaughlin. The race is Race 4 of the 2026 season and runs 150 laps (56.25 miles).\n\nThe absence of four-time champion and 48-time series winner Justin Bonsignore — who has withdrawn along with confirming he will also skip the following Seekonk event — means the field will race without him for the first time since October 2009. Bonsignore sits fifth in the championship standings, having won the season opener at New Smyrna before finishing seventh at Thompson. Patrick Emerling, who leads the entry list in the No. 1, is among the pre-event favourites; Ron Silk and Matt Hirschman complete the strongest of the remaining contingent.\n\nBecause the Whelen Modified Tour has not visited Oxford in 35 years, all qualifying and race lap records at the circuit will be set for the first time this weekend in the series' modern era.",
+  "entry_list": [
+    { "number": "1", "driver": "Patrick Emerling", "team": "USNE Motorsports", "manufacturer": "LFR", "crew_chief": "Dale Hedquist", "sponsor": "USNE Power" },
+    { "number": "3", "driver": "Tyler Rypkema", "team": "BRE Racing", "manufacturer": "Boehler Racing", "crew_chief": "Greg Fournier", "sponsor": "Northeast Drilling; SYP" },
+    { "number": "05", "driver": "Teddy Hodgdon IV", "team": "Teddy Hodgdon Racing", "manufacturer": "FURY Race Cars", "crew_chief": "Ted Hodgdon", "sponsor": "Business Time Motorsports; The Landau Team of Re/Max; Montanari Fuel" },
+    { "number": "8", "driver": "John-Michael Shenette", "team": "Eighty-Two Autosport", "manufacturer": "LFR", "crew_chief": "Scott Morin", "sponsor": "USNE Power Charlotte, Eighty-Two Services" },
+    { "number": "16", "driver": "Ron Silk", "team": "Haydt Yannone Racing", "manufacturer": "FURY Race Cars", "crew_chief": "Phil Moran", "sponsor": "Blue Mountain Machine; Future Homes" },
+    { "number": "17", "driver": "Anthony Nocella", "team": "Michele Davini", "manufacturer": "LFR", "crew_chief": "Chris Mctaggart", "sponsor": "Bell's Septic; Sontag Motorsports; Xtreme Autobody; Copart; Keene Towing & Recovery" },
+    { "number": "18", "driver": "Ken Heagy", "team": "Heagy Motorsports", "manufacturer": "FURY Race Cars", "crew_chief": "Greg Gorman", "sponsor": "Merkel Racing Engines" },
+    { "number": "20", "driver": "TBA", "team": "Morgan Zachem Racing", "manufacturer": "Troyer", "crew_chief": "Max Zachem", "sponsor": "Lu-Mac's Package Store" },
+    { "number": "21", "driver": "Stephen Kopcik", "team": "Wanick Motorsports", "manufacturer": "Troyer", "crew_chief": "Nick Kopcik", "sponsor": "Wanick Construction; Newtown Pools" },
+    { "number": "22", "driver": "Kyle Bonsignore", "team": "Kyle Bonsignore", "manufacturer": "FURY Race Cars", "crew_chief": "Cam McDermott", "sponsor": "ChawLew; MTT; Munn's Auto; Penngrade Oil" },
+    { "number": "31", "driver": "Michael Christopher Jr.", "team": "Elite Motorsports", "manufacturer": "LFR", "crew_chief": "Eugene Orlando", "sponsor": "Elite Towing; Elite Racing; Baker Racing" },
+    { "number": "36", "driver": "David Sapienza", "team": "Sapienza Racing", "manufacturer": "Troyer", "crew_chief": "Greg Kleila", "sponsor": "Sapienza Enterprises; Eastport Feeds" },
+    { "number": "46", "driver": "Craig Lutz", "team": "Goodie Racing", "manufacturer": "FURY Race Cars", "crew_chief": "Douglas Ogiejko", "sponsor": "Riverhead Building Supply" },
+    { "number": "54", "driver": "Tommy Catalano", "team": "Catalano Motorsports", "manufacturer": "Troyer", "crew_chief": "Rick Kluth", "sponsor": "FX Caprara; USNE Power" },
+    { "number": "56", "driver": "Trevor Catalano", "team": "Catalano Motorsports", "manufacturer": "Troyer", "crew_chief": "David Catalano", "sponsor": "USNE Power" },
+    { "number": "58", "driver": "Eric Goodale", "team": "Goodie Motorsports", "manufacturer": "FURY Race Cars", "crew_chief": "Rob Hyer", "sponsor": "GAF Roofing" },
+    { "number": "60", "driver": "Matt Hirschman", "team": "Pee Dee Motorsports", "manufacturer": "Troyer", "crew_chief": "Mike Stein", "sponsor": "Bar Harbor Bank & Trust; Pee Dee Motorsports" },
+    { "number": "64", "driver": "Austin Beers", "team": "KLM Motorsports", "manufacturer": "Troyer", "crew_chief": "Ron Yuhas", "sponsor": "G&G Electrical Supply, Fastrack Electric, Dell Electric, Lumiere Electrical, AP Marquadt & Sons, Andrew James Interiors, Hugh" },
+    { "number": "73", "driver": "Paulie Hartwig III", "team": "Hartwig Racing", "manufacturer": "LFR", "crew_chief": "Bobby Geiger Jr.", "sponsor": "Professional Therapy Associates; Jersey Shore Contracting" },
+    { "number": "79", "driver": "Jon McKennedy", "team": "Jonathan McKennedy Racing", "manufacturer": "FURY Race Cars", "crew_chief": "Patrick Walsh", "sponsor": "Stuarts Automotive, Christophers Towing, Levasseur HVAC, Hillsboro Ent., Leone's Landscaping" },
+    { "number": "82", "driver": "Andrew Molleur", "team": "DWR Racing", "manufacturer": "LFR", "crew_chief": "Michael Molleur", "sponsor": "Horton Avenue Materials" },
+    { "number": "95", "driver": "Cory Plummer", "team": "Apex Racing", "manufacturer": "Apex Race Cars", "crew_chief": "Jonah Gosnell", "sponsor": "Tuckers Metal Fabrication & Welding; Apex Race Cars; Croteau Machine & More; Shiny Rhino Carpet Cleaning" }
+  ],
+  "tables": {
+    "race_stats": {
+      "rows": [
+        ["Season round", "4 of 16"],
+        ["Track length", "0.375 miles (0.604 km)"],
+        ["Surface", "Paved"]
+      ]
+    },
+    "practice": {
+      "headers": ["Rank", "#", "Driver", "Team", "Chassis", "Time", "Diff", "Speed", "# Laps", "Best Lap"],
+      "rows": []
+    },
+    "practice2": {
+      "headers": ["Rank", "#", "Driver", "Team", "Chassis", "Time", "Diff", "Speed", "# Laps", "Best Lap"],
+      "rows": []
+    },
+    "qualifying": {
+      "headers": ["Rank", "#", "Driver", "Team", "Chassis", "Time", "Speed"],
+      "rows": []
+    },
+    "caution_breakdown": {
+      "headers": ["Condition", "From Lap", "To Lap", "# Of Laps", "Reason", "Free Pass"],
+      "rows": []
+    },
+    "starting_lineup": {
+      "headers": ["Pos", "Nbr", "Driver", "Owner", "Car", "Crew Chief", "Sponsor"],
+      "rows": []
+    },
+    "race_results": {
+      "headers": ["Pos", "St", "#", "Driver", "Team", "Chassis", "Laps", "Status", "Led", "Pts"],
+      "rows": []
+    },
+    "race": {
+      "headers": ["Pos", "St", "#", "Driver", "Team", "Chassis", "Laps", "Status", "Led", "Pts"],
+      "rows": []
+    }
+  }
+}

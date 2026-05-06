@@ -1,0 +1,1390 @@
+{
+  "event_id": "ARCA_2026_4",
+  "series": "ARCA Menards Series",
+  "race": "4 of 20",
+  "date": "Saturday, April 25, 2026",
+  "start_date": "2026-04-25",
+  "end_date": "2026-04-25",
+  "track": "Talladega Superspeedway",
+  "location": "Lincoln, AL",
+  "laps": "76",
+  "distance": "2.660 mile paved track (202.160 miles)",
+  "event_preview": "Talladega Superspeedway is a 2.66-mile (4.28 km) tri-oval in Lincoln, Alabama, opened in 1969 and the longest oval on the NASCAR calendar. With 33-degree banking in the turns and a backstretch that allows cars to reach 190 mph in the draft, Talladega produces pack racing unlike anything else the schedule offers — positioning, patience and a willingness to make contact in the final laps are as decisive as engine power. The Alabama Manufactured Housing 200 is the fourth race of the 2026 ARCA Menards Series season and the 64th ARCA Menards Series race at Talladega since 1969.\n\nRuggiero arrives fresh off his second victory of 2026 at Kansas and looks to deliver JGR its first ARCA Menards Series win at Talladega. The only past Talladega winners in the field are Gus Dean (2016) and Jake Finch (2024), both with Nitro Motorsports, which is fielding five cars this weekend. Jake Bollman leads the championship standings by 12 points over Jason Kitzmiller heading in, though Bollman has never previously started at Talladega. There has not been a repeat winner in the last 19 ARCA Menards Series races at Talladega — the last driver to win the event twice was Frank Kimmel in 2006 and 2013.",
+  "youtube_id": "",
+  "entry_list": [
+    {
+      "number": "0",
+      "driver": "George Siciliano",
+      "team": "Rette Jones Racing",
+      "manufacturer": "Ford",
+      "crew_chief": "Logan Yiengst"
+    },
+    {
+      "number": "01",
+      "driver": "Cody Dennison",
+      "team": "Fast Track Racing",
+      "manufacturer": "Ford",
+      "crew_chief": "Joseth Carabantes"
+    },
+    {
+      "number": "1",
+      "driver": "Andrew Patterson",
+      "team": "Maples Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Patrick Torbett"
+    },
+    {
+      "number": "03",
+      "driver": "Alex Clubb",
+      "team": "Clubb Racing Inc.",
+      "manufacturer": "Ford",
+      "crew_chief": "Brian Clubb"
+    },
+    {
+      "number": "06",
+      "driver": "Con Nicolopoulos",
+      "team": "Wayne Peterson Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Nate Moeller"
+    },
+    {
+      "number": "7",
+      "driver": "Eric Caudell",
+      "team": "CCM Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Andy Jirik"
+    },
+    {
+      "number": "8",
+      "driver": "Sean Corr",
+      "team": "Empire Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Dan Lorz"
+    },
+    {
+      "number": "10",
+      "driver": "Ed Pompa",
+      "team": "Fast Track Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Mike Sroufe"
+    },
+    {
+      "number": "11",
+      "driver": "Bryce Haugeberg",
+      "team": "Fast Track Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Dick Doheny"
+    },
+    {
+      "number": "12",
+      "driver": "Takuma Koga",
+      "team": "Fast Track Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Andrew Kiernan"
+    },
+    {
+      "number": "15",
+      "driver": "Jake Finch",
+      "team": "Nitro Motorsports",
+      "manufacturer": "Toyota",
+      "crew_chief": "Danny Johnson"
+    },
+    {
+      "number": "17",
+      "driver": "Monty Tipton",
+      "team": "Cook Racing Technologies",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Sean Samuels"
+    },
+    {
+      "number": "18",
+      "driver": "Gio Ruggiero",
+      "team": "Joe Gibbs Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Matt Ross"
+    },
+    {
+      "number": "19",
+      "driver": "Matt Kemp",
+      "team": "Maples Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Kenna Long"
+    },
+    {
+      "number": "20",
+      "driver": "Jake Bollman (R)",
+      "team": "Nitro Motorsports",
+      "manufacturer": "Toyota",
+      "crew_chief": "Doug George"
+    },
+    {
+      "number": "22",
+      "driver": "Nick White",
+      "team": "White Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Mike Harmon"
+    },
+    {
+      "number": "24",
+      "driver": "Daniel Dye",
+      "team": "SPS Racing",
+      "manufacturer": "Ford",
+      "crew_chief": "Blake Bainbridge"
+    },
+    {
+      "number": "25",
+      "driver": "Gus Dean",
+      "team": "Nitro Motorsports",
+      "manufacturer": "Toyota",
+      "crew_chief": "Shane Wilson"
+    },
+    {
+      "number": "26",
+      "driver": "Ron Vandermeir Jr.",
+      "team": "Vanco Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Ron Vandermeir Sr"
+    },
+    {
+      "number": "27",
+      "driver": "Tim Richmond",
+      "team": "Tim Richmond Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Adam Murphy"
+    },
+    {
+      "number": "28",
+      "driver": "Jack Wood",
+      "team": "Pinnacle Racing Group",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Steven Dawson"
+    },
+    {
+      "number": "30",
+      "driver": "Garrett Mitchell",
+      "team": "Rette Jones Racing",
+      "manufacturer": "Ford",
+      "crew_chief": "Mark Rette"
+    },
+    {
+      "number": "34",
+      "driver": "Logan Misuraca",
+      "team": "City Garage Motorsports",
+      "manufacturer": "Ford",
+      "crew_chief": "Ryan Bell"
+    },
+    {
+      "number": "36",
+      "driver": "Ryan Huff",
+      "team": "Ryan Huff Motorsports",
+      "manufacturer": "Ford",
+      "crew_chief": "James Huff"
+    },
+    {
+      "number": "41",
+      "driver": "Robbie Kennealy",
+      "team": "Jan's Towing Racing",
+      "manufacturer": "Ford",
+      "crew_chief": "Tim Monroe"
+    },
+    {
+      "number": "48",
+      "driver": "Brad Smith",
+      "team": "Brad Smith Motorsports",
+      "manufacturer": "Ford",
+      "crew_chief": "Terry Strange"
+    },
+    {
+      "number": "55",
+      "driver": "Isabella Robusto",
+      "team": "Nitro Motorsports",
+      "manufacturer": "Toyota",
+      "crew_chief": "Glenn Parker"
+    },
+    {
+      "number": "66",
+      "driver": "Derek White",
+      "team": "MBM Motorsports",
+      "manufacturer": "Ford",
+      "crew_chief": "Jason Miller"
+    },
+    {
+      "number": "69",
+      "driver": "Will Kimmel",
+      "team": "Kimmel Racing",
+      "manufacturer": "Toyota",
+      "crew_chief": "Bill Kimmel"
+    },
+    {
+      "number": "70",
+      "driver": "Thomas Annunziata",
+      "team": "Nitro Motorsports",
+      "manufacturer": "Toyota",
+      "crew_chief": "Shannon Rursch"
+    },
+    {
+      "number": "71",
+      "driver": "Andy Jankowiak",
+      "team": "KLAS Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Mike Dayton"
+    },
+    {
+      "number": "75",
+      "driver": "Bryan Dauzat",
+      "team": "Brother-In-Law Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Bob Rahilly"
+    },
+    {
+      "number": "77",
+      "driver": "Taylor Reimer",
+      "team": "Pinnacle Racing Group",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Kevin Reed Jr"
+    },
+    {
+      "number": "79",
+      "driver": "Steve Lewis Jr.",
+      "team": "Steve Lewis Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Steve Lewis Sr"
+    },
+    {
+      "number": "86",
+      "driver": "Jeff Maconi (R)",
+      "team": "Clubb Racing Inc.",
+      "manufacturer": "Ford",
+      "crew_chief": "Jon Clubb"
+    },
+    {
+      "number": "88",
+      "driver": "A. J. Moyer",
+      "team": "Moyer–Petroniro Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Kevin Ingram"
+    },
+    {
+      "number": "89",
+      "driver": "Bobby Dale Earnhardt",
+      "team": "Rise Racing",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Matthew Wright"
+    },
+    {
+      "number": "91",
+      "driver": "Ryan Vargas",
+      "team": "Maples Motorsports",
+      "manufacturer": "Ford",
+      "crew_chief": "Kyle Totman"
+    },
+    {
+      "number": "93",
+      "driver": "Alli Owens",
+      "team": "Costner Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Derek Kearns"
+    },
+    {
+      "number": "97",
+      "driver": "Jason Kitzmiller",
+      "team": "CR7 Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Frank Kimmel"
+    },
+    {
+      "number": "99",
+      "driver": "Michael Maples",
+      "team": "Maples Motorsports",
+      "manufacturer": "Chevrolet",
+      "crew_chief": "Chris Vanscoy"
+    }
+  ],
+  "tables": {
+    "practice": {
+      "headers": [
+        "Rank",
+        "Driver",
+        "Nbr",
+        "Car",
+        "Time",
+        "Diff",
+        "Speed",
+        "# Laps",
+        "Best Lap"
+      ],
+      "rows": [
+        [
+          "1",
+          "Gus Dean",
+          "25",
+          "Toyota",
+          "52.349",
+          "",
+          "182.926",
+          "5",
+          "4"
+        ],
+        [
+          "2",
+          "Jake Bollman",
+          "20",
+          "Toyota",
+          "52.367",
+          "0.018",
+          "182.863",
+          "5",
+          "4"
+        ],
+        [
+          "3",
+          "Jake Finch",
+          "15",
+          "Toyota",
+          "52.374",
+          "0.025",
+          "182.839",
+          "5",
+          "4"
+        ],
+        [
+          "4",
+          "Isabella Robusto",
+          "55",
+          "Toyota",
+          "52.393",
+          "0.044",
+          "182.773",
+          "5",
+          "4"
+        ],
+        [
+          "5",
+          "Thomas Annunziata",
+          "70",
+          "Toyota",
+          "52.401",
+          "0.052",
+          "182.745",
+          "5",
+          "4"
+        ],
+        [
+          "6",
+          "Garrett Mitchell",
+          "30",
+          "Ford",
+          "52.474",
+          "0.125",
+          "182.490",
+          "5",
+          "3"
+        ],
+        [
+          "7",
+          "Jack Wood",
+          "28",
+          "Chevrolet",
+          "53.809",
+          "1.460",
+          "177.963",
+          "3",
+          "3"
+        ],
+        [
+          "8",
+          "Giovanni Ruggiero",
+          "18",
+          "Toyota",
+          "53.810",
+          "1.461",
+          "177.959",
+          "3",
+          "3"
+        ],
+        [
+          "9",
+          "Bobby Earnhardt",
+          "89",
+          "Chevrolet",
+          "53.864",
+          "1.515",
+          "177.781",
+          "6",
+          "3"
+        ],
+        [
+          "10",
+          "Logan Misuraca",
+          "34",
+          "Ford",
+          "53.892",
+          "1.543",
+          "177.689",
+          "6",
+          "3"
+        ],
+        [
+          "11",
+          "Robbie Kennealy",
+          "41",
+          "Ford",
+          "53.899",
+          "1.550",
+          "177.666",
+          "6",
+          "3"
+        ],
+        [
+          "12",
+          "Jason Kitzmiller",
+          "97",
+          "Chevrolet",
+          "53.968",
+          "1.619",
+          "177.438",
+          "3",
+          "3"
+        ],
+        [
+          "13",
+          "Will Kimmel",
+          "69",
+          "Toyota",
+          "53.988",
+          "1.639",
+          "177.373",
+          "3",
+          "3"
+        ],
+        [
+          "14",
+          "Derek White",
+          "66",
+          "Ford",
+          "54.142",
+          "1.793",
+          "176.868",
+          "3",
+          "2"
+        ],
+        [
+          "15",
+          "Taylor Reimer",
+          "77",
+          "Chevrolet",
+          "54.325",
+          "1.976",
+          "176.272",
+          "3",
+          "3"
+        ],
+        [
+          "16",
+          "Daniel Dye",
+          "24",
+          "Ford",
+          "54.398",
+          "2.049",
+          "176.036",
+          "6",
+          "5"
+        ],
+        [
+          "17",
+          "Ryan Huff",
+          "36",
+          "Ford",
+          "54.481",
+          "2.132",
+          "175.768",
+          "6",
+          "5"
+        ],
+        [
+          "18",
+          "Cody Dennison",
+          "01",
+          "Ford",
+          "54.573",
+          "2.224",
+          "175.471",
+          "6",
+          "5"
+        ],
+        [
+          "19",
+          "Steve Lewis, Jr.",
+          "79",
+          "Chevrolet",
+          "54.580",
+          "2.231",
+          "175.449",
+          "6",
+          "5"
+        ],
+        [
+          "20",
+          "Matt Kemp",
+          "19",
+          "Chevrolet",
+          "54.596",
+          "2.247",
+          "175.397",
+          "6",
+          "5"
+        ],
+        [
+          "21",
+          "Ron Vandermeir, Jr.",
+          "26",
+          "Toyota",
+          "54.609",
+          "2.260",
+          "175.356",
+          "6",
+          "6"
+        ],
+        [
+          "22",
+          "Michael Maples",
+          "99",
+          "Chevrolet",
+          "54.619",
+          "2.270",
+          "175.324",
+          "6",
+          "5"
+        ],
+        [
+          "23",
+          "A.J. Moyer",
+          "88",
+          "Chevrolet",
+          "54.633",
+          "2.284",
+          "175.279",
+          "6",
+          "5"
+        ],
+        [
+          "24",
+          "Tim Richmond",
+          "27",
+          "Toyota",
+          "54.681",
+          "2.332",
+          "175.125",
+          "6",
+          "6"
+        ],
+        [
+          "25",
+          "Sean Corr",
+          "8",
+          "Chevrolet",
+          "54.716",
+          "2.367",
+          "175.013",
+          "6",
+          "6"
+        ],
+        [
+          "26",
+          "Alli Owens",
+          "93",
+          "Chevrolet",
+          "54.875",
+          "2.526",
+          "174.506",
+          "6",
+          "5"
+        ],
+        [
+          "27",
+          "George Siciliano",
+          "0",
+          "Ford",
+          "54.978",
+          "2.629",
+          "174.179",
+          "6",
+          "2"
+        ],
+        [
+          "28",
+          "Bryce Haugeberg",
+          "11",
+          "Toyota",
+          "54.980",
+          "2.631",
+          "174.172",
+          "4",
+          "3"
+        ],
+        [
+          "29",
+          "Andrew Patterson",
+          "1",
+          "Chevrolet",
+          "55.065",
+          "2.716",
+          "173.904",
+          "4",
+          "3"
+        ],
+        [
+          "30",
+          "Andy Jankowiak",
+          "71",
+          "Chevrolet",
+          "55.086",
+          "2.737",
+          "173.837",
+          "6",
+          "6"
+        ],
+        [
+          "31",
+          "Ryan Vargas",
+          "91",
+          "Ford",
+          "55.086",
+          "2.737",
+          "173.837",
+          "3",
+          "2"
+        ],
+        [
+          "32",
+          "Ed Pompa",
+          "10",
+          "Chevrolet",
+          "55.251",
+          "2.902",
+          "173.318",
+          "4",
+          "2"
+        ],
+        [
+          "33",
+          "Eric Caudell",
+          "7",
+          "Toyota",
+          "55.344",
+          "2.995",
+          "173.027",
+          "5",
+          "2"
+        ],
+        [
+          "34",
+          "Takuma Koga",
+          "12",
+          "Toyota",
+          "55.556",
+          "3.207",
+          "172.367",
+          "6",
+          "2"
+        ],
+        [
+          "35",
+          "Monty Tipton",
+          "17",
+          "Chevrolet",
+          "56.220",
+          "3.871",
+          "170.331",
+          "6",
+          "2"
+        ],
+        [
+          "36",
+          "Bryan Dauzat",
+          "75",
+          "Chevrolet",
+          "56.421",
+          "4.072",
+          "169.724",
+          "3",
+          "2"
+        ],
+        [
+          "37",
+          "Con Nicolopoulos",
+          "06",
+          "Chevrolet",
+          "56.798",
+          "4.449",
+          "168.597",
+          "2",
+          "2"
+        ],
+        [
+          "38",
+          "Alex Clubb",
+          "03",
+          "Ford",
+          "57.144",
+          "4.795",
+          "167.577",
+          "3",
+          "2"
+        ],
+        [
+          "39",
+          "Brad Smith",
+          "48",
+          "Ford",
+          "1:00.388",
+          "8.039",
+          "158.575",
+          "4",
+          "2"
+        ],
+        [
+          "40",
+          "Nick White",
+          "22",
+          "Chevrolet",
+          "1:04.794",
+          "12.445",
+          "147.791",
+          "2",
+          "2"
+        ],
+        [
+          "41",
+          "Jeff Maconi",
+          "86",
+          "Ford",
+          "",
+          "",
+          "0.000",
+          "0",
+          "0"
+        ]
+      ]
+    },
+    "qualifying": {
+      "headers": [
+        "Note"
+      ],
+      "rows": [
+        [
+          "No qualifying session was held."
+        ]
+      ]
+    },
+    "race_results": {
+      "headers": [
+        "Fin",
+        "St",
+        "#",
+        "Driver",
+        "Team",
+        "Make",
+        "Laps",
+        "Led",
+        "Status",
+        "Pts"
+      ],
+      "rows": [
+        [
+          "1",
+          "10",
+          "71",
+          "Andy Jankowiak",
+          "KLAS Motorsports",
+          "Chevrolet",
+          "76",
+          "1",
+          "Running",
+          "47"
+        ],
+        [
+          "2",
+          "20",
+          "30",
+          "Garrett Mitchell",
+          "Rette Jones Racing",
+          "Ford",
+          "76",
+          "19",
+          "Running",
+          "43"
+        ],
+        [
+          "3",
+          "15",
+          "25",
+          "Gus Dean",
+          "Nitro Motorsports",
+          "Toyota",
+          "76",
+          "0",
+          "Running",
+          "41"
+        ],
+        [
+          "4",
+          "21",
+          "55",
+          "Isabella Robusto",
+          "Nitro Motorsports",
+          "Toyota",
+          "76",
+          "6",
+          "Running",
+          "41"
+        ],
+        [
+          "5",
+          "1",
+          "18",
+          "Gio Ruggiero",
+          "Joe Gibbs Racing",
+          "Toyota",
+          "76",
+          "45",
+          "Running",
+          "41"
+        ],
+        [
+          "6",
+          "6",
+          "77",
+          "Taylor Reimer",
+          "Pinnacle Racing Group",
+          "Chevrolet",
+          "76",
+          "0",
+          "Running",
+          "38"
+        ],
+        [
+          "7",
+          "39",
+          "8",
+          "Sean Corr",
+          "Empire Racing",
+          "Chevrolet",
+          "76",
+          "0",
+          "Running",
+          "37"
+        ],
+        [
+          "8",
+          "5",
+          "91",
+          "Ryan Vargas",
+          "Maples Motorsports",
+          "Ford",
+          "76",
+          "0",
+          "Running",
+          "36"
+        ],
+        [
+          "9",
+          "3",
+          "28",
+          "Jack Wood",
+          "Pinnacle Racing Group",
+          "Chevrolet",
+          "76",
+          "0",
+          "Running",
+          "35"
+        ],
+        [
+          "10",
+          "9",
+          "24",
+          "Daniel Dye",
+          "SPS Racing",
+          "Ford",
+          "76",
+          "0",
+          "Running",
+          "34"
+        ],
+        [
+          "11",
+          "33",
+          "69",
+          "Will Kimmel",
+          "Kimmel Racing",
+          "Toyota",
+          "76",
+          "0",
+          "Running",
+          "33"
+        ],
+        [
+          "12",
+          "12",
+          "15",
+          "Jake Finch",
+          "Nitro Motorsports",
+          "Toyota",
+          "76",
+          "0",
+          "Running",
+          "32"
+        ],
+        [
+          "13",
+          "23",
+          "01",
+          "Cody Dennison",
+          "Fast Track Racing",
+          "Ford",
+          "76",
+          "0",
+          "Running",
+          "31"
+        ],
+        [
+          "14",
+          "13",
+          "12",
+          "Takuma Koga",
+          "Fast Track Racing",
+          "Toyota",
+          "76",
+          "0",
+          "Running",
+          "30"
+        ],
+        [
+          "15",
+          "27",
+          "66",
+          "Derek White",
+          "MBM Motorsports",
+          "Ford",
+          "76",
+          "0",
+          "Running",
+          "29"
+        ],
+        [
+          "16",
+          "22",
+          "10",
+          "Ed Pompa",
+          "Fast Track Racing",
+          "Chevrolet",
+          "76",
+          "0",
+          "Running",
+          "28"
+        ],
+        [
+          "17",
+          "31",
+          "34",
+          "Logan Misuraca",
+          "City Garage Motorsports",
+          "Ford",
+          "76",
+          "0",
+          "Running",
+          "27"
+        ],
+        [
+          "18",
+          "2",
+          "20",
+          "Jake Bollman (R)",
+          "Nitro Motorsports",
+          "Toyota",
+          "75",
+          "0",
+          "Running",
+          "26"
+        ],
+        [
+          "19",
+          "26",
+          "06",
+          "Con Nicolopoulos",
+          "Wayne Peterson Motorsports",
+          "Chevrolet",
+          "75",
+          "0",
+          "Running",
+          "25"
+        ],
+        [
+          "20",
+          "30",
+          "86",
+          "Jeff Maconi (R)",
+          "Clubb Racing Inc.",
+          "Ford",
+          "75",
+          "0",
+          "Running",
+          "24"
+        ],
+        [
+          "21",
+          "16",
+          "41",
+          "Robbie Kennealy",
+          "Jan's Towing Racing",
+          "Ford",
+          "74",
+          "0",
+          "Running",
+          "23"
+        ],
+        [
+          "22",
+          "25",
+          "48",
+          "Brad Smith",
+          "Brad Smith Motorsports",
+          "Ford",
+          "74",
+          "0",
+          "Running",
+          "22"
+        ],
+        [
+          "23",
+          "24",
+          "19",
+          "Matt Kemp",
+          "Maples Motorsports",
+          "Chevrolet",
+          "72",
+          "0",
+          "Running",
+          "21"
+        ],
+        [
+          "24",
+          "38",
+          "26",
+          "Ron Vandermeir Jr.",
+          "Vanco Racing",
+          "Toyota",
+          "70",
+          "0",
+          "Accident",
+          "20"
+        ],
+        [
+          "25",
+          "8",
+          "99",
+          "Michael Maples",
+          "Maples Motorsports",
+          "Chevrolet",
+          "70",
+          "0",
+          "Running",
+          "19"
+        ],
+        [
+          "26",
+          "7",
+          "70",
+          "Thomas Annunziata",
+          "Nitro Motorsports",
+          "Toyota",
+          "69",
+          "0",
+          "Accident",
+          "18"
+        ],
+        [
+          "27",
+          "17",
+          "11",
+          "Bryce Haugeberg",
+          "Fast Track Racing",
+          "Toyota",
+          "69",
+          "0",
+          "Accident",
+          "17"
+        ],
+        [
+          "28",
+          "28",
+          "1",
+          "Andrew Patterson",
+          "Maples Motorsports",
+          "Chevrolet",
+          "69",
+          "0",
+          "Accident",
+          "16"
+        ],
+        [
+          "29",
+          "18",
+          "0",
+          "George Siciliano",
+          "Rette Jones Racing",
+          "Ford",
+          "69",
+          "0",
+          "Accident",
+          "15"
+        ],
+        [
+          "30",
+          "37",
+          "36",
+          "Ryan Huff",
+          "Ryan Huff Motorsports",
+          "Ford",
+          "69",
+          "5",
+          "Accident",
+          "15"
+        ],
+        [
+          "31",
+          "14",
+          "89",
+          "Bobby Dale Eannhardt",
+          "Rise Racing",
+          "Chevrolet",
+          "69",
+          "0",
+          "Accident",
+          "13"
+        ],
+        [
+          "32",
+          "35",
+          "27",
+          "Tim Richmond",
+          "Tim Richmond Racing",
+          "Toyota",
+          "69",
+          "0",
+          "Accident",
+          "12"
+        ],
+        [
+          "33",
+          "4",
+          "97",
+          "Jason Kitzmiller",
+          "CR7 Motorsports",
+          "Chevrolet",
+          "69",
+          "0",
+          "Accident",
+          "11"
+        ],
+        [
+          "34",
+          "19",
+          "03",
+          "Alex Clubb",
+          "Clubb Racing Inc.",
+          "Ford",
+          "67",
+          "0",
+          "Running",
+          "10"
+        ],
+        [
+          "35",
+          "29",
+          "79",
+          "Steve Lewis Jr.",
+          "Steve Lewis Racing",
+          "Chevrolet",
+          "64",
+          "0",
+          "Mechanical",
+          "9"
+        ],
+        [
+          "36",
+          "34",
+          "7",
+          "Eric Caudell",
+          "CCM Racing",
+          "Toyota",
+          "57",
+          "0",
+          "Accident",
+          "8"
+        ],
+        [
+          "37",
+          "36",
+          "75",
+          "Bryan Dauzat",
+          "Brother-In-Law Racing",
+          "Chevrolet",
+          "57",
+          "0",
+          "Accident",
+          "7"
+        ],
+        [
+          "38",
+          "11",
+          "17",
+          "Monty Tipton",
+          "Cook Racing Technologies",
+          "Chevrolet",
+          "56",
+          "0",
+          "Mechanical",
+          "6"
+        ],
+        [
+          "39",
+          "32",
+          "88",
+          "A. J. Moyer",
+          "Moyer–Petroniro Racing",
+          "Chevrolet",
+          "49",
+          "0",
+          "Mechanical",
+          "5"
+        ],
+        [
+          "40",
+          "40",
+          "93",
+          "Alli Owens",
+          "Costner Motorsports",
+          "Chevrolet",
+          "28",
+          "0",
+          "Accident",
+          "4"
+        ]
+      ]
+    },
+    "caution_breakdown": {
+      "headers": [
+        "Condition",
+        "From Lap",
+        "To Lap",
+        "# Of Laps",
+        "Reason",
+        "Free Pass"
+      ],
+      "rows": [
+        [
+          "",
+          "1",
+          "29",
+          "29",
+          "",
+          ""
+        ],
+        [
+          "",
+          "30",
+          "35",
+          "6",
+          "#93 accident frontstretch",
+          "#7"
+        ],
+        [
+          "",
+          "36",
+          "40",
+          "5",
+          "",
+          ""
+        ],
+        [
+          "",
+          "41",
+          "45",
+          "5",
+          "scheduled caution",
+          "#75"
+        ],
+        [
+          "",
+          "46",
+          "50",
+          "5",
+          "",
+          ""
+        ],
+        [
+          "",
+          "51",
+          "53",
+          "3",
+          "debris turn 3",
+          "#36"
+        ],
+        [
+          "",
+          "54",
+          "57",
+          "4",
+          "",
+          ""
+        ],
+        [
+          "",
+          "58",
+          "64",
+          "7",
+          "#7,75 accident turn 1",
+          "#01"
+        ],
+        [
+          "",
+          "65",
+          "69",
+          "5",
+          "",
+          ""
+        ],
+        [
+          "",
+          "70",
+          "74",
+          "5",
+          "#0,1,11,18,24,26,27,36,39,69,70,89,97 accident turn 4",
+          "#34"
+        ],
+        [
+          "",
+          "75",
+          "76",
+          "2",
+          "",
+          ""
+        ]
+      ]
+    }
+  },
+  "race_statistics": {
+    "Lead changes": "9 among 5 different drivers",
+    "Cautions / Laps": "5 for 26 laps",
+    "Red flags": "1",
+    "Time of race": "1 hour, 54 minutes and 2 seconds",
+    "Average speed": "105.997 miles per hour (170.586 km/h)"
+  },
+  "youtube_highlights": [
+    {
+      "id": "Cr2dyKdAW7A",
+      "title": "Highlights"
+    }
+  ]
+}

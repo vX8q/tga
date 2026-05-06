@@ -43,7 +43,7 @@ func EnrichSupercarsEvent(body []byte, dataDir, seriesID string) ([]byte, error)
 				if !ok {
 					continue
 				}
-				numVal, _ := m["number"]
+				numVal := m["number"]
 				teamVal, _ := m["team"].(string)
 				if teamVal == "" {
 					continue
@@ -130,7 +130,9 @@ func EnrichStockCarEventTeamNames(body []byte, dataDir, seriesID string) ([]byte
 
 // isExhibitionEvent определяет, является ли событие выставочной гонкой,
 // результаты которой не должны учитываться в турнирной таблице.
-// Сейчас это используется для исключения Cook Out Clash из зачёта Cup Series.
+// Для Cup Series сюда попадают: Cook Out Clash (..._0) и NASCAR All-Star Race
+// (..._ALLSTAR_RACE / любой суффикс с "ALLSTAR"). Эти события имеют race_results,
+// но не приносят чемпионских очков, поэтому их нельзя сдвигать race_order.
 func isExhibitionEvent(seriesID string, eventID string) bool {
 	if !strings.EqualFold(seriesID, "NASCAR_CUP") {
 		return false
@@ -140,6 +142,13 @@ func isExhibitionEvent(seriesID string, eventID string) bool {
 		return false
 	}
 	last := parts[len(parts)-1]
-	return last == "0"
+	if last == "0" {
+		return true
+	}
+	upper := strings.ToUpper(eventID)
+	if strings.Contains(upper, "ALLSTAR") || strings.Contains(upper, "ALL_STAR") {
+		return true
+	}
+	return false
 }
 

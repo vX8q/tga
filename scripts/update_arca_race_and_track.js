@@ -88,13 +88,13 @@ data.tables.caution_breakdown = {
   rows: cautionBreakdownRows,
 };
 
-data.tables.track_info = {
+data.tables.event_preview = {
   headers: ["Field", "Value"],
   rows: [["Track", trackInfoText]],
 };
 
-// Keep table order: insert caution_breakdown before track_info
-const order = ['practice', 'qualifying', 'did_not_qualify', 'race_results', 'race_statistics', 'caution_breakdown', 'track_info'];
+// Keep table order: insert caution_breakdown before event_preview
+const order = ['practice', 'qualifying', 'did_not_qualify', 'race_results', 'race_statistics', 'caution_breakdown', 'event_preview'];
 const newTables = {};
 order.forEach(function (k) {
   if (data.tables[k]) newTables[k] = data.tables[k];
@@ -102,4 +102,4 @@ order.forEach(function (k) {
 data.tables = newTables;
 
 fs.writeFileSync(eventPath, JSON.stringify(data, null, 2), 'utf8');
-console.log('ARCA_2026_1.json updated: race_results (Led/Status/Pts), race_statistics, caution_breakdown, track_info.');
+console.log('ARCA_2026_1.json updated: race_results (Led/Status/Pts), race_statistics, caution_breakdown, event_preview.');

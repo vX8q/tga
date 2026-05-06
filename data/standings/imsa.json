@@ -1,11 +1,13 @@
 {
   "race_order": [
     "DAY24",
-    "SEB12"
+    "SEB12",
+    "LB"
   ],
   "completed_races": [
     "DAY24",
-    "SEB12"
+    "SEB12",
+    "LB"
   ],
   "classes": [
     {
@@ -20,9 +22,10 @@
           "manufacturer": "Porsche 963",
           "races": {
             "DAY24": "1",
-            "SEB12": "1"
+            "SEB12": "1",
+            "LB": "4"
           },
-          "points": "755"
+          "points": "1061"
         },
         {
           "pos": 2,
@@ -32,9 +35,10 @@
           "manufacturer": "Cadillac V-Series.R",
           "races": {
             "DAY24": "2",
-            "SEB12": "3"
+            "SEB12": "3",
+            "LB": "2"
           },
-          "points": "675"
+          "points": "1023"
         },
         {
           "pos": 3,
@@ -44,33 +48,36 @@
           "manufacturer": "Porsche 963",
           "races": {
             "DAY24": "4",
-            "SEB12": "2"
+            "SEB12": "2",
+            "LB": "3"
           },
-          "points": "654"
+          "points": "977"
         },
         {
           "pos": 4,
-          "car": "24",
-          "driver": "Robin Frijns / René Rast / Sheldon van der Linde / Dries Vanthoor / Rene Rast",
-          "team": "BMW M Team WRT",
-          "manufacturer": "BMW M Hybrid V8",
-          "races": {
-            "DAY24": "3",
-            "SEB12": "5"
-          },
-          "points": "606"
-        },
-        {
-          "pos": 5,
           "car": "93",
           "driver": "Kakunoshin Ohta / Álex Palou / Nick Yelloly / Renger van der Zande / Alex Palou",
           "team": "Acura Meyer Shank Racing with Curb-Agajanian",
           "manufacturer": "Acura ARX-06",
           "races": {
             "DAY24": "5",
-            "SEB12": "6"
+            "SEB12": "6",
+            "LB": "1"
           },
-          "points": "567"
+          "points": "952"
+        },
+        {
+          "pos": 5,
+          "car": "24",
+          "driver": "Robin Frijns / René Rast / Sheldon van der Linde / Dries Vanthoor / Rene Rast",
+          "team": "BMW M Team WRT",
+          "manufacturer": "BMW M Hybrid V8",
+          "races": {
+            "DAY24": "3",
+            "SEB12": "5",
+            "LB": "5"
+          },
+          "points": "891"
         },
         {
           "pos": 6,
@@ -80,9 +87,10 @@
           "manufacturer": "Acura ARX-06",
           "races": {
             "DAY24": "9",
-            "SEB12": "4"
+            "SEB12": "4",
+            "LB": "7"
           },
-          "points": "560"
+          "points": "820"
         },
         {
           "pos": 7,
@@ -92,45 +100,49 @@
           "manufacturer": "Cadillac V-Series.R",
           "races": {
             "DAY24": "6",
-            "SEB12": "7"
+            "SEB12": "7",
+            "LB": "8"
           },
-          "points": "548"
+          "points": "808"
         },
         {
           "pos": 8,
           "car": "5",
-          "driver": "Kaylen Frederick / Tijmen van der Helm / Nico Pino",
+          "driver": "Kaylen Frederick / Tijmen van der Helm / Nico Pino / Laurin Heinrich",
           "team": "JDC-Miller MotorSports",
           "manufacturer": "Porsche 963",
           "races": {
             "DAY24": "7",
-            "SEB12": "8"
+            "SEB12": "8",
+            "LB": "6"
           },
-          "points": "518"
+          "points": "789"
         },
         {
           "pos": 9,
-          "car": "25",
-          "driver": "Philipp Eng / Kevin Magnussen / Raffaele Marciello / Marco Wittmann",
-          "team": "BMW M Team WRT",
-          "manufacturer": "BMW M Hybrid V8",
-          "races": {
-            "DAY24": "8",
-            "SEB12": "10"
-          },
-          "points": "482"
-        },
-        {
-          "pos": 10,
           "car": "23",
           "driver": "Roman De Angelis / Ross Gunn / Alex Riberas / Marco Sørensen / Marco Sorensen",
           "team": "Aston Martin THOR Team",
           "manufacturer": "Aston Martin Valkyrie",
           "races": {
             "DAY24": "10",
-            "SEB12": "9"
+            "SEB12": "9",
+            "LB": "9"
           },
-          "points": "472"
+          "points": "716"
+        },
+        {
+          "pos": 10,
+          "car": "25",
+          "driver": "Philipp Eng / Kevin Magnussen / Raffaele Marciello / Marco Wittmann",
+          "team": "BMW M Team WRT",
+          "manufacturer": "BMW M Hybrid V8",
+          "races": {
+            "DAY24": "8",
+            "SEB12": "10",
+            "LB": "11"
+          },
+          "points": "714"
         },
         {
           "pos": 11,
@@ -140,9 +152,10 @@
           "manufacturer": "Cadillac V-Series.R",
           "races": {
             "DAY24": "11",
-            "SEB12": "11"
+            "SEB12": "11",
+            "LB": "10"
           },
-          "points": "455"
+          "points": "687"
         }
       ]
     },
@@ -508,17 +521,109 @@
         {
           "pos": 1,
           "car": "27",
-          "driver": "Eduardo Barrichello / Mattia Drudi / Tom Gamble / Zacharie Robichon",
+          "driver": "Eduardo Barrichello / Mattia Drudi / Tom Gamble / Zacharie Robichon / Spencer Pumpelly",
           "team": "Heart of Racing Team",
           "manufacturer": "Aston Martin Vantage AMR GT3 Evo",
           "races": {
             "DAY24": "3",
-            "SEB12": "2"
+            "SEB12": "2",
+            "LB": "10"
           },
-          "points": "690"
+          "points": "930"
         },
         {
           "pos": 2,
+          "car": "96",
+          "driver": "Robby Foley / Patrick Gallagher / Jens Klingmann / Francis Selldorff",
+          "team": "Turner Motorsport",
+          "manufacturer": "BMW M4 GT3 Evo",
+          "races": {
+            "DAY24": "10",
+            "SEB12": "5",
+            "LB": "2"
+          },
+          "points": "876"
+        },
+        {
+          "pos": 3,
+          "car": "12",
+          "driver": "Benjamin Pedersen / Frankie Montecalvo / Aaron Telitz / Esteban Masson",
+          "team": "Vasser Sullivan Racing",
+          "manufacturer": "Lexus RC F GT3",
+          "races": {
+            "DAY24": "9",
+            "SEB12": "12",
+            "LB": "1"
+          },
+          "points": "827"
+        },
+        {
+          "pos": 4,
+          "car": "57",
+          "driver": "Lucas Auer / Indy Dontje / Philip Ellis / Russell Ward",
+          "team": "Winward Racing",
+          "manufacturer": "Mercedes-AMG GT3 Evo",
+          "races": {
+            "DAY24": "1",
+            "SEB12": "18",
+            "LB": "9"
+          },
+          "points": "792"
+        },
+        {
+          "pos": 5,
+          "car": "34",
+          "driver": "Albert Costa / Manny Franco / Lorenzo Patrese / Thierry Vermeulen",
+          "team": "Conquest Racing",
+          "manufacturer": "Ferrari 296 GT3 Evo",
+          "races": {
+            "DAY24": "14",
+            "SEB12": "7",
+            "LB": "3"
+          },
+          "points": "769"
+        },
+        {
+          "pos": 6,
+          "car": "13",
+          "driver": "Matt Bell / Orey Fidani / Ben Green / Lars Kern",
+          "team": "13 Autosport",
+          "manufacturer": "Chevrolet Corvette Z06 GT3.R",
+          "races": {
+            "DAY24": "4",
+            "SEB12": "6",
+            "LB": "12"
+          },
+          "points": "764"
+        },
+        {
+          "pos": 7,
+          "car": "36",
+          "driver": "Charlie Eastwood / Mason Filippi / Scott McLaughlin / Salih Yoluç / Salih Yoluc / Robert Wickens",
+          "team": "DXDT Racing",
+          "manufacturer": "Chevrolet Corvette Z06 GT3.R",
+          "races": {
+            "DAY24": "17",
+            "SEB12": "9",
+            "LB": "6"
+          },
+          "points": "694"
+        },
+        {
+          "pos": 8,
+          "car": "19",
+          "driver": "Sébastien Baud / Carl Bennett / Valentin Hasse-Clot / Rory van der Steur / Sebastien Baud",
+          "team": "van der Steur Racing",
+          "manufacturer": "Aston Martin Vantage AMR GT3 Evo",
+          "races": {
+            "DAY24": "11",
+            "SEB12": "13",
+            "LB": "8"
+          },
+          "points": "678"
+        },
+        {
+          "pos": 9,
           "car": "21",
           "driver": "Antonio Fuoco / Simon Mann / Tommaso Mosca / Lilou Wadoux",
           "team": "AF Corse USA",
@@ -530,7 +635,59 @@
           "points": "661"
         },
         {
-          "pos": 3,
+          "pos": 10,
+          "car": "70",
+          "driver": "David Fumanelli / Brendan Iribe / Ollie Millroy / Frederik Schandorff",
+          "team": "Inception Racing",
+          "manufacturer": "Ferrari 296 GT3 Evo",
+          "races": {
+            "DAY24": "13",
+            "SEB12": "17",
+            "LB": "4"
+          },
+          "points": "661"
+        },
+        {
+          "pos": 11,
+          "car": "120",
+          "driver": "Adam Adelson / Callum Ilott / Tom Sargent / Elliott Skeer",
+          "team": "Wright Motorsports",
+          "manufacturer": "Porsche 911 GT3 R (992.2)",
+          "races": {
+            "DAY24": "20",
+            "SEB12": "3",
+            "LB": "15"
+          },
+          "points": "633"
+        },
+        {
+          "pos": 12,
+          "car": "16",
+          "driver": "Jenson Altzman / Felipe Fraga / Romain Grosjean / Sheena Monk",
+          "team": "Myers Riley Motorsports",
+          "manufacturer": "Ford Mustang GT3 Evo",
+          "races": {
+            "DAY24": "19",
+            "SEB12": "11",
+            "LB": "7"
+          },
+          "points": "603"
+        },
+        {
+          "pos": 13,
+          "car": "45",
+          "driver": "Graham Doyle / Marcus Ericsson / Danny Formal / Trent Hindman",
+          "team": "Wayne Taylor Racing",
+          "manufacturer": "Lamborghini Huracan GT3 Evo 2",
+          "races": {
+            "DAY24": "8",
+            "SEB12": "16",
+            "LB": "17"
+          },
+          "points": "591"
+        },
+        {
+          "pos": 14,
           "car": "80",
           "driver": "Scott Andrews / Ralf Aron / Lin Hodenius / James Roe",
           "team": "Lone Star Racing",
@@ -542,55 +699,33 @@
           "points": "581"
         },
         {
-          "pos": 4,
-          "car": "13",
-          "driver": "Matt Bell / Orey Fidani / Ben Green / Lars Kern",
-          "team": "13 Autosport",
+          "pos": 15,
+          "car": "81",
+          "driver": "Giacomo Altoè / Matteo Cairoli / Henrik Hedman / Casper Stevenson / Giacomo Altoe",
+          "team": "DragonSpeed",
           "manufacturer": "Chevrolet Corvette Z06 GT3.R",
           "races": {
-            "DAY24": "4",
-            "SEB12": "6"
+            "DAY24": "16",
+            "SEB12": "15",
+            "LB": "11"
           },
-          "points": "559"
+          "points": "563"
         },
         {
-          "pos": 5,
-          "car": "57",
-          "driver": "Lucas Auer / Indy Dontje / Philip Ellis / Russell Ward",
-          "team": "Winward Racing",
-          "manufacturer": "Mercedes-AMG GT3 Evo",
+          "pos": 16,
+          "car": "66",
+          "driver": "Till Bechtolsheimer / Joey Hand / Corey Lewis / Jake Walker",
+          "team": "Gradient Racing",
+          "manufacturer": "Ford Mustang GT3 Evo",
           "races": {
-            "DAY24": "1",
-            "SEB12": "18"
+            "DAY24": "18",
+            "SEB12": "8",
+            "LB": "16"
           },
-          "points": "544"
+          "points": "545"
         },
         {
-          "pos": 6,
-          "car": "96",
-          "driver": "Robby Foley / Patrick Gallagher / Jens Klingmann / Francis Selldorff",
-          "team": "Turner Motorsport",
-          "manufacturer": "BMW M4 GT3 Evo",
-          "races": {
-            "DAY24": "10",
-            "SEB12": "5"
-          },
-          "points": "530"
-        },
-        {
-          "pos": 7,
-          "car": "120",
-          "driver": "Adam Adelson / Callum Ilott / Tom Sargent / Elliott Skeer",
-          "team": "Wright Motorsports",
-          "manufacturer": "Porsche 911 GT3 R (992.2)",
-          "races": {
-            "DAY24": "20",
-            "SEB12": "3"
-          },
-          "points": "455"
-        },
-        {
-          "pos": 8,
+          "pos": 17,
           "car": "023",
           "driver": "Kenton Koch / Robert Megennis / Onofrio Triarsi / Yifei Ye",
           "team": "Triarsi Competizione",
@@ -600,114 +735,6 @@
             "SEB12": "14"
           },
           "points": "452"
-        },
-        {
-          "pos": 9,
-          "car": "12",
-          "driver": "Esteban Masson / Frankie Montecalvo / Benjamin Pedersen / Aaron Telitz",
-          "team": "Vasser Sullivan Racing",
-          "manufacturer": "Lexus RC F GT3",
-          "races": {
-            "DAY24": "9",
-            "SEB12": "12"
-          },
-          "points": "452"
-        },
-        {
-          "pos": 10,
-          "car": "34",
-          "driver": "Albert Costa / Manny Franco / Lorenzo Patrese / Thierry Vermeulen",
-          "team": "Conquest Racing",
-          "manufacturer": "Ferrari 296 GT3 Evo",
-          "races": {
-            "DAY24": "14",
-            "SEB12": "7"
-          },
-          "points": "445"
-        },
-        {
-          "pos": 11,
-          "car": "19",
-          "driver": "Sébastien Baud / Carl Bennett / Valentin Hasse-Clot / Rory van der Steur / Sebastien Baud",
-          "team": "van der Steur Racing",
-          "manufacturer": "Aston Martin Vantage AMR GT3 Evo",
-          "races": {
-            "DAY24": "11",
-            "SEB12": "13"
-          },
-          "points": "429"
-        },
-        {
-          "pos": 12,
-          "car": "45",
-          "driver": "Graham Doyle / Marcus Ericsson / Danny Formal / Trent Hindman",
-          "team": "Wayne Taylor Racing",
-          "manufacturer": "Lamborghini Huracan GT3 Evo 2",
-          "races": {
-            "DAY24": "8",
-            "SEB12": "16"
-          },
-          "points": "419"
-        },
-        {
-          "pos": 13,
-          "car": "36",
-          "driver": "Charlie Eastwood / Mason Filippi / Scott McLaughlin / Salih Yoluç / Salih Yoluc",
-          "team": "DXDT Racing",
-          "manufacturer": "Chevrolet Corvette Z06 GT3.R",
-          "races": {
-            "DAY24": "17",
-            "SEB12": "9"
-          },
-          "points": "409"
-        },
-        {
-          "pos": 14,
-          "car": "66",
-          "driver": "Till Bechtolsheimer / Joey Hand / Corey Lewis / Jake Walker",
-          "team": "Gradient Racing",
-          "manufacturer": "Ford Mustang GT3 Evo",
-          "races": {
-            "DAY24": "18",
-            "SEB12": "8"
-          },
-          "points": "374"
-        },
-        {
-          "pos": 15,
-          "car": "70",
-          "driver": "David Fumanelli / Brendan Iribe / Ollie Millroy / Frederik Schandorff",
-          "team": "Inception Racing",
-          "manufacturer": "Ferrari 296 GT3 Evo",
-          "races": {
-            "DAY24": "13",
-            "SEB12": "17"
-          },
-          "points": "361"
-        },
-        {
-          "pos": 16,
-          "car": "81",
-          "driver": "Giacomo Altoè / Matteo Cairoli / Henrik Hedman / Casper Stevenson / Giacomo Altoe",
-          "team": "DragonSpeed",
-          "manufacturer": "Chevrolet Corvette Z06 GT3.R",
-          "races": {
-            "DAY24": "16",
-            "SEB12": "15"
-          },
-          "points": "347"
-        },
-        {
-          "pos": 17,
-          "car": "16",
-          "driver": "Jenson Altzman / Felipe Fraga / Romain Grosjean / Sheena Monk",
-          "team": "Myers Riley Motorsports",
-          "manufacturer": "Ford Mustang GT3 Evo",
-          "races": {
-            "DAY24": "19",
-            "SEB12": "11"
-          },
-          "points": "346"
         },
         {
           "pos": 18,
@@ -746,6 +773,39 @@
         },
         {
           "pos": 21,
+          "car": "89",
+          "driver": "Jack Hawksworth / Frankie Montecalvo",
+          "team": "Vasser Sullivan Racing",
+          "manufacturer": "Lexus RC F GT3",
+          "races": {
+            "LB": "5"
+          },
+          "points": "260"
+        },
+        {
+          "pos": 22,
+          "car": "177",
+          "driver": "Harry King / Mikkel O. Pedersen",
+          "team": "AO Racing",
+          "manufacturer": "Porsche 911 GT3 R (992.2)",
+          "races": {
+            "LB": "13"
+          },
+          "points": "202"
+        },
+        {
+          "pos": 23,
+          "car": "46",
+          "driver": "Andrea Caldarelli / Zachary Vanier",
+          "team": "Pfaff Motorsports",
+          "manufacturer": "Lamborghini Temerario GT3",
+          "races": {
+            "LB": "14"
+          },
+          "points": "193"
+        },
+        {
+          "pos": 24,
           "car": "123",
           "driver": "Peter Ludwig / Dave Musial / Dave Musial Jr. / Ryan Yardley",
           "team": "Muhlner Motorsport",

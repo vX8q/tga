@@ -468,7 +468,6 @@ func buildSupercarsDriverStatsFromJSON(dataDir string, season string) (*DriverSt
 		// sumStart/posDiffCount используем как суммарную позицию в квалификации
 		// и количество квалификационных попаданий — для Avg. Qualifying.
 		sumStart     float64
-		sumPosDiff   float64
 		posDiffCount int
 	}
 	byKey := make(map[string]*acc)

@@ -279,7 +279,7 @@ const out = {
       headers: ['Condition', 'From Lap', 'To Lap', '# Of Laps', 'Reason', 'Free Pass'],
       rows: cautionBreakdown
     },
-    track_info: {
+    event_preview: {
       headers: ['Field', 'Value'],
       rows: [
         ['Track', '2.500 mi · Paved'],

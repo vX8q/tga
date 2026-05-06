@@ -1,6 +1,6 @@
 {
   "date": "Saturday, March 7, 2026",
-  "distance": "200 laps on a 1.000 mile paved track (200.000 miles)",
+  "distance": "1.000 mile paved track (200.000 miles)",
   "entry_list": [
     {
       "crew_chief": "Jonathan Toney",
@@ -1928,6 +1928,6 @@
     }
   },
   "track": "Phoenix Raceway",
-  "track_info": "Phoenix Raceway in its current form is measured at 1.000 mi (1.609 km), with 9° of banking in the first two turns, 11° of banking in the last two turns, 9° of banking on the frontstretch, and 3° of banking on the backstretch. The track is known for its frontstretch kink, commonly referred to as a \"dogleg\" that was added to accommodate the track's original road course, which used parts of the oval alongside specialized portions outside the oval.",
+  "event_preview": "Phoenix Raceway in its current form is measured at 1.000 mi (1.609 km), with 9° of banking in the first two turns, 11° of banking in the last two turns, 9° of banking on the frontstretch, and 3° of banking on the backstretch. The track is known for its frontstretch kink, commonly referred to as a \"dogleg\" that was added to accommodate the track's original road course, which used parts of the oval alongside specialized portions outside the oval.",
   "youtube_id": "RnaLPRUsj5k"
 }

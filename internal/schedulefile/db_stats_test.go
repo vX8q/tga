@@ -54,7 +54,7 @@ func TestBuildDriverStatsFromDB_ConsistentWithJSON(t *testing.T) {
 	if err != nil {
 		t.Fatalf("sql.Open: %v", err)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 
 	schema := `
 CREATE TABLE driver_stats_stockcar (
@@ -97,7 +97,7 @@ INSERT INTO driver_stats_stockcar (
 	if err != nil {
 		t.Fatalf("prepare insert: %v", err)
 	}
-	defer ins.Close()
+	defer func() { _ = ins.Close() }()
 
 	for _, r := range jsonStats.Rows {
 		if _, err := ins.Exec(

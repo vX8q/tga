@@ -117,9 +117,53 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 	if strings.TrimSpace(season) == "" {
 		season = config.CurrentSeason
 	}
-	// Для F1 начиная с появления спринт‑уикендов строим RaceOrder с отдельными колонками
-	// под спринт и основную гонку (RnS / RnF), если в событии реально есть sprint‑сессия.
-	isF1SprintSeason := strings.EqualFold(seriesID, "F1")
+	// Формульные sprint-weekend серии строим с отдельными колонками
+	// под спринт и основную гонку (RnS / RnF), если в событии реально есть sprint-сессия.
+	isSprintFeatureSeries := strings.EqualFold(seriesID, "F1") ||
+		strings.EqualFold(seriesID, "F2") ||
+		strings.EqualFold(seriesID, "F3")
+	isDTMSeries := strings.EqualFold(seriesID, "DTM")
+	isFrecSeries := strings.EqualFold(seriesID, "FREC")
+	dtmEventCode := func(name string, round int) string {
+		tokens := strings.FieldsFunc(strings.ToLower(strings.TrimSpace(name)), func(r rune) bool {
+			return !((r >= 'a' && r <= 'z') || (r >= '0' && r <= '9'))
+		})
+		stop := map[string]bool{
+			"dtm":         true,
+			"deutsche":    true,
+			"tourenwagen": true,
+			"masters":     true,
+			"round":       true,
+			"race":        true,
+		}
+		var b strings.Builder
+		for i := 0; i < len(tokens) && b.Len() < 3; i++ {
+			if tokens[i] == "" || stop[tokens[i]] {
+				continue
+			}
+			b.WriteByte(tokens[i][0])
+		}
+		if b.Len() < 3 {
+			filtered := make([]string, 0, len(tokens))
+			for _, tok := range tokens {
+				if tok == "" || stop[tok] {
+					continue
+				}
+				filtered = append(filtered, tok)
+			}
+			joined := strings.Join(filtered, "")
+			for i := 0; i < len(joined) && b.Len() < 3; i++ {
+				c := joined[i]
+				if (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') {
+					b.WriteByte(c)
+				}
+			}
+		}
+		if b.Len() == 0 {
+			return "r" + strconv.Itoa(round)
+		}
+		return b.String()
+	}
 	base, err := LoadStandings(dataDir, seriesID)
 	if err != nil {
 		return nil, err
@@ -139,8 +183,26 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			}
 			round++
 			name := strings.TrimSpace(ev.Name)
-			raceOrder = append(raceOrder, "R"+strconv.Itoa(round))
-			eventNames = append(eventNames, name)
+			if isDTMSeries {
+				baseCode := dtmEventCode(name, round)
+				raceOrder = append(raceOrder, baseCode+"1", baseCode+"2")
+				eventNames = append(eventNames, name, name)
+			} else if isFrecSeries {
+				sessCount := 1
+				if sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID); errSess == nil && len(sessions) > 0 {
+					sessCount = len(sessions)
+				}
+				if sessCount < 1 {
+					sessCount = 1
+				}
+				for si := 0; si < sessCount; si++ {
+					raceOrder = append(raceOrder, "R"+strconv.Itoa(round)+"-"+strconv.Itoa(si+1))
+					eventNames = append(eventNames, name)
+				}
+			} else {
+				raceOrder = append(raceOrder, "R"+strconv.Itoa(round))
+				eventNames = append(eventNames, name)
+			}
 		}
 		base = &StandingsData{RaceOrder: raceOrder, EventNames: eventNames}
 	}
@@ -155,9 +217,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		SplitBaseIneligible(base)
 		return base, nil
 	}
-	// F1 2025: переопределяем RaceOrder/EventNames по реальному расписанию,
-	// создавая по две колонки для спринт‑уикендов (Sprint + Feature).
-	if isF1SprintSeason {
+	// F1/F2/F3: переопределяем RaceOrder/EventNames по реальному расписанию,
+	// создавая по две колонки для спринт-уикендов (Sprint + Feature).
+	if isSprintFeatureSeries {
 		var ro []string
 		var names []string
 		round := 0
@@ -173,6 +235,67 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 				names = append(names, name, name)
 			} else {
 				ro = append(ro, "R"+strconv.Itoa(round))
+				names = append(names, name)
+			}
+		}
+		if len(ro) > 0 {
+			base.RaceOrder = ro
+			base.EventNames = names
+			raceOrder = ro
+		}
+	}
+	// DTM: этап может содержать две гонки (Race 1 / Race 2) в tables.race.sessions.
+	// Формируем race_order динамически по числу сессий в каждом событии сезона.
+	if isDTMSeries {
+		var ro []string
+		var names []string
+		round := 0
+		for _, ev := range events {
+			if ev.Season != season {
+				continue
+			}
+			round++
+			name := strings.TrimSpace(ev.Name)
+			baseCode := dtmEventCode(name, round)
+			sessCount := 1
+			if sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID); errSess == nil && len(sessions) > 0 {
+				sessCount = len(sessions)
+			}
+			if sessCount < 1 {
+				sessCount = 1
+			}
+			for si := 0; si < sessCount; si++ {
+				ro = append(ro, baseCode+strconv.Itoa(si+1))
+				names = append(names, name)
+			}
+		}
+		if len(ro) > 0 {
+			base.RaceOrder = ro
+			base.EventNames = names
+			raceOrder = ro
+		}
+	}
+	// FREC: этап может содержать 3 гонки (tables.race.sessions).
+	// Формируем race_order динамически по фактическому числу сессий каждого этапа.
+	if isFrecSeries {
+		var ro []string
+		var names []string
+		round := 0
+		for _, ev := range events {
+			if ev.Season != season {
+				continue
+			}
+			round++
+			name := strings.TrimSpace(ev.Name)
+			sessCount := 1
+			if sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID); errSess == nil && len(sessions) > 0 {
+				sessCount = len(sessions)
+			}
+			if sessCount < 1 {
+				sessCount = 1
+			}
+			for si := 0; si < sessCount; si++ {
+				ro = append(ro, "R"+strconv.Itoa(round)+"-"+strconv.Itoa(si+1))
 				names = append(names, name)
 			}
 		}
@@ -246,6 +369,17 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		}
 		return strconv.FormatFloat(v, 'f', -1, 64)
 	}
+	normalizeRacePos := func(raw string) string {
+		s := strings.TrimSpace(raw)
+		if s == "" {
+			return ""
+		}
+		// Formats like "1 / ST 2 ▲1" -> "1", "NC / ST 28" -> "NC".
+		if strings.Contains(s, "/") {
+			s = strings.TrimSpace(strings.SplitN(s, "/", 2)[0])
+		}
+		return s
+	}
 	byDriver := make(map[string]*accRow)
 	var completedRaces []string
 	raceIdx := 0
@@ -263,6 +397,14 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			return
 		}
 		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
+		if posCol < 0 {
+			for i, h := range rr.Headers {
+				if strings.Contains(strings.ToLower(strings.TrimSpace(h)), "fin") {
+					posCol = i
+					break
+				}
+			}
+		}
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
 		manuCol := colIndex(rr.Headers, "Manufacturer")
@@ -367,9 +509,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 				if r.manufacturer == "" {
 					r.manufacturer = manu
 				}
-				// В ячейку standings пишем ровно то, что было в колонке Pos
-				// (включая специальные значения вроде Ret, DSQ, NC и т.п.).
-				r.races[raceCode] = rawPos
+				// В ячейку standings пишем нормализованную позицию
+				// (например, "1 / ST 2 ▲1" -> "1", "NC / ST 28" -> "NC").
+				r.races[raceCode] = normalizeRacePos(rawPos)
 				r.points += racePts
 				r.stages += stagePointsByDriver[driver]
 			}
@@ -394,9 +536,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		if raceIdx >= len(raceOrder) {
 			break
 		}
-		// Super Formula: один event может содержать две гонки (race.sessions).
-		// В этом случае раскладываем все сессии последовательно по race_order (R1, R2, ...).
-		if strings.EqualFold(seriesID, "SUPER_FORMULA") {
+		// Super Formula / DTM / FREC: один event может содержать несколько гонок (race.sessions).
+		// В этом случае раскладываем все сессии последовательно по race_order.
+		if strings.EqualFold(seriesID, "SUPER_FORMULA") || isDTMSeries || isFrecSeries {
 			if sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID); errSess == nil && len(sessions) > 0 {
 				var detail *EventDetailJSON
 				if det, errDet := LoadEventDetail(dataDir, ev.ID); errDet == nil {
@@ -422,9 +564,9 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			}
 		}
 
-		// F1 2025: спринт‑уикенд — выделяем две колонки (Sprint и основная гонка),
+		// F1/F2/F3: спринт-уикенд — выделяем две колонки (Sprint и основная гонка),
 		// коды гонок в race_order: RnS и RnF.
-		if isF1SprintSeason && eventHasSprintRaceSession(dataDir, ev.ID) && raceIdx+1 < len(raceOrder) {
+		if isSprintFeatureSeries && eventHasSprintRaceSession(dataDir, ev.ID) && raceIdx+1 < len(raceOrder) {
 			sessions, errSess := LoadEventRaceSessions(dataDir, ev.ID)
 			if errSess == nil && len(sessions) > 0 {
 				var sprintSess, featureSess *RaceSession
@@ -509,6 +651,14 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 		raceIdx++
 		completedRaces = append(completedRaces, raceCode)
 		posCol := firstColIndex(rr.Headers, "Pos", "Pos.", "Fin")
+		if posCol < 0 {
+			for i, h := range rr.Headers {
+				if strings.Contains(strings.ToLower(strings.TrimSpace(h)), "fin") {
+					posCol = i
+					break
+				}
+			}
+		}
 		carCol := firstColIndex(rr.Headers, "No", "No.", "#", "Car")
 		teamCol := colIndex(rr.Headers, "Team")
 		manuCol := colIndex(rr.Headers, "Manufacturer")
@@ -600,10 +750,10 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 			// Нормализуем отображаемое значение позиции:
 			// - пустой Pos + статус Did Not Qualify → DNQ
 			// - NC → индекс строки (1‑based), чтобы можно было отличить нескольких NC
-			raceDisplay := rawPos
+			raceDisplay := normalizeRacePos(rawPos)
 			if raceDisplay == "" && statusCol >= 0 && strings.Contains(strings.ToLower(status), "did not qualify") {
 				raceDisplay = "DNQ"
-			} else if strings.EqualFold(strings.TrimSpace(rawPos), "NC") {
+			} else if strings.EqualFold(strings.TrimSpace(raceDisplay), "NC") {
 				raceDisplay = itoa(rowIdx + 1)
 			}
 			for _, driver := range drivers {

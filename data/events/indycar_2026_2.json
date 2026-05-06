@@ -7,7 +7,7 @@
   "location": "Avondale, Arizona",
   "laps": "250",
   "distance": "255.500 miles (411.200 km)",
-  "track_info": "Phoenix Raceway is a 1.022-mile (1.645 km) dogleg oval in Avondale, Arizona, opened in 1964. Its distinctive asymmetric shape — with variable banking between 9 and 11 degrees and a tight backstretch dogleg — makes it one of the most technically demanding short ovals in American motorsport. The Good Ranchers 250 is the second race of the 2026 NTT IndyCar Series season and the series' first return to Phoenix since 2018, contested over 250 laps. Al Unser holds the all-time wins record at the track with six victories. IndyCar has 64 races of history at Phoenix dating back to A.J. Foyt's win in the very first event in 1964. The all-time qualifying lap record belongs to Helio Castroneves, who set a mark of 18.8701 seconds (194.975 mph) in 2017 — his second consecutive track record at the venue.",
+  "event_preview": "Phoenix Raceway is a 1.022-mile (1.645 km) dogleg oval in Avondale, Arizona, opened in 1964. Its distinctive asymmetric shape — with variable banking between 9 and 11 degrees and a tight backstretch dogleg — makes it one of the most technically demanding short ovals in American motorsport. The Good Ranchers 250 is the second race of the 2026 NTT IndyCar Series season and the series' first return to Phoenix since 2018, contested over 250 laps. Al Unser holds the all-time wins record at the track with six victories. IndyCar has 64 races of history at Phoenix dating back to A.J. Foyt's win in the very first event in 1964. The all-time qualifying lap record belongs to Helio Castroneves, who set a mark of 18.8701 seconds (194.975 mph) in 2017 — his second consecutive track record at the venue.",
   "youtube_id": "bf0ziY8tKNc",
   "entry_list": [
     {"number": "4", "driver": "Caio Collet", "team": "A. J. Foyt Enterprises", "manufacturer": "Chevrolet"},
@@ -165,7 +165,7 @@
       ]
     },
     "caution_breakdown": {
-      "headers": ["Condition", "From Lap", "To Lap", "Laps", "Reason for Caution", "Free Pass"],
+      "headers": ["Condition", "From Lap", "To Lap", "# Of Laps", "Reason", "Free Pass"],
       "rows": [
         ["", "11", "19", "9", "Spin: Car 19 on Backstretch", ""],
         ["", "22", "29", "8", "Contact; Cars 10 and 76 in Turn 4", ""],

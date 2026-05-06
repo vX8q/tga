@@ -37,7 +37,7 @@ func loadDriverProfiles(dataDir string) (map[string]driverProfile, error) {
 		driverProfilesErr = nil
 
 		path := filepath.Join(dataDir, "driver_profiles.json")
-		b, err := os.ReadFile(path)
+		b, err := os.ReadFile(path) //nolint:gosec
 		if err != nil {
 			if os.IsNotExist(err) {
 				driverProfiles = map[string]driverProfile{}
@@ -193,7 +193,9 @@ func handleDriverBySlug(w http.ResponseWriter, r *http.Request, dataDir string, 
 		"season":         season,
 		"season_results": seasonResults,
 	}
-	jsonMarshalTo(w, resp)
+	if err := jsonMarshalTo(w, resp); err != nil {
+		slog.Warn("jsonMarshalTo failed", "slug", slug, "err", err)
+	}
 }
 
 func jsonMarshalTo(w http.ResponseWriter, v interface{}) error {

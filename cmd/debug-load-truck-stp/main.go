@@ -1,3 +1,4 @@
+// Package main provides a local debug helper.
 package main
 
 import (

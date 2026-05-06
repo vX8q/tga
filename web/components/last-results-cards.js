@@ -102,6 +102,13 @@
       if (!e || !e.id) return;
       var dateStr = (e.end_date || e.start_date || e.date || '').slice(0, 10);
       if (!isIsoYMD(dateStr) || dateStr > todayISO) return;
+      // События «сегодня» по календарю не считаем прошедшими, пока не прошёл
+      // оценочный момент финиша — иначе последняя группа расписания становится
+      // «сегодняшним» кластером (ещё без результатов), а не прошлым уикендом.
+      if (dateStr === todayISO) {
+        var finMsToday = estimateRaceFinishedUtcMs(e);
+        if (finMsToday == null || Date.now() < finMsToday) return;
+      }
 
       allPast.push({ event: e, dateStr: dateStr });
 
@@ -244,7 +251,8 @@
             dateStr: item.dateStr,
             winners: [],
             rangeStart: item.dateStr,
-            rangeEnd: item.dateStr
+            rangeEnd: item.dateStr,
+            isF1SprintWeekend: false
           });
         }
         return Promise.resolve(null);
@@ -260,6 +268,61 @@
 
           var tables = d.tables || {};
           var winners = [];
+          var raceWasCancelled = false;
+
+          /** F1: в tables.race.sessions только спринт (классификация), ГП в race_results. */
+          function f1RaceBlockIsSprintSessionsOnly(raceBlock) {
+            if (!raceBlock || !Array.isArray(raceBlock.sessions) || raceBlock.sessions.length === 0) return false;
+            var anyRows = false;
+            for (var sxi = 0; sxi < raceBlock.sessions.length; sxi++) {
+              var sess = raceBlock.sessions[sxi];
+              if (!sess || !Array.isArray(sess.rows) || sess.rows.length === 0) continue;
+              anyRows = true;
+              var rawLabel = '';
+              if (sess.meta && typeof sess.meta.Session === 'string') {
+                rawLabel = sess.meta.Session;
+              }
+              if ((!rawLabel || /^(Race)$/i.test(rawLabel)) && typeof sess.title === 'string') {
+                rawLabel = sess.title;
+              } else if (!rawLabel && typeof sess.title === 'string') {
+                rawLabel = sess.title;
+              }
+              if (!/sprint/i.test(String(rawLabel || ''))) return false;
+            }
+            return anyRows;
+          }
+
+          function isCancelledText(text) {
+            var s = String(text || '').trim().toLowerCase();
+            if (!s) return false;
+            return s.indexOf('race cancelled') >= 0 ||
+              s.indexOf('race canceled') >= 0 ||
+              (s.indexOf('cancelled') >= 0 && s.indexOf('weather') >= 0) ||
+              (s.indexOf('canceled') >= 0 && s.indexOf('weather') >= 0);
+          }
+
+          function detectCancelledRace(tablesObj) {
+            if (!tablesObj || !tablesObj.race) return false;
+            var raceBlock = tablesObj.race;
+            if (isCancelledText(raceBlock.note) || isCancelledText(raceBlock.subtitle)) return true;
+            if (Array.isArray(raceBlock.note_lines)) {
+              for (var ni = 0; ni < raceBlock.note_lines.length; ni++) {
+                if (isCancelledText(raceBlock.note_lines[ni])) return true;
+              }
+            }
+            if (Array.isArray(raceBlock.sessions)) {
+              for (var si = 0; si < raceBlock.sessions.length; si++) {
+                var sess = raceBlock.sessions[si] || {};
+                if (isCancelledText(sess.note) || isCancelledText(sess.subtitle)) return true;
+                if (Array.isArray(sess.note_lines)) {
+                  for (var nli = 0; nli < sess.note_lines.length; nli++) {
+                    if (isCancelledText(sess.note_lines[nli])) return true;
+                  }
+                }
+              }
+            }
+            return false;
+          }
 
           // Диапазон дат этапа: по умолчанию — дата из расписания,
           // но если в сессиях есть meta.Date (Thu 05 Mar 2026, Sun 08 Mar 2026),
@@ -303,6 +366,40 @@
             }
           });
 
+          // GTWCE Sprint: на карточке только абсолютный победитель гонки (Pos 1) — команда и номер, без имён пилотов.
+          function extractGtwceSprintOverallWinnerFromSession(table, label) {
+            if (!table || !Array.isArray(table.headers) || !Array.isArray(table.rows) || table.rows.length === 0) {
+              return;
+            }
+            var headers = table.headers;
+            var posCol = headers.indexOf('Pos');
+            if (posCol < 0) posCol = headers.indexOf('Pos.');
+            var teamCol = headers.indexOf('Team');
+            var carNoCol = headers.indexOf('Car #');
+            if (carNoCol < 0) carNoCol = headers.indexOf('Car No');
+            if (carNoCol < 0) carNoCol = headers.indexOf('Car No.');
+            if (carNoCol < 0) {
+              carNoCol = headers.indexOf('No.');
+              if (carNoCol < 0) carNoCol = headers.indexOf('No');
+            }
+            var winnerRow = null;
+            for (var i = 0; i < table.rows.length; i++) {
+              var row = table.rows[i] || [];
+              if (posCol >= 0 && posCol < row.length) {
+                var p = String(row[posCol] || '').trim().toUpperCase();
+                if (p === '1' || p === 'P1') {
+                  winnerRow = row;
+                  break;
+                }
+              }
+            }
+            if (!winnerRow) winnerRow = table.rows[0] || null;
+            if (!winnerRow) return;
+            var team = teamCol >= 0 && teamCol < winnerRow.length ? String(winnerRow[teamCol] || '').trim() : '';
+            var car = carNoCol >= 0 && carNoCol < winnerRow.length ? String(winnerRow[carNoCol] || '').trim() : '';
+            winners.push({ name: team, car: car, label: label || '' });
+          }
+
           function extractWinnerFromTable(table, label) {
             if (!table || !Array.isArray(table.headers) || !Array.isArray(table.rows) || table.rows.length === 0) {
               return;
@@ -313,6 +410,7 @@
               posCol = headers.indexOf('Pos.');
             }
             var drvCol = headers.indexOf('Driver');
+            if (drvCol < 0) drvCol = headers.indexOf('Drivers');
             if (drvCol < 0) return;
             var carCol = headers.indexOf('Car');
             if (carCol < 0) {
@@ -373,6 +471,34 @@
             name = name.split(/\s*;\s*/).filter(Boolean).join(' / ');
             var car = (carCol >= 0 && carCol < winnerRow.length) ? String(winnerRow[carCol] || '').trim() : '';
             winners.push({ name: name, car: car, label: label || '' });
+          }
+
+          // WEC: первые строки по классу Hypercar / LMGT3 в итоговой таблице (порядок = общий финиш).
+          // На карточке — только класс и команда (без имён пилотов): колонка Team, не Drivers.
+          function extractWecClassWinnersFromRaceResults(table) {
+            if (!table || !Array.isArray(table.headers) || !Array.isArray(table.rows) || table.rows.length === 0) return;
+            var hLower = table.headers.map(function (x) { return String(x || '').trim().toLowerCase(); });
+            var classIdx = hLower.indexOf('class');
+            var teamIdx = hLower.indexOf('team');
+            var noIdx = hLower.indexOf('no.');
+            if (noIdx < 0) noIdx = hLower.indexOf('no');
+            var posIdx = hLower.indexOf('pos');
+            if (posIdx < 0) posIdx = hLower.indexOf('pos.');
+            if (classIdx < 0 || teamIdx < 0) return;
+            var wantOrder = ['hypercar', 'lmgt3'];
+            var seen = {};
+            (table.rows || []).forEach(function (row) {
+              if (!row || !Array.isArray(row)) return;
+              var clsRaw = String(row[classIdx] || '').trim().toLowerCase();
+              if (wantOrder.indexOf(clsRaw) < 0 || seen[clsRaw]) return;
+              var posCell = String((posIdx >= 0 && posIdx < row.length ? row[posIdx] : row[0]) || '').trim().toUpperCase();
+              if (posCell === 'RET' || posCell.indexOf('RET') === 0) return;
+              seen[clsRaw] = true;
+              var name = String(row[teamIdx] || '').trim();
+              var car = (noIdx >= 0 && noIdx < row.length) ? String(row[noIdx] || '').trim() : '';
+              var label = clsRaw === 'lmgt3' ? 'LMGT3' : 'Hypercar';
+              winners.push({ name: name, car: car, label: label });
+            });
           }
 
           // IMSA: show class winners (GTP/LMP2/GTD Pro/GTD) from tables.race using CLASS + CLASS POS.
@@ -597,43 +723,58 @@
             });
           }
 
+          function lastResultsRaceSessionLabel(sess) {
+            var rawLabel = '';
+            if (sess.meta && typeof sess.meta.Session === 'string') {
+              rawLabel = sess.meta.Session;
+            }
+            if ((!rawLabel || /^(Race)$/i.test(rawLabel)) && typeof sess.title === 'string') {
+              rawLabel = sess.title;
+            } else if (!rawLabel && typeof sess.title === 'string') {
+              rawLabel = sess.title;
+            }
+            var label = String(rawLabel || '');
+            label = label.replace(/\s*Results?$/i, '');
+            label = label.replace(/^Race\s+(Round\s+\d+)$/i, '$1');
+            var m = label.match(/(Race\s+\d+)\b/i);
+            if (m) {
+              label = m[1];
+            } else {
+              label = label.replace(/\s*Race$/i, '');
+            }
+            return label;
+          }
+
+          var seriesIdForSessions = String(e._seriesId || '').toUpperCase();
+
           // Если есть разбиение на отдельные гонки в tables.race.sessions (Supercars, F2/F3 и т.п.),
           // берём победителей только оттуда.
           if (tables.race && Array.isArray(tables.race.sessions)) {
             tables.race.sessions.forEach(function (sess) {
-              var rawLabel = '';
-              if (sess.meta && typeof sess.meta.Session === 'string') {
-                rawLabel = sess.meta.Session;
-              }
-              // Если Session слишком общее ("Race"), но в title есть номер гонки — используем title.
-              if ((!rawLabel || /^(Race)$/i.test(rawLabel)) && typeof sess.title === 'string') {
-                rawLabel = sess.title;
-              } else if (!rawLabel && typeof sess.title === 'string') {
-                rawLabel = sess.title;
-              }
-              var label = String(rawLabel || '');
-              label = label.replace(/\s*Results?$/i, '');
-              // Super Formula combined weekend: "Race Round 1" -> "Round 1".
-              label = label.replace(/^Race\s+(Round\s+\d+)$/i, '$1');
-
-              // Для Supercars и похожих форматов важно сохранить номер гонки:
-              // "2026 Repco Supercars Championship - Race 4" → "Race 4".
-              var m = label.match(/(Race\s+\d+)\b/i);
-              if (m) {
-                label = m[1];
-              } else {
-                label = label.replace(/\s*Race$/i, '');
-              }
+              var label = lastResultsRaceSessionLabel(sess);
               if (sess.meta && typeof sess.meta.Date === 'string') {
                 updateRangeFromMetaDate(sess.meta.Date);
               }
-              extractWinnerFromTable(sess, label);
+              if (seriesIdForSessions === 'GTWCE_SPRINT') {
+                extractGtwceSprintOverallWinnerFromSession(sess, label);
+              } else {
+                extractWinnerFromTable(sess, label);
+              }
             });
           }
           if (tables.race_results) {
             // Главная гонка: всегда добавляем отдельно (даже если есть sessions).
             var mainRaceLabel = (tables.race && Array.isArray(tables.race.sessions)) ? 'Race' : '';
-            extractWinnerFromTable(tables.race_results, mainRaceLabel);
+            var sidUpperForRr = String(e._seriesId || '').toUpperCase();
+            if (sidUpperForRr === 'WEC') {
+              extractWecClassWinnersFromRaceResults(tables.race_results);
+            }
+            if (winners.length === 0) {
+              extractWinnerFromTable(tables.race_results, mainRaceLabel);
+            } else if (sidUpperForRr === 'F1' && f1RaceBlockIsSprintSessionsOnly(tables.race)) {
+              // Подпись «Feature» выставляется ниже для карточки спринт-уикенда.
+              extractWinnerFromTable(tables.race_results, '');
+            }
           }
           if (winners.length === 0 && tables.race) {
             // Fallback: some series (e.g. IMSA) store results in tables.race without race_results.
@@ -644,19 +785,33 @@
               extractSuperGtClassWinnersFromRace(tables.race);
             } else if (sidUpper === 'ELMS') {
               extractElmsClassWinnersFromRace(tables.race, d.entry_list || []);
-            } else if (sidUpper === 'GTWCE_END' || sidUpper === 'GTWCE_SPRINT') {
+            } else if (sidUpper === 'GTWCE_END') {
               extractGtwceClassWinnersFromRace(tables.race, d.entry_list || []);
+            } else if (sidUpper === 'GTWCE_SPRINT' && tables.race && Array.isArray(tables.race.sessions)) {
+              tables.race.sessions.forEach(function (sess) {
+                extractGtwceSprintOverallWinnerFromSession(sess, lastResultsRaceSessionLabel(sess));
+              });
             } else {
               extractWinnerFromTgaTable(tables.race, '');
             }
           }
+          var sidUpperF1Check = String(e._seriesId || '').toUpperCase();
+          var isF1SprintWeekend = sidUpperF1Check === 'F1' && !!tables.race_results &&
+            f1RaceBlockIsSprintSessionsOnly(tables.race);
+          if (isF1SprintWeekend) {
+            if (winners[0]) winners[0].label = 'Sprint';
+            if (winners[1]) winners[1].label = 'Feature';
+          }
+          raceWasCancelled = detectCancelledRace(tables);
 
           return {
             event: e,
             dateStr: item.dateStr,
             winners: winners,
+            raceWasCancelled: raceWasCancelled,
             rangeStart: evStart,
-            rangeEnd: evEnd
+            rangeEnd: evEnd,
+            isF1SprintWeekend: isF1SprintWeekend
           };
         })
         .catch(function () {
@@ -665,8 +820,10 @@
               event: e,
               dateStr: item.dateStr,
               winners: [],
+              raceWasCancelled: false,
               rangeStart: item.dateStr,
-              rangeEnd: item.dateStr
+              rangeEnd: item.dateStr,
+              isF1SprintWeekend: false
             };
           }
           return null;
@@ -780,10 +937,12 @@
             if (String(e2.circuit_name || '').trim() !== c0 || String(e2.location || '').trim() !== l0) break;
             var d2 = (c2.rangeStart || c2.dateStr || '').slice(0, 10);
             var diffMs = new Date(d2 + 'T12:00:00').getTime() - new Date(prev + 'T12:00:00').getTime();
-            // Same day (multiple races) or next day (weekend continuation) belong to one card.
-            if (diffMs < 0 || diffMs > 86400000) break;
+            // Same/next day and also overlapping ranges (diff < 0 when one card already spans
+            // more days from detailed session metadata) belong to one merged weekend card.
+            if (diffMs > 86400000) break;
             run.push(c2);
-            prev = (c2.rangeEnd || c2.dateStr || d2).slice(0, 10);
+            var c2End = (c2.rangeEnd || c2.dateStr || d2).slice(0, 10);
+            if (!prev || c2End > prev) prev = c2End;
             j++;
           }
           if (run.length === 1) {
@@ -957,6 +1116,36 @@
           if (trackKey.indexOf('kansas speedway') >= 0 || trackKey.indexOf('kansas city, kansas') >= 0) {
             extraClass += ' lrc-card--kansas';
           }
+          if (trackKey.indexOf('autopolis') >= 0) {
+            extraClass += ' lrc-card--autopolis';
+          }
+          if (trackKey.indexOf('talladega') >= 0) {
+            extraClass += ' lrc-card--talladega';
+          }
+          if (trackKey.indexOf('texas motor speedway') >= 0 || trackKey.indexOf('fort worth') >= 0) {
+            extraClass += ' lrc-card--texas';
+          }
+          if (trackKey.indexOf('brands hatch') >= 0) {
+            extraClass += ' lrc-card--brands-hatch';
+          }
+          if (trackKey.indexOf('oxford plains') >= 0 || trackKey.indexOf('oxford') >= 0) {
+            extraClass += ' lrc-card--oxford-plains';
+          }
+          if (trackKey.indexOf('fuji') >= 0 || trackKey.indexOf('fuji speedway') >= 0) {
+            extraClass += ' lrc-card--fuji';
+          }
+          if (trackKey.indexOf('miami international autodrome') >= 0 || trackKey.indexOf('miami') >= 0) {
+            extraClass += ' lrc-card--miami';
+          }
+          if (trackKey.indexOf('gilles villeneuve') >= 0 || trackKey.indexOf('circuit gilles') >= 0 || trackKey.indexOf('montreal') >= 0) {
+            extraClass += ' lrc-card--montreal';
+          }
+          if (trackKey.indexOf('laguna seca') >= 0 || trackKey.indexOf('weathertech raceway') >= 0 || trackKey.indexOf('monterey') >= 0) {
+            extraClass += ' lrc-card--laguna-seca';
+          }
+          if (trackKey.indexOf('red bull ring') >= 0 || trackKey.indexOf('spielberg') >= 0) {
+            extraClass += ' lrc-card--red-bull-ring';
+          }
           if (trackKey.indexOf('long beach') >= 0) {
             extraClass += ' lrc-card--long-beach';
           }
@@ -980,6 +1169,36 @@
           }
           if (eventNameLc.indexOf('kansas') >= 0) {
             extraClass += ' lrc-card--kansas';
+          }
+          if (eventNameLc.indexOf('autopolis') >= 0) {
+            extraClass += ' lrc-card--autopolis';
+          }
+          if (eventNameLc.indexOf('talladega') >= 0) {
+            extraClass += ' lrc-card--talladega';
+          }
+          if (eventNameLc.indexOf('texas') >= 0 || eventNameLc.indexOf('fort worth') >= 0) {
+            extraClass += ' lrc-card--texas';
+          }
+          if (eventNameLc.indexOf('brands hatch') >= 0) {
+            extraClass += ' lrc-card--brands-hatch';
+          }
+          if (eventNameLc.indexOf('oxford plains') >= 0 || eventNameLc.indexOf('oxford') >= 0) {
+            extraClass += ' lrc-card--oxford-plains';
+          }
+          if (eventNameLc.indexOf('fuji') >= 0) {
+            extraClass += ' lrc-card--fuji';
+          }
+          if (eventNameLc.indexOf('miami') >= 0) {
+            extraClass += ' lrc-card--miami';
+          }
+          if (eventNameLc.indexOf('gilles villeneuve') >= 0 || eventNameLc.indexOf('montreal') >= 0 || eventNameLc.indexOf('canadian grand prix') >= 0) {
+            extraClass += ' lrc-card--montreal';
+          }
+          if (eventNameLc.indexOf('laguna seca') >= 0 || eventNameLc.indexOf('weathertech raceway') >= 0 || eventNameLc.indexOf('monterey') >= 0) {
+            extraClass += ' lrc-card--laguna-seca';
+          }
+          if (eventNameLc.indexOf('red bull ring') >= 0 || eventNameLc.indexOf('spielberg') >= 0) {
+            extraClass += ' lrc-card--red-bull-ring';
           }
           if (eventNameLc.indexOf('long beach') >= 0) {
             extraClass += ' lrc-card--long-beach';
@@ -1015,6 +1234,26 @@
               extraClass += ' lrc-card--imola';
             } else if (eventSlug.indexOf('kansas') >= 0) {
               extraClass += ' lrc-card--kansas';
+            } else if (eventSlug.indexOf('autopolis') >= 0) {
+              extraClass += ' lrc-card--autopolis';
+            } else if (eventSlug.indexOf('talladega') >= 0) {
+              extraClass += ' lrc-card--talladega';
+            } else if (eventSlug.indexOf('texas') >= 0 || eventSlug.indexOf('fort-worth') >= 0 || eventSlug.indexOf('fort_worth') >= 0) {
+              extraClass += ' lrc-card--texas';
+            } else if (eventSlug.indexOf('brands-hatch') >= 0 || eventSlug.indexOf('brands_hatch') >= 0) {
+              extraClass += ' lrc-card--brands-hatch';
+            } else if (eventSlug.indexOf('oxford-plains') >= 0 || eventSlug.indexOf('oxford_plains') >= 0 || eventSlug.indexOf('oxford') >= 0) {
+              extraClass += ' lrc-card--oxford-plains';
+            } else if (eventSlug.indexOf('fuji') >= 0) {
+              extraClass += ' lrc-card--fuji';
+            } else if (eventSlug.indexOf('miami') >= 0) {
+              extraClass += ' lrc-card--miami';
+            } else if (eventSlug.indexOf('montreal') >= 0 || eventSlug.indexOf('gilles-villeneuve') >= 0 || eventSlug.indexOf('gilles_villeneuve') >= 0 || eventSlug === 'f2-2026-3' || eventSlug === 'f1-2026-7') {
+              extraClass += ' lrc-card--montreal';
+            } else if (eventSlug.indexOf('laguna-seca') >= 0 || eventSlug.indexOf('laguna_seca') >= 0 || eventSlug.indexOf('monterey') >= 0) {
+              extraClass += ' lrc-card--laguna-seca';
+            } else if (eventSlug.indexOf('red-bull-ring') >= 0 || eventSlug.indexOf('red_bull_ring') >= 0 || eventSlug.indexOf('spielberg') >= 0) {
+              extraClass += ' lrc-card--red-bull-ring';
             } else if (eventSlug.indexOf('long-beach') >= 0 || eventSlug.indexOf('long_beach') >= 0) {
               extraClass += ' lrc-card--long-beach';
             } else if (eventSlug.indexOf('euromarque') >= 0) {
@@ -1029,8 +1268,12 @@
             extraClass += ' lrc-card--f3';
           } else if (seriesIdUpper === 'SUPERCARS') {
             extraClass += ' lrc-card--supercars';
+          } else if (seriesIdUpper === 'FREC') {
+            extraClass += ' lrc-card--frec';
           } else if (seriesIdUpper === 'IMSA') {
             extraClass += ' lrc-card--imsa';
+          } else if (seriesIdUpper === 'WEC') {
+            extraClass += ' lrc-card--wec';
           } else if (seriesIdUpper === 'ELMS') {
             extraClass += ' lrc-card--elms';
           } else if (seriesIdUpper === 'GTWCE_END' || seriesIdUpper === 'GTWCE_SPRINT') {
@@ -1053,8 +1296,17 @@
                 if (label) line = line + ' — ' + label;
                 return esc(line);
               }).join('<br>');
-            } else if (seriesIdUpper === 'ELMS' || seriesIdUpper === 'GTWCE_END' || seriesIdUpper === 'GTWCE_SPRINT') {
-              // ELMS / GTWCE Europe: class winners — «Label - Team #no» (.lrc-winner-line — display:block).
+            } else if (seriesIdUpper === 'WEC') {
+              // WEC: «класс — экипаж» (Hypercar / LMGT3).
+              winnerHtml = list.slice(0, 4).map(function (w) {
+                var crew = w.name || '';
+                if (w.car) crew = '#' + w.car + ' ' + crew;
+                var label = (w.label || '').trim();
+                var line = label ? label + ' — ' + crew : crew;
+                return esc(line);
+              }).join('<br>');
+            } else if (seriesIdUpper === 'ELMS' || seriesIdUpper === 'GTWCE_END') {
+              // ELMS / GTWCE Endurance: class winners — «Label - Team #no» (.lrc-winner-line — display:block).
               winnerHtml = list.slice(0, 4).map(function (w) {
                 var line = w.name || '';
                 if (w.car) line = line + ' #' + w.car;
@@ -1062,9 +1314,38 @@
                 if (label) line = label + ' - ' + line;
                 return '<span class="lrc-winner-line">' + esc(line) + '</span>';
               }).join('');
-            } else if (seriesIdUpper === 'F1' || seriesIdUpper === 'F2' || seriesIdUpper === 'F3' || seriesIdUpper === 'SUPERCARS' || seriesIdUpper === 'SUPER_FORMULA' || seriesIdUpper === 'SUPER_GT') {
+            } else if (seriesIdUpper === 'GTWCE_SPRINT') {
+              // GTWCE Sprint: только абсолютные победители Race 1 / Race 2 — команда и № (без имён пилотов).
+              winnerHtml = list.slice(0, 2).map(function (w) {
+                var line = w.name || '';
+                if (w.car) line = line + ' #' + w.car;
+                var label = (w.label || '').trim();
+                if (label) line = label + ' - ' + line;
+                return '<span class="lrc-winner-line">' + esc(line) + '</span>';
+              }).join('');
+            } else if (seriesIdUpper === 'FREC') {
+              // FREC: compact 3-line format to fit Race 1/2/3 winners.
+              winnerHtml = list.slice(0, 3).map(function (w) {
+                var line = w.name || '';
+                if (w.car) line = '#' + w.car + ' ' + line;
+                var label = String(w.label || '').trim();
+                var rm = label.match(/race\s*(\d+)/i);
+                if (rm && rm[1]) label = 'R' + rm[1];
+                if (label) line = label + ': ' + line;
+                return esc(line);
+              }).join('<br>');
+            } else if (seriesIdUpper === 'F1' && card.isF1SprintWeekend) {
+              // Только спринт-уикенды F1: «Sprint - #1 …» / «Feature - #12 …».
+              winnerHtml = list.slice(0, 4).map(function (w) {
+                var label = (w.label || '').trim();
+                var line = w.name || '';
+                if (w.car) line = '#' + w.car + ' ' + line;
+                if (label) line = label + ' - ' + line;
+                return esc(line);
+              }).join('<br>');
+            } else if (seriesIdUpper === 'F1' || seriesIdUpper === 'F2' || seriesIdUpper === 'F3' || seriesIdUpper === 'SUPERCARS' || seriesIdUpper === 'SUPER_FORMULA' || seriesIdUpper === 'SUPER_GT' || seriesIdUpper === 'DTM') {
               // F1/F2/F3: обычно Sprint / Feature / Race. Supercars: несколько гонок (Race 4–7).
-              // Super GT: два победителя по классам (GT500 + GT300).
+              // Super GT: два победителя по классам (GT500 + GT300). DTM: Race 1 + Race 2.
               // Ограничиваемся первыми четырьмя, чтобы не раздувать карточку.
               winnerHtml = list.slice(0, 4).map(function (w) {
                 var line = w.name || '';
@@ -1096,7 +1377,7 @@
           var pendingHtml = noDataYet
             ? (isPrologueOrPreSeason
               ? ''
-              : '<div class="lrc-winner lrc-winner--pending">' + esc(t('home.awaiting_results') || 'Results pending') + '</div>')
+              : '<div class="lrc-winner lrc-winner--pending">' + esc(card.raceWasCancelled ? 'Race was cancelled' : (t('home.awaiting_results') || 'Results pending')) + '</div>')
             : '';
 
           return (

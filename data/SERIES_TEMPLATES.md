@@ -109,7 +109,7 @@ Race
   "stage1_laps": "80",
   "stage2_laps": "160",
   "stage3_laps": "160",
-  "track_info": "...",
+  "event_preview": "...",
   "youtube_id": "...",
   "race_statistics": {
     "Lead changes": "...",
@@ -227,7 +227,7 @@ Race
   "location": "Suzuka",
   "laps": "53",
   "distance": "307.471 km",
-  "track_info": "...",
+  "event_preview": "...",
   "tyre_compounds": "Hard: C2, Medium: C3, Soft: C4",
   "youtube_id": "...",
   "entry_list": [
@@ -343,7 +343,7 @@ Race
   "location": "St. Petersburg, Florida",
   "laps": "100",
   "distance": "180.000 miles (289.682 km)",
-  "track_info": "...",
+  "event_preview": "...",
   "youtube_id": "...",
   "entry_list": [
     {"number": "2", "driver": "Josef Newgarden", "team": "Team Penske", "manufacturer": "Chevrolet"}

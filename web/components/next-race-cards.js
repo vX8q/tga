@@ -42,11 +42,16 @@
     var windowEnd = windowStart + 7 * 24 * 60 * 60 * 1000 - 1;
     var nowTs = Date.now();
 
-    // Окно "LIVE": не весь день, а до 3 часов после старта (гонка уже не идёт).
+    // Когда карточку убираем из «Next»: однодневные — окно LIVE ~3 ч после старта;
+    // мультидневные этапы (FREC, WEC, …) держим до конца последнего дня end_date.
     function endTsForEvent(e, startTs) {
+      var startStr = (e.start_date || e.date || '').slice(0, 10);
       var endStr = (e.end_date || e.start_date || e.date || '').slice(0, 10);
       if (!endStr) return startTs ? startTs + 3 * 60 * 60 * 1000 : null;
       var endOfDay = new Date(endStr + 'T23:59:59').getTime();
+      if (endStr > startStr) {
+        return endOfDay;
+      }
       var threeHoursAfter = startTs ? startTs + 3 * 60 * 60 * 1000 : endOfDay;
       return threeHoursAfter < endOfDay ? threeHoursAfter : endOfDay;
     }
@@ -59,24 +64,29 @@
     allEvents.forEach(function (e) {
       var sid = e._seriesId || e.series_id;
       if (!sid) return;
-      var dateStr = e.start_date || e.date;
+      var endDs = (e.end_date || e.start_date || e.date || '').slice(0, 10);
       var timeStr = (e.time_msk && String(e.time_msk).match(/^\d{1,2}:\d{2}/)) ? e.time_msk : e.time_est;
       var tzOffset = (e.time_msk && String(e.time_msk).match(/^\d{1,2}:\d{2}/)) ? '+03:00' : null;
-      var dt = parseEventDate(dateStr, timeStr, tzOffset);
+      var dt = parseEventDate(e.start_date || e.date, timeStr, tzOffset);
       if (!dt) return;
       var ts = dt.getTime();
-      if (ts >= windowStart && ts <= windowEnd) {
-        var startTs = dt.getTime();
-        var endTs = endTsForEvent(e, startTs);
-        if (!endTs) endTs = startTs + 3 * 60 * 60 * 1000;
-        // Показываем только события, которые ещё не завершились (старт или окно LIVE не прошло).
-        if (endTs >= nowTs) {
-          weekEntries.push({ event: e, date: dt, endTs: endTs });
-        }
+      var spanEndTs = ts;
+      if (/^\d{4}-\d{2}-\d{2}$/.test(endDs)) {
+        spanEndTs = new Date(endDs + 'T23:59:59').getTime();
+      }
+      // Пересечение с [сегодня; сегодня+7]: иначе этап со стартом вчера (FREC и т.п.)
+      // выпадает из ленты, хотя уикенд ещё идёт.
+      if (ts > windowEnd || spanEndTs < windowStart) return;
+      var startTs = dt.getTime();
+      var endTs = endTsForEvent(e, startTs);
+      if (!endTs) endTs = startTs + 3 * 60 * 60 * 1000;
+      // Показываем только события, которые ещё не завершились (старт или окно LIVE не прошло).
+      if (endTs >= nowTs) {
+        weekEntries.push({ event: e, date: dt, endTs: endTs });
       }
     });
 
-    // NOTE: Keep Next Race cards strictly within the 7‑day window.
+    // NOTE: Next Race cards — пересечение уикенда с окном «сегодня + 7 дней» (см. spanEndTs).
     // (Previously we forced NASCAR Cup into the row even when it was >7 days away,
     // which caused "next week" cards to appear unexpectedly.)
 
@@ -237,6 +247,36 @@
           if (trackKey.indexOf('kansas speedway') >= 0 || trackKey.indexOf('kansas city, kansas') >= 0) {
             extraClass += ' nrc-card--kansas';
           }
+          if (trackKey.indexOf('autopolis') >= 0) {
+            extraClass += ' nrc-card--autopolis';
+          }
+          if (trackKey.indexOf('talladega') >= 0) {
+            extraClass += ' nrc-card--talladega';
+          }
+          if (trackKey.indexOf('texas motor speedway') >= 0 || trackKey.indexOf('fort worth') >= 0) {
+            extraClass += ' nrc-card--texas';
+          }
+          if (trackKey.indexOf('brands hatch') >= 0) {
+            extraClass += ' nrc-card--brands-hatch';
+          }
+          if (trackKey.indexOf('oxford plains') >= 0 || trackKey.indexOf('oxford') >= 0) {
+            extraClass += ' nrc-card--oxford-plains';
+          }
+          if (trackKey.indexOf('fuji') >= 0 || trackKey.indexOf('fuji speedway') >= 0) {
+            extraClass += ' nrc-card--fuji';
+          }
+          if (trackKey.indexOf('miami international autodrome') >= 0 || trackKey.indexOf('miami') >= 0) {
+            extraClass += ' nrc-card--miami';
+          }
+          if (trackKey.indexOf('gilles villeneuve') >= 0 || trackKey.indexOf('circuit gilles') >= 0 || trackKey.indexOf('montreal') >= 0) {
+            extraClass += ' nrc-card--montreal';
+          }
+          if (trackKey.indexOf('laguna seca') >= 0 || trackKey.indexOf('weathertech raceway') >= 0 || trackKey.indexOf('monterey') >= 0) {
+            extraClass += ' nrc-card--laguna-seca';
+          }
+          if (trackKey.indexOf('red bull ring') >= 0 || trackKey.indexOf('spielberg') >= 0) {
+            extraClass += ' nrc-card--red-bull-ring';
+          }
           if (trackKey.indexOf('long beach') >= 0) {
             extraClass += ' nrc-card--long-beach';
           }
@@ -260,6 +300,36 @@
           }
           if (eventNameLc.indexOf('kansas') >= 0) {
             extraClass += ' nrc-card--kansas';
+          }
+          if (eventNameLc.indexOf('autopolis') >= 0) {
+            extraClass += ' nrc-card--autopolis';
+          }
+          if (eventNameLc.indexOf('talladega') >= 0) {
+            extraClass += ' nrc-card--talladega';
+          }
+          if (eventNameLc.indexOf('texas') >= 0 || eventNameLc.indexOf('fort worth') >= 0) {
+            extraClass += ' nrc-card--texas';
+          }
+          if (eventNameLc.indexOf('brands hatch') >= 0) {
+            extraClass += ' nrc-card--brands-hatch';
+          }
+          if (eventNameLc.indexOf('oxford plains') >= 0 || eventNameLc.indexOf('oxford') >= 0) {
+            extraClass += ' nrc-card--oxford-plains';
+          }
+          if (eventNameLc.indexOf('fuji') >= 0) {
+            extraClass += ' nrc-card--fuji';
+          }
+          if (eventNameLc.indexOf('miami') >= 0) {
+            extraClass += ' nrc-card--miami';
+          }
+          if (eventNameLc.indexOf('gilles villeneuve') >= 0 || eventNameLc.indexOf('montreal') >= 0 || eventNameLc.indexOf('canadian grand prix') >= 0) {
+            extraClass += ' nrc-card--montreal';
+          }
+          if (eventNameLc.indexOf('laguna seca') >= 0 || eventNameLc.indexOf('weathertech raceway') >= 0 || eventNameLc.indexOf('monterey') >= 0) {
+            extraClass += ' nrc-card--laguna-seca';
+          }
+          if (eventNameLc.indexOf('red bull ring') >= 0 || eventNameLc.indexOf('spielberg') >= 0) {
+            extraClass += ' nrc-card--red-bull-ring';
           }
           if (eventNameLc.indexOf('long beach') >= 0) {
             extraClass += ' nrc-card--long-beach';
@@ -296,6 +366,26 @@
               extraClass += ' nrc-card--imola';
             } else if (eventSlug.indexOf('kansas') >= 0) {
               extraClass += ' nrc-card--kansas';
+            } else if (eventSlug.indexOf('autopolis') >= 0) {
+              extraClass += ' nrc-card--autopolis';
+            } else if (eventSlug.indexOf('talladega') >= 0) {
+              extraClass += ' nrc-card--talladega';
+            } else if (eventSlug.indexOf('texas') >= 0 || eventSlug.indexOf('fort-worth') >= 0 || eventSlug.indexOf('fort_worth') >= 0) {
+              extraClass += ' nrc-card--texas';
+            } else if (eventSlug.indexOf('brands-hatch') >= 0 || eventSlug.indexOf('brands_hatch') >= 0) {
+              extraClass += ' nrc-card--brands-hatch';
+            } else if (eventSlug.indexOf('oxford-plains') >= 0 || eventSlug.indexOf('oxford_plains') >= 0 || eventSlug.indexOf('oxford') >= 0) {
+              extraClass += ' nrc-card--oxford-plains';
+            } else if (eventSlug.indexOf('fuji') >= 0) {
+              extraClass += ' nrc-card--fuji';
+            } else if (eventSlug.indexOf('miami') >= 0) {
+              extraClass += ' nrc-card--miami';
+            } else if (eventSlug.indexOf('montreal') >= 0 || eventSlug.indexOf('gilles-villeneuve') >= 0 || eventSlug.indexOf('gilles_villeneuve') >= 0 || eventSlug === 'f2-2026-3' || eventSlug === 'f1-2026-7') {
+              extraClass += ' nrc-card--montreal';
+            } else if (eventSlug.indexOf('laguna-seca') >= 0 || eventSlug.indexOf('laguna_seca') >= 0 || eventSlug.indexOf('monterey') >= 0) {
+              extraClass += ' nrc-card--laguna-seca';
+            } else if (eventSlug.indexOf('red-bull-ring') >= 0 || eventSlug.indexOf('red_bull_ring') >= 0 || eventSlug.indexOf('spielberg') >= 0) {
+              extraClass += ' nrc-card--red-bull-ring';
             } else if (eventSlug.indexOf('long-beach') >= 0 || eventSlug.indexOf('long_beach') >= 0) {
               extraClass += ' nrc-card--long-beach';
             } else if (eventSlug.indexOf('euromarque') >= 0) {

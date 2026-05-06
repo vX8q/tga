@@ -42,7 +42,7 @@ func TestHandleDriverBySlug_Found(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewSQLiteStore: %v", err)
 	}
-	defer st.Close()
+	defer func() { _ = st.Close() }()
 	ctx := context.Background()
 	driver := &models.Driver{
 		ID:          "F1:DRIVER:lewis_hamilton",

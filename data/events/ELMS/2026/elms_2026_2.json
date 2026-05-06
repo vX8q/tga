@@ -1,0 +1,569 @@
+{
+  "event_id": "ELMS_2026_2",
+  "series": "ELMS",
+  "race": "4 Hours of Le Castellet",
+  "date": "Sunday, 3 May 2026",
+  "start_date": "2026-05-03",
+  "end_date": "2026-05-03",
+  "track": "Circuit Paul Ricard",
+  "location": "Le Castellet, France",
+  "youtube_id": "SPaUDLCNk0w",
+  "youtube_highlights": [
+    {
+      "id": "SPaUDLCNk0w",
+      "title": "Race Highlights"
+    }
+  ],
+  "event_preview": "Circuit Paul Ricard is a 5.821 km (3.617 mi) permanent road course at Le Castellet in the Var, opened in 1970 and the only venue to have featured on every ELMS calendar since the series began in 2013. The Mistral Straight chicane, reintroduced in 2024 after a seven-year absence, is retained for 2026, breaking up what was previously the fastest section of the lap and placing additional emphasis on mechanical grip through the mid-straight interruption. The 4 Hours of Le Castellet is Round 2 of the 2026 European Le Mans Series and the 15th ELMS race held at this venue. A 47-car field lines up across LMP2, LMP3 and LMGT3 — 11 LMP2s, 12 LMP2 Pro/Ams, 10 LMP3s and 14 LMGT3s — representing eight French teams on home soil.\n\nForestier Racing by Panis arrives as championship leaders following their Barcelona victory with Esteban Masson, Oliver Gray and Louis Rousset in the No. 29 Oreca-Gibson, while last year's overall winners IDEC Sport — whose Jamie Chadwick became the first woman to win overall in ELMS history at this venue in 2025 — return with Chadwick joined by Valerio Rinicella and Laurents Hörr in the No. 18. Nick Yelloly is absent from the No. 43 Inter Europol due to IMSA commitments, with Luca Ghiotto substituting alongside Tom Dillmann and Jakub Śmiechowski. In LMGT3, Proton Competition's No. 75 Porsche of Kurzejewski, Sargent and Lietz leads the class standings following their Barcelona class win.\n\nThe all-time ELMS LMP2 qualifying lap record at Paul Ricard belongs to Filipe Albuquerque, who set a 1:38.268 (211.4 kph) on 18 July 2020. The LMP2 race lap record is held by Nyck de Vries, who clocked a 1:40.139 (207.5 kph) the following day. Both marks were set in the same weekend of what was an exceptional year for lap times at the circuit.",
+  "entry_list": [
+    {
+      "number": "9",
+      "class": "LMP2",
+      "team": "PROTON COMPETITION",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Jonas RIED",
+      "driver2": "Sebastian PRIAULX",
+      "driver3": "Mike ROCKENFELLER"
+    },
+    {
+      "number": "10",
+      "class": "LMP2",
+      "team": "VECTOR SPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Ryan CULLEN",
+      "driver2": "Vladislav LOMKO",
+      "driver3": "Pietro FITTIPALDI"
+    },
+    {
+      "number": "18",
+      "class": "LMP2",
+      "team": "IDEC SPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Jamie CHADWICK",
+      "driver2": "Valerio RINICELLA",
+      "driver3": "Laurents HÖRR"
+    },
+    {
+      "number": "22",
+      "class": "LMP2",
+      "team": "UNITED AUTOSPORTS",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Griffin PEEBLES",
+      "driver2": "Grégoire SAUCY",
+      "driver3": "Benjamin HANLEY"
+    },
+    {
+      "number": "24",
+      "class": "LMP2",
+      "team": "NIELSEN RACING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Edward PEARSON",
+      "driver2": "Roy NISSANY",
+      "driver3": "Jack DOOHAN"
+    },
+    {
+      "number": "25",
+      "class": "LMP2",
+      "team": "ALGARVE PRO RACING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Matthias KAISER",
+      "driver2": "Tristan VAUTIER",
+      "driver3": "Jake HUGHES"
+    },
+    {
+      "number": "28",
+      "class": "LMP2",
+      "team": "IDEC SPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Paul LAFARGUE",
+      "driver2": "Job VAN UITERT",
+      "driver3": "Paul-Loup CHATIN"
+    },
+    {
+      "number": "29",
+      "class": "LMP2",
+      "team": "FORESTIER RACING BY PANIS",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Louis ROUSSET",
+      "driver2": "Oliver GRAY",
+      "driver3": "Esteban MASSON"
+    },
+    {
+      "number": "34",
+      "class": "LMP2",
+      "team": "INTER EUROPOL COMPETITION",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Bijoy GARG",
+      "driver2": "Reshad DE GERUS",
+      "driver3": "-"
+    },
+    {
+      "number": "37",
+      "class": "LMP2",
+      "team": "CLX MOTORSPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Adrien CLOSMENIL",
+      "driver2": "Theodor JENSEN",
+      "driver3": "Ian AGUILERA"
+    },
+    {
+      "number": "43",
+      "class": "LMP2",
+      "team": "INTER EUROPOL COMPETITION",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Jakub SMIECHOWSKI",
+      "driver2": "Tom DILLMANN",
+      "driver3": "Nicholas YELLOLY"
+    },
+    {
+      "number": "3",
+      "class": "LMP2 Pro/Am",
+      "team": "DKR ENGINEERING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Jean GLORIEUX",
+      "driver2": "Marlon HERNANDEZ",
+      "driver3": "Sebastian ALVAREZ"
+    },
+    {
+      "number": "7",
+      "class": "LMP2 Pro/Am",
+      "team": "VECTOR SPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Jens Reno MØLLER",
+      "driver2": "Cem BÖLÜKBAŞI",
+      "driver3": "Lorenzo FLUXA"
+    },
+    {
+      "number": "14",
+      "class": "LMP2 Pro/Am",
+      "team": "TDS RACING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Steven THOMAS",
+      "driver2": "Sami MEGUETOUNIF",
+      "driver3": "Scott HUFFAKER II"
+    },
+    {
+      "number": "19",
+      "class": "LMP2 Pro/Am",
+      "team": "ROSSA RACING BY VIRAGE",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "John FALB",
+      "driver2": "Manuel ESPÍRITO SANTO",
+      "driver3": "Rik KOEN"
+    },
+    {
+      "number": "20",
+      "class": "LMP2 Pro/Am",
+      "team": "ALGARVE PRO RACING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Michael JENSEN",
+      "driver2": "Enzo TRULLI",
+      "driver3": "Malthe JAKOBSEN"
+    },
+    {
+      "number": "21",
+      "class": "LMP2 Pro/Am",
+      "team": "UNITED AUTOSPORTS",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Daniel SCHNEIDER",
+      "driver2": "Marino SATO",
+      "driver3": "Oliver JARVIS"
+    },
+    {
+      "number": "27",
+      "class": "LMP2 Pro/Am",
+      "team": "NIELSEN RACING",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Kriton LENTOUDIS",
+      "driver2": "Alex QUINN",
+      "driver3": "James ALLEN"
+    },
+    {
+      "number": "30",
+      "class": "LMP2 Pro/Am",
+      "team": "DUQUEINE TEAM",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Giorgio RODA",
+      "driver2": "Richard VERSCHOOR",
+      "driver3": "Doriane PIN"
+    },
+    {
+      "number": "47",
+      "class": "LMP2 Pro/Am",
+      "team": "CLX MOTORSPORT",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Georgios KOLOVOS",
+      "driver2": "Felipe FRAGA",
+      "driver3": "Charles MILESI"
+    },
+    {
+      "number": "83",
+      "class": "LMP2 Pro/Am",
+      "team": "AF CORSE",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "François PERRODO",
+      "driver2": "Matthieu VAXIVIERE",
+      "driver3": "Antonio FUOCO"
+    },
+    {
+      "number": "88",
+      "class": "LMP2 Pro/Am",
+      "team": "PROTON COMPETITION",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "Horst FELBERMAYR",
+      "driver2": "Horst Felix FELBERMAYR",
+      "driver3": "Rene BINDER"
+    },
+    {
+      "number": "99",
+      "class": "LMP2 Pro/Am",
+      "team": "AO BY TF",
+      "car": "Oreca 07 - Gibson",
+      "driver1": "PJ HYETT",
+      "driver2": "Louis DELÉTRAZ",
+      "driver3": "Dane CAMERON"
+    },
+    {
+      "number": "4",
+      "class": "LMP3",
+      "team": "DKR ENGINEERING",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Antti RAMMO",
+      "driver2": "Romain FAVRE",
+      "driver3": "Wyatt BRICHACEK"
+    },
+    {
+      "number": "5",
+      "class": "LMP3",
+      "team": "RINALDI RACING",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "José FERNANDES CAUTELA",
+      "driver2": "Alvise RODELLA",
+      "driver3": "Mikkel Gaarde PEDERSEN"
+    },
+    {
+      "number": "8",
+      "class": "LMP3",
+      "team": "TEAM VIRAGE",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Louis STERN",
+      "driver2": "Mattéo QUINTARELLI",
+      "driver3": "Daniel NOGALES"
+    },
+    {
+      "number": "11",
+      "class": "LMP3",
+      "team": "EUROINTERNATIONAL",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Matthew Richard BELL",
+      "driver2": "Douwe DEDECKER",
+      "driver3": "Max VAN DER SNEL"
+    },
+    {
+      "number": "13",
+      "class": "LMP3",
+      "team": "INTER EUROPOL COMPETITION",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Alexander BUKHANTSOV",
+      "driver2": "Henry CUBIDES OLARTE",
+      "driver3": "Chun Ting CHOU"
+    },
+    {
+      "number": "17",
+      "class": "LMP3",
+      "team": "CLX MOTORSPORT",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Paul LANCHERE",
+      "driver2": "Alexander JACOBY",
+      "driver3": "Bruno RIBEIRO"
+    },
+    {
+      "number": "31",
+      "class": "LMP3",
+      "team": "RACING SPIRIT OF LEMAN",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Ralph MEICHTRY",
+      "driver2": "Grégory DE SYBOURG",
+      "driver3": "Lenny RIED"
+    },
+    {
+      "number": "35",
+      "class": "LMP3",
+      "team": "ULTIMATE",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Terrence WOODWARD",
+      "driver2": "Lucas FECURY",
+      "driver3": "Sebastian GRAVLUND"
+    },
+    {
+      "number": "68",
+      "class": "LMP3",
+      "team": "M RACING",
+      "car": "Ligier JS P325 - Toyota",
+      "driver1": "Nick ADCOCK",
+      "driver2": "Quentin ANTONEL",
+      "driver3": "Thomas IMBOURG"
+    },
+    {
+      "number": "85",
+      "class": "LMP3",
+      "team": "R-ACE GP",
+      "car": "Duqueine D09 - Toyota",
+      "driver1": "Fabien MICHAL",
+      "driver2": "Pierre-Alexandre PROVOST",
+      "driver3": "Hugo SCHWARZE"
+    },
+    {
+      "number": "23",
+      "class": "LMGT3",
+      "team": "UNITED AUTOSPORTS",
+      "car": "McLaren 720S LMGT3 Evo",
+      "driver1": "Michael BIRCH",
+      "driver2": "Garnet PATTERSON",
+      "driver3": "Wayne BOYD"
+    },
+    {
+      "number": "33",
+      "class": "LMGT3",
+      "team": "TF SPORT",
+      "car": "Corvette Z06 LMGT3.R",
+      "driver1": "Blake MCDONALD",
+      "driver2": "Alec UDELL",
+      "driver3": "Charlie EASTWOOD"
+    },
+    {
+      "number": "50",
+      "class": "LMGT3",
+      "team": "RICHARD MILLE AF CORSE",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Custodio TOLEDO",
+      "driver2": "Francesco CASTELLACCI",
+      "driver3": "Riccardo AGOSTINI"
+    },
+    {
+      "number": "51",
+      "class": "LMGT3",
+      "team": "AF CORSE",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Charles-Henri SAMANI",
+      "driver2": "Conrad LAURSEN",
+      "driver3": "Davide RIGON"
+    },
+    {
+      "number": "54",
+      "class": "LMGT3",
+      "team": "HIGH CLASS RACING",
+      "car": "Porsche 911 GT3 R LMGT3",
+      "driver1": "Dennis ANDERSEN",
+      "driver2": "Anders FJORDBACH",
+      "driver3": "Laurin HEINRICH"
+    },
+    {
+      "number": "55",
+      "class": "LMGT3",
+      "team": "SPIRIT OF RACE",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Duncan CAMERON",
+      "driver2": "David PEREL",
+      "driver3": "Matthew GRIFFIN"
+    },
+    {
+      "number": "57",
+      "class": "LMGT3",
+      "team": "KESSEL RACING",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Takeshi KIMURA",
+      "driver2": "Mathys JAUBERT",
+      "driver3": "Daniel SERRA"
+    },
+    {
+      "number": "59",
+      "class": "LMGT3",
+      "team": "RACING SPIRIT OF LEMAN",
+      "car": "Aston Martin Vantage AMR LMGT3",
+      "driver1": "Clément MATEU",
+      "driver2": "Marius FOSSARD",
+      "driver3": "Valentin HASSE CLOT"
+    },
+    {
+      "number": "62",
+      "class": "LMGT3",
+      "team": "TEAM QATAR BY IRON LYNX",
+      "car": "Mercedes-AMG LMGT3",
+      "driver1": "Abdulla Ali AL-KHELAIFI",
+      "driver2": "Julian HANSES",
+      "driver3": "Adam CHRISTODOULOU"
+    },
+    {
+      "number": "63",
+      "class": "LMGT3",
+      "team": "IRON LYNX",
+      "car": "Mercedes-AMG LMGT3",
+      "driver1": "Ameerh NARAN",
+      "driver2": "Rui ANDRADE",
+      "driver3": "Sergio SETTE CAMARA"
+    },
+    {
+      "number": "74",
+      "class": "LMGT3",
+      "team": "KESSEL RACING",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Andrew GILBERT",
+      "driver2": "Fran RUEDA",
+      "driver3": "Romain LEROUX"
+    },
+    {
+      "number": "75",
+      "class": "LMGT3",
+      "team": "PROTON COMPETITION",
+      "car": "Porsche 911 GT3 R LMGT3",
+      "driver1": "Matt KURZEJEWSKI",
+      "driver2": "Thomas SARGENT",
+      "driver3": "Richard LIETZ"
+    },
+    {
+      "number": "77",
+      "class": "LMGT3",
+      "team": "PROTON COMPETITION",
+      "car": "Porsche 911 GT3 R LMGT3",
+      "driver1": "Bankcy",
+      "driver2": "Huub VAN EIJNDHOVEN",
+      "driver3": "Harry KING"
+    },
+    {
+      "number": "86",
+      "class": "LMGT3",
+      "team": "GR RACING",
+      "car": "Ferrari 296 LMGT3 Evo",
+      "driver1": "Michael WAINWRIGHT",
+      "driver2": "Lorcan HANAFIN",
+      "driver3": "Mex JANSEN"
+    }
+  ],
+  "tables": {
+    "practice": {
+      "title": "Practice 1",
+      "meta": {
+        "Date": "Fri 1 May 2026",
+        "Start": "TBD",
+        "Location": "Le Castellet, France",
+        "Course": "Circuit Paul Ricard"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Driver",
+        "Best lap",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day"
+      ],
+      "rows": []
+    },
+    "practice2": {
+      "title": "Bronze Driver Collective Test",
+      "meta": {
+        "Date": "Sat 2 May 2026",
+        "Start": "TBD",
+        "Location": "Le Castellet, France",
+        "Course": "Circuit Paul Ricard"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Driver",
+        "Best lap",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day"
+      ],
+      "rows": []
+    },
+    "practice3": {
+      "title": "Practice 2",
+      "meta": {
+        "Date": "Sat 2 May 2026",
+        "Start": "TBD",
+        "Location": "Le Castellet, France",
+        "Course": "Circuit Paul Ricard"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Driver",
+        "Best lap",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day"
+      ],
+      "rows": []
+    },
+    "qualifying": {
+      "title": "Qualifying",
+      "meta": {
+        "Date": "Sat 2 May 2026",
+        "Start (LMGT3)": "TBD",
+        "Start (LMP3)": "TBD",
+        "Start (LMP2 Pro/Am)": "TBD",
+        "Start (LMP2)": "TBD",
+        "Location": "Le Castellet, France",
+        "Course": "Circuit Paul Ricard"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Driver",
+        "Best lap",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day"
+      ],
+      "rows": []
+    },
+    "race": {
+      "title": "Race",
+      "meta": {
+        "Date": "Sun 3 May 2026",
+        "Start": "12:00",
+        "Location": "Le Castellet, France",
+        "Course": "Circuit Paul Ricard",
+        "Duration": "4 Hours"
+      },
+      "headers": [
+        "Pos.",
+        "Class",
+        "Car",
+        "No.",
+        "Team",
+        "Best lap",
+        "Laps",
+        "Gap",
+        "Interval",
+        "Avg. (km/h)",
+        "Time of the day",
+        "Points"
+      ],
+      "rows": []
+    }
+  }
+}

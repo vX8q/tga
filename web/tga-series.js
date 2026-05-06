@@ -447,7 +447,9 @@
     if (scheduleEmptyEl) scheduleEmptyEl.classList.add('hidden');
     var raceCounter = 0;
     var rows = list.map(function (e, i) {
-      var isUnnumbered = (e.id || '').indexOf('PRE_SEASON_TEST') >= 0;
+      var eid = (e && e.id) || '';
+      var isUnnumbered = eid.indexOf('PRE_SEASON_TEST') >= 0 ||
+        /_\d{4}_PROLOGUE$/i.test(String(eid));
       if (!isUnnumbered) raceCounter += 1;
       var num = isUnnumbered ? '—' : String(raceCounter);
       return eventRow(e, num, seriesId);
@@ -462,6 +464,24 @@
     var raceOrder = (data && data.race_order) ? data.race_order : [];
     var classes = (data && data.classes) ? data.classes : [];
     var ineligible = (data && data.ineligible) ? data.ineligible : [];
+
+    var sidMulti = (seriesId || '').toLowerCase().replace(/-/g, '_');
+    if (window.TGA && window.TGA.buildImsaGtwceClassStandingsHtml && classes.length > 0) {
+      if ((sidMulti === 'imsa' && rows.length === 0) || sidMulti === 'gtwce_end' || sidMulti === 'gtwce_sprint') {
+        var multiH = window.TGA.buildImsaGtwceClassStandingsHtml(data, sidMulti);
+        if (multiH) {
+          var imsaW = document.getElementById('standings-imsa-wrap');
+          if (imsaW) {
+            imsaW.innerHTML = multiH;
+            imsaW.classList.remove('hidden');
+            standingsWrap.classList.add('hidden');
+            if (standingsEmpty) standingsEmpty.classList.add('hidden');
+            syncStandingsScrollBars();
+            return;
+          }
+        }
+      }
+    }
 
     var applyData = function (d) {
       if (!d || !d.rows || d.rows.length === 0) {
@@ -535,9 +555,25 @@
             var bottomRow = '<tr id="standings-thead">';
             var useSprintFeature = isSeriesId(seriesId, 'f2') || isSeriesId(seriesId, 'f3');
             var isSupercarsSMPMLB = isSeriesId(seriesId, 'supercars') && raceOrder.every(function (c) { return /^(SMP|MLB)\d+$/i.test(String(c || '')); });
+            var perEventCount = {};
+            var perEventSeen = {};
+            if (useSprintFeature) {
+              eventNames.forEach(function (name) {
+                var key = String(name || '');
+                perEventCount[key] = (perEventCount[key] || 0) + 1;
+              });
+            }
             raceOrder.forEach(function (code, j) {
               var subLabel;
-              if (useSprintFeature) subLabel = (j % 2 === 0 ? (t('standings.sprint') || 'Sprint') : (t('standings.feature') || 'Feature'));
+              if (useSprintFeature) {
+                var eventKey = String(eventNames[j] || '');
+                perEventSeen[eventKey] = (perEventSeen[eventKey] || 0) + 1;
+                if ((perEventCount[eventKey] || 0) === 2) {
+                  subLabel = (perEventSeen[eventKey] === 1 ? (t('standings.sprint') || 'Sprint') : (t('standings.feature') || 'Feature'));
+                } else {
+                  subLabel = (code || '');
+                }
+              }
               else if (isSupercarsSMPMLB) subLabel = String(code || '').replace(/^(SMP|MLB)/i, '') || (j + 1);
               else subLabel = (code || '');
               bottomRow += '<th class="col-race">' + esc(subLabel) + '</th>';

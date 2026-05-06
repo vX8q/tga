@@ -310,7 +310,7 @@ func parseFloatLoose(s string) float64 {
 		if (r >= '0' && r <= '9') || r == '.' || r == '-' {
 			b.WriteRune(r)
 		} else if r == '+' {
-			// пропускаем
+			continue
 		} else {
 			// останавливаемся на первом не-числовом
 			break

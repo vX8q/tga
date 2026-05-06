@@ -94,7 +94,7 @@ data.tables = {
   did_not_qualify,
   race_results,
   race_statistics,
-  track_info: data.tables.track_info,
+  event_preview: data.tables.event_preview,
 };
 
 fs.writeFileSync(eventPath, JSON.stringify(data, null, 2), 'utf8');

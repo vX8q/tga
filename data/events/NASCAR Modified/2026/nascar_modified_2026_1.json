@@ -276,7 +276,7 @@
                        }
                    ],
     "tables":  {
-                   "track_info":  {
+                   "event_preview":  {
                                       "headers":  [
                                                       "Field",
                                                       "Value"
@@ -2189,6 +2189,6 @@
                                                  ]
                                     }
                },
-    "track_info":  "The New Smyrna Speedway is a high-banked, half-mile oval racetrack located near New Smyrna Beach, Florida. The 0.500-mile (0.805 km) asphalt surface features four turns with 23-degree banking, making it one of the faster short tracks in the United States. The straightaways are relatively flat compared to the corners, while the turns\u0027 steep banking helps maintain speed through each lap and promotes close, competitive racing.",
+    "event_preview":  "The New Smyrna Speedway is a high-banked, half-mile oval racetrack located near New Smyrna Beach, Florida. The 0.500-mile (0.805 km) asphalt surface features four turns with 23-degree banking, making it one of the faster short tracks in the United States. The straightaways are relatively flat compared to the corners, while the turns\u0027 steep banking helps maintain speed through each lap and promotes close, competitive racing.",
     "youtube_id":  "A3cH4JyaCDE"
 }

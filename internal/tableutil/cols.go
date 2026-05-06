@@ -1,3 +1,4 @@
+// Package tableutil provides table parsing helpers.
 package tableutil
 
 import "strings"

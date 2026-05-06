@@ -1,0 +1,281 @@
+{
+  "event_id": "IMSA_2026_4",
+  "series": "IMSA WeatherTech SportsCar Championship",
+  "race": "Motul Course de Monterey",
+  "date": "2026-05-03",
+  "track": "WeatherTech Raceway Laguna Seca",
+  "location": "Monterey, California",
+  "laps": "",
+  "distance": "2 h 40 min",
+  "entry_list": [
+    {
+      "number": "5",
+      "driver": "Tijmen van der Helm / Laurin Heinrich",
+      "team": "JDC-Miller MotorSports",
+      "manufacturer": "Porsche",
+      "class": "GTP",
+      "car": "Porsche 963"
+    },
+    {
+      "number": "6",
+      "driver": "Kévin Estre / Laurens Vanthoor",
+      "team": "Porsche Penske Motorsport",
+      "manufacturer": "Porsche",
+      "class": "GTP",
+      "car": "Porsche 963"
+    },
+    {
+      "number": "7",
+      "driver": "Julien Andlauer / Felipe Nasr",
+      "team": "Porsche Penske Motorsport",
+      "manufacturer": "Porsche",
+      "class": "GTP",
+      "car": "Porsche 963"
+    },
+    {
+      "number": "10",
+      "driver": "Filipe Albuquerque / Ricky Taylor",
+      "team": "Cadillac Wayne Taylor Racing",
+      "manufacturer": "Cadillac",
+      "class": "GTP",
+      "car": "Cadillac V-Series.R"
+    },
+    {
+      "number": "40",
+      "driver": "Louis Delétraz / Jordan Taylor",
+      "team": "Cadillac Wayne Taylor Racing",
+      "manufacturer": "Cadillac",
+      "class": "GTP",
+      "car": "Cadillac V-Series.R"
+    },
+    {
+      "number": "23",
+      "driver": "Roman De Angelis / Ross Gunn",
+      "team": "Aston Martin THOR Team",
+      "manufacturer": "Aston Martin",
+      "class": "GTP",
+      "car": "Aston Martin Valkyrie"
+    },
+    {
+      "number": "24",
+      "driver": "Sheldon van der Linde / Dries Vanthoor",
+      "team": "BMW M Team WRT",
+      "manufacturer": "BMW",
+      "class": "GTP",
+      "car": "BMW M Hybrid V8"
+    },
+    {
+      "number": "25",
+      "driver": "Philipp Eng / Marco Wittmann",
+      "team": "BMW M Team WRT",
+      "manufacturer": "BMW",
+      "class": "GTP",
+      "car": "BMW M Hybrid V8"
+    },
+    {
+      "number": "31",
+      "driver": "Jack Aitken / Frederik Vesti",
+      "team": "Cadillac Whelen",
+      "manufacturer": "Cadillac",
+      "class": "GTP",
+      "car": "Cadillac V-Series.R"
+    },
+    {
+      "number": "60",
+      "driver": "Tom Blomqvist / Colin Braun",
+      "team": "Acura Meyer Shank Racing with Curb-Agajanian",
+      "manufacturer": "Acura",
+      "class": "GTP",
+      "car": "Acura ARX-06"
+    },
+    {
+      "number": "93",
+      "driver": "Nick Yelloly / Renger van der Zande",
+      "team": "Acura Meyer Shank Racing with Curb-Agajanian",
+      "manufacturer": "Acura",
+      "class": "GTP",
+      "car": "Acura ARX-06"
+    },
+    {
+      "number": "12",
+      "driver": "Benjamin Pedersen / Aaron Telitz",
+      "team": "Vasser Sullivan Racing",
+      "manufacturer": "Lexus",
+      "class": "GTD",
+      "car": "Lexus RC F GT3"
+    },
+    {
+      "number": "13",
+      "driver": "Matt Bell / Orey Fidani",
+      "team": "13 Autosport",
+      "manufacturer": "Chevrolet",
+      "class": "GTD",
+      "car": "Chevrolet Corvette Z06 GT3.R"
+    },
+    {
+      "number": "16",
+      "driver": "Felipe Fraga / Sheena Monk",
+      "team": "Myers Riley Motorsports",
+      "manufacturer": "Ford",
+      "class": "GTD",
+      "car": "Ford Mustang GT3 Evo"
+    },
+    {
+      "number": "19",
+      "driver": "Valentin Hasse-Clot / Rory van der Steur",
+      "team": "van der Steur Racing",
+      "manufacturer": "Aston Martin",
+      "class": "GTD",
+      "car": "Aston Martin Vantage AMR GT3 Evo"
+    },
+    {
+      "number": "27",
+      "driver": "Eduardo Barrichello / Spencer Pumpelly",
+      "team": "Heart of Racing Team",
+      "manufacturer": "Aston Martin",
+      "class": "GTD",
+      "car": "Aston Martin Vantage AMR GT3 Evo"
+    },
+    {
+      "number": "34",
+      "driver": "Albert Costa / Manny Franco",
+      "team": "Conquest Racing",
+      "manufacturer": "Ferrari",
+      "class": "GTD",
+      "car": "Ferrari 296 GT3 Evo"
+    },
+    {
+      "number": "36",
+      "driver": "Mason Filippi / Robert Wickens",
+      "team": "DXDT Racing",
+      "manufacturer": "Chevrolet",
+      "class": "GTD",
+      "car": "Chevrolet Corvette Z06 GT3.R"
+    },
+    {
+      "number": "45",
+      "driver": "Danny Formal / Trent Hindman",
+      "team": "Wayne Taylor Racing",
+      "manufacturer": "Lamborghini",
+      "class": "GTD",
+      "car": "Lamborghini Huracán GT3 Evo 2"
+    },
+    {
+      "number": "46",
+      "driver": "Andrea Caldarelli / Zachary Vanier",
+      "team": "Pfaff Motorsports",
+      "manufacturer": "Lamborghini",
+      "class": "GTD",
+      "car": "Lamborghini Temerario GT3"
+    },
+    {
+      "number": "57",
+      "driver": "Philip Ellis / Russell Ward",
+      "team": "Winward Racing",
+      "manufacturer": "Mercedes-AMG",
+      "class": "GTD",
+      "car": "Mercedes-AMG GT3 Evo"
+    },
+    {
+      "number": "66",
+      "driver": "Jake Walker / Corey Lewis",
+      "team": "Gradient Racing",
+      "manufacturer": "Ford",
+      "class": "GTD",
+      "car": "Ford Mustang GT3 Evo"
+    },
+    {
+      "number": "70",
+      "driver": "Brendan Iribe / Frederik Schandorff",
+      "team": "Inception Racing",
+      "manufacturer": "Ferrari",
+      "class": "GTD",
+      "car": "Ferrari 296 GT3 Evo"
+    },
+    {
+      "number": "81",
+      "driver": "Giacomo Altoè / Henrik Hedman",
+      "team": "DragonSpeed",
+      "manufacturer": "Chevrolet",
+      "class": "GTD",
+      "car": "Chevrolet Corvette Z06 GT3.R"
+    },
+    {
+      "number": "89",
+      "driver": "Jack Hawksworth / Frankie Montecalvo",
+      "team": "Vasser Sullivan Racing",
+      "manufacturer": "Lexus",
+      "class": "GTD",
+      "car": "Lexus RC F GT3"
+    },
+    {
+      "number": "96",
+      "driver": "Robby Foley / Patrick Gallagher",
+      "team": "Turner Motorsport",
+      "manufacturer": "BMW",
+      "class": "GTD",
+      "car": "BMW M4 GT3 Evo"
+    },
+    {
+      "number": "120",
+      "driver": "Adam Adelson / Callum Ilott",
+      "team": "Wright Motorsports",
+      "manufacturer": "Porsche",
+      "class": "GTD",
+      "car": "Porsche 911 GT3 R (992.2)"
+    },
+    {
+      "number": "177",
+      "driver": "Harry King / Mikkel O. Pedersen",
+      "team": "AO Racing",
+      "manufacturer": "Porsche",
+      "class": "GTD",
+      "car": "Porsche 911 GT3 R (992.2)"
+    }
+  ],
+  "tables": {
+    "practice": {
+      "headers": [
+        "POS",
+        "CAR NO",
+        "CLASS POS",
+        "DRIVERS",
+        "TEAM/CAR/SPONSOR",
+        "NO LAPS",
+        "FASTEST LAP",
+        "STATUS"
+      ],
+      "rows": []
+    },
+    "qualifying": {
+      "headers": [
+        "POS",
+        "CAR NO",
+        "CLASS POS",
+        "DRIVERS",
+        "TEAM/CAR/SPONSOR",
+        "NO LAPS",
+        "FASTEST LAP",
+        "STATUS"
+      ],
+      "rows": []
+    },
+    "race": {
+      "headers": [
+        "POS",
+        "CAR NO",
+        "DRIVERS",
+        "TEAM/CAR/SPONSOR",
+        "CLASS",
+        "CLASS POS",
+        "NO LAPS",
+        "FASTEST LAP",
+        "PTS",
+        "STATUS"
+      ],
+      "rows": []
+    }
+  },
+  "event_preview": "WeatherTech Raceway Laguna Seca is a 2.238-mile (3.602 km) permanent 11-turn road course in Monterey, California, opened in 1957 and defined above all else by the Corkscrew — a blind, left-right drop of nearly 60 feet through Turns 8 and 8A that remains the most recognisable sequence on the North American sports car calendar. The StubHub Monterey SportsCar Championship is the fourth round of the 2026 IMSA WeatherTech SportsCar Championship, run over two hours and 40 minutes across GTP, GTD Pro and GTD with a 34-car field. The weekend carries a 1970s throwback theme, with teams encouraged to run retro-inspired liveries.\n\nThe No. 6 Porsche Penske Motorsport Porsche 963 has won the last two Monterey races but is yet to win in 2026. The No. 31 Cadillac Whelen V-Series.R of Earl Bamber and Jack Aitken is the only car in any IMSA class to have podiumed in every race so far this season, with Bamber returning after missing Long Beach for WEC duty. GTD Pro returns to action for the first time since Sebring, with its nine full-season entries including the Pfaff Motorsports Lamborghini Temerario GT3 making its Laguna Seca debut.\n\nThe WeatherTech Championship qualifying record belongs to Sébastien Bourdais, who turned a 1:12.445 (111.212 mph) in the No. 01 Cadillac in May 2024. The GTD Pro record is held by Nicky Catsburg at 1:19.727 (101.054 mph) and in GTD by Kenton Koch at 1:20.810 (99.700 mph), both also from May 2024.",
+  "event_preview_ru": ""
+}

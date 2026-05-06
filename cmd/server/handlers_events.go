@@ -60,7 +60,7 @@ func handleEvent(w http.ResponseWriter, r *http.Request, dataDir string, _ *cach
 // Источник: data/live.json. События, по которым уже есть результаты в БД, исключаются — гонка не показывается как LIVE.
 func handleLiveEvents(w http.ResponseWriter, r *http.Request, dataDir string, st store.Store) {
 	livePath := filepath.Join(dataDir, "live.json")
-	body, err := os.ReadFile(livePath)
+	body, err := os.ReadFile(livePath) //nolint:gosec
 	var ids []string
 	if err == nil {
 		var decoded struct {

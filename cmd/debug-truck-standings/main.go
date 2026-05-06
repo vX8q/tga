@@ -1,3 +1,4 @@
+// Package main provides a local standings debug tool.
 package main
 
 import (

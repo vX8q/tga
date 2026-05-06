@@ -79,7 +79,7 @@ func main() {
 		st = s
 		slog.Info("store", "driver", "sqlite", "path", dbPath)
 		if c, ok := st.(*store.SQLiteStore); ok {
-			defer c.Close()
+			defer func() { _ = c.Close() }()
 		}
 	}
 
@@ -123,13 +123,11 @@ func main() {
 		if p == "" {
 			p = "/"
 		}
-		if strings.HasPrefix(p, "/season/f1-"+config.CurrentSeason) {
-			rest := strings.TrimPrefix(p, "/season/f1-"+config.CurrentSeason)
-			target := "/series/f1" + rest
-			if rest == "" {
-				target = "/series/f1"
-			}
-			http.Redirect(w, r, target, http.StatusMovedPermanently)
+		// /series/f1 (без подпути) → /series/f1/history: страница серии F1 — это
+		// список всех сезонов. Текущее расписание сезона теперь живёт на
+		// /season/f1-{CurrentSeason}.
+		if p == "/series/f1" || p == "/series/f1/" {
+			http.Redirect(w, r, "/series/f1/history", http.StatusMovedPermanently)
 			return
 		}
 		if p == "/" || strings.HasPrefix(p, "/series") || strings.HasPrefix(p, "/season") || strings.HasPrefix(p, "/track") || strings.HasPrefix(p, "/driver") || strings.HasPrefix(p, "/team") || strings.HasPrefix(p, "/crew-chief") {

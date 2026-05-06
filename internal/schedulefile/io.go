@@ -22,14 +22,14 @@ var eventSeriesFolderNames = map[string]string{
 
 // saveJSONFile сериализует структуру в JSON и сохраняет в указанный путь.
 func saveJSONFile(path string, v any) error {
-	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Dir(path), 0o750); err != nil {
 		return err
 	}
 	b, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, b, 0o644)
+	return os.WriteFile(path, b, 0o600)
 }
 
 // stripBOM removes a UTF-8 BOM prefix (EF BB BF) if present.
@@ -42,7 +42,7 @@ func stripBOM(b []byte) []byte {
 
 // readFileIfExists читает файл и различает отсутствие файла и другие ошибки.
 func readFileIfExists(path string) ([]byte, error) {
-	b, err := os.ReadFile(path)
+	b, err := os.ReadFile(path) //nolint:gosec
 	if err != nil {
 		if os.IsNotExist(err) {
 			return nil, nil
@@ -110,7 +110,7 @@ func eventDetailFileIsPlaceholder(b []byte) bool {
 // Читает JSON события из data/events/{Серия}/{Год} или из плоского data/events.
 func ReadEventDetailFile(dataDir, eventID string) ([]byte, error) {
 	for _, path := range eventDetailPathCandidates(dataDir, eventID) {
-		b, err := os.ReadFile(path)
+		b, err := os.ReadFile(path) //nolint:gosec
 		if err == nil {
 			b = stripBOM(b)
 			if eventDetailFileIsPlaceholder(b) {
@@ -128,7 +128,7 @@ func ReadEventDetailFile(dataDir, eventID string) ([]byte, error) {
 // EventDetailExists возвращает true, если JSON события есть в data/events/{Серия}/{Год} или в плоском каталоге.
 func EventDetailExists(dataDir, eventID string) bool {
 	for _, path := range eventDetailPathCandidates(dataDir, eventID) {
-		b, err := os.ReadFile(path)
+		b, err := os.ReadFile(path) //nolint:gosec
 		if err == nil {
 			if eventDetailFileIsPlaceholder(b) {
 				continue

@@ -1,3 +1,4 @@
+// Package store provides database-backed storage implementations.
 package store
 
 import (
@@ -6,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	_ "modernc.org/sqlite"
+	_ "modernc.org/sqlite" // register sqlite driver
 
 	"github.com/vX8q/tga/internal/driverutil"
 	"github.com/vX8q/tga/models"
@@ -63,12 +64,16 @@ func (s *SQLiteStore) Health(ctx context.Context) error {
 }
 
 // RunInTransaction выполняет fn в одной транзакции; при ошибке откатывает.
-func (s *SQLiteStore) RunInTransaction(ctx context.Context, fn func(Store) error) error {
+func (s *SQLiteStore) RunInTransaction(ctx context.Context, fn func(Store) error) (err error) {
 	tx, err := s.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
-	defer tx.Rollback()
+	defer func() {
+		if rbErr := tx.Rollback(); rbErr != nil && rbErr != sql.ErrTxDone && err == nil {
+			err = rbErr
+		}
+	}()
 	txStore := &sqliteTxStore{tx: tx}
 	if err := fn(txStore); err != nil {
 		return err
@@ -107,16 +112,23 @@ func (s *sqliteTxStore) ListSeries(ctx context.Context, season string) ([]models
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 	var out []models.Series
 	for rows.Next() {
 		var m models.Series
 		if err := rows.Scan(&m.ID, &m.Name, &m.Season, &m.Type, &m.Country); err != nil {
+			_ = rows.Close()
 			return nil, err
 		}
 		out = append(out, m)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		_ = rows.Close()
+		return nil, err
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (s *sqliteTxStore) UpsertEvent(ctx context.Context, e *models.Event) error {
@@ -142,19 +154,26 @@ FROM events WHERE series_id = ? AND season = ? ORDER BY start_date, id
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 	var out []models.Event
 	for rows.Next() {
 		var m models.Event
 		var startStr, endStr *string
 		if err := rows.Scan(&m.ID, &m.SeriesID, &m.Season, &m.Name, &m.Location, &m.CircuitName, &startStr, &endStr, &m.TimeEST, &m.TimeMSK); err != nil {
+			_ = rows.Close()
 			return nil, err
 		}
 		m.StartDate = parseTime(startStr)
 		m.EndDate = parseTime(endStr)
 		out = append(out, m)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		_ = rows.Close()
+		return nil, err
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (s *sqliteTxStore) UpsertRace(ctx context.Context, r *models.Race) error {
@@ -175,18 +194,25 @@ func (s *sqliteTxStore) ListRacesByEvent(ctx context.Context, eventID string) ([
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
 	var out []models.Race
 	for rows.Next() {
 		var m models.Race
 		var schedStr *string
 		if err := rows.Scan(&m.ID, &m.EventID, &m.SeriesID, &m.Season, &m.Name, &schedStr, &m.Laps, &m.Distance, &m.Status); err != nil {
+			_ = rows.Close()
 			return nil, err
 		}
 		m.ScheduleAt = parseTime(schedStr)
 		out = append(out, m)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		_ = rows.Close()
+		return nil, err
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (s *sqliteTxStore) UpsertDriver(ctx context.Context, d *models.Driver) error {
@@ -208,7 +234,7 @@ func (s *sqliteTxStore) ListDrivers(ctx context.Context) ([]models.Driver, error
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.Driver
 	for rows.Next() {
 		var d models.Driver
@@ -231,7 +257,7 @@ func (s *sqliteTxStore) GetDriversBySlug(ctx context.Context, slug string) ([]mo
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.Driver
 	for rows.Next() {
 		var d models.Driver
@@ -269,7 +295,7 @@ func (s *sqliteTxStore) ListTeams(ctx context.Context, idPrefix string) ([]model
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	return scanTeams(rows)
 }
 
@@ -290,7 +316,7 @@ func (s *sqliteTxStore) ListResultsByRace(ctx context.Context, raceID string) ([
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.Result
 	for rows.Next() {
 		var m models.Result
@@ -313,6 +339,7 @@ func (s *sqliteTxStore) ListDriverSeasonResults(ctx context.Context, driverIDs [
 		args = append(args, driverIDs[i])
 	}
 	args = append(args, season)
+	//nolint:gosec // Query text is composed only of '?' placeholders, values are still parameterized.
 	query := `
 SELECT e.series_id, s.name, e.id, e.name, COALESCE(ra.name, e.name),
   COALESCE(r.position, 0), COALESCE(r.points, 0), COALESCE(r.laps, 0), COALESCE(r.status,''), COALESCE(r.car_number,'')
@@ -326,7 +353,7 @@ ORDER BY e.start_date, ra.id`
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.DriverSeasonResult
 	for rows.Next() {
 		var row models.DriverSeasonResult
@@ -352,7 +379,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
-func (s *sqliteTxStore) RunInTransaction(ctx context.Context, fn func(Store) error) error {
+func (s *sqliteTxStore) RunInTransaction(_ context.Context, fn func(Store) error) error {
 	return fn(s)
 }
 
@@ -667,7 +694,7 @@ GROUP BY
 }
 
 // backfillDriverSlugs заполняет slug для записей, где он пустой (батч через временную таблицу).
-func backfillDriverSlugs(db *sql.DB) error {
+func backfillDriverSlugs(db *sql.DB) (err error) {
 	rows, err := db.Query(`SELECT id, name FROM drivers WHERE slug IS NULL OR slug = ''`)
 	if err != nil {
 		return err
@@ -676,12 +703,12 @@ func backfillDriverSlugs(db *sql.DB) error {
 	for rows.Next() {
 		var id, name string
 		if err := rows.Scan(&id, &name); err != nil {
-			rows.Close()
+			_ = rows.Close()
 			return err
 		}
 		pairs = append(pairs, struct{ id, slug string }{id, driverutil.Slug(name)})
 	}
-	rows.Close()
+	_ = rows.Close()
 	if err := rows.Err(); err != nil {
 		return err
 	}
@@ -692,7 +719,11 @@ func backfillDriverSlugs(db *sql.DB) error {
 	if err != nil {
 		return err
 	}
-	defer tx.Rollback()
+	defer func() {
+		if rbErr := tx.Rollback(); rbErr != nil && rbErr != sql.ErrTxDone && err == nil {
+			err = rbErr
+		}
+	}()
 	if _, err := tx.Exec(`CREATE TEMP TABLE _driver_slugs (id TEXT PRIMARY KEY, slug TEXT)`); err != nil {
 		return err
 	}
@@ -700,7 +731,7 @@ func backfillDriverSlugs(db *sql.DB) error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+	defer func() { _ = stmt.Close() }()
 	for _, p := range pairs {
 		if _, err := stmt.Exec(p.id, p.slug); err != nil {
 			return err
@@ -750,6 +781,7 @@ func escapeLike(s string) string {
 
 // --- Series ---
 
+// UpsertSeries inserts or updates a championship series.
 func (s *SQLiteStore) UpsertSeries(ctx context.Context, m *models.Series) error {
 	_, err := s.db.ExecContext(ctx, `
 INSERT INTO series (id, name, season, type, country)
@@ -763,6 +795,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListSeries returns all series records.
 func (s *SQLiteStore) ListSeries(ctx context.Context, season string) ([]models.Series, error) {
 	_ = season
 	rows, err := s.db.QueryContext(ctx, `
@@ -773,7 +806,7 @@ ORDER BY name
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []models.Series
 	for rows.Next() {
@@ -788,6 +821,7 @@ ORDER BY name
 
 // --- Events ---
 
+// UpsertEvent inserts or updates an event.
 func (s *SQLiteStore) UpsertEvent(ctx context.Context, e *models.Event) error {
 	startStr := formatTime(e.StartDate)
 	endStr := formatTime(e.EndDate)
@@ -809,6 +843,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListEvents returns events for a series and season.
 func (s *SQLiteStore) ListEvents(ctx context.Context, seriesID, season string) ([]models.Event, error) {
 	rows, err := s.db.QueryContext(ctx, `
 SELECT id, series_id, season, name, location, circuit_name, start_date, end_date, time_est, time_msk
@@ -819,7 +854,7 @@ ORDER BY start_date, id
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []models.Event
 	for rows.Next() {
@@ -840,6 +875,7 @@ ORDER BY start_date, id
 
 // --- Races ---
 
+// UpsertRace inserts or updates a race.
 func (s *SQLiteStore) UpsertRace(ctx context.Context, r *models.Race) error {
 	sched := formatTime(r.ScheduleAt)
 	_, err := s.db.ExecContext(ctx, `
@@ -858,6 +894,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListRacesByEvent returns races for the provided event.
 func (s *SQLiteStore) ListRacesByEvent(ctx context.Context, eventID string) ([]models.Race, error) {
 	rows, err := s.db.QueryContext(ctx, `
 SELECT id, event_id, series_id, season, name, schedule_at, laps, distance, status
@@ -868,7 +905,7 @@ ORDER BY schedule_at, id
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []models.Race
 	for rows.Next() {
@@ -887,6 +924,7 @@ ORDER BY schedule_at, id
 
 // --- Drivers & Teams ---
 
+// UpsertDriver inserts or updates a driver.
 func (s *SQLiteStore) UpsertDriver(ctx context.Context, d *models.Driver) error {
 	birth := formatTime(d.BirthDate)
 	slug := driverutil.Slug(d.Name)
@@ -905,12 +943,13 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListDrivers returns all drivers.
 func (s *SQLiteStore) ListDrivers(ctx context.Context) ([]models.Driver, error) {
 	rows, err := s.db.QueryContext(ctx, `SELECT id, name, short_name, nationality, number, birth_date, birth_place FROM drivers ORDER BY name`)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.Driver
 	for rows.Next() {
 		var d models.Driver
@@ -928,12 +967,13 @@ func (s *SQLiteStore) ListDrivers(ctx context.Context) ([]models.Driver, error) 
 	return out, rows.Err()
 }
 
+// GetDriversBySlug returns drivers matching the given slug.
 func (s *SQLiteStore) GetDriversBySlug(ctx context.Context, slug string) ([]models.Driver, error) {
 	rows, err := s.db.QueryContext(ctx, `SELECT id, name, short_name, nationality, number, birth_date, birth_place FROM drivers WHERE slug = ? ORDER BY name`, slug)
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.Driver
 	for rows.Next() {
 		var d models.Driver
@@ -951,6 +991,7 @@ func (s *SQLiteStore) GetDriversBySlug(ctx context.Context, slug string) ([]mode
 	return out, rows.Err()
 }
 
+// UpsertTeam inserts or updates a team.
 func (s *SQLiteStore) UpsertTeam(ctx context.Context, t *models.Team) error {
 	_, err := s.db.ExecContext(ctx, `
 INSERT INTO teams (id, name, country, car)
@@ -963,6 +1004,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListTeams returns teams filtered by ID prefix.
 func (s *SQLiteStore) ListTeams(ctx context.Context, idPrefix string) ([]models.Team, error) {
 	var rows *sql.Rows
 	var err error
@@ -974,7 +1016,7 @@ func (s *SQLiteStore) ListTeams(ctx context.Context, idPrefix string) ([]models.
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	return scanTeams(rows)
 }
 
@@ -999,6 +1041,7 @@ func scanTeams(rows *sql.Rows) ([]models.Team, error) {
 
 // --- Results ---
 
+// UpsertResult inserts or updates a race result.
 func (s *SQLiteStore) UpsertResult(ctx context.Context, r *models.Result) error {
 	_, err := s.db.ExecContext(ctx, `
 INSERT INTO results (id, race_id, driver_id, team_id, car_number, position, grid_position, laps, laps_led, status, points, fastest_lap)
@@ -1019,6 +1062,7 @@ ON CONFLICT(id) DO UPDATE SET
 	return err
 }
 
+// ListResultsByRace returns all results for a race.
 func (s *SQLiteStore) ListResultsByRace(ctx context.Context, raceID string) ([]models.Result, error) {
 	rows, err := s.db.QueryContext(ctx, `
 SELECT id, race_id, driver_id, team_id, car_number, position, grid_position, laps, laps_led, status, points, fastest_lap
@@ -1029,7 +1073,7 @@ ORDER BY position, id
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []models.Result
 	for rows.Next() {
@@ -1042,6 +1086,7 @@ ORDER BY position, id
 	return out, rows.Err()
 }
 
+// ListDriverSeasonResults returns race results for drivers in a season.
 func (s *SQLiteStore) ListDriverSeasonResults(ctx context.Context, driverIDs []string, season string) ([]models.DriverSeasonResult, error) {
 	if len(driverIDs) == 0 {
 		return nil, nil
@@ -1053,6 +1098,7 @@ func (s *SQLiteStore) ListDriverSeasonResults(ctx context.Context, driverIDs []s
 		args = append(args, driverIDs[i])
 	}
 	args = append(args, season)
+	//nolint:gosec // Query text is composed only of '?' placeholders, values are still parameterized.
 	query := `
 SELECT e.series_id, s.name, e.id, e.name, COALESCE(ra.name, e.name),
   COALESCE(r.position, 0), COALESCE(r.points, 0), COALESCE(r.laps, 0), COALESCE(r.status,''), COALESCE(r.car_number,'')
@@ -1066,7 +1112,7 @@ ORDER BY e.start_date, ra.id`
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 	var out []models.DriverSeasonResult
 	for rows.Next() {
 		var row models.DriverSeasonResult
@@ -1081,6 +1127,7 @@ ORDER BY e.start_date, ra.id`
 
 // --- Stage Results ---
 
+// UpsertStageResult inserts or updates a stage result.
 func (s *SQLiteStore) UpsertStageResult(ctx context.Context, r *models.StageResult) error {
 	_, err := s.db.ExecContext(ctx, `
 INSERT INTO stage_results (id, race_id, series_id, season, stage_no, driver_id, team_id, car_number, position, laps, status, points)

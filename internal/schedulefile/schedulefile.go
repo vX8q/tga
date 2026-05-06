@@ -53,6 +53,7 @@ func LoadEvents(dataDir string, seriesID string) ([]EventJSON, error) {
 
 // (типы команд и спецификаций вынесены в types.go)
 
+// SaveTeams saves team data for a series.
 func SaveTeams(dataDir string, seriesID string, data *TeamsWithSpec) error {
 	if data == nil || (len(data.Teams) == 0 && len(data.CarModels) == 0 && len(data.TechnicalSpec) == 0) {
 		return nil
@@ -82,6 +83,7 @@ func LoadTeamsForSeason(dataDir string, seriesID string, season string) (*TeamsW
 	return LoadTeams(dataDir, seriesID)
 }
 
+// LoadTeams loads team data for a series.
 func LoadTeams(dataDir string, seriesID string) (*TeamsWithSpec, error) {
 	b, err := readFileIfExists(teamsPath(dataDir, seriesID))
 	if err != nil {
@@ -105,6 +107,7 @@ func LoadTeams(dataDir string, seriesID string) (*TeamsWithSpec, error) {
 
 // (типы StandingRow и StandingsData вынесены в types.go)
 
+// DriverStatsRow contains per-driver statistics for season pages.
 type DriverStatsRow struct {
 	Driver            string  `json:"driver"`
 	Team              string  `json:"team"`
@@ -192,6 +195,7 @@ type DriverStatsData struct {
 	Manufacturers []ManufacturerStatsRow `json:"manufacturers,omitempty"`
 }
 
+// SaveStandings saves standings data for a series.
 func SaveStandings(dataDir string, seriesID string, data *StandingsData) error {
 	if data == nil || len(data.Rows) == 0 {
 		return nil
@@ -199,6 +203,7 @@ func SaveStandings(dataDir string, seriesID string, data *StandingsData) error {
 	return saveJSONFile(standingsPath(dataDir, seriesID), data)
 }
 
+// LoadStandings loads standings data for a series.
 func LoadStandings(dataDir string, seriesID string) (*StandingsData, error) {
 	b, err := readFileIfExists(standingsPath(dataDir, seriesID))
 	if err != nil || b == nil {
@@ -218,10 +223,12 @@ func LoadStandings(dataDir string, seriesID string) (*StandingsData, error) {
 
 // (типы EventDetailJSON/EventTable/EntryListRow вынесены в types.go)
 
+// SaveEventDetail saves event detail JSON.
 func SaveEventDetail(dataDir string, eventID string, detail *EventDetailJSON) error {
 	return saveJSONFile(eventDetailPath(dataDir, eventID), detail)
 }
 
+// LoadEventDetail loads event detail JSON.
 func LoadEventDetail(dataDir string, eventID string) (*EventDetailJSON, error) {
 	b, err := readEventDetailFile(dataDir, strings.ToLower(eventID))
 	if err != nil || b == nil {

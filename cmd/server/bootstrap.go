@@ -613,17 +613,17 @@ func maxIntColumn(headers []string, rows [][]string, names []string) int {
 	if col < 0 {
 		return 0
 	}
-	max := 0
+	maxVal := 0
 	for _, row := range rows {
 		if col >= len(row) {
 			continue
 		}
 		v := atoiSafe(strings.TrimSpace(row[col]))
-		if v > max {
-			max = v
+		if v > maxVal {
+			maxVal = v
 		}
 	}
-	return max
+	return maxVal
 }
 
 func makeTeamID(seriesID, teamName string) string {

@@ -14,7 +14,7 @@ func TestSQLiteStore_Memory(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewSQLiteStore: %v", err)
 	}
-	defer st.Close()
+	defer func() { _ = st.Close() }()
 
 	if err := st.Health(ctx); err != nil {
 		t.Errorf("Health: %v", err)
@@ -66,7 +66,7 @@ func TestSQLiteStore_EventRaceResult(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewSQLiteStore: %v", err)
 	}
-	defer st.Close()
+	defer func() { _ = st.Close() }()
 
 	// Series + Event + Race + Result
 	_ = st.UpsertSeries(ctx, &models.Series{ID: "F1", Name: "F1", Season: "2026", Type: "openwheel", Country: "World"})

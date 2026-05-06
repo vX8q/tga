@@ -285,6 +285,20 @@ func handleSeriesStandings(w http.ResponseWriter, _ *http.Request, dataDir, data
 			writeError(w, http.StatusInternalServerError, "failed to load standings")
 			return
 		}
+	} else if strings.EqualFold(dataSeriesID, "GTWCE_END") || strings.EqualFold(dataSeriesID, "GTWCE_SPRINT") {
+		sidUp := "GTWCE_END"
+		if strings.EqualFold(dataSeriesID, "GTWCE_SPRINT") {
+			sidUp = "GTWCE_SPRINT"
+		}
+		data, err = schedulefile.BuildGtwceStandingsFromEvents(dataDir, sidUp, season)
+		if err != nil {
+			slog.Error("gtwce standings failed",
+				"series", dataSeriesID,
+				"err", err,
+			)
+			writeError(w, http.StatusInternalServerError, "failed to build standings")
+			return
+		}
 	} else if strings.EqualFold(dataSeriesID, "SUPERCARS") {
 		data, err = loadSupercarsStandings(dataDir, season)
 		if err != nil {
@@ -425,7 +439,7 @@ func handleSeriesHeadToHead(w http.ResponseWriter, r *http.Request, dataDir, dat
 
 func handleSeriesF1History(w http.ResponseWriter, _ *http.Request, dataDir string) {
 	path := filepath.Join(dataDir, "f1_seasons_history.json")
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(path) //nolint:gosec
 	if err != nil {
 		if os.IsNotExist(err) {
 			writeError(w, http.StatusNotFound, "history data not found")

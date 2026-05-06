@@ -1,0 +1,656 @@
+{
+  "event_id": "SUPERCARS_2026_11",
+  "series": "Supercars Championship",
+  "race": "Christchurch Super 440",
+  "date": "Friday, April 17, 2026",
+  "start_date": "2026-04-17",
+  "end_date": "2026-04-17",
+  "track": "Euromarque Motorsport Park",
+  "location": "Christchurch, Canterbury Region, New Zealand",
+  "laps": "",
+  "distance": "",
+  "event_preview": "Euromarque Motorsport Park (Ruapuna Raceway) is a permanent 3.33 km road circuit located just west of Christchurch in New Zealand's Canterbury region, featuring a flowing layout with mixed-speed corners, heavy braking zones and multiple passing opportunities that reward confidence on corner exit. The 2026 Christchurch Super 440 places the Repco Supercars Championship on New Zealand's South Island and hosts the championship's first top-level event at this venue in the modern era. As a result, this round is approached as a true preview weekend where teams must build references quickly through practice and qualifying.",
+  "youtube_highlights": [
+    {
+      "id": "1X1MAkxKtU0",
+      "title": "Race 10 Highlights"
+    },
+    {
+      "id": "vFjySLD_8rQ",
+      "title": "Race 11 Highlights"
+    },
+    {
+      "id": "E3zym2jvhiQ",
+      "title": "Race 12 Highlights"
+    },
+    {
+      "id": "48tlgzvRWi0",
+      "title": "Race 13 Highlights"
+    }
+  ],
+  "entry_list": [
+    { "number": "4", "driver": "Jack Le Brocq", "team": "Matt Stone Racing", "manufacturer": "Chevrolet" },
+    { "number": "10", "driver": "Zach Bates", "team": "Matt Stone Racing", "manufacturer": "Chevrolet" },
+    { "number": "9", "driver": "Jobe Stewart", "team": "Erebus Motorsport", "manufacturer": "Chevrolet" },
+    { "number": "99", "driver": "Cooper Murray", "team": "Erebus Motorsport", "manufacturer": "Chevrolet" },
+    { "number": "18", "driver": "Anton de Pasquale", "team": "Team 18", "manufacturer": "Chevrolet" },
+    { "number": "500", "driver": "David Reynolds", "team": "Team 18", "manufacturer": "Chevrolet" },
+    { "number": "31", "driver": "Jayden Ojeda", "team": "PremiAir Racing", "manufacturer": "Chevrolet" },
+    { "number": "777", "driver": "Declan Fraser", "team": "PremiAir Racing", "manufacturer": "Chevrolet" },
+    { "number": "3", "driver": "Aaron Cameron", "team": "Blanchard Racing Team", "manufacturer": "Ford" },
+    { "number": "7", "driver": "James Golding", "team": "Blanchard Racing Team", "manufacturer": "Ford" },
+    { "number": "6", "driver": "Cameron Waters", "team": "Tickford Racing", "manufacturer": "Ford" },
+    { "number": "55", "driver": "Thomas Randle", "team": "Tickford Racing", "manufacturer": "Ford" },
+    { "number": "11", "driver": "Jackson Walls", "team": "Triple Eight Race Engineering", "manufacturer": "Ford" },
+    { "number": "88", "driver": "Broc Feeney", "team": "Triple Eight Race Engineering", "manufacturer": "Ford" },
+    { "number": "888", "driver": "Will Brown", "team": "Triple Eight Race Engineering", "manufacturer": "Ford" },
+    { "number": "17", "driver": "Brodie Kostecki", "team": "Dick Johnson Racing", "manufacturer": "Ford" },
+    { "number": "38", "driver": "Rylan Gray", "team": "Dick Johnson Racing", "manufacturer": "Ford" },
+    { "number": "19", "driver": "Matt Payne", "team": "Grove Racing", "manufacturer": "Ford" },
+    { "number": "26", "driver": "Kai Allen", "team": "Grove Racing", "manufacturer": "Ford" },
+    { "number": "1", "driver": "Chaz Mostert", "team": "Walkinshaw TWG Racing", "manufacturer": "Toyota" },
+    { "number": "2", "driver": "Ryan Wood", "team": "Walkinshaw TWG Racing", "manufacturer": "Toyota" },
+    { "number": "8", "driver": "Andre Heimgartner", "team": "Brad Jones Racing", "manufacturer": "Toyota" },
+    { "number": "14", "driver": "Cameron Hill", "team": "Brad Jones Racing", "manufacturer": "Toyota" },
+    { "number": "96", "driver": "Macauley Jones", "team": "Brad Jones Racing", "manufacturer": "Toyota" }
+  ],
+  "tables": {
+    "practice": {
+      "sessions": [
+        {
+          "title": "2026 Repco Supercars Championship - Practice",
+          "subtitle": "Fri 17 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Practice",
+            "Date": "Fri 17 Apr 2026",
+            "Start": "09:35 AM",
+            "Length": "45 mins"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Fastest Lap",
+            "Lap",
+            "Laps"
+          ],
+          "rows": [
+            ["1", "19", "Matthew Payne", "Penrite Racing", "1:21.302", "20", "21"],
+            ["2", "26", "Kai Allen", "Penrite Racing", "1:21.342", "19", "19"],
+            ["3", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.543", "20", "21"],
+            ["4", "07", "James Golding", "CoolDrive Racing", "1:21.674", "20", "20"],
+            ["5", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.823", "17", "17"],
+            ["6", "31", "Jayden Ojeda", "PremiAir Racing", "1:21.838", "19", "20"],
+            ["7", "55", "Thomas Randle", "Monster Castrol Racing", "1:21.843", "22", "22"],
+            ["8", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.928", "17", "18"],
+            ["9", "38", "Rylan Gray", "Shell V-Power Racing Team", "1:21.980", "20", "21"],
+            ["10", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:22.052", "20", "23"],
+            ["11", "01", "Chaz Mostert", "Mobil1 Optus Racing", "1:22.068", "21", "22"],
+            ["12", "08", "Andre Heimgartner", "R&J Batteries Racing", "1:22.079", "23", "24"],
+            ["13", "10", "Zach Bates", "Bendix Racing", "1:22.085", "20", "22"],
+            ["14", "99", "Cooper Murray", "Erebus Motorsport", "1:22.096", "20", "21"],
+            ["15", "06", "Cam Waters", "Monster Castrol Racing", "1:22.101", "24", "24"],
+            ["16", "777", "Declan Fraser", "PremiAir Racing", "1:22.256", "19", "20"],
+            ["17", "888", "Will Brown", "Red Bull Ampol Racing", "1:22.354", "19", "19"],
+            ["18", "20", "David Reynolds", "Snowy River Caravans Racing", "1:22.399", "16", "17"],
+            ["19", "04", "Jack Le Brocq", "Sherrin Rentals Racing", "1:22.470", "17", "20"],
+            ["20", "96", "Macauley Jones", "Brad Jones Racing", "1:22.471", "20", "21"],
+            ["21", "11", "Jackson Walls", "Objective Racing", "1:22.498", "21", "21"],
+            ["22", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:22.685", "11", "19"],
+            ["23", "09", "Jobe Stewart", "Erebus Motorsport", "1:23.704", "10", "21"],
+            ["24", "14", "Cameron Hill", "Brad Jones Racing", "2:06.152", "1", "1"]
+          ]
+        }
+      ]
+    },
+    "qualifying": {
+      "sessions": [
+        {
+          "title": "2026 Repco Supercars Championship - Qualifying Race 10",
+          "subtitle": "Fri 17 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Qualifying",
+            "Date": "Fri 17 Apr 2026",
+            "Start": "02:15 PM",
+            "Length": "30 mins"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Fastest Lap",
+            "Gap",
+            "Lap",
+            "Laps"
+          ],
+          "rows": [
+            ["1", "19", "Matthew Payne", "Penrite Racing", "1:21.298", "—", "9", "9"],
+            ["2", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.329", "0.0308", "8", "8"],
+            ["3", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.353", "0.0555", "7", "7"],
+            ["4", "26", "Kai Allen", "Penrite Racing", "1:21.663", "0.3657", "10", "10"],
+            ["5", "888", "Will Brown", "Red Bull Ampol Racing", "1:21.740", "0.4419", "10", "10"],
+            ["6", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.756", "0.4586", "8", "8"],
+            ["7", "10", "Zach Bates", "Bendix Racing", "1:21.797", "0.4997", "10", "10"],
+            ["8", "07", "James Golding", "CoolDrive Racing", "1:21.831", "0.5335", "8", "8"],
+            ["9", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:21.913", "0.6152", "10", "10"],
+            ["10", "01", "Chaz Mostert", "Mobil1 Optus Racing", "1:21.932", "0.6345", "8", "8"],
+            ["11", "55", "Thomas Randle", "Monster Castrol Racing", "1:21.927", "0.6291", "6", "6"],
+            ["12", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:21.960", "0.6623", "6", "6"],
+            ["13", "08", "Andre Heimgartner", "R&J Batteries Racing", "1:21.979", "0.6809", "6", "6"],
+            ["14", "06", "Cam Waters", "Monster Castrol Racing", "1:22.066", "0.7682", "5", "5"],
+            ["15", "04", "Jack Le Brocq", "Sherrin Rentals Racing", "1:22.075", "0.7770", "6", "6"],
+            ["16", "38", "Rylan Gray", "Shell V-Power Racing Team", "1:22.100", "0.8018", "5", "5"],
+            ["17", "99", "Cooper Murray", "Erebus Motorsport", "1:22.111", "0.8131", "6", "6"],
+            ["18", "20", "David Reynolds", "Snowy River Caravans Racing", "1:22.142", "0.8438", "6", "6"],
+            ["19", "777", "Declan Fraser", "PremiAir Racing", "1:22.165", "0.8673", "5", "5"],
+            ["20", "96", "Macauley Jones", "Brad Jones Racing", "1:22.251", "0.9531", "5", "5"],
+            ["21", "31", "Jayden Ojeda", "PremiAir Racing", "1:22.276", "0.9780", "3", "5"],
+            ["22", "14", "Cameron Hill", "Brad Jones Racing", "1:22.475", "1.1769", "5", "5"],
+            ["23", "09", "Jobe Stewart", "Erebus Motorsport", "1:22.552", "1.2543", "2", "5"],
+            ["24", "11", "Jackson Walls", "Objective Racing", "1:22.601", "1.3033", "5", "5"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Qualifying Race 11",
+          "subtitle": "Sat 18 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Qualifying",
+            "Date": "Sat 18 Apr 2026",
+            "Start": "10:05 AM",
+            "Length": "30 mins"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Fastest Lap",
+            "Gap",
+            "Lap",
+            "Laps"
+          ],
+          "rows": [
+            ["1", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.033", "—", "7", "7"],
+            ["2", "19", "Matthew Payne", "Penrite Racing", "1:21.067", "0.0344", "11", "11"],
+            ["3", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:21.256", "0.2229", "8", "8"],
+            ["4", "26", "Kai Allen", "Penrite Racing", "1:21.294", "0.2609", "11", "12"],
+            ["5", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:21.335", "0.3018", "11", "11"],
+            ["6", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.344", "0.3108", "8", "8"],
+            ["7", "888", "Will Brown", "Red Bull Ampol Racing", "1:21.388", "0.3554", "7", "7"],
+            ["8", "07", "James Golding", "CoolDrive Racing", "1:21.450", "0.4172", "8", "8"],
+            ["9", "08", "Andre Heimgartner", "R&J Batteries Racing", "1:21.604", "0.5706", "7", "8"],
+            ["10", "31", "Jayden Ojeda", "PremiAir Racing", "1:21.654", "0.6212", "7", "7"],
+            ["11", "06", "Cam Waters", "Monster Castrol Racing", "1:21.653", "0.6199", "5", "5"],
+            ["12", "14", "Cameron Hill", "Brad Jones Racing", "1:21.729", "0.6960", "5", "5"],
+            ["13", "55", "Thomas Randle", "Monster Castrol Racing", "1:21.735", "0.7017", "6", "6"],
+            ["14", "01", "Chaz Mostert", "Mobil1 Optus Racing", "1:21.747", "0.7141", "5", "5"],
+            ["15", "777", "Declan Fraser", "PremiAir Racing", "1:21.768", "0.7349", "5", "5"],
+            ["16", "38", "Rylan Gray", "Shell V-Power Racing Team", "1:21.820", "0.7866", "7", "7"],
+            ["17", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.835", "0.8016", "5", "6"],
+            ["18", "99", "Cooper Murray", "Erebus Motorsport", "1:21.962", "0.9288", "5", "5"],
+            ["19", "10", "Zach Bates", "Bendix Racing", "1:21.990", "0.9565", "5", "5"],
+            ["20", "04", "Jack Le Brocq", "Sherrin Rentals Racing", "1:22.050", "1.0174", "3", "7"],
+            ["21", "20", "David Reynolds", "Snowy River Caravans Racing", "1:22.155", "1.1218", "2", "5"],
+            ["22", "09", "Jobe Stewart", "Erebus Motorsport", "1:22.184", "1.1513", "2", "5"],
+            ["23", "96", "Macauley Jones", "Brad Jones Racing", "1:22.192", "1.1587", "5", "5"],
+            ["24", "11", "Jackson Walls", "Objective Racing", "1:22.477", "1.4436", "3", "6"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Qualifying Race 12",
+          "subtitle": "Sat 18 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Qualifying",
+            "Date": "Sat 18 Apr 2026",
+            "Start": "11:00 AM",
+            "Length": "30 mins"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Fastest Lap",
+            "Gap",
+            "Lap",
+            "Laps"
+          ],
+          "rows": [
+            ["1", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.095", "—", "7", "7"],
+            ["2", "19", "Matthew Payne", "Penrite Racing", "1:21.372", "0.2771", "10", "10"],
+            ["3", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.436", "0.3418", "7", "7"],
+            ["4", "26", "Kai Allen", "Penrite Racing", "1:21.469", "0.3740", "11", "11"],
+            ["5", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.522", "0.4278", "6", "9"],
+            ["6", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:21.531", "0.4364", "11", "11"],
+            ["7", "07", "James Golding", "CoolDrive Racing", "1:21.742", "0.6472", "7", "7"],
+            ["8", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:21.944", "0.8498", "7", "7"],
+            ["9", "04", "Jack Le Brocq", "Sherrin Rentals Racing", "1:22.092", "0.9977", "7", "7"],
+            ["10", "31", "Jayden Ojeda", "PremiAir Racing", "1:22.129", "1.0348", "8", "8"],
+            ["11", "08", "Andre Heimgartner", "R&J Batteries Racing", "1:21.660", "0.5658", "5", "5"],
+            ["12", "06", "Cam Waters", "Monster Castrol Racing", "1:21.677", "0.5829", "6", "6"],
+            ["13", "38", "Rylan Gray", "Shell V-Power Racing Team", "1:21.705", "0.6108", "3", "7"],
+            ["14", "09", "Jobe Stewart", "Erebus Motorsport", "1:21.870", "0.7752", "2", "5"],
+            ["15", "01", "Chaz Mostert", "Mobil1 Optus Racing", "1:21.872", "0.7772", "3", "6"],
+            ["16", "888", "Will Brown", "Red Bull Ampol Racing", "1:21.879", "0.7846", "3", "7"],
+            ["17", "10", "Zach Bates", "Bendix Racing", "1:21.917", "0.8223", "2", "5"],
+            ["18", "99", "Cooper Murray", "Erebus Motorsport", "1:21.924", "0.8289", "2", "5"],
+            ["19", "777", "Declan Fraser", "PremiAir Racing", "1:21.964", "0.8697", "5", "6"],
+            ["20", "14", "Cameron Hill", "Brad Jones Racing", "1:22.046", "0.9519", "5", "6"],
+            ["21", "55", "Thomas Randle", "Monster Castrol Racing", "1:22.080", "0.9854", "5", "6"],
+            ["22", "96", "Macauley Jones", "Brad Jones Racing", "1:22.182", "1.0877", "2", "5"],
+            ["23", "20", "David Reynolds", "Snowy River Caravans Racing", "1:22.190", "1.0953", "2", "5"],
+            ["24", "11", "Jackson Walls", "Objective Racing", "1:22.389", "1.2942", "2", "6"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Qualifying Race 13",
+          "subtitle": "Sun 19 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Qualifying",
+            "Date": "Sun 19 Apr 2026",
+            "Start": "11:50 AM",
+            "Length": "30 mins"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Fastest Lap",
+            "Gap",
+            "Lap",
+            "Laps"
+          ],
+          "rows": [
+            ["1", "19", "Matthew Payne", "Penrite Racing", "1:20.970", "—", "11", "11"],
+            ["2", "07", "James Golding", "CoolDrive Racing", "1:21.131", "0.1605", "7", "7"],
+            ["3", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.275", "0.3042", "10", "10"],
+            ["4", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:21.283", "0.3125", "12", "12"],
+            ["5", "888", "Will Brown", "Red Bull Ampol Racing", "1:21.326", "0.3555", "10", "10"],
+            ["6", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.373", "0.4029", "11", "11"],
+            ["7", "26", "Kai Allen", "Penrite Racing", "1:21.411", "0.4405", "11", "11"],
+            ["8", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.476", "0.5054", "11", "12"],
+            ["9", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:21.491", "0.5206", "12", "12"],
+            ["10", "06", "Cam Waters", "Monster Castrol Racing", "1:21.507", "0.5365", "10", "10"],
+            ["11", "01", "Chaz Mostert", "Mobil1 Optus Racing", "1:21.515", "0.5443", "11", "12"],
+            ["12", "10", "Zach Bates", "Bendix Racing", "1:21.667", "0.6971", "10", "11"],
+            ["13", "04", "Jack Le Brocq", "Sherrin Rentals Racing", "1:21.732", "0.7619", "7", "7"],
+            ["14", "99", "Cooper Murray", "Erebus Motorsport", "1:21.879", "0.9084", "10", "11"],
+            ["15", "09", "Jobe Stewart", "Erebus Motorsport", "1:21.888", "0.9173", "11", "12"],
+            ["16", "55", "Thomas Randle", "Monster Castrol Racing", "1:21.902", "0.9318", "10", "11"],
+            ["17", "31", "Jayden Ojeda", "PremiAir Racing", "1:21.929", "0.9584", "11", "12"],
+            ["18", "11", "Jackson Walls", "Objective Racing", "1:22.026", "1.0559", "10", "10"],
+            ["19", "38", "Rylan Gray", "Shell V-Power Racing Team", "1:21.963", "0.9925", "6", "6"],
+            ["20", "08", "Andre Heimgartner", "R&J Batteries Racing", "1:21.969", "0.9991", "5", "6"],
+            ["21", "20", "David Reynolds", "Snowy River Caravans Racing", "1:21.978", "1.0079", "5", "5"],
+            ["22", "96", "Macauley Jones", "Brad Jones Racing", "1:22.039", "1.0686", "6", "6"],
+            ["23", "777", "Declan Fraser", "PremiAir Racing", "1:22.063", "1.0924", "6", "6"],
+            ["24", "14", "Cameron Hill", "Brad Jones Racing", "1:22.159", "1.1892", "5", "6"],
+            ["Shoot Out Race 13", "", "", "", "", "", "", ""],
+            ["1", "19", "Matthew Payne", "Penrite Racing", "1:20.982", "—", "1", "1"],
+            ["2", "18", "Anton De Pasquale", "DEWALT Racing", "1:21.129", "0.1469", "1", "1"],
+            ["3", "02", "Ryan Wood", "Mobil1 Truck Assist Racing", "1:21.129", "0.1471", "1", "1"],
+            ["4", "888", "Will Brown", "Red Bull Ampol Racing", "1:21.191", "0.2089", "1", "1"],
+            ["5", "88", "Broc Feeney", "Red Bull Ampol Racing", "1:21.199", "0.2166", "1", "1"],
+            ["6", "26", "Kai Allen", "Penrite Racing", "1:21.338", "0.3560", "1", "1"],
+            ["7", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "1:21.386", "0.4037", "1", "1"],
+            ["8", "06", "Cam Waters", "Monster Castrol Racing", "1:21.399", "0.4167", "1", "1"],
+            ["9", "03", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "1:21.472", "0.4898", "1", "1"],
+            ["10", "07", "James Golding", "CoolDrive Racing", "1:45.883", "24.9005", "1", "1"]
+          ]
+        }
+      ]
+    },
+    "starting_lineup": {
+      "sessions": [
+        {
+          "meta": {
+            "race_no": 10
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team"
+          ],
+          "rows": [
+            ["1", "19", "Matt Payne", "Grove Racing"],
+            ["2", "17", "Brodie Kostecki", "Dick Johnson Racing"],
+            ["3", "2", "Ryan Wood", "Walkinshaw TWG Racing"],
+            ["4", "26", "Kai Allen", "Grove Racing"],
+            ["5", "888", "Will Brown", "Triple Eight Race Engineering"],
+            ["6", "18", "Anton de Pasquale", "Team 18"],
+            ["7", "10", "Zach Bates", "Matt Stone Racing"],
+            ["8", "7", "James Golding", "Blanchard Racing Team"],
+            ["9", "88", "Broc Feeney", "Triple Eight Race Engineering"],
+            ["10", "1", "Chaz Mostert", "Walkinshaw TWG Racing"],
+            ["11", "55", "Thomas Randle", "Tickford Racing"],
+            ["12", "3", "Aaron Cameron", "Blanchard Racing Team"],
+            ["13", "8", "Andre Heimgartner", "Brad Jones Racing"],
+            ["14", "6", "Cam Waters", "Tickford Racing"],
+            ["15", "4", "Jack Le Brocq", "Matt Stone Racing"],
+            ["16", "38", "Rylan Gray", "Dick Johnson Racing"],
+            ["17", "99", "Cooper Murray", "Erebus Motorsport"],
+            ["18", "500", "David Reynolds", "Team 18"],
+            ["19", "777", "Declan Fraser", "PremiAir Racing"],
+            ["20", "96", "Macauley Jones", "Brad Jones Racing"],
+            ["21", "31", "Jayden Ojeda", "PremiAir Racing"],
+            ["22", "14", "Cameron Hill", "Brad Jones Racing"],
+            ["23", "9", "Jobe Stewart", "Erebus Motorsport"],
+            ["24", "11", "Jackson Walls", "Triple Eight Race Engineering"]
+          ]
+        },
+        {
+          "meta": {
+            "race_no": 11
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team"
+          ],
+          "rows": [
+            ["1", "17", "Brodie Kostecki", "Dick Johnson Racing"],
+            ["2", "19", "Matt Payne", "Grove Racing"],
+            ["3", "3", "Aaron Cameron", "Blanchard Racing Team"],
+            ["4", "26", "Kai Allen", "Grove Racing"],
+            ["5", "88", "Broc Feeney", "Triple Eight Race Engineering"],
+            ["6", "2", "Ryan Wood", "Walkinshaw TWG Racing"],
+            ["7", "888", "Will Brown", "Triple Eight Race Engineering"],
+            ["8", "7", "James Golding", "Blanchard Racing Team"],
+            ["9", "31", "Jayden Ojeda", "PremiAir Racing"],
+            ["10", "8", "Andre Heimgartner", "Brad Jones Racing"],
+            ["11", "6", "Cam Waters", "Tickford Racing"],
+            ["12", "14", "Cameron Hill", "Brad Jones Racing"],
+            ["13", "55", "Thomas Randle", "Tickford Racing"],
+            ["14", "1", "Chaz Mostert", "Walkinshaw TWG Racing"],
+            ["15", "777", "Declan Fraser", "PremiAir Racing"],
+            ["16", "38", "Rylan Gray", "Dick Johnson Racing"],
+            ["17", "18", "Anton de Pasquale", "Team 18"],
+            ["18", "99", "Cooper Murray", "Erebus Motorsport"],
+            ["19", "10", "Zach Bates", "Matt Stone Racing"],
+            ["20", "4", "Jack Le Brocq", "Matt Stone Racing"],
+            ["21", "500", "David Reynolds", "Team 18"],
+            ["22", "9", "Jobe Stewart", "Erebus Motorsport"],
+            ["23", "96", "Macauley Jones", "Brad Jones Racing"],
+            ["24", "11", "Jackson Walls", "Triple Eight Race Engineering"]
+          ]
+        },
+        {
+          "meta": {
+            "race_no": 12
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team"
+          ],
+          "rows": [
+            ["1", "2", "Ryan Wood", "Walkinshaw TWG Racing"],
+            ["2", "19", "Matt Payne", "Grove Racing"],
+            ["3", "17", "Brodie Kostecki", "Dick Johnson Racing"],
+            ["4", "26", "Kai Allen", "Grove Racing"],
+            ["5", "18", "Anton de Pasquale", "Team 18"],
+            ["6", "88", "Broc Feeney", "Triple Eight Race Engineering"],
+            ["7", "7", "James Golding", "Blanchard Racing Team"],
+            ["8", "3", "Aaron Cameron", "Blanchard Racing Team"],
+            ["9", "4", "Jack Le Brocq", "Matt Stone Racing"],
+            ["10", "31", "Jayden Ojeda", "PremiAir Racing"],
+            ["11", "8", "Andre Heimgartner", "Brad Jones Racing"],
+            ["12", "6", "Cam Waters", "Tickford Racing"],
+            ["13", "38", "Rylan Gray", "Dick Johnson Racing"],
+            ["14", "9", "Jobe Stewart", "Erebus Motorsport"],
+            ["15", "1", "Chaz Mostert", "Walkinshaw TWG Racing"],
+            ["16", "888", "Will Brown", "Triple Eight Race Engineering"],
+            ["17", "10", "Zach Bates", "Matt Stone Racing"],
+            ["18", "99", "Cooper Murray", "Erebus Motorsport"],
+            ["19", "777", "Declan Fraser", "PremiAir Racing"],
+            ["20", "14", "Cameron Hill", "Brad Jones Racing"],
+            ["21", "55", "Thomas Randle", "Tickford Racing"],
+            ["22", "96", "Macauley Jones", "Brad Jones Racing"],
+            ["23", "500", "David Reynolds", "Team 18"],
+            ["24", "11", "Jackson Walls", "Triple Eight Race Engineering"]
+          ]
+        },
+        {
+          "meta": {
+            "race_no": 13
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team"
+          ],
+          "rows": [
+            ["1", "19", "Matt Payne", "Grove Racing"],
+            ["2", "18", "Anton de Pasquale", "Team 18"],
+            ["3", "2", "Ryan Wood", "Walkinshaw TWG Racing"],
+            ["4", "888", "Will Brown", "Triple Eight Race Engineering"],
+            ["5", "88", "Broc Feeney", "Triple Eight Race Engineering"],
+            ["6", "26", "Kai Allen", "Grove Racing"],
+            ["7", "17", "Brodie Kostecki", "Dick Johnson Racing"],
+            ["8", "6", "Cam Waters", "Tickford Racing"],
+            ["9", "3", "Aaron Cameron", "Blanchard Racing Team"],
+            ["10", "7", "James Golding", "Blanchard Racing Team"],
+            ["11", "1", "Chaz Mostert", "Walkinshaw TWG Racing"],
+            ["12", "10", "Zach Bates", "Matt Stone Racing"],
+            ["13", "4", "Jack Le Brocq", "Matt Stone Racing"],
+            ["14", "99", "Cooper Murray", "Erebus Motorsport"],
+            ["15", "9", "Jobe Stewart", "Erebus Motorsport"],
+            ["16", "55", "Thomas Randle", "Tickford Racing"],
+            ["17", "31", "Jayden Ojeda", "PremiAir Racing"],
+            ["18", "11", "Jackson Walls", "Triple Eight Race Engineering"],
+            ["19", "38", "Rylan Gray", "Dick Johnson Racing"],
+            ["20", "8", "Andre Heimgartner", "Brad Jones Racing"],
+            ["21", "20", "David Reynolds", "Team 18"],
+            ["22", "96", "Macauley Jones", "Brad Jones Racing"],
+            ["23", "777", "Declan Fraser", "PremiAir Racing"],
+            ["24", "14", "Cameron Hill", "Brad Jones Racing"]
+          ]
+        }
+      ]
+    },
+    "race": {
+      "sessions": [
+        {
+          "title": "2026 Repco Supercars Championship - Race 10",
+          "subtitle": "Fri 17 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Race",
+            "Date": "Fri 17 Apr 2026",
+            "Start": "04:35 PM",
+            "Length": "37 laps"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Grid Δ",
+            "Race time",
+            "Laps",
+            "Pts"
+          ],
+          "rows": [
+            ["1", "26", "Kai Allen", "Penrite Racing", "3", "52:16.661", "37", "+80"],
+            ["2", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "-", "52:17.403", "37", "+74"],
+            ["3", "2", "Ryan Wood", "Mobil1 Truck Assist Racing", "-", "52:17.847", "37", "+73"],
+            ["4", "19", "Matthew Payne", "Penrite Racing", "3", "52:19.706", "37", "+62"],
+            ["5", "18", "Anton de Pasquale", "DEWALT Racing", "1", "52:36.927", "37", "+57"],
+            ["6", "7", "James Golding", "CoolDrive Racing", "2", "52:42.521", "37", "+53"],
+            ["7", "6", "Cam Waters", "Monster Castrol Racing", "7", "52:43.061", "37", "+49"],
+            ["8", "1", "Chaz Mostert", "Mobil1 Optus Racing", "2", "52:43.269", "37", "+45"],
+            ["9", "10", "Zach Bates", "Bendix Racing", "2", "52:49.935", "37", "+41"],
+            ["10", "88", "Broc Feeney", "Red Bull Ampol Racing", "1", "52:55.646", "37", "+38"],
+            ["11", "55", "Thomas Randle", "Monster Castrol Racing", "-", "52:56.772", "37", "+35"],
+            ["12", "31", "Jayden Ojeda", "PremiAir Racing", "9", "52:57.061", "37", "+32"],
+            ["13", "8", "Andre Heimgartner", "R&J Batteries Racing", "-", "52:57.796", "37", "+29"],
+            ["14", "38", "Rylan Gray", "Shell V-Power Racing Team", "2", "53:00.718", "37", "+27"],
+            ["15", "4", "Jack Le Brocq", "Sherrin Rentals Racing", "-", "53:05.865", "37", "+25"],
+            ["16", "9", "Jobe Stewart", "Erebus Motorsport", "7", "53:09.868", "37", "+23"],
+            ["17", "888", "Will Brown", "Red Bull Ampol Racing", "12", "53:13.865", "37", "+21"],
+            ["18", "777", "Declan Fraser", "PremiAir Racing", "1", "53:14.089", "37", "+19"],
+            ["19", "99", "Cooper Murray", "Erebus Motorsport", "2", "53:17.421", "37", "+18"],
+            ["20", "3", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "8", "53:20.969", "37", "+16"],
+            ["21", "11", "Jackson Walls", "Objective Racing", "3", "53:23.625", "37", "+15"],
+            ["22", "96", "Macauley Jones", "Brad Jones Racing", "2", "52:33.093", "35", "+14"],
+            ["NC", "14", "Cameron Hill", "Brad Jones Racing", "-", "49:41.115", "5", "+0"],
+            ["NC", "20", "David Reynolds", "Snowy River Caravans Racing", "-", "", "", "+0"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Race 11",
+          "subtitle": "Sat 18 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Race",
+            "Date": "Sat 18 Apr 2026",
+            "Start": "12:45 PM",
+            "Length": "37 laps"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Grid Δ",
+            "Race time",
+            "Laps",
+            "Pts"
+          ],
+          "rows": [
+            ["1", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "-", "52:23.961", "37", "+80"],
+            ["2", "26", "Kai Allen", "Penrite Racing", "2", "52:24.559", "37", "+74"],
+            ["3", "2", "Ryan Wood", "Mobil1 Truck Assist Racing", "3", "52:32.573", "37", "+68"],
+            ["4", "888", "Will Brown", "Red Bull Ampol Racing", "3", "52:32.963", "37", "+62"],
+            ["5", "88", "Broc Feeney", "Red Bull Ampol Racing", "-", "52:34.120", "37", "+57"],
+            ["6", "18", "Anton de Pasquale", "DEWALT Racing", "11", "52:42.682", "37", "+53"],
+            ["7", "6", "Cam Waters", "Monster Castrol Racing", "4", "52:44.388", "37", "+49"],
+            ["8", "31", "Jayden Ojeda", "PremiAir Racing", "2", "52:44.985", "37", "+45"],
+            ["9", "3", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "6", "52:46.139", "37", "+41"],
+            ["10", "10", "Zach Bates", "Bendix Racing", "9", "52:46.979", "37", "+27"],
+            ["11", "38", "Rylan Gray", "Shell V-Power Racing Team", "5", "52:50.990", "37", "+38"],
+            ["12", "4", "Jack Le Brocq", "Sherrin Rentals Racing", "8", "52:53.734", "37", "+35"],
+            ["13", "1", "Chaz Mostert", "Mobil1 Optus Racing", "1", "53:01.125", "37", "+32"],
+            ["14", "55", "Thomas Randle", "Monster Castrol Racing", "1", "53:01.928", "37", "+29"],
+            ["15", "7", "James Golding", "CoolDrive Racing", "7", "53:02.569", "37", "+25"],
+            ["16", "99", "Cooper Murray", "Erebus Motorsport", "2", "53:03.281", "37", "+23"],
+            ["17", "9", "Jobe Stewart", "Erebus Motorsport", "5", "53:07.863", "37", "+21"],
+            ["18", "96", "Macauley Jones", "Brad Jones Racing", "5", "53:08.539", "37", "+19"],
+            ["19", "19", "Matthew Payne", "Penrite Racing", "17", "53:09.104", "37", "+18"],
+            ["20", "777", "Declan Fraser", "PremiAir Racing", "5", "53:12.438", "37", "+16"],
+            ["21", "20", "David Reynolds", "Snowy River Caravans Racing", "-", "53:15.695", "37", "+15"],
+            ["22", "11", "Jackson Walls", "Objective Racing", "2", "53:21.126", "37", "+14"],
+            ["23", "8", "Andre Heimgartner", "R&J Batteries Racing", "14", "53:31.100", "31", "+13"],
+            ["24", "14", "Cameron Hill", "Brad Jones Racing", "12", "52:25.353", "30", "+12"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Race 12",
+          "subtitle": "Sat 18 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Race",
+            "Date": "Sat 18 Apr 2026",
+            "Start": "04:10 PM",
+            "Length": "37 laps"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Grid Δ",
+            "Race time",
+            "Laps",
+            "Pts"
+          ],
+          "rows": [
+            ["1", "19", "Matthew Payne", "Penrite Racing", "1", "52:13.698", "37", "+85"],
+            ["2", "88", "Broc Feeney", "Red Bull Ampol Racing", "4", "52:25.341", "37", "+74"],
+            ["3", "7", "James Golding", "CoolDrive Racing", "4", "52:27.862", "37", "+68"],
+            ["4", "2", "Ryan Wood", "Mobil1 Truck Assist Racing", "3", "52:29.136", "37", "+62"],
+            ["5", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "2", "52:32.106", "37", "+57"],
+            ["6", "18", "Anton de Pasquale", "DEWALT Racing", "1", "52:33.588", "37", "+53"],
+            ["7", "26", "Kai Allen", "Penrite Racing", "3", "52:33.846", "37", "+49"],
+            ["8", "6", "Cam Waters", "Monster Castrol Racing", "4", "52:34.310", "37", "+45"],
+            ["9", "4", "Jack Le Brocq", "Sherrin Rentals Racing", "-", "52:34.616", "37", "+41"],
+            ["10", "38", "Rylan Gray", "Shell V-Power Racing Team", "3", "52:36.760", "37", "+38"],
+            ["11", "31", "Jayden Ojeda", "PremiAir Racing", "1", "52:39.930", "37", "+35"],
+            ["12", "1", "Chaz Mostert", "Mobil1 Optus Racing", "3", "52:42.126", "37", "+32"],
+            ["13", "888", "Will Brown", "Red Bull Ampol Racing", "3", "52:45.415", "37", "+29"],
+            ["14", "10", "Zach Bates", "Bendix Racing", "3", "52:45.659", "37", "+27"],
+            ["15", "8", "Andre Heimgartner", "R&J Batteries Racing", "4", "52:46.569", "37", "+25"],
+            ["16", "14", "Cameron Hill", "Brad Jones Racing", "4", "52:49.523", "37", "+23"],
+            ["17", "55", "Thomas Randle", "Monster Castrol Racing", "4", "52:59.144", "37", "+21"],
+            ["18", "99", "Cooper Murray", "Erebus Motorsport", "-", "53:00.409", "37", "+19"],
+            ["19", "20", "David Reynolds", "Snowy River Caravans Racing", "4", "53:01.481", "37", "+18"],
+            ["20", "9", "Jobe Stewart", "Erebus Motorsport", "6", "53:01.711", "37", "+16"],
+            ["21", "3", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "13", "53:05.440", "37", "+15"],
+            ["22", "777", "Declan Fraser", "PremiAir Racing", "3", "53:13.466", "37", "+14"],
+            ["23", "96", "Macauley Jones", "Brad Jones Racing", "1", "53:14.497", "37", "+13"],
+            ["24", "11", "Jackson Walls", "Objective Racing", "-", "53:17.569", "37", "+12"]
+          ]
+        },
+        {
+          "title": "2026 Repco Supercars Championship - Race 13",
+          "subtitle": "Sun 19 Apr 2026 Christchurch, NZ",
+          "meta": {
+            "Championship": "2026 Repco Supercars Championship",
+            "Session": "Race",
+            "Date": "Sun 19 Apr 2026",
+            "Start": "03:05 PM",
+            "Length": "61 laps"
+          },
+          "headers": [
+            "Pos",
+            "No.",
+            "Driver",
+            "Team",
+            "Grid Δ",
+            "Race time",
+            "Laps",
+            "Pts"
+          ],
+          "rows": [
+            ["1", "19", "Matthew Payne", "Penrite Racing", "-", "1:30:06.017", "61", "+145"],
+            ["2", "26", "Kai Allen", "Penrite Racing", "4", "1:30:07.143", "61", "+129"],
+            ["3", "88", "Broc Feeney", "Red Bull Ampol Racing", "2", "1:30:08.081", "61", "+118"],
+            ["4", "7", "James Golding", "CoolDrive Racing", "6", "1:30:11.907", "61", "+109"],
+            ["5", "6", "Cam Waters", "Monster Castrol Racing", "3", "1:30:12.826", "61", "+100"],
+            ["6", "888", "Will Brown", "Red Bull Ampol Racing", "2", "1:30:13.216", "61", "+92"],
+            ["7", "4", "Jack Le Brocq", "Sherrin Rentals Racing", "6", "1:30:14.439", "61", "+85"],
+            ["8", "8", "Andre Heimgartner", "R&J Batteries Racing", "12", "1:30:14.702", "61", "+78"],
+            ["9", "99", "Cooper Murray", "Erebus Motorsport", "5", "1:30:15.017", "61", "+72"],
+            ["10", "777", "Declan Fraser", "PremiAir Racing", "13", "1:30:15.313", "61", "+66"],
+            ["11", "18", "Anton de Pasquale", "DEWALT Racing", "9", "1:30:15.691", "61", "+61"],
+            ["12", "14", "Cameron Hill", "Brad Jones Racing", "12", "1:30:16.444", "61", "+56"],
+            ["13", "20", "David Reynolds", "Snowy River Caravans Racing", "8", "1:30:16.823", "61", "+51"],
+            ["14", "31", "Jayden Ojeda", "PremiAir Racing", "3", "1:30:17.107", "61", "+47"],
+            ["15", "10", "Zach Bates", "Bendix Racing", "3", "1:30:18.724", "61", "+44"],
+            ["16", "96", "Macauley Jones", "Brad Jones Racing", "6", "1:30:19.793", "61", "+40"],
+            ["17", "1", "Chaz Mostert", "Mobil1 Optus Racing", "6", "1:30:41.492", "61", "+37"],
+            ["18", "17", "Brodie Kostecki", "Shell V-Power Racing Team", "11", "1:30:43.671", "61", "+34"],
+            ["19", "55", "Thomas Randle", "Monster Castrol Racing", "3", "1:30:22.108", "60", "+31"],
+            ["20", "9", "Jobe Stewart", "Erebus Motorsport", "5", "1:30:41.725", "56", "+29"],
+            ["21", "11", "Jackson Walls", "Objective Racing", "3", "1:30:44.504", "50", "+26"],
+            ["NC", "2", "Ryan Wood", "Mobil1 Truck Assist Racing", "-", "1:17:53.827", "54", "+0"],
+            ["NC", "38", "Rylan Gray", "Shell V-Power Racing Team", "-", "", "", "+0"],
+            ["NC", "3", "Aaron Cameron", "LIQUI MOLY BLAHST Racing", "-", "", "", "+0"]
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -106,6 +106,10 @@
           { start: 'February 11', end: 'February 13', name: 'Pre-Season Testing 1', circuit: 'Bahrain International Circuit', time_est: '10:00–19:00', id: 'F1_2026_PRE_SEASON_TEST_1', has_detail: true },
           { start: 'February 18', end: 'February 20', name: 'Pre-Season Testing 2', circuit: 'Bahrain International Circuit', time_est: '10:00–19:00', id: 'F1_2026_PRE_SEASON_TEST_2', has_detail: true }
         ].forEach(function (e) {
+          var exists = all.some(function (x) {
+            return (String(x._seriesId || '').toUpperCase() === 'F1' && String(x.id || '') === String(e.id || ''));
+          });
+          if (exists) return;
           var isoStart = monthDayToISO(e.start);
           var isoEnd   = monthDayToISO(e.end);
           all.push({
@@ -132,7 +136,7 @@
           { date: 'March 29',     name: 'Japanese Grand Prix',            circuit: 'Japan — Suzuka Circuit, Suzuka' },
           { date: 'April 12',     name: 'Bahrain Grand Prix',             circuit: 'Bahrain — Bahrain International Circuit, Sakhir' },
           { date: 'April 19',     name: 'Saudi Arabian Grand Prix',       circuit: 'Saudi Arabia — Jeddah Corniche Circuit, Jeddah' },
-          { date: 'May 3',        name: 'Miami Grand Prix',               circuit: 'United States — Miami International Autodrome, Miami Gardens, Florida' },
+          { date: 'May 3',        name: 'Miami Grand Prix',    circuit: 'United States — Miami International Autodrome, Miami Gardens, Florida' },
           { date: 'May 24',       name: 'Canadian Grand Prix',            circuit: 'Canada — Circuit Gilles Villeneuve, Montreal' },
           { date: 'June 7',       name: 'Monaco Grand Prix',              circuit: 'Monaco — Circuit de Monaco, Monaco' },
           { date: 'June 14',      name: 'Barcelona-Catalunya Grand Prix', circuit: 'Spain — Circuit de Barcelona-Catalunya, Montmeló' },
@@ -180,7 +184,8 @@
         all = all.filter(function (e) { return (e._seriesId || '').toUpperCase() !== 'F2'; });
         var f2Stat = [
           { round: 1,  sprint: '7 March',      feature: '8 March',      circuit: 'Australia — Albert Park Circuit, Melbourne' },
-          // Rounds 2 and 3 (Bahrain / Saudi Arabia) cancelled for 2026 calendar.
+          { round: 2,  sprint: '2 May',        feature: '3 May',        circuit: 'United States — Miami International Autodrome, Miami Gardens, Florida' },
+          { round: 3,  sprint: '23 May',       feature: '24 May',       circuit: 'Canada — Circuit Gilles Villeneuve, Montreal' },
           { round: 4,  sprint: '6 June',       feature: '7 June',       circuit: 'Monaco — Circuit de Monaco, Monaco' },
           { round: 5,  sprint: '13 June',      feature: '14 June',      circuit: 'Spain — Circuit de Barcelona-Catalunya, Montmeló' },
           { round: 6,  sprint: '27 June',      feature: '28 June',      circuit: 'Austria — Red Bull Ring, Spielberg' },

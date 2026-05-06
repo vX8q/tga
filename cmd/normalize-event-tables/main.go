@@ -1,3 +1,4 @@
+// Package main normalizes event table cell values to strings.
 package main
 
 import (
@@ -13,7 +14,7 @@ import (
 // normalizeEventTables загружает raw JSON события, приводит все значения в tables.*.rows к строкам
 // и перезаписывает файл. Это нужно для совместимости с EventDetailJSON, где rows ожидаются как []string.
 func normalizeEventTables(path string) error {
-	raw, err := os.ReadFile(path)
+	raw, err := os.ReadFile(path) //nolint:gosec
 	if err != nil {
 		return err
 	}
@@ -69,7 +70,7 @@ func normalizeEventTables(path string) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, out, 0o644)
+	return os.WriteFile(path, out, 0o600)
 }
 
 func main() {

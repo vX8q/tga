@@ -1,3 +1,4 @@
+// Package cache provides in-memory caching helpers.
 package cache
 
 import (

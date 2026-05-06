@@ -1,3 +1,4 @@
+// Package main provides a local debug helper.
 package main
 
 import (
@@ -26,7 +27,7 @@ func main() {
 	var sqlStore *store.SQLiteStore
 	if st, err := store.NewSQLiteStore(dbPath); err == nil {
 		sqlStore = st
-		defer sqlStore.Close()
+		defer func() { _ = sqlStore.Close() }()
 	} else {
 		fmt.Fprintf(os.Stderr, "WARN: failed to open DB at %s: %v\n", dbPath, err)
 	}

@@ -144,7 +144,7 @@ ORDER BY wins DESC, top5 DESC, top10 DESC, driver_name
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []DriverStatsRow
 	for rows.Next() {
@@ -313,6 +313,7 @@ const lapTimeToSecondsExpr = `CASE
 
 // buildDriverStatsFromDBOpenwheel агрегирует статистику F1/F2/F3 из results: starts, wins, top-2, top-3, top-5, top-10, fastest laps (только у кого лучшее время в гонке), avg.start, avg.finish, laps led, laps completed.
 func buildDriverStatsFromDBOpenwheel(db *sql.DB, seriesID string, season string) (*DriverStatsData, error) {
+	//nolint:gosec // Query text is composed only of '?' placeholders, values are still parameterized.
 	query := `
 WITH race_fastest_sec AS (
   SELECT r2.race_id, MIN(` + strings.ReplaceAll(lapTimeToSecondsExpr, "r.fastest_lap", "r2.fastest_lap") + `) AS min_sec
@@ -383,7 +384,7 @@ ORDER BY wins DESC, top3 DESC, top5 DESC, top10 DESC, driver_name
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	var out []DriverStatsRow
 	for rows.Next() {

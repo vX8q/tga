@@ -310,7 +310,7 @@
   }
 
   var degRu = { '°': '°', 'degrees': 'градусы', 'degree': 'градус' };
-  function localizeTrackInfo(s) {
+  function localizeEventPreview(s) {
     if (s == null || typeof s !== 'string') return '';
     var str = s.trim();
     if (lang !== 'ru') return str;
@@ -398,7 +398,7 @@
   window.TGA.specKeySkip = specKeySkip;
   window.TGA.localizeDate = localizeDate;
   window.TGA.localizeDistance = localizeDistance;
-  window.TGA.localizeTrackInfo = localizeTrackInfo;
+  window.TGA.localizeEventPreview = localizeEventPreview;
   window.TGA.trimTrailingZeros = trimTrailingZeros;
   window.TGA.pluralRu = pluralRu;
 })();
