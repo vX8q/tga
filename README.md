@@ -1,6 +1,8 @@
 # TGA — The Grid Archive
 
-Автоспортивный веб-ресурс и API на Go: расписания, результаты гонок, турнирные таблицы, статистика пилотов и live-данные по 20+ чемпионатам мира. Актуальный сезон — **2026**.
+![CI](https://github.com/vX8q/tga/actions/workflows/ci.yml/badge.svg)
+
+Автоспортивный веб-сервис и API на Go: расписания, результаты, турнирные таблицы, статистика пилотов и live-данные по 20+ чемпионатам. Данные актуальны для сезона **2026**.
 
 ## Возможности
 
@@ -8,7 +10,7 @@
 - Расписания этапов, результаты гонок и квалификаций, сессии
 - Турнирные таблицы (личный и командный зачёт)
 - Статистика пилотов, команд, трасс и Head-to-Head сравнения
-- Live-данные из NASCAR Feed и OpenF1 API (автосинхронизация каждые 2 минуты)
+- Live-данные из NASCAR Feed и OpenF1 API (синхронизация каждые 2 минуты)
 - История F1 (чемпионы 1950–2025, очки, шасси, моторы)
 - Prometheus-метрики и admin-эндпоинты для мониторинга
 - Интернационализация (EN / RU), тёмная и светлая тема
@@ -41,10 +43,10 @@
 ```
 TGA/
 ├── cmd/
-│   ├── server/                  # HTTP-сервер: API, статика, admin, middleware
-│   ├── sync-openf1-live/        # CLI: синхронизация OpenF1 → data/live.json
-│   ├── sync-nascar-live/        # CLI: синхронизация NASCAR → data/live.json
-│   └── fetch-driver-wikidata/   # Утилита: данные пилотов из Wikidata
+│   ├── server/                  # Основной HTTP-сервер
+│   ├── fetch-driver-wikidata/   # Обогащение данных пилотов из Wikidata
+│   ├── normalize-event-tables/  # Нормализация JSON-таблиц этапов
+│   └── debug-stats-duplicates/  # Локальная отладка дублей в статистике
 ├── config/                      # Определения чемпионатов (один файл на серию)
 ├── models/                      # Доменные модели: Series, Event, Race, Result, Driver, Team
 ├── internal/
@@ -56,15 +58,20 @@ TGA/
 │   ├── appenv/                  # Определение data-директории
 │   └── cache/                   # TTL-кэш
 ├── web/                         # Фронтенд: index.html, style.css, app.js, компоненты
-├── data/
+├── data/                        # JSON-данные проекта
 │   ├── schedules/               # Расписания серий (JSON)
-│   ├── events/                  # Детали этапов: сессии, результаты, таблицы
+│   ├── events/                  # Детали этапов по структуре Series/Year/
 │   ├── teams/                   # Составы команд
 │   ├── standings/               # Турнирные таблицы
 │   ├── live.json                # Live-данные (обновляются автоматически)
 │   └── driver_profiles.json     # Профили пилотов
 ├── scripts/                     # Node.js-скрипты для подготовки/нормализации данных
-├── docs/                        # Заметки по архитектуре и данным
+├── k6/                          # Load-testing сценарии (smoke, sustained, spike)
+├── docs/                        # Заметки по архитектуре, метрикам и эксплуатации
+│   ├── PERFORMANCE.md           # Базовый профиль производительности + команды прогонов
+│   ├── METRICS.md               # Продуктовые и технические метрики Prometheus
+│   ├── RUNBOOK.md               # Действия при инцидентах
+│   └── RELEASE_CHECKLIST.md     # Чеклист перед и после релиза
 ├── .github/workflows/           # CI: тесты + линтер
 ├── Dockerfile                   # Multi-stage build (alpine)
 ├── docker-compose.yml           # app + Cloudflare Tunnel
@@ -203,14 +210,16 @@ Compose запускает два сервиса:
     └────────────┘    └────────────────┘   └─────────────┘
 ```
 
-**Источник правды** — JSON-файлы в `data/`. SQLite (`data/tga.sqlite`) — материализованное представление, заполняется при старте через `bootstrapStoreFromFiles`. Live-данные обновляются из внешних API каждые 2 минуты внутри серверного процесса.
+Данные хранятся в JSON-файлах в `data/`.
+SQLite (`data/tga.sqlite`) используется для быстрых запросов и обновляется при старте через `bootstrapStoreFromFiles`.
+Live-данные обновляются из внешних API фоновым циклом внутри `cmd/server`.
 
 ## Данные
 
 Данные хранятся в JSON-файлах и редактируются напрямую:
 
 - `data/schedules/{seriesID}.json` — расписания этапов
-- `data/events/{eventID}.json` — детали этапов (результаты, сессии, таблицы)
+- `data/events/{SeriesName}/{year}/{eventID}.json` — детали этапов (результаты, сессии, таблицы)
 - `data/teams/{seriesID}.json` — составы команд
 - `data/standings/{seriesID}.json` — турнирные таблицы
 - `data/driver_profiles.json` — профили пилотов
@@ -226,8 +235,16 @@ Compose запускает два сервиса:
 |---------|----------|
 | `tga_livesync_errors_total{source,reason}` | Счётчик ошибок live-синхронизации |
 | `tga_livesync_last_success_unix{source}` | Unix-время последней успешной синхронизации |
+| `tga_api_series_views_total` | Чтения endpoint по сериям |
+| `tga_api_event_views_total` | Чтения endpoint деталей этапов |
+| `tga_api_driver_views_total` | Чтения endpoint профиля пилота |
+| `tga_api_live_events_reads_total` | Чтения endpoint live-событий |
+| `tga_api_errors_total{endpoint,status_class}` | Ошибки API по endpoint и классу статуса |
+| `tga_api_business_request_duration_seconds{endpoint}` | Latency ключевых продуктовых endpoint |
 
 Где `source` — `nascar` или `openf1`, `reason` — тип ошибки (`live_feed`, `no_events`, `write_live_json` и т.д.).
+
+Подробное описание и примеры проверки — в `docs/METRICS.md`.
 
 ### Health-check
 
@@ -268,6 +285,17 @@ GitHub Actions (`.github/workflows/ci.yml`) запускаются на push/PR 
 
 - **test** — `go test ./... -count=1 -v`
 - **lint** — `golangci-lint` (govet, staticcheck, gosimple, ineffassign, gosec, misspell, errcheck, revive)
+
+Интеграционные API-тесты (happy-path/404/500) находятся в `cmd/server/integration_api_test.go` и запускаются вместе с `go test ./...`.
+Базовые результаты нагрузочных тестов зафиксированы в `docs/PERFORMANCE.md`.
+
+Локальный прогон k6-сценариев:
+
+```bash
+k6 run k6/smoke.js
+k6 run k6/sustained.js
+k6 run k6/spike.js
+```
 
 ## PowerShell-скрипты (Windows)
 
