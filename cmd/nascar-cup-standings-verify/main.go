@@ -205,6 +205,7 @@ func main() {
 
 func loadReference(refAbs string) (refFile, error) {
 	var out refFile
+	// #nosec G304 -- CLI tool accepts user-provided reference path intentionally.
 	b, err := os.ReadFile(refAbs)
 	if err != nil {
 		return out, err

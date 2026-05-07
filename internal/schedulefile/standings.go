@@ -971,6 +971,7 @@ func applyStageTotalsFromTSVReference(dataDir string, seriesID string, data *Sta
 		return
 	}
 	path := filepath.Join(dataDir, "reference", refFile)
+	// #nosec G304 -- refFile is selected from a fixed allowlist above.
 	b, err := os.ReadFile(path)
 	if err != nil || len(b) == 0 {
 		return
