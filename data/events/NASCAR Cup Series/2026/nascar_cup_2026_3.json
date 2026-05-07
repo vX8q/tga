@@ -49,7 +49,7 @@
     {"number": "71", "driver": "Michael McDowell", "team": "Spire Motorsports", "manufacturer": "Chevrolet", "crew_chief": "Travis Peterson"},
     {"number": "77", "driver": "Carson Hocevar", "team": "Spire Motorsports", "manufacturer": "Chevrolet", "crew_chief": "Luke Lambert"},
     {"number": "88", "driver": "Connor Zilisch (R)", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Randall Burnett"},
-    {"number": "97", "driver": "Shane Van Gisbergen", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Stephen Doran"}
+    {"number": "97", "driver": "Shane van Gisbergen", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Stephen Doran"}
   ],
   "tables": {
     "practice": {
@@ -74,7 +74,7 @@
         ["17", "42", "John Hunter Nemechek", "Legacy Motor Club", "Toyota", "99.738", "86.627", "1", "11", "-0.715", "-0.004"],
         ["18", "21", "Josh Berry", "Wood Brothers Racing", "Ford", "99.747", "86.619", "2", "13", "-0.724", "-0.009"],
         ["19", "45", "Tyler Reddick", "23XI Racing", "Toyota", "99.772", "86.597", "2", "14", "-0.749", "-0.025"],
-        ["20", "97", "Shane Van Gisbergen", "Trackhouse Racing", "Chevrolet", "99.817", "86.558", "3", "14", "-0.794", "-0.045"],
+        ["20", "97", "Shane van Gisbergen", "Trackhouse Racing", "Chevrolet", "99.817", "86.558", "3", "14", "-0.794", "-0.045"],
         ["21", "1", "Ross Chastain", "Trackhouse Racing", "Chevrolet", "99.857", "86.524", "5", "13", "-0.834", "-0.040"],
         ["22", "47", "Ricky Stenhouse Jr.", "Hyak Motorsports", "Chevrolet", "99.866", "86.516", "1", "12", "-0.843", "-0.009"],
         ["23", "23", "Bubba Wallace", "23XI Racing", "Toyota", "99.881", "86.503", "2", "13", "-0.858", "-0.015"],
@@ -170,7 +170,7 @@
       "headers": ["Pos", "Grid", "No", "Driver", "Team", "Manufacturer", "Laps", "Led", "Points"],
       "rows": [
         ["1",  "1",  "45", "Tyler Reddick",        "23XI Racing",           "Toyota",    "95", "58", "61"],
-        ["2",  "13", "97", "Shane Van Gisbergen",  "Trackhouse Racing",     "Chevrolet", "95", "2",  "45"],
+        ["2",  "13", "97", "Shane van Gisbergen",  "Trackhouse Racing",     "Chevrolet", "95", "2",  "45"],
         ["3",  "8",  "20", "Christopher Bell",     "Joe Gibbs Racing",      "Toyota",    "95", "0",  "34"],
         ["4",  "9",  "54", "Ty Gibbs",             "Joe Gibbs Racing",      "Toyota",    "95", "5",  "48"],
         ["5",  "6",  "71", "Michael McDowell",     "Spire Motorsports",     "Chevrolet", "95", "5",  "40"],

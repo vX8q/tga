@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 	"strings"
 	"time"
@@ -75,8 +76,111 @@ func bootstrapStoreFromFiles(st store.Store, dataDir string) error {
 				}
 			}
 		}
+		// 4) Универсальный импорт пилотов из entry_list для всех серий
+		// (например, GTWCE Sprint/Endurance с полями driver1/driver2/driver3).
+		if err := importDriversFromAllEntryLists(ctx, tx, dataDir); err != nil {
+			return err
+		}
 		return nil
 	})
+}
+
+func importDriversFromAllEntryLists(ctx context.Context, st store.Store, dataDir string) error {
+	for _, c := range config.Championships {
+		dataID := config.DataSeriesID(c.ID)
+		events, err := schedulefile.LoadEvents(dataDir, dataID)
+		if err != nil {
+			return err
+		}
+		for _, e := range events {
+			raw, err := schedulefile.ReadEventDetailFile(dataDir, e.ID)
+			if err != nil || len(raw) == 0 {
+				continue
+			}
+			var root map[string]any
+			if err := json.Unmarshal(raw, &root); err != nil {
+				continue
+			}
+			entryAny, ok := root["entry_list"]
+			if !ok || entryAny == nil {
+				continue
+			}
+			entryRows, ok := entryAny.([]any)
+			if !ok {
+				continue
+			}
+			for _, rowAny := range entryRows {
+				row, ok := rowAny.(map[string]any)
+				if !ok {
+					continue
+				}
+				carNumber := firstNonEmptyFromMap(row, "number", "car_number", "car", "no")
+				driverNames := extractDriverNamesFromEntryRow(row)
+				for _, driverName := range driverNames {
+					driverID := driverutil.MakeDriverID(c.ID, driverName, carNumber)
+					if err := st.UpsertDriver(ctx, &models.Driver{
+						ID:        driverID,
+						Name:      driverName,
+						ShortName: "",
+						Number:    carNumber,
+					}); err != nil {
+						return err
+					}
+				}
+			}
+		}
+	}
+	return nil
+}
+
+func firstNonEmptyFromMap(m map[string]any, keys ...string) string {
+	for _, k := range keys {
+		v, ok := m[k]
+		if !ok || v == nil {
+			continue
+		}
+		s, ok := v.(string)
+		if !ok {
+			continue
+		}
+		s = strings.TrimSpace(s)
+		if s != "" {
+			return s
+		}
+	}
+	return ""
+}
+
+func extractDriverNamesFromEntryRow(row map[string]any) []string {
+	var out []string
+	add := func(v string) {
+		name := strings.TrimSpace(v)
+		if name == "" {
+			return
+		}
+		for _, p := range strings.Split(name, ",") {
+			p = strings.TrimSpace(p)
+			if p == "" {
+				continue
+			}
+			out = append(out, p)
+		}
+	}
+
+	for _, key := range []string{"driver", "driver1", "driver2", "driver3", "driver4"} {
+		if v, ok := row[key].(string); ok {
+			add(v)
+		}
+	}
+
+	if arr, ok := row["drivers"].([]any); ok {
+		for _, item := range arr {
+			if v, ok := item.(string); ok {
+				add(v)
+			}
+		}
+	}
+	return out
 }
 
 // importStockCarSeries загружает расписание и подробные результаты сток-кар серии из JSON
@@ -121,9 +225,9 @@ func importStockCarSeries(ctx context.Context, st store.Store, dataDir, seriesID
 			Season:     e.Season,
 			Name:       e.Name,
 			ScheduleAt: ev.StartDate,
-			Laps:      raceLaps,
-			Distance:  detail.Distance,
-			Status:    "",
+			Laps:       raceLaps,
+			Distance:   detail.Distance,
+			Status:     "",
 		}
 		if err := st.UpsertRace(ctx, race); err != nil {
 			return err
@@ -632,4 +736,3 @@ func makeTeamID(seriesID, teamName string) string {
 	}
 	return strings.ToUpper(seriesID) + ":TEAM:" + driverutil.NormalizeKey(teamName)
 }
-

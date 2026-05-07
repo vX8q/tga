@@ -302,9 +302,8 @@ k6 run k6/spike.js
 | Скрипт | Описание |
 |--------|----------|
 | `build.ps1` | Сборка `bin/server.exe` |
-| `run-dev.ps1` | Запуск собранного сервера с `TGA_RESET_DB_ON_START=1` |
+| `run-dev.ps1` | Запуск `bin/server.exe` в dev-режиме (`TGA_RESET_DB_ON_START=1`, требует предварительной сборки через `build.ps1`) |
 | `restart-server.ps1` | Сборка + запуск (опционально `-ResetDb`) |
-| `import_all.ps1` | Справка по работе с данными |
 
 ## Лицензия
 

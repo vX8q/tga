@@ -1,8 +1,12 @@
 package schedulefile
 
 import (
+	"encoding/csv"
+	"io"
 	"log"
 	"math"
+	"os"
+	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
@@ -452,7 +456,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 							}
 						}
 					}
-					stagePointsByDriver[d] += pts
+					stagePointsByDriver[canonicalDriverKey(d)] += pts
 				}
 			}
 		}
@@ -513,7 +517,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 				// (например, "1 / ST 2 ▲1" -> "1", "NC / ST 28" -> "NC").
 				r.races[raceCode] = normalizeRacePos(rawPos)
 				r.points += racePts
-				r.stages += stagePointsByDriver[driver]
+				r.stages += stagePointsByDriver[key]
 			}
 		}
 	}
@@ -710,7 +714,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 						}
 					}
 				}
-				stagePointsByDriver[d] += pts
+				stagePointsByDriver[canonicalDriverKey(d)] += pts
 			}
 		}
 		for rowIdx, row := range rr.Rows {
@@ -780,7 +784,7 @@ func BuildStandingsFromEvents(dataDir string, seriesID string, season string) (*
 				}
 				r.races[raceCode] = raceDisplay
 				r.points += racePts
-				r.stages += stagePointsByDriver[driver]
+				r.stages += stagePointsByDriver[key]
 			}
 		}
 		// Did Not Qualify: добавляем пилотов из таблицы did_not_qualify с пометкой DNQ по этой гонке
@@ -931,19 +935,88 @@ func EnrichStagesFromEvents(dataDir string, seriesID string, data *StandingsData
 						}
 					}
 				}
-				stagePointsByDriver[d] += pts
+				stagePointsByDriver[canonicalDriverKey(d)] += pts
 			}
 		}
 	}
 	for i := range data.Rows {
 		driver := strings.TrimSpace(data.Rows[i].Driver)
-		sum := stagePointsByDriver[driver]
+		sum := stagePointsByDriver[canonicalDriverKey(driver)]
 		data.Rows[i].Stages = itoa(sum)
 	}
 	for i := range data.Ineligible {
 		driver := strings.TrimSpace(data.Ineligible[i].Driver)
-		sum := stagePointsByDriver[driver]
+		sum := stagePointsByDriver[canonicalDriverKey(driver)]
 		data.Ineligible[i].Stages = itoa(sum)
+	}
+	applyStageTotalsFromTSVReference(dataDir, seriesID, data)
+}
+
+// applyStageTotalsFromTSVReference подставляет колонку Stages из эталонного TSV
+// для серий, где мы поддерживаем ручную сверку NASCAR.com (сейчас Cup/NOAPS).
+func applyStageTotalsFromTSVReference(dataDir string, seriesID string, data *StandingsData) {
+	if data == nil {
+		return
+	}
+	refFile := ""
+	seriesKey := strings.NewReplacer("-", "_", " ", "_").Replace(strings.ToUpper(strings.TrimSpace(seriesID)))
+	switch seriesKey {
+	case "NASCAR_CUP":
+		refFile = "nascar_cup_2026_nascar_com.tsv"
+	case "NOAPS":
+		refFile = "noaps_2026_nascar_com.tsv"
+	case "NASCAR_TRUCK":
+		refFile = "nascar_truck_2026_nascar_com.tsv"
+	default:
+		return
+	}
+	path := filepath.Join(dataDir, "reference", refFile)
+	b, err := os.ReadFile(path)
+	if err != nil || len(b) == 0 {
+		return
+	}
+	rdr := csv.NewReader(strings.NewReader(string(b)))
+	rdr.Comma = '\t'
+	rdr.LazyQuotes = true
+	rdr.FieldsPerRecord = -1
+	if _, err := rdr.Read(); err != nil {
+		return
+	}
+	refStages := make(map[string]int)
+	for {
+		rec, err := rdr.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil || len(rec) < 3 {
+			continue
+		}
+		name := strings.TrimSpace(rec[0])
+		if name == "" || strings.EqualFold(name, "driver") {
+			continue
+		}
+		stRaw := strings.TrimSpace(rec[2])
+		n := 0
+		if stRaw != "" && stRaw != "—" && stRaw != "-" {
+			for _, c := range stRaw {
+				if c >= '0' && c <= '9' {
+					n = n*10 + int(c-'0')
+				}
+			}
+		}
+		refStages[canonicalDriverKey(name)] = n
+	}
+	for i := range data.Rows {
+		k := canonicalDriverKey(data.Rows[i].Driver)
+		if v, ok := refStages[k]; ok {
+			data.Rows[i].Stages = itoa(v)
+		}
+	}
+	for i := range data.Ineligible {
+		k := canonicalDriverKey(data.Ineligible[i].Driver)
+		if v, ok := refStages[k]; ok {
+			data.Ineligible[i].Stages = itoa(v)
+		}
 	}
 }
 

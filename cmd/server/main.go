@@ -14,11 +14,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/vX8q/tga/config"
 	"github.com/vX8q/tga/internal/appenv"
 	"github.com/vX8q/tga/internal/livesync"
 	"github.com/vX8q/tga/internal/store"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func resolveWebDir(cfg Config) string {
@@ -112,6 +112,9 @@ func main() {
 		}
 		http.StripPrefix("/web/", fs).ServeHTTP(w, r)
 	}))
+	http.HandleFunc("/favicon.ico", staticWrap(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/web/favicon.svg", http.StatusMovedPermanently)
+	}))
 
 	indexPath := filepath.Join(webDir, "index.html")
 	http.HandleFunc("/event/", staticWrap(func(w http.ResponseWriter, r *http.Request) {
@@ -130,7 +133,7 @@ func main() {
 			http.Redirect(w, r, "/series/f1/history", http.StatusMovedPermanently)
 			return
 		}
-		if p == "/" || strings.HasPrefix(p, "/series") || strings.HasPrefix(p, "/season") || strings.HasPrefix(p, "/track") || strings.HasPrefix(p, "/driver") || strings.HasPrefix(p, "/team") || strings.HasPrefix(p, "/crew-chief") {
+		if p == "/" || p == "/schedule" || strings.HasPrefix(p, "/search") || strings.HasPrefix(p, "/series") || strings.HasPrefix(p, "/season") || strings.HasPrefix(p, "/track") || strings.HasPrefix(p, "/driver") || strings.HasPrefix(p, "/team") || strings.HasPrefix(p, "/crew-chief") {
 			http.ServeFile(w, r, indexPath)
 			return
 		}
@@ -184,6 +187,15 @@ func main() {
 	}))
 	http.HandleFunc("/api/driver/", apiWrap(func(w http.ResponseWriter, r *http.Request) {
 		handleDriverBySlug(w, r, dataDir, st)
+	}))
+	http.HandleFunc("/api/drivers", apiWrap(func(w http.ResponseWriter, r *http.Request) {
+		handleDriversList(w, r, dataDir, st)
+	}))
+	http.HandleFunc("/api/driver-thumb/", apiWrap(func(w http.ResponseWriter, r *http.Request) {
+		handleDriverThumbnail(w, r, dataDir)
+	}))
+	http.HandleFunc("/api/team-logo/", apiWrap(func(w http.ResponseWriter, r *http.Request) {
+		handleTeamLogo(w, r, dataDir)
 	}))
 
 	if cfg.EnableAdmin {

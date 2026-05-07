@@ -7,7 +7,7 @@ services:
     environment:
       PORT: "8080"
     volumes:
-      - ./data:/app/data:ro      # данные (расписание, результаты, зачёт) — только чтение
+      - ./data:/app/data          # данные (включая SQLite и live.json) — чтение/запись
     networks:
       - internal
     # Порты намеренно НЕ публикуются: внешний доступ только через cloudflared tunnel

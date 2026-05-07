@@ -41,9 +41,32 @@
 
   // Отображаемое имя пилота (данные могут содержать псевдоним или "Name (N races)")
   var driverDisplayNames = { 'Cleetus Mitchell': 'Garrett Mitchell' };
+  function driverNameKey(name) {
+    if (name == null) return '';
+    return String(name)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
   function driverDisplayName(name) {
     if (name == null || typeof name !== 'string') return name;
     var trimmed = name.trim();
+    if (trimmed.indexOf('/') >= 0) {
+      var parts = trimmed.split(/\s*\/\s*/);
+      var seen = {};
+      var out = [];
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i].trim();
+        if (!p) continue;
+        var k = driverNameKey(p);
+        if (seen[k]) continue;
+        seen[k] = true;
+        out.push(p);
+      }
+      trimmed = out.join(' / ');
+    }
     // Убираем кол-во гонок в скобках: "Spencer Boyd (22 races)" → "Spencer Boyd"
     var withoutRaces = trimmed.replace(/\s*\(\d+\s+races?\)\s*$/i, '').trim();
     return driverDisplayNames[withoutRaces] || driverDisplayNames[trimmed] || withoutRaces || trimmed;
@@ -3337,14 +3360,14 @@
           var rows = dataObj && dataObj.rows ? dataObj.rows : (Array.isArray(dataObj) ? dataObj : []);
           var classes = dataObj && dataObj.classes && Array.isArray(dataObj.classes) ? dataObj.classes : [];
 
-          // ——— IMSA / GTWCE: таблицы по классам ———
+          // ——— IMSA / GTWCE / ELMS: таблицы по классам ———
           var multiClassHtml = (window.TGA && window.TGA.buildImsaGtwceClassStandingsHtml)
             ? window.TGA.buildImsaGtwceClassStandingsHtml(dataObj, sk)
             : '';
           if (
             classes.length > 0 &&
             multiClassHtml &&
-            ((sk === 'imsa' && rows.length === 0) || sk === 'gtwce_end' || sk === 'gtwce_sprint')
+            ((sk === 'imsa' && rows.length === 0) || sk === 'gtwce_end' || sk === 'gtwce_sprint' || sk === 'elms')
           ) {
             var standingsWrapEl = document.getElementById('standings-wrap');
             var standingsImsaWrap = document.getElementById('standings-imsa-wrap');
@@ -9397,7 +9420,7 @@
       .replace(/^-+|-+$/g, '');
   }
 
-  var allViewIds = ['view-list', 'view-detail', 'view-event', 'view-track', 'view-driver', 'view-team', 'view-crew-chief', 'view-schedule'];
+  var allViewIds = ['view-list', 'view-search', 'view-detail', 'view-event', 'view-track', 'view-driver', 'view-team', 'view-crew-chief', 'view-schedule'];
   function showView(activeId) {
     if (activeId !== 'view-list') stopNextRaceTimers();
     allViewIds.forEach(function (id) {
@@ -9412,6 +9435,653 @@
         });
       }
     }
+  }
+
+  var searchIndexItems = [];
+  var searchIndexReady = false;
+  var searchIndexLoading = false;
+  var searchInitDone = false;
+  var driverPhotoQualityCache = {};
+  var searchPriorityList = (function () {
+    if (window.TGA_SEARCH_PRIORITY && Array.isArray(window.TGA_SEARCH_PRIORITY) && window.TGA_SEARCH_PRIORITY.length > 0) {
+      return window.TGA_SEARCH_PRIORITY.slice();
+    }
+    return [
+      'F1', 'INDYCAR', 'WEC', 'NASCAR_CUP', 'SUPER_FORMULA', 'IMSA',
+      'DTM', 'SUPER_GT', 'F2', 'GTWCE_END', 'GTWCE_SPRINT', 'ELMS',
+      'SUPERCARS', 'NOAPS', 'F3', 'NASCAR_TRUCK', 'PSC', 'ARCA',
+      'FREC', 'F4_IT', 'NASCAR_MODIFIED', 'SMP_F4_RU'
+    ];
+  })();
+  var seriesPopularity = {};
+  searchPriorityList.forEach(function (sid, idx) {
+    // Earlier in the list = higher score.
+    seriesPopularity[String(sid || '').toUpperCase()] = (searchPriorityList.length - idx) + 100;
+  });
+  var popularTeamHints = [
+    'red bull', 'ferrari', 'mercedes', 'mclaren', 'aston martin',
+    'williams', 'haas', 'alpine', 'sauber', 'penske', 'ganassi',
+    'hendrick', 'joe gibbs', 'rfk', '23xi', 'trackhouse', 'toyota gazoo',
+    'porsche', 'bmw', 'cadillac', 'ford', 'chevrolet'
+  ];
+
+  function normalizeSearchText(value) {
+    if (value == null) return '';
+    return String(value)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function seriesPopularityScore(seriesID) {
+    var sid = String(seriesID || '').toUpperCase();
+    return seriesPopularity[sid] || 0;
+  }
+
+  function teamPopularityBoost(teamName) {
+    var team = normalizeSearchText(teamName);
+    if (!team) return 0;
+    for (var i = 0; i < popularTeamHints.length; i++) {
+      if (team.indexOf(popularTeamHints[i]) >= 0) return 8;
+    }
+    return 0;
+  }
+
+  function normalizeDisplayTeamName(teamName) {
+    var raw = String(teamName || '').trim();
+    if (!raw) return '';
+    var map = {
+      'Oracle Red Bull Racing': 'Red Bull Racing',
+      'Visa Cash App Racing Bulls F1 Team': 'Racing Bulls',
+      'Mercedes-AMG Petronas F1 Team': 'Mercedes',
+      'Scuderia Ferrari HP': 'Ferrari',
+      'McLaren Formula 1 Team': 'McLaren',
+      'Aston Martin Aramco F1 Team': 'Aston Martin',
+      'BWT Alpine F1 Team': 'Alpine',
+      'MoneyGram Haas F1 Team': 'Haas',
+      'Stake F1 Team Kick Sauber': 'Kick Sauber',
+      'Atlassian Williams Racing': 'Williams'
+    };
+    if (map[raw]) return map[raw];
+    return raw
+      .replace(/\b(oracle|visa|cash app|aramco|petronas|moneygram|atlassian|stake|bwt)\b/gi, '')
+      .replace(/\b(formula 1|f1)\b/gi, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim() || raw;
+  }
+
+  function teamAgeFromMeta(meta) {
+    if (!meta || typeof meta !== 'object') return '';
+    var yearRaw = meta.founded_year || meta.founded || meta.year_established || meta.established || '';
+    if (yearRaw == null || String(yearRaw).trim() === '') return '';
+    var year = parseInt(String(yearRaw).replace(/[^\d]/g, ''), 10);
+    if (!year || isNaN(year)) return '';
+    var nowYear = new Date().getFullYear();
+    if (year > nowYear || year < 1900) return '';
+    return String(nowYear - year);
+  }
+
+  function ageFromBirthDate(value) {
+    var s = String(value || '').trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return '';
+    var p = s.split('-');
+    var by = parseInt(p[0], 10);
+    var bm = parseInt(p[1], 10);
+    var bd = parseInt(p[2], 10);
+    if (!by || !bm || !bd) return '';
+    var now = new Date();
+    var age = now.getFullYear() - by;
+    var md = now.getMonth() + 1 - bm;
+    if (md < 0 || (md === 0 && now.getDate() < bd)) age--;
+    return isNaN(age) ? '' : String(age);
+  }
+
+  function getBestDriverPhotoURL(rawURL) {
+    var src = String(rawURL || '').trim();
+    if (!src) return '';
+    // Prefer one high-quality source and let browser downscale it.
+    // Wikimedia thumb URL example:
+    // https://.../thumb/.../320px-File.jpg
+    // Convert to original file URL:
+    // https://.../.../File.jpg
+    var wm = src.match(/^(.*\/thumb\/.*\/)(\d+)px-([^/?#]+)(.*)$/i);
+    if (wm) {
+      return wm[1].replace('/thumb/', '/') + wm[3];
+    }
+    return src;
+  }
+
+  function isSearchPhotoHighQuality(url) {
+    var src = String(url || '').trim();
+    if (!src) return Promise.resolve(false);
+    if (driverPhotoQualityCache[src] != null) {
+      return Promise.resolve(!!driverPhotoQualityCache[src]);
+    }
+    return new Promise(function (resolve) {
+      var img = new Image();
+      var done = false;
+      var timer = setTimeout(function () {
+        if (done) return;
+        done = true;
+        driverPhotoQualityCache[src] = false;
+        resolve(false);
+      }, 3500);
+      img.onload = function () {
+        if (done) return;
+        clearTimeout(timer);
+        done = true;
+        var w = img.naturalWidth || 0;
+        var h = img.naturalHeight || 0;
+        var ok = w >= 180 && h >= 180;
+        driverPhotoQualityCache[src] = ok;
+        resolve(ok);
+      };
+      img.onerror = function () {
+        if (done) return;
+        clearTimeout(timer);
+        done = true;
+        driverPhotoQualityCache[src] = false;
+        resolve(false);
+      };
+      img.src = src;
+    });
+  }
+
+  function pushSearchItem(list, dedupe, title, kind, href, extra, subtext, seriesID, teamName, seriesName, meta) {
+    var cleanTitle = String(title || '').trim();
+    if (!cleanTitle || !href) return;
+    var key = kind + '|' + href + '|' + cleanTitle.toLowerCase();
+    if (dedupe[key]) return;
+    dedupe[key] = true;
+    var hay = normalizeSearchText(cleanTitle + ' ' + (extra || ''));
+    var pop = seriesPopularityScore(seriesID) + teamPopularityBoost(teamName);
+    list.push({
+      title: cleanTitle,
+      kind: kind,
+      href: href,
+      haystack: hay,
+      subtext: subtext || '',
+      popularity: pop,
+      seriesID: seriesID || '',
+      seriesName: seriesName || '',
+      teamName: teamName || '',
+      meta: (meta && typeof meta === 'object') ? meta : {}
+    });
+  }
+
+  function rankSearchItems(queryNorm, a, b) {
+    var aStarts = a.haystack.indexOf(queryNorm) === 0 ? 0 : 1;
+    var bStarts = b.haystack.indexOf(queryNorm) === 0 ? 0 : 1;
+    if (aStarts !== bStarts) return aStarts - bStarts;
+    var aPop = a.popularity || 0;
+    var bPop = b.popularity || 0;
+    if (aPop !== bPop) return bPop - aPop;
+    return a.title.localeCompare(b.title);
+  }
+
+  function pickPrimaryDriverContext(agg) {
+    var bestSeriesID = '';
+    var bestSeriesCount = -1;
+    var bestSeriesPop = -1;
+    Object.keys(agg.seriesCounts).forEach(function (sid) {
+      var cnt = agg.seriesCounts[sid] || 0;
+      var pop = seriesPopularityScore(sid);
+      if (
+        cnt > bestSeriesCount ||
+        (cnt === bestSeriesCount && pop > bestSeriesPop) ||
+        (cnt === bestSeriesCount && pop === bestSeriesPop && String(sid) < String(bestSeriesID))
+      ) {
+        bestSeriesID = sid;
+        bestSeriesCount = cnt;
+        bestSeriesPop = pop;
+      }
+    });
+    var teams = (agg.teamCountsBySeries && agg.teamCountsBySeries[bestSeriesID]) || {};
+    var bestTeam = '';
+    var bestTeamCount = -1;
+    Object.keys(teams).forEach(function (tn) {
+      var cnt = teams[tn] || 0;
+      if (cnt > bestTeamCount || (cnt === bestTeamCount && tn < bestTeam)) {
+        bestTeam = tn;
+        bestTeamCount = cnt;
+      }
+    });
+    return {
+      seriesID: bestSeriesID,
+      seriesName: agg.seriesNames[bestSeriesID] || bestSeriesID || '',
+      teamName: bestTeam || ''
+    };
+  }
+
+  function ensureSearchIndex() {
+    if (searchIndexReady) return Promise.resolve(searchIndexItems);
+    if (searchIndexLoading) return Promise.resolve(searchIndexItems);
+    searchIndexLoading = true;
+    var items = [];
+    var dedupe = {};
+    var driverAggBySlug = {};
+    return fetchJSON('/api/series')
+      .then(function (seriesList) {
+        if (!Array.isArray(seriesList)) return [];
+        var reqs = seriesList.map(function (series) {
+          var id = String((series && series.id) || '').trim();
+          if (!id) return Promise.resolve(null);
+          var name = String((series && series.name) || id).trim();
+          var slug = id.toLowerCase().replace(/_+/g, '-');
+          pushSearchItem(items, dedupe, name, 'Championship', '/series/' + encodeURIComponent(slug), id, '', id, name, name, null);
+          var season = (series && series.season) ? String(series.season) : '';
+          if (season && name) {
+            pushSearchItem(items, dedupe, name + ' ' + season, 'Season', '/series/' + encodeURIComponent(slug), id + ' ' + name, '', id, name, name, null);
+          }
+          return fetchJSON('/api/series/' + encodeURIComponent(id.toLowerCase()) + '/teams')
+            .then(function (teamsResp) {
+              var teamList = (teamsResp && Array.isArray(teamsResp.teams)) ? teamsResp.teams : (Array.isArray(teamsResp) ? teamsResp : []);
+              teamList.forEach(function (row) {
+                if (!row || typeof row !== 'object') return;
+                var teamName = String(row.team || '').trim();
+                var manufacturer = String(row.manufacturer || '').trim();
+                if (teamName) {
+                  var teamMeta = {
+                    base: row.base || row.hq || row.headquarters || row.location || '',
+                    licence: row.licence || row.license || row.nationality || '',
+                    age: teamAgeFromMeta(row)
+                  };
+                  pushSearchItem(items, dedupe, normalizeDisplayTeamName(teamName), 'team', '/team/' + encodeURIComponent(slugify(teamName)), name + ' ' + manufacturer, name, id, teamName, name, teamMeta);
+                }
+                var drivers = [];
+                if (row.driver != null && String(row.driver).trim() !== '') drivers.push(String(row.driver));
+                if (Array.isArray(row.drivers)) drivers = drivers.concat(row.drivers);
+                drivers.forEach(function (driverNameRaw) {
+                  var driverName = driverDisplayName(String(driverNameRaw || '').trim());
+                  if (!driverName) return;
+                  var dSlug = slugify(driverName);
+                  if (!dSlug) return;
+                  if (!driverAggBySlug[dSlug]) {
+                    driverAggBySlug[dSlug] = {
+                      title: driverName,
+                      href: '/driver/' + encodeURIComponent(dSlug),
+                      seriesCounts: {},
+                      seriesNames: {},
+                      teamCountsBySeries: {}
+                    };
+                  }
+                  var agg = driverAggBySlug[dSlug];
+                  if (!agg.seriesCounts[id]) agg.seriesCounts[id] = 0;
+                  agg.seriesCounts[id] += 1;
+                  agg.seriesNames[id] = name;
+                  if (!agg.teamCountsBySeries[id]) agg.teamCountsBySeries[id] = {};
+                  if (teamName) {
+                    if (!agg.teamCountsBySeries[id][teamName]) agg.teamCountsBySeries[id][teamName] = 0;
+                    agg.teamCountsBySeries[id][teamName] += 1;
+                  }
+                });
+                var crewChiefName = String(row.crew_chief || row.crewChief || '').trim();
+                if (crewChiefName) {
+                  var crewMeta = {
+                    nationality: row.crew_chief_nationality || row.crewChiefNationality || row.crew_chief_citizenship || '',
+                    age: row.crew_chief_age || row.crewChiefAge || ageFromBirthDate(row.crew_chief_birth_date || row.crewChiefBirthDate || '')
+                  };
+                  pushSearchItem(items, dedupe, crewChiefName, 'crew_chief', '/crew-chief/' + encodeURIComponent(slugify(crewChiefName)), name + ' ' + teamName, teamName || name, id, teamName, name, crewMeta);
+                }
+                var teamPrincipalName = String(row.team_principal || row.teamPrincipal || row.principal || '').trim();
+                if (teamPrincipalName) {
+                  // Пока отдельной страницы руководителя команды нет — ведем на страницу команды.
+                  var principalHref = teamName ? '/team/' + encodeURIComponent(slugify(teamName)) : '/';
+                  pushSearchItem(items, dedupe, teamPrincipalName, 'team_principal', principalHref, name + ' ' + teamName, teamName || name, id, teamName, name, null);
+                }
+              });
+            })
+            .catch(function () { return null; });
+        });
+        return Promise.all(reqs);
+      })
+      .then(function () {
+        Object.keys(driverAggBySlug).forEach(function (slugKey) {
+          var agg = driverAggBySlug[slugKey];
+          var primary = pickPrimaryDriverContext(agg);
+          pushSearchItem(
+            items,
+            dedupe,
+            agg.title,
+            'driver',
+            agg.href,
+            primary.seriesName + ' ' + primary.teamName,
+            primary.teamName || primary.seriesName,
+            primary.seriesID,
+            primary.teamName,
+            primary.seriesName,
+            null
+          );
+        });
+        return fetchJSON('/api/drivers')
+          .then(function (drivers) {
+            if (!Array.isArray(drivers)) return;
+            drivers.forEach(function (d) {
+              if (!d || typeof d !== 'object') return;
+              var driverName = driverDisplayName(String(d.name || '').trim());
+              var dSlug = String(d.slug || '').trim();
+              if (!driverName) return;
+              if (!dSlug) dSlug = slugify(driverName);
+              if (!dSlug) return;
+              if (driverAggBySlug[dSlug]) return;
+              pushSearchItem(
+                items,
+                dedupe,
+                driverName,
+                'driver',
+                '/driver/' + encodeURIComponent(dSlug),
+                '',
+                '',
+                '',
+                '',
+                '',
+                null
+              );
+            });
+          })
+          .catch(function () { return null; });
+      })
+      .then(function () {
+        searchIndexItems = items;
+        searchIndexReady = true;
+      })
+      .catch(function () {
+        searchIndexItems = [];
+      })
+      .finally(function () {
+        searchIndexLoading = false;
+      })
+      .then(function () { return searchIndexItems; });
+  }
+
+  function initHeaderSearch() {
+    if (searchInitDone) return;
+    searchInitDone = true;
+    var wrapper = document.getElementById('header-search');
+    var toggle = document.getElementById('search-toggle');
+    var popover = document.getElementById('search-popover');
+    var input = document.getElementById('search-input');
+    var results = document.getElementById('search-results');
+    if (!wrapper || !toggle || !popover || !input || !results) return;
+
+    function closeSearch() {
+      popover.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openSearch() {
+      popover.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      input.focus();
+      ensureSearchIndex().then(function () {
+        if (!input.value.trim()) results.innerHTML = '';
+      });
+    }
+
+    function renderSearchResults(query) {
+      results.innerHTML = '';
+    }
+
+    function navigateToSearch(query) {
+      var q = String(query || '').trim();
+      if (!q) return;
+      closeSearch();
+      input.value = '';
+      window.scrollTo(0, 0);
+      var href = '/search?q=' + encodeURIComponent(q);
+      if (href !== window.location.pathname + window.location.search) {
+        history.pushState(null, '', href);
+      }
+      route();
+    }
+
+    toggle.addEventListener('click', function () {
+      if (popover.classList.contains('hidden')) openSearch();
+      else closeSearch();
+    });
+    input.addEventListener('input', function () {
+      renderSearchResults(input.value);
+    });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeSearch();
+        toggle.focus();
+        return;
+      }
+      if (e.key === 'Enter') {
+        navigateToSearch(input.value);
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!wrapper.contains(e.target)) closeSearch();
+    });
+    results.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a.search-result-link');
+      if (!a) return;
+      closeSearch();
+      input.value = '';
+    });
+  }
+
+  function renderSearchPage(query) {
+    showView('view-search');
+    var q = String(query || '').trim();
+    var titleEl = document.getElementById('search-title');
+    var metaEl = document.getElementById('search-meta');
+    var breadcrumbEl = document.getElementById('search-breadcrumb');
+    var contentEl = document.getElementById('search-results-content');
+    if (!contentEl) return;
+    if (titleEl) titleEl.textContent = 'Search results';
+    if (breadcrumbEl) {
+      breadcrumbEl.innerHTML =
+        '<a href="/">' + (t('breadcrumb.all') || 'All series') + '</a>' +
+        '<span class="breadcrumb-sep">/</span><span>' + esc(q || 'Search') + '</span>';
+    }
+    if (!q) {
+      if (metaEl) metaEl.textContent = 'Type query in search box';
+      contentEl.innerHTML = '<p class="empty-msg">No query provided.</p>';
+      document.title = 'Search — The Grid Archive (TGA)';
+      loadedSeriesId = null;
+      return;
+    }
+
+    var groupsMeta = [
+      { key: 'driver', label: 'Drivers' },
+      { key: 'team', label: 'Teams' },
+      { key: 'team_principal', label: 'Team principals' },
+      { key: 'crew_chief', label: 'Crew chiefs' },
+      { key: 'Championship', label: 'Championships' },
+      { key: 'Season', label: 'Seasons' }
+    ];
+
+    function renderFromMatches(matches, driverMetaBySlug, driverPhotoOkBySlug) {
+      var total = matches.length;
+      if (metaEl) metaEl.textContent = '';
+      if (total === 0) {
+        contentEl.innerHTML = '<p class="empty-msg">No matches found.</p>';
+        return;
+      }
+      var byKind = {};
+      matches.forEach(function (m) {
+        if (!byKind[m.kind]) byKind[m.kind] = [];
+        byKind[m.kind].push(m);
+      });
+      var html = '<div class="search-groups">';
+      groupsMeta.forEach(function (g) {
+        var list = byKind[g.key] || [];
+        if (!list.length) return;
+        html += '<section class="search-group">';
+        html += '<div class="search-group-header"><span>' + esc(g.label) + '</span><span class="search-group-count">' + list.length + ' matches</span></div>';
+        if (g.key === 'driver') {
+          html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+            '<th>name</th><th>nation</th><th>series</th><th>team</th><th>age</th>' +
+            '</tr></thead><tbody>';
+          list.forEach(function (item) {
+            var slug = decodeURIComponent((item.href || '').replace(/^\/driver\//, ''));
+            var m = driverMetaBySlug[slug] || {};
+            var inferredSeries = '';
+            var inferredTeam = '';
+            if (Array.isArray(m.season_results) && m.season_results.length > 0) {
+              var firstRes = m.season_results[0] || {};
+              inferredSeries = String(firstRes.series_name || firstRes.series_id || '').trim();
+              inferredTeam = String(firstRes.team_name || '').trim();
+            }
+            var nation = '—';
+            if (m.citizenship && String(m.citizenship).trim()) {
+              var parts = String(m.citizenship)
+                .split(',')
+                .map(function (x) { return String(x).trim(); })
+                .filter(function (x) { return x; });
+              if (parts.length > 1) {
+                var mainNation = parts[parts.length - 1];
+                var rest = parts.slice(0, parts.length - 1);
+                nation = [mainNation].concat(rest).join(', ');
+              } else if (parts.length === 1) {
+                nation = parts[0];
+              }
+            } else if (m.nationality && String(m.nationality).trim()) {
+              nation = String(m.nationality).trim();
+            }
+            var age = '—';
+            if (m.birth_date && /^\d{4}-\d{2}-\d{2}$/.test(String(m.birth_date))) {
+              var p = String(m.birth_date).split('-');
+              var by = parseInt(p[0], 10);
+              var bm = parseInt(p[1], 10);
+              var bd = parseInt(p[2], 10);
+              var now = new Date();
+              var a = now.getFullYear() - by;
+              var md = now.getMonth() + 1 - bm;
+              if (md < 0 || (md === 0 && now.getDate() < bd)) a--;
+              age = isNaN(a) ? '—' : String(a);
+            }
+            var photoUrl = (m.photo_url && String(m.photo_url).trim()) ? String(m.photo_url).trim() : '';
+            var photoOk = !!(driverPhotoOkBySlug && driverPhotoOkBySlug[slug]);
+            var photoSrc = '/api/driver-thumb/' + encodeURIComponent(slug) + '?_=search-thumb-v4';
+            var photoHtml = (photoUrl && photoOk)
+              ? '<img class="search-driver-photo" src="' + esc(photoSrc) + '"' +
+                ' alt="" loading="lazy" decoding="async">'
+              : '<span class="search-driver-photo search-driver-photo--empty" aria-hidden="true"></span>';
+            html += '<tr>' +
+              '<td><a class="search-page-link search-driver-link" href="' + item.href + '">' + photoHtml + '<span class="search-page-title">' + esc(item.title) + '</span></a></td>' +
+              '<td>' + esc(String(nation)) + '</td>' +
+              '<td>' + esc(item.seriesName || inferredSeries || '—') + '</td>' +
+              '<td>' + esc(normalizeDisplayTeamName(item.teamName || inferredTeam) || '—') + '</td>' +
+              '<td class="col-num">' + esc(age) + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        } else if (g.key === 'team') {
+          html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+            '<th>name</th><th>series</th><th>base</th><th>licence</th><th>age</th>' +
+            '</tr></thead><tbody>';
+          list.forEach(function (item) {
+            var meta = item.meta || {};
+            var teamSlugFromHref = decodeURIComponent((item.href || '').replace(/^\/team\//, ''));
+            var teamLogoURL = '/api/team-logo/' + encodeURIComponent(teamSlugFromHref) + '?_=team-logo-v1';
+            html += '<tr>' +
+              '<td><a class="search-page-link search-team-link" href="' + item.href + '"><img class="search-team-logo" src="' + esc(teamLogoURL) + '" alt="" loading="lazy" decoding="async"><span class="search-page-title">' + esc(item.title) + '</span></a></td>' +
+              '<td>' + esc(item.seriesName || '—') + '</td>' +
+              '<td>' + esc(meta.base || '—') + '</td>' +
+              '<td>' + esc(meta.licence || '—') + '</td>' +
+              '<td class="col-num">' + esc(meta.age || '—') + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        } else if (g.key === 'team_principal') {
+          html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+            '<th>name</th><th>team</th><th>series</th>' +
+            '</tr></thead><tbody>';
+          list.forEach(function (item) {
+            html += '<tr>' +
+              '<td><a class="search-page-link" href="' + item.href + '"><span class="search-page-title">' + esc(item.title) + '</span></a></td>' +
+              '<td>' + esc(normalizeDisplayTeamName(item.teamName) || '—') + '</td>' +
+              '<td>' + esc(item.seriesName || '—') + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        } else if (g.key === 'crew_chief') {
+          html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+            '<th>name</th><th>team</th><th>series</th><th>nationality</th><th>age</th>' +
+            '</tr></thead><tbody>';
+          list.forEach(function (item) {
+            var metaCrew = item.meta || {};
+            html += '<tr>' +
+              '<td><a class="search-page-link" href="' + item.href + '"><span class="search-page-title">' + esc(item.title) + '</span></a></td>' +
+              '<td>' + esc(normalizeDisplayTeamName(item.teamName) || '—') + '</td>' +
+              '<td>' + esc(item.seriesName || '—') + '</td>' +
+              '<td>' + esc(metaCrew.nationality || '—') + '</td>' +
+              '<td class="col-num">' + esc(metaCrew.age || '—') + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        } else if (g.key === 'Championship' || g.key === 'Season') {
+          html += '<div class="table-wrap"><table class="data-table"><thead><tr>' +
+            '<th>name</th>' +
+            '</tr></thead><tbody>';
+          list.forEach(function (item) {
+            html += '<tr>' +
+              '<td><a class="search-page-link" href="' + item.href + '"><span class="search-page-title">' + esc(item.title) + '</span></a></td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        } else {
+          html += '<ul class="search-group-list">';
+          list.forEach(function (item) {
+            var sub = item.subtext ? '<div class="search-page-sub">' + esc(item.subtext) + '</div>' : '';
+            html += '<li><a class="search-page-link" href="' + item.href + '"><span><span class="search-page-title">' + esc(item.title) + '</span>' + sub + '</span></a></li>';
+          });
+          html += '</ul>';
+        }
+        html += '</section>';
+      });
+      html += '</div>';
+      contentEl.innerHTML = html;
+    }
+
+    ensureSearchIndex().then(function () {
+      var qNorm = normalizeSearchText(q);
+      var matches = searchIndexItems
+        .filter(function (item) { return item.haystack.indexOf(qNorm) !== -1; })
+        .sort(function (a, b) { return rankSearchItems(qNorm, a, b); });
+      var drivers = matches.filter(function (m) { return m.kind === 'driver'; });
+      var driverReqs = drivers.map(function (m) {
+        var slug = decodeURIComponent((m.href || '').replace(/^\/driver\//, ''));
+        return fetchJSON('/api/driver/' + encodeURIComponent(slug) + '?_=' + Date.now())
+          .then(function (d) { return { slug: slug, data: d || {} }; })
+          .catch(function () { return { slug: slug, data: {} }; });
+      });
+      Promise.all(driverReqs).then(function (arr) {
+        var bySlug = {};
+        arr.forEach(function (x) { bySlug[x.slug] = x.data || {}; });
+        var photoChecks = drivers.map(function (m) {
+          var slug = decodeURIComponent((m.href || '').replace(/^\/driver\//, ''));
+          var d = bySlug[slug] || {};
+          var photoUrl = (d.photo_url && String(d.photo_url).trim()) ? String(d.photo_url).trim() : '';
+          photoUrl = getBestDriverPhotoURL(photoUrl);
+          return isSearchPhotoHighQuality(photoUrl).then(function (ok) {
+            return { slug: slug, ok: ok };
+          }).catch(function () {
+            return { slug: slug, ok: false };
+          });
+        });
+        Promise.all(photoChecks).then(function (photoArr) {
+          var photoBySlug = {};
+          photoArr.forEach(function (p) { photoBySlug[p.slug] = !!p.ok; });
+          renderFromMatches(matches, bySlug, photoBySlug);
+        }).catch(function () {
+          renderFromMatches(matches, bySlug, {});
+        });
+      }).catch(function () {
+        renderFromMatches(matches, {}, {});
+      });
+    }).catch(function () {
+      if (metaEl) metaEl.textContent = '"' + q + '"';
+      contentEl.innerHTML = '<p class="empty-msg">Failed to load search index.</p>';
+    });
+    document.title = 'Search: ' + q + ' — The Grid Archive (TGA)';
+    loadedSeriesId = null;
   }
 
   function renderEntityPage(type, slug, placeholder) {
@@ -9504,214 +10174,57 @@
             if (!country) return '';
             var c = String(country).trim();
             if (!c) return '';
+            if (/^[A-Za-z]{2}$/.test(c)) return c.toUpperCase();
             var lower = c.toLowerCase();
-            var iso = '';
-            // mapping for the most common variants we use in driver_profiles.json
-            if (lower === 'britain' || lower === 'great britain' || lower === 'uk' || lower === 'united kingdom') iso = 'GB';
-            else if (lower === 'england') iso = 'GB';
-            else if (lower === 'italy' || lower === 'italian republic') iso = 'IT';
-            else if (lower === 'monaco' || lower === 'monegasque') iso = 'MC';
-            else if (lower === 'spain' || lower === 'españa' || lower === 'kingdom of spain') iso = 'ES';
-            else if (lower === 'belgium' || lower === 'kingdom of belgium') iso = 'BE';
-            else if (lower === 'france' || lower === 'french republic') iso = 'FR';
-            else if (
-              lower === 'germany' ||
-              lower === 'deutschland' ||
-              lower === 'federal republic of germany' ||
-              lower === 'german'
-            ) iso = 'DE';
-            else if (lower === 'new zealand' || lower === 'aotearoa') iso = 'NZ';
-            else if (lower === 'australia' || lower === 'commonwealth of australia') iso = 'AU';
-            else if (lower === 'canada' || lower === 'canadian') iso = 'CA';
-            else if (lower === 'mexico' || lower === 'mexican') iso = 'MX';
-            else if (lower === 'argentina' || lower === 'argentine republic' || lower === 'republic of argentina') iso = 'AR';
-            else if (lower === 'brazil' || lower === 'brasil' || lower === 'federative republic of brazil' || lower === 'republic of brazil') iso = 'BR';
-            else if (lower === 'netherlands' || lower === 'holland' || lower === 'kingdom of the netherlands') iso = 'NL';
-            else if (lower === 'thailand' || lower === 'thai' || lower === 'kingdom of thailand') iso = 'TH';
-            else if (lower === 'finland' || lower === 'republic of finland') iso = 'FI';
-            else if (lower === 'russia' || lower === 'russian federation') iso = 'RU';
-            else if (lower === 'usa' || lower === 'united states' || lower === 'united states of america') iso = 'US';
-            else if (/^[A-Za-z]{2}$/.test(c)) iso = c.toUpperCase();
-            return iso;
+            var aliases = {
+              'great britain': 'GB', 'britain': 'GB', 'uk': 'GB', 'united kingdom': 'GB', 'england': 'GB',
+              'italy': 'IT', 'italian republic': 'IT', 'monaco': 'MC', 'monegasque': 'MC',
+              'spain': 'ES', 'españa': 'ES', 'kingdom of spain': 'ES',
+              'belgium': 'BE', 'kingdom of belgium': 'BE',
+              'france': 'FR', 'french republic': 'FR',
+              'germany': 'DE', 'deutschland': 'DE', 'federal republic of germany': 'DE', 'german': 'DE',
+              'new zealand': 'NZ', 'aotearoa': 'NZ',
+              'australia': 'AU', 'commonwealth of australia': 'AU',
+              'canada': 'CA', 'canadian': 'CA',
+              'mexico': 'MX', 'mexican': 'MX',
+              'argentina': 'AR', 'argentine republic': 'AR', 'republic of argentina': 'AR',
+              'brazil': 'BR', 'brasil': 'BR', 'federative republic of brazil': 'BR', 'republic of brazil': 'BR',
+              'netherlands': 'NL', 'holland': 'NL', 'kingdom of the netherlands': 'NL',
+              'thailand': 'TH', 'thai': 'TH', 'kingdom of thailand': 'TH',
+              'finland': 'FI', 'republic of finland': 'FI',
+              'denmark': 'DK', 'kingdom of denmark': 'DK', 'danish': 'DK',
+              'norway': 'NO', 'kingdom of norway': 'NO', 'norwegian': 'NO',
+              'russia': 'RU', 'russian federation': 'RU',
+              'usa': 'US', 'united states': 'US', 'united states of america': 'US',
+              'sweden': 'SE', 'switzerland': 'CH', 'austria': 'AT', 'poland': 'PL',
+              'czech republic': 'CZ', 'czechia': 'CZ', 'hungary': 'HU', 'portugal': 'PT',
+              'ireland': 'IE', 'iceland': 'IS', 'luxembourg': 'LU', 'andorra': 'AD',
+              'san marino': 'SM', 'china': 'CN', 'japan': 'JP', 'korea': 'KR', 'south korea': 'KR',
+              'india': 'IN', 'indonesia': 'ID', 'malaysia': 'MY', 'singapore': 'SG',
+              'philippines': 'PH', 'taiwan': 'TW', 'hong kong': 'HK',
+              'south africa': 'ZA', 'morocco': 'MA', 'algeria': 'DZ', 'egypt': 'EG',
+              'chile': 'CL', 'colombia': 'CO', 'ecuador': 'EC', 'peru': 'PE', 'uruguay': 'UY',
+              'paraguay': 'PY', 'bolivia': 'BO', 'venezuela': 'VE',
+              'cayman islands': 'KY', 'caymanian': 'KY', 'barbados': 'BB', 'barbadian': 'BB',
+              'lithuania': 'LT', 'latvia': 'LV', 'estonia': 'EE',
+              'romania': 'RO', 'bulgaria': 'BG', 'slovakia': 'SK', 'slovenia': 'SI',
+              'croatia': 'HR', 'serbia': 'RS', 'greece': 'GR', 'turkey': 'TR',
+              'israel': 'IL', 'uae': 'AE', 'united arab emirates': 'AE', 'qatar': 'QA',
+              'saudi arabia': 'SA', 'kuwait': 'KW', 'bahrain': 'BH'
+            };
+            return aliases[lower] || '';
           }
 
           function flagSvgHtmlFromIso(iso) {
             if (!iso) return '';
             iso = String(iso).toUpperCase();
-            // Inline SVG to avoid emoji font issues.
-            if (iso === 'GB') {
-              // Simplified Union Jack (good enough for UI).
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect width="18" height="12" fill="#012169"/>' +
-                '<path d="M0 0 L18 12" stroke="#FFFFFF" stroke-width="4"/>' +
-                '<path d="M18 0 L0 12" stroke="#FFFFFF" stroke-width="4"/>' +
-                '<path d="M0 0 L18 12" stroke="#C8102E" stroke-width="2"/>' +
-                '<path d="M18 0 L0 12" stroke="#C8102E" stroke-width="2"/>' +
-                '<rect x="0" y="5" width="18" height="2" fill="#FFFFFF"/>' +
-                '<rect x="0" y="5" width="18" height="1" fill="#C8102E"/>' +
-                '<rect x="8.5" y="0" width="1" height="12" fill="#FFFFFF"/>' +
-                '<rect x="9" y="0" width="0.5" height="12" fill="#C8102E"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'IT') {
-              // Italy: vertical tricolor
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect x="0"  y="0" width="6"  height="12" fill="#009246"/>' +
-                '<rect x="6"  y="0" width="6"  height="12" fill="#FFFFFF"/>' +
-                '<rect x="12" y="0" width="6"  height="12" fill="#CE2B37"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'FR') {
-              // France: vertical tricolor
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect x="0"  y="0" width="6" height="12" fill="#0055A4"/>' +
-                '<rect x="6"  y="0" width="6" height="12" fill="#FFFFFF"/>' +
-                '<rect x="12" y="0" width="6" height="12" fill="#EF4135"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'DE') {
-              // Germany: black-red-gold horizontal
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect x="0" y="0" width="18" height="4" fill="#000000"/>' +
-                '<rect x="0" y="4" width="18" height="4" fill="#DD0000"/>' +
-                '<rect x="0" y="8" width="18" height="4" fill="#FFCE00"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'BE') {
-              // Belgium: vertical black-yellow-red
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect x="0"  y="0" width="6"  height="12" fill="#000000"/>' +
-                '<rect x="6"  y="0" width="6"  height="12" fill="#FFD100"/>' +
-                '<rect x="12" y="0" width="6"  height="12" fill="#EF3340"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'NZ') {
-              // New Zealand: full flag image (PNG from Wikimedia) inside inline SVG.
-              var newZealandFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Flag_of_New_Zealand.svg/960px-Flag_of_New_Zealand.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + newZealandFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'AU') {
-              // Australia: full flag image (PNG from Wikimedia) inside inline SVG.
-              var australiaFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Flag_of_Australia.svg/960px-Flag_of_Australia.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + australiaFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'MC') {
-              // Monaco: national flag is a simple bicolor (red over white).
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect width="18" height="6" fill="#D52B1E"/>' +
-                '<rect x="0" y="6" width="18" height="6" fill="#FFFFFF"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'ES') {
-              // Spain: use the correct flag image (includes coat of arms) inside inline SVG.
-              // Note: we embed a PNG to avoid copying huge SVG markup into JS.
-              var spainFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/960px-Flag_of_Spain.svg.png?_=20240115205409';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + spainFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'AR') {
-              // Argentina: full flag with sun/escudo, embedded as PNG.
-              var argentinaFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/960px-Flag_of_Argentina.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + argentinaFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'BR') {
-              // Brazil: full flag (stars + globe), embedded as PNG.
-              var brazilFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/960px-Flag_of_Brazil.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + brazilFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'MX') {
-              // Mexico: full flag embedded as PNG.
-              var mexicoFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/960px-Flag_of_Mexico.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + mexicoFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'NL') {
-              // Netherlands: horizontal red-white-blue
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<rect x="0" y="0"  width="18" height="4" fill="#AE1C28"/>' +
-                '<rect x="0" y="4"  width="18" height="4" fill="#FFFFFF"/>' +
-                '<rect x="0" y="8"  width="18" height="4" fill="#21468B"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'TH') {
-              // Thailand: full flag with emblem, embedded as PNG.
-              var thailandFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_Thailand.svg/960px-Flag_of_Thailand.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + thailandFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-            if (iso === 'CA') {
-              // Canada: full flag, embedded as PNG.
-              var canadaFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Flag_of_Canada.svg/960px-Flag_of_Canada.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + canadaFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            if (iso === 'FI') {
-              // Finland: embed as PNG to keep exact Nordic cross proportions.
-              var finlandFlagPng = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/960px-Flag_of_Finland.svg.png?_=20260320';
-              return '<span class="citizenship-flag">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
-                '<image href="' + finlandFlagPng + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
-                '</svg>' +
-                '</span>';
-            }
-
-            return '';
+            if (!/^[A-Z]{2}$/.test(iso)) return '';
+            var png = 'https://flagcdn.com/w40/' + iso.toLowerCase() + '.png';
+            return '<span class="citizenship-flag">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">' +
+              '<image href="' + png + '" x="0" y="0" width="18" height="12" preserveAspectRatio="none"/>' +
+              '</svg>' +
+              '</span>';
           }
 
           function splitCitizenships(citizenshipStr) {
@@ -9983,6 +10496,12 @@
       renderSchedulePage();
         return;
       }
+    if (path === '/search') {
+      var params = new URLSearchParams(search || '');
+      var q = params.get('q') || '';
+      renderSearchPage(q);
+      return;
+    }
     if (path.indexOf('/event/') === 0) {
       var evRest    = path.slice('/event/'.length);
       var evSlash   = evRest.indexOf('/');
@@ -10083,6 +10602,7 @@
   if (footerEl) footerEl.textContent = t('footer');
 
   window.addEventListener('popstate', route);
+  initHeaderSearch();
   document.addEventListener('click', function (e) {
     var link = e.target && e.target.closest && e.target.closest('a[href]');
     if (!link) return;

@@ -14,6 +14,19 @@
   <header class="header">
     <div class="container header-inner">
       <a href="/" class="logo"><span class="logo-the">The</span> <span class="logo-grid">Grid</span> <span class="logo-archive">Archive</span></a>
+      <div class="header-search" id="header-search">
+        <button id="search-toggle" class="search-toggle" type="button" aria-label="Open" aria-expanded="false" aria-controls="search-popover">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.65" y1="16.65" x2="21" y2="21"></line>
+          </svg>
+        </button>
+        <div id="search-popover" class="search-popover hidden" role="dialog">
+          <label class="sr-only" for="search-input"></label>
+          <input id="search-input" class="search-input" type="search" placeholder="Driver, team, championship..." autocomplete="off" />
+          <ul id="search-results" class="search-results"></ul>
+        </div>
+      </div>
     </div>
   </header>
   <main class="container main">
@@ -35,6 +48,14 @@
       <section class="series-section">
         <div id="series-list" class="series-list-wrap"><p class="loading">Loading…</p></div>
       </section>
+    </div>
+    <div id="view-search" class="view hidden">
+      <nav class="breadcrumb" id="search-breadcrumb"></nav>
+      <header class="event-header" style="margin-bottom:0.75rem">
+        <h1 id="search-title" style="font-size:1.4rem;margin:0 0 0.5rem">Search results</h1>
+        <p id="search-meta" class="detail-meta"></p>
+      </header>
+      <div id="search-results-content"></div>
     </div>
 
     <!-- Schedule page -->
@@ -632,6 +653,7 @@
   </footer>
   <script src="/web/data/translations.js" defer></script>
   <script src="/web/data/series-colors.js" defer></script>
+  <script src="/web/data/search-priority.js" defer></script>
   <script src="/web/data/f1-tech-spec-2025.js" defer></script>
   <script src="/web/data/f1-tech-spec-2026.js" defer></script>
   <script src="/web/data/static-schedules.js" defer></script>

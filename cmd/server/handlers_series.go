@@ -344,7 +344,80 @@ func handleSeriesStandings(w http.ResponseWriter, _ *http.Request, dataDir, data
 	if strings.EqualFold(dataSeriesID, "SUPERCARS") && len(data.Rows) > 0 {
 		finalizeSupercarsStandings(dataDir, data)
 	}
+	if strings.EqualFold(dataSeriesID, "IMSA") {
+		normalizeIMSADriverDuplicates(data)
+	}
 	_ = json.NewEncoder(w).Encode(data)
+}
+
+func normalizeIMSADriverDuplicates(data *schedulefile.StandingsData) {
+	if data == nil {
+		return
+	}
+	for i := range data.Rows {
+		data.Rows[i].Driver = dedupeDriverList(data.Rows[i].Driver)
+	}
+	for ci := range data.Classes {
+		for ri := range data.Classes[ci].Rows {
+			data.Classes[ci].Rows[ri].Driver = dedupeDriverList(data.Classes[ci].Rows[ri].Driver)
+		}
+	}
+}
+
+func dedupeDriverList(raw string) string {
+	raw = strings.TrimSpace(raw)
+	if raw == "" {
+		return ""
+	}
+	parts := strings.Split(raw, "/")
+	seen := make(map[string]struct{}, len(parts))
+	out := make([]string, 0, len(parts))
+	for _, p := range parts {
+		name := strings.TrimSpace(p)
+		if name == "" {
+			continue
+		}
+		key := driverNameKey(name)
+		if _, ok := seen[key]; ok {
+			continue
+		}
+		seen[key] = struct{}{}
+		out = append(out, name)
+	}
+	if len(out) == 0 {
+		return ""
+	}
+	return strings.Join(out, " / ")
+}
+
+func driverNameKey(name string) string {
+	name = strings.ToLower(strings.TrimSpace(name))
+	replacer := strings.NewReplacer(
+		"á", "a",
+		"à", "a",
+		"ä", "a",
+		"â", "a",
+		"é", "e",
+		"è", "e",
+		"ë", "e",
+		"ê", "e",
+		"í", "i",
+		"ì", "i",
+		"ï", "i",
+		"î", "i",
+		"ó", "o",
+		"ò", "o",
+		"ö", "o",
+		"ô", "o",
+		"ú", "u",
+		"ù", "u",
+		"ü", "u",
+		"û", "u",
+		"ñ", "n",
+	)
+	name = replacer.Replace(name)
+	name = strings.Join(strings.Fields(name), " ")
+	return name
 }
 
 // loadSupercarsStandings собирает таблицу для Supercars в порядке приоритета:

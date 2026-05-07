@@ -467,7 +467,7 @@
 
     var sidMulti = (seriesId || '').toLowerCase().replace(/-/g, '_');
     if (window.TGA && window.TGA.buildImsaGtwceClassStandingsHtml && classes.length > 0) {
-      if ((sidMulti === 'imsa' && rows.length === 0) || sidMulti === 'gtwce_end' || sidMulti === 'gtwce_sprint') {
+      if ((sidMulti === 'imsa' && rows.length === 0) || sidMulti === 'gtwce_end' || sidMulti === 'gtwce_sprint' || sidMulti === 'elms') {
         var multiH = window.TGA.buildImsaGtwceClassStandingsHtml(data, sidMulti);
         if (multiH) {
           var imsaW = document.getElementById('standings-imsa-wrap');

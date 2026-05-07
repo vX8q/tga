@@ -4,6 +4,7 @@ package models
 type DriverSeasonResult struct {
 	SeriesID   string  `json:"series_id"`
 	SeriesName string  `json:"series_name"`
+	TeamName   string  `json:"team_name,omitempty"`
 	EventID    string  `json:"event_id"`
 	EventName  string  `json:"event_name"`
 	RaceName   string  `json:"race_name"`

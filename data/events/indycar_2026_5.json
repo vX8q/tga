@@ -95,12 +95,6 @@
       "manufacturer": "Honda"
     },
     {
-      "number": "24",
-      "driver": "Jack Harvey",
-      "team": "Dreyer & Reinbold Racing",
-      "manufacturer": "Chevrolet"
-    },
-    {
       "number": "20",
       "driver": "Alexander Rossi",
       "team": "Ed Carpenter Racing",
@@ -109,12 +103,6 @@
     {
       "number": "21",
       "driver": "Christian Rasmussen",
-      "team": "Ed Carpenter Racing",
-      "manufacturer": "Chevrolet"
-    },
-    {
-      "number": "33",
-      "driver": "Ed Carpenter",
       "team": "Ed Carpenter Racing",
       "manufacturer": "Chevrolet"
     },
@@ -129,12 +117,6 @@
       "driver": "Sting Ray Robb",
       "team": "Juncos Hollinger Racing",
       "manufacturer": "Chevrolet"
-    },
-    {
-      "number": "06",
-      "driver": "Hélio Castroneves",
-      "team": "Meyer Shank Racing with Curb-Agajanian",
-      "manufacturer": "Honda"
     },
     {
       "number": "60",

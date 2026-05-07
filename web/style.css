@@ -122,6 +122,187 @@ body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) main.c
   pointer-events: none;
 }
 .header-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.header-search {
+  margin-left: auto;
+  position: relative;
+}
+.search-toggle {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  background: var(--card-2);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.search-toggle:hover {
+  border-color: var(--accent);
+}
+.search-toggle svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.search-popover {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.6rem);
+  transform: translateY(-50%);
+  width: min(30rem, calc(100vw - 2.5rem));
+  background: var(--card);
+  border: 1px solid var(--border-2);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  padding: 0.6rem;
+}
+.search-input {
+  width: 100%;
+  border: 1px solid var(--border-2);
+  border-radius: 0.55rem;
+  background: var(--bg-2);
+  color: var(--text);
+  padding: 0.62rem 0.7rem;
+  font: inherit;
+}
+.search-input:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+.search-results {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+.search-result-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 0.5rem;
+  padding: 0.52rem 0.56rem;
+}
+.search-result-link:hover {
+  background: var(--bg-3);
+}
+.search-result-title {
+  font-weight: 600;
+}
+.search-result-kind {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.search-empty {
+  padding: 0.55rem 0.56rem;
+  color: var(--muted);
+}
+.search-groups {
+  display: grid;
+  gap: 1rem;
+}
+.search-group {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--card);
+  overflow: hidden;
+}
+.search-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+.search-group-count {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+.search-group-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+}
+.search-page-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 0.5rem;
+  padding: 0.52rem 0.58rem;
+}
+.search-page-link:hover {
+  background: var(--bg-3);
+}
+.search-page-title {
+  font-weight: 600;
+}
+.search-page-sub {
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.search-driver-link {
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding: 0.15rem 0.25rem;
+  min-height: 58px;
+  align-items: center;
+}
+.search-driver-photo {
+  width: 44px;
+  height: 56px;
+  min-width: 44px;
+  border-radius: 2px;
+  object-fit: contain;
+  object-position: center center;
+  background: var(--bg-2);
+  border: none;
+}
+.search-driver-photo--empty {
+  display: inline-block;
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--border);
+}
+.search-team-link {
+  justify-content: flex-start;
+  gap: 0.55rem;
+}
+.search-team-logo {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--border-2);
+  padding: 2px;
+}
+#view-search .search-group {
+  width: 100%;
+}
+#view-search .search-group .table-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+#view-search .search-group .data-table {
+  width: 100%;
+  table-layout: auto;
+}
 
 /* Language toggle */
 .lang-toggle {
@@ -471,12 +652,10 @@ body:has(#view-event:not(.hidden) #event-content .event-pre-season-block) main.c
   border: 0;
   border-radius: 0;
   display: block;
-  object-fit: cover;
-  object-position: 50% 25%;
+  object-fit: contain;
+  object-position: center center;
   background: transparent;
-  /* дополнительный "зум" для сильнее обрезки боковых прозрачных полей */
-  transform: scale(1.18);
-  transform-origin: center;
+  transform: none;
 }
 
 .series-live-banner {

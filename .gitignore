@@ -41,6 +41,7 @@ ehthumbs.db
 data/tga.sqlite
 data/**/*.sqlite
 data/live.json
+data/cache/
 
 # Backup copies and extracts (not the canonical tree)
 backups/
@@ -52,3 +53,8 @@ backups/
 
 # Optional: Node if you add tooling under the repo
 node_modules/
+
+# OS duplicate copies from manual downloads
+* (1).jpg
+* (1).jpeg
+* (1).png

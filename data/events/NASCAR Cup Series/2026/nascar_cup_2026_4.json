@@ -49,7 +49,7 @@
     {"number": "71", "driver": "Michael McDowell", "team": "Spire Motorsports", "manufacturer": "Chevrolet", "crew_chief": "Travis Peterson"},
     {"number": "77", "driver": "Carson Hocevar", "team": "Spire Motorsports", "manufacturer": "Chevrolet", "crew_chief": "Luke Lambert"},
     {"number": "88", "driver": "Connor Zilisch (R)", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Randall Burnett"},
-    {"number": "97", "driver": "Shane Van Gisbergen", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Stephen Doran"}
+    {"number": "97", "driver": "Shane van Gisbergen", "team": "Trackhouse Racing", "manufacturer": "Chevrolet", "crew_chief": "Stephen Doran"}
   ],
   "tables": {
     "practice": {
@@ -85,7 +85,7 @@
         ["28", "33", "Austin Hill (i)", "Richard Childress Racing", "27.326", "131.743", "2", "36", "-0.449", "-0.035"],
         ["29", "48", "Anthony Alfredo (i)", "Hendrick Motorsports", "27.328", "131.733", "3", "35", "-0.451", "-0.002"],
         ["30", "10", "Ty Dillon", "Kaulig Racing", "27.334", "131.704", "2", "27", "-0.457", "-0.006"],
-        ["31", "97", "Shane Van Gisbergen", "Trackhouse Racing", "27.339", "131.680", "2", "29", "-0.462", "-0.005"],
+        ["31", "97", "Shane van Gisbergen", "Trackhouse Racing", "27.339", "131.680", "2", "29", "-0.462", "-0.005"],
         ["32", "16", "AJ Allmendinger", "Kaulig Racing", "27.341", "131.670", "2", "28", "-0.464", "-0.002"],
         ["33", "21", "Josh Berry", "Wood Brothers Racing", "27.349", "131.632", "2", "31", "-0.472", "-0.008"],
         ["34", "6", "Brad Keselowski", "RFK Racing", "27.381", "131.478", "3", "22", "-0.504", "-0.032"],
@@ -192,7 +192,7 @@
         ["21","27", "33", "Austin Hill (i)",      "Richard Childress Racing","Chevrolet",  "312", "0"],
         ["22","21", "47", "Ricky Stenhouse Jr.",  "Hyak Motorsports",        "Chevrolet",  "312", "15"],
         ["23","26", "9",  "Chase Elliott",        "Hendrick Motorsports",    "Chevrolet",  "312", "14"],
-        ["24","34", "51", "Cody Ware",            "Rick Ware Racing",        "Ford",       "312", "13"],
+        ["24","34", "51", "Cody Ware",            "Rick Ware Racing",        "Chevrolet",  "312", "13"],
         ["25","15", "42", "John Hunter Nemechek", "Legacy Motor Club",       "Toyota",     "312", "12"],
         ["26","33", "10", "Ty Dillon",            "Kaulig Racing",           "Chevrolet",  "311", "11"],
         ["27","24", "38", "Zane Smith",           "Front Row Motorsports",   "Ford",       "294", "10"],
